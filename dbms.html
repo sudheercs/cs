@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Concepts - Presentation</title>
+    <style>
+        /* --- Basic Setup --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- Presentation Container (The "Stage") --- */
+        #presentation-container {
+            width: 90vw;
+            height: 50.625vw; /* 16:9 Aspect Ratio */
+            max-width: 1100px;
+            max-height: 618.75px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* --- Slide Styling --- */
+        .slide {
+            display: none; /* Hide all slides by default */
+            width: 100%;
+            height: 100%;
+            padding: 40px 60px;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .slide.active {
+            display: flex; /* Show the active slide */
+        }
+
+        /* Specific layout for Title/Q&A slides */
+        .slide.title-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* --- Typography --- */
+        .slide h1 {
+            font-size: 3.2em;
+            margin: 0 0 10px 0;
+            color: #004a99;
+        }
+
+        .slide h2 {
+            font-size: 2.4em;
+            color: #0078D4;
+            margin: 0 0 25px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #f0f0f0;
+            width: 100%;
+        }
+
+        .slide h3 {
+            font-size: 1.6em;
+            color: #333;
+            margin: 15px 0 10px 0;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.3em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .slide ul {
+            width: 90%;
+            margin-top: 0;
+        }
+        
+        .slide li {
+            margin-bottom: 15px;
+        }
+        
+        .slide strong {
+            color: #005A9C;
+        }
+
+        /* --- Code & Tables --- */
+        .slide code {
+            background-color: #eee;
+            color: #333;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: "Consolas", "Courier New", monospace;
+        }
+
+        .slide table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+        .slide th, .slide td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .slide th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        
+        /* --- Navigation Controls --- */
+        #navigation-controls {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        #navigation-controls button {
+            font-size: 1em;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #0078D4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background-color 0.2s;
+        }
+
+        #navigation-controls button:hover {
+            background-color: #005A9C;
+        }
+
+        #navigation-controls button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #counter {
+            font-size: 1.1em;
+            margin: 0 20px;
+            color: #555;
+            display: inline-block;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+
+        <section class="slide title-slide active">
+            <h1>An Introduction to Database Concepts</h1>
+            <p style="font-size: 1.5em;">Understanding the Need for Databases</p>
+            <p style="font-size: 1.2em; margin-top: 50px;"><strong>Presented by:</strong> Sudheer Singh</p>
+            <p style="font-size: 1.2em;"><strong>Date:</strong> 01/11/2025</p>
+        </section>
+
+        <section class="slide">
+            <h2>What is Data?</h2>
+            <p>Data refers to <strong>raw, unorganized facts</strong>, figures, or symbols. By itself, it often lacks context.</p>
+            <h3>Examples:</h3>
+            <ul>
+                <li><code>Amit</code> (A name)</li>
+                <li><code>18</code> (A number)</li>
+                <li><code>New Delhi</code> (A place)</li>
+                <li><code>95.4</code> (Another number)</li>
+            </ul>
+            <p><strong>Key Point:</strong> We need to organize this data to turn it into useful <strong>information</strong>.
+            <br/>e.g., "Amit, who is 18, lives in New Delhi and scored 95.4%."</p>
+        </section>
+
+        <section class="slide">
+            <h2>What is a Database?</h2>
+            <p>A database is a <strong>structured</strong> and <strong>organized</strong> collection of data, stored and accessed electronically.</p>
+            
+            <h3>Analogy: A Digital Filing Cabinet</h3>
+            <ul>
+                <li>Instead of paper folders, you have <strong>tables</strong>.</li>
+                <li>Instead of paper files, you have <strong>data (rows)</strong>.</li>
+                <li>It's designed for efficient storage, retrieval, and management.</li>
+            </ul>
+
+            <h3>Examples:</h3>
+            <ul>
+                <li>A school's database (students, teachers, courses).</li>
+                <li>A bank's database (customer accounts, transactions).</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>The Need for a Database: Problems with File Systems</h2>
+            <p>Before databases, data was stored in separate files (like Excel sheets), which caused major problems:</p>
+            <ul>
+                <li><strong>Data Redundancy:</strong> The same data is duplicated in multiple files (e.g., student's address in 'Accounts' and 'Library' files).</li>
+                <li><strong>Data Inconsistency:</strong> If data is updated in one file, it may not be updated in another (e.g., 'Accounts' has new address, 'Library' has old).</li>
+                <li><strong>Difficulty in Accessing Data:</strong> Required a new program for every new question (e.g., "Find all students from Delhi with >90%").</li>
+                <li><strong>Security Problems:</strong> Hard to control who can see or change what data.</li>
+                <li><strong>Integrity Problems:</strong> Hard to enforce rules (e.g., "marks must be between 0 and 100").</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>The Solution: DBMS</h2>
+            <p>A <strong>Database Management System (DBMS)</strong> is the <strong>software</strong> that interacts with users, applications, and the database to manage and control the data.</p>
+            
+            <h3>Analogy: The "Librarian"</h3>
+            <ul>
+                <li>You don't search the "filing cabinet" (database) yourself.</li>
+                <li>You ask the "librarian" (DBMS) for what you need.</li>
+                <li>The librarian finds it, ensures you have permission, and gives it to you.</li>
+            </ul>
+            <p><strong>Examples of DBMS:</strong> MySQL, PostgreSQL, Oracle, Microsoft SQL Server.</p>
+        </section>
+
+        <section class="slide">
+            <h2>Advantages of Using a DBMS</h2>
+            <p>A DBMS solves all the problems of the file system:</p>
+            <ul>
+                <li><strong>Controls Redundancy:</strong> Data is stored in one central place.</li>
+                <li><strong>Enforces Integrity:</strong> You can set rules (constraints) that data must follow (e.g., <code>Age > 18</code>, <code>Email must be unique</code>).</li>
+                <li><strong>Manages Security:</strong> Provides user logins and permissions.</li>
+                <li><strong>Provides Data Sharing:</strong> Multiple users can access the same data.</li>
+                <li><strong>Provides Backup & Recovery:</strong> Protects data from loss.</li>
+                <li><strong>Easy Data Access:</strong> Uses a standard language (like <strong>SQL</strong>) to ask complex questions.</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>Summary: Database Concepts</h2>
+            <ul>
+                <li><strong>Data:</strong> Raw, unorganized facts.</li>
+                <li><strong>Database:</strong> An organized and structured collection of data.</li>
+                <li><strong>The Need:</strong> Traditional file systems were inefficient, redundant, and insecure.</li>
+                <li><strong>DBMS:</strong> The software that manages the database, providing security, integrity, and easy access.</li>
+            </ul>
+        </section>
+
+        <section class="slide title-slide">
+            <h1>The Relational Data Model</h1>
+            <p style="font-size: 1.5em;">Organizing Data into Relations (Tables)</p>
+        </section>
+
+        <section class="slide">
+            <h2>What is the Relational Model?</h2>
+            <p>The most popular data model. It organizes data into one or more two-dimensional <strong>relations</strong>.</p>
+            
+            <p>Simple Term: A "relation" is just the formal name for a <strong>table</strong>.</p>
+            
+            <p><strong>Key Idea:</strong> Data is stored in tables (relations) made of rows and columns. These tables can be linked together based on common data.</p>
+        </section>
+
+        <section class="slide">
+            <h2>Core Concepts: Example Table</h2>
+            <p>We will use this simple <code>Student</code> relation to understand all the key terms.</p>
+            <table>
+                <tr>
+                    <th>RollNo (int)</th>
+                    <th>FirstName (varchar)</th>
+                    <th>Course (varchar)</th>
+                    <th>Age (int)</th>
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>Ankit</td>
+                    <td>CS</td>
+                    <td>18</td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Meera</td>
+                    <td>Commerce</td>
+                    <td>17</td>
+                </tr>
+                <tr>
+                    <td>103</td>
+                    <td>Rohan</td>
+                    <td>CS</td>
+                    <td>18</td>
+                </tr>
+                <tr>
+                    <td>104</td>
+                    <td>Priya</td>
+                    <td>Science</td>
+                    <td>17</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="slide">
+            <h2>Relation, Attribute, Tuple</h2>
+            <h3>1. Relation:</h3>
+            <p>The entire table, including all its rows and columns.<br/>
+               <strong>Example:</strong> The whole <code>Student</code> table is a relation.</p>
+               
+            <h3>2. Attribute:</h3>
+            <p>A property or characteristic of the relation (a <strong>column</strong>).<br/>
+               <strong>Example:</strong> <code>RollNo</code>, <code>FirstName</code>, <code>Course</code>, and <code>Age</code> are attributes.</p>
+               
+            <h3>3. Tuple:</h3>
+            <p>A single record or entry in the relation (a <strong>row</strong>).<br/>
+               <strong>Example:</strong> The row <code>(102, 'Meera', 'Commerce', 17)</code> is one tuple.</p>
+        </section>
+
+        <section class="slide">
+            <h2>Domain, Degree, Cardinality</h2>
+            <h3>4. Domain:</h3>
+            <p>A set of all possible <strong>valid values</strong> for an attribute.<br/>
+               <strong>Example:</strong> The domain for <code>Age</code> might be "Integers from 16 to 20."</p>
+               
+            <h3>5. Degree:</h3>
+            <p>The total number of <strong>attributes (columns)</strong> in a relation.<br/>
+               <strong>Example:</strong> The <code>Student</code> relation has a degree of <strong>4</strong>.</p>
+               
+            <h3>6. Cardinality:</h3>
+            <p>The total number of <strong>tuples (rows)</strong> in a relation.<br/>
+               <strong>Example:</strong> The <code>Student</code> relation has a cardinality of <strong>4</strong>.</p>
+        </section>
+
+        <section class="slide">
+            <h2>What are Keys?</h2>
+            <p>Keys are one or more attributes used to <strong>uniquely identify</strong> a tuple (row) in a relation.</p>
+            
+            <h3>The Need:</h3>
+            <p>How do we guarantee we can find <i>exactly one</i> student? What if there are two students named 'Rohan'? We need a unique identifier.</p>
+            
+            <h3>Analogy:</h3>
+            <p>A key is like your unique <strong>Student ID</strong>, <strong>PAN number</strong>, or <strong>vehicle registration number</strong>. It ensures every record is distinct.</p>
+        </section>
+
+        <section class="slide">
+            <h2>Keys: Candidate Key & Primary Key</h2>
+            <h3>Candidate Key:</h3>
+            <p>An attribute (or set of attributes) that can <strong>uniquely identify</strong> a tuple. A table can have multiple Candidate Keys.</p>
+            <p><strong>Example:</strong> <code>RollNo</code> is unique. If we also had an <code>Email</code> column, <code>Email</code> would also be a Candidate Key.</p>
+
+            <h3>Primary Key:</h3>
+            <p>The <strong>one</strong> Candidate Key chosen by the database designer to be the main, official identifier for the table.</p>
+            <ul>
+                <li>It <strong>cannot be NULL</strong>.</li>
+                <li>It <strong>must be unique</strong>.</li>
+            </ul>
+            <p><strong>Example:</strong> From the candidates (<code>RollNo</code>, <code>Email</code>), we choose <code>RollNo</code> as the <strong>Primary Key</strong>.</p>
+        </section>
+
+        <section class="slide">
+            <h2>Keys: Alternate Key & Foreign Key</h2>
+            <h3>Alternate Key:</h3>
+            <p>A Candidate Key that was <strong>not</strong> chosen to be the Primary Key.</p>
+            <p><strong>Example:</strong> If <code>RollNo</code> is our Primary Key, then <code>Email</code> (which is also unique) would be an <strong>Alternate Key</strong>.</p>
+
+            <h3>Foreign Key:</h3>
+            <p>An attribute in one table that refers to the <strong>Primary Key</strong> in <i>another</i> table.</p>
+            <p><strong>Purpose:</strong> This is the "link"! It's how we connect relations and maintain <strong>referential integrity</strong> (i.e., you can't enroll a student in a course that doesn't exist).</p>
+        </section>
+
+        <section class="slide">
+            <h2>Foreign Key: Example</h2>
+            <p>See how <code>CourseID</code> links the <code>Student</code> table to the <code>Course</code> table.</p>
+            
+            <h3><code>Student</code> Table</h3>
+            <table>
+                <tr>
+                    <th>RollNo <strong>(PK)</strong></th>
+                    <th>Name</th>
+                    <th>CourseID <strong>(FK)</strong></th>
+                </tr>
+                <tr>
+                    <td><strong>101</strong></td>
+                    <td>Ankit</td>
+                    <td><strong>CS1</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>102</strong></td>
+                    <td>Meera</td>
+                    <td><strong>CO2</strong></td>
+                </tr>
+                 <tr>
+                    <td><strong>103</strong></td>
+                    <td>Rohan</td>
+                    <td><strong>CS1</strong></td>
+                </tr>
+            </table>
+
+            <h3><code>Course</code> Table</h3>
+            <table>
+                <tr>
+                    <th>CourseID <strong>(PK)</strong></th>
+                    <th>CourseName</th>
+                </tr>
+                <tr>
+                    <td><strong>CS1</strong></td>
+                    <td>Computer Science</td>
+                </tr>
+                <tr>
+                    <td><strong>CO2</strong></td>
+                    <td>Commerce</td>
+                </tr>
+                 <tr>
+                    <td><strong>SC3</strong></td>
+                    <td>Science</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="slide">
+            <h2>Summary: Relational Model</h2>
+            <ul>
+                <li><strong>Relation:</strong> A table.</li>
+                <li><strong>Attribute:</strong> A column.</li>
+                <li><strong>Tuple:</strong> A row.</li>
+                <li><strong>Domain:</strong> Set of valid values for a column.</li>
+                <li><strong>Degree:</strong> Total number of columns.</li>
+                <li><strong>Cardinality:</strong> Total number of rows.</li>
+                <li><strong>Primary Key (PK):</strong> The main unique identifier for a row (e.g., <code>RollNo</code>).</li>
+                <li><strong>Foreign Key (FK):</strong> A PK from another table, used to link them (e.g., <code>CourseID</code>).</li>
+            </ul>
+        </section>
+
+        <section class="slide title-slide">
+            <h1>Thank You</h1>
+            <h2>Questions?</h2>
+        </section>
+
+    </div>
+
+    <div id="navigation-controls">
+        <button id="prev">&larr; Prev</button>
+        <span id="counter"></span>
+        <button id="next">Next &rarr;</button>
+    </div>
+
+    <script>
+        // --- JavaScript for Navigation ---
+
+        // Get all the slides and navigation elements
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        const counter = document.getElementById('counter');
+        
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        // Function to show a specific slide
+        function showSlide(n) {
+            // Hide the currently active slide
+            slides[currentSlide].classList.remove('active');
+            
+            // Update the current slide index, making sure it's within bounds
+            if (n >= totalSlides) {
+                currentSlide = totalSlides - 1;
+            } else if (n < 0) {
+                currentSlide = 0;
+            } else {
+                currentSlide = n;
+            }
+            
+            // Show the new active slide
+            slides[currentSlide].classList.add('active');
+            
+            // Update the counter text
+            counter.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+            
+            // Enable/disable Prev/Next buttons at the start or end
+            prevBtn.disabled = (currentSlide === 0);
+            nextBtn.disabled = (currentSlide === totalSlides - 1);
+        }
+
+        // --- Event Listeners ---
+
+        // Next button click
+        nextBtn.addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+        
+        // Previous button click
+        prevBtn.addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+
+        // Keyboard navigation (Arrow Keys)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        // Show the first slide on initial page load
+        showSlide(0);
+
+    </script>
+</body>
+</html>
