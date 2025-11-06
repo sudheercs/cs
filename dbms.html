@@ -6,40 +6,37 @@
   <title>Database Concepts — Extended (Classic White SQL Theme)</title>
   <style>
     :root{--bg:#ffffff;--fg:#000000;--accent:#004a99;--muted:#555;}
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
-    .deck{width:1100px;max-width:95vw;margin:20px auto;padding:28px;border:1px solid #e6e6e6;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
-    .slide{min-height:618px;display:flex;flex-direction:column;justify-content:flex-start;gap:18px;padding:40px;box-sizing:border-box}
-    .title{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-    h1{font-size:38px;margin:0;color:var(--accent)}
-    h2{font-size:26px;margin:0;color:#111}
-    h3{font-size:20px;margin:0;color:#222}
-    p,li{font-size:18px;line-height:1.5;margin:0;color:var(--fg)}
-    ul{margin:12px 0 0 18px}
-    table{width:100%;border-collapse:collapse;margin-top:10px;font-size:16px}
-    th,td{border:1px solid #ddd;padding:10px;text-align:left}
-    th{background:#fafafa}
-    pre{background:#f7f7f7;border:1px solid #e3e3e3;padding:12px;border-radius:6px;overflow:auto;font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
-    code{background:#f2f2f2;padding:2px 6px;border-radius:4px;font-family:SFMono-Regular,Menlo,Consolas,monospace}
-    .nav{display:flex;justify-content:center;gap:12px;margin-top:14px}
-    .btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:6px;border:none;cursor:pointer}
-    .counter{color:var(--muted)}
-    @media print{
-      body{box-shadow:none}
-      .deck{box-shadow:none;border:none;width:100%;max-width:100%;margin:0}
-      .slide{page-break-after:always;padding:48px}
-      .nav{display:none}
-    }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;overflow:hidden}
+    .deck{width:100vw;height:100vh;margin:0;padding:40px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+    .slide{width:100%;height:100%;display:none;flex-direction:column;justify-content:center;align-items:center;box-sizing:border-box;padding:60px;text-align:left;}
+    .slide.active{display:flex;}
+    h1{font-size:48px;color:var(--accent);margin-bottom:20px;}
+    h2{font-size:32px;margin-bottom:15px;}
+    h3{font-size:22px;margin-bottom:10px;}
+    p,li{font-size:20px;line-height:1.5;color:var(--fg);}
+    ul{margin:10px 0 0 20px;}
+    table{width:100%;border-collapse:collapse;margin-top:10px;font-size:18px;}
+    th,td{border:1px solid #ddd;padding:10px;text-align:left;}
+    th{background:#f9f9f9;}
+    pre{background:#f7f7f7;border:1px solid #e3e3e3;padding:12px;border-radius:6px;overflow:auto;font-family:SFMono-Regular,Menlo,Consolas,monospace;}
+    code{background:#f2f2f2;padding:3px 6px;border-radius:4px;font-family:SFMono-Regular,Menlo,Consolas,monospace;}
+    .nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:12px;align-items:center;}
+    .btn{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;border:none;cursor:pointer;font-size:16px;}
+    .btn:hover{background:#003a7a;}
+    .counter{color:var(--muted);font-size:18px;}
+    #fullscreen-btn{position:fixed;top:15px;right:20px;background:#008000;color:#fff;padding:10px 14px;border:none;border-radius:8px;cursor:pointer;font-size:16px;}
+    #fullscreen-btn:hover{background:#006600;}
   </style>
 </head>
 <body>
+  <button id="fullscreen-btn">⛶ Full Screen</button>
   <div class="deck" id="deck">
-    <section class="slide title">
+    <section class="slide active">
       <h1>An Introduction to Database Concepts</h1>
-      <p style="font-size:18px;margin-top:18px">Understanding the Need for Databases</p>
-      <p style="margin-top:34px"><strong>Presented by:</strong> Sudheer Singh</p>
+      <p style="font-size:22px">Understanding the Need for Databases</p>
+      <p><strong>Presented by:</strong> Sudheer Singh</p>
       <p><strong>Date:</strong> 01/11/2025</p>
     </section>
-
     <section class="slide">
       <h2>What is Data?</h2>
       <p>Data refers to <strong>raw, unorganized facts</strong>. By itself it often lacks context or meaning.</p>
@@ -50,189 +47,88 @@
         <li><code>New Delhi</code> (a place)</li>
         <li><code>95.4</code> (a score)</li>
       </ul>
-      <p><strong>Example of converting data into information:</strong><br>
-      “Amit, aged 18, from New Delhi, scored 95.4% in exams.”</p>
+      <p><strong>Example:</strong> “Amit, aged 18, from New Delhi, scored 95.4%.”</p>
     </section>
-
-    <section class="slide">
-      <h2>Types of Data</h2>
-      <ul>
-        <li><strong>Structured Data:</strong> Organized into tables (e.g., student records, sales data).</li>
-        <li><strong>Semi-Structured Data:</strong> JSON, XML, where structure is flexible.</li>
-        <li><strong>Unstructured Data:</strong> Images, videos, documents, or logs.</li>
-      </ul>
-      <p><strong>Example:</strong> Emails (semi-structured), customer reviews (unstructured).</p>
-    </section>
-
     <section class="slide">
       <h2>What is a Database?</h2>
-      <p>A <strong>database</strong> is a structured, organized collection of data stored and accessed electronically for efficient retrieval and management.</p>
-      <h3>Real-World Examples</h3>
+      <p>A <strong>database</strong> is a structured collection of related data organized for efficient access and management.</p>
       <ul>
-        <li><strong>School Database:</strong> Students, teachers, grades, attendance.</li>
-        <li><strong>Bank Database:</strong> Customers, transactions, accounts.</li>
-        <li><strong>E-commerce Database:</strong> Products, users, orders, reviews.</li>
+        <li>Tables represent entities.</li>
+        <li>Rows (tuples) store records.</li>
+        <li>Columns (attributes) store data types.</li>
       </ul>
     </section>
-
     <section class="slide">
-      <h2>Problems with Traditional File Systems</h2>
+      <h2>DBMS Overview</h2>
+      <p><strong>DBMS</strong> = Database Management System. A software that manages data storage, access, and security.</p>
+      <h3>Examples:</h3>
       <ul>
-        <li><strong>Data Redundancy:</strong> Same data repeated in multiple files.</li>
-        <li><strong>Inconsistency:</strong> One file updated, others not.</li>
-        <li><strong>Poor Data Sharing:</strong> Hard to access data simultaneously.</li>
-        <li><strong>Security Problems:</strong> No control on who accesses what.</li>
-        <li><strong>Integrity Issues:</strong> Hard to enforce business rules.</li>
+        <li>MySQL, PostgreSQL, Oracle, SQL Server (RDBMS)</li>
+        <li>MongoDB, Cassandra, Firebase (NoSQL)</li>
       </ul>
     </section>
-
     <section class="slide">
-      <h2>What is DBMS?</h2>
-      <p>A <strong>Database Management System (DBMS)</strong> is software that helps create, maintain, and manipulate databases.</p>
-      <h3>Functions of DBMS</h3>
-      <ul>
-        <li>Data storage, retrieval, and update.</li>
-        <li>User access control and security management.</li>
-        <li>Backup and recovery operations.</li>
-        <li>Concurrency control for multi-user systems.</li>
-        <li>Data integrity and consistency enforcement.</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Examples of DBMS Software</h2>
-      <ul>
-        <li><strong>Relational:</strong> MySQL, PostgreSQL, Oracle, SQL Server, SQLite.</li>
-        <li><strong>NoSQL:</strong> MongoDB, Cassandra, Redis, Neo4j.</li>
-        <li><strong>Cloud Databases:</strong> Amazon RDS, Google Cloud SQL, Firebase.</li>
-      </ul>
-      <p><strong>SQL Example:</strong></p>
-      <pre><code>SELECT * FROM Students WHERE Marks > 90;</code></pre>
-    </section>
-
-    <section class="slide">
-      <h2>Advantages of DBMS</h2>
-      <ul>
-        <li>Minimizes redundancy and inconsistency.</li>
-        <li>Improves data sharing and accessibility.</li>
-        <li>Provides centralized control and security.</li>
-        <li>Supports multi-user environment.</li>
-        <li>Ensures backup and recovery.</li>
-        <li>Maintains data integrity through constraints.</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Relational Data Model</h2>
-      <p>Introduced by <strong>Dr. E.F. Codd (1970)</strong>. Data is stored in tables (relations) consisting of rows and columns.</p>
-      <p><strong>Key Idea:</strong> Each table represents an entity (like Student, Course), and relationships are created using keys.</p>
-    </section>
-
-    <section class="slide">
-      <h2>Example: Student Table</h2>
-      <table>
-        <tr><th>RollNo</th><th>Name</th><th>Course</th><th>Age</th></tr>
-        <tr><td>101</td><td>Ankit</td><td>CS</td><td>18</td></tr>
-        <tr><td>102</td><td>Meera</td><td>Commerce</td><td>17</td></tr>
-        <tr><td>103</td><td>Rohan</td><td>CS</td><td>18</td></tr>
-        <tr><td>104</td><td>Priya</td><td>Science</td><td>17</td></tr>
-      </table>
-    </section>
-
-    <section class="slide">
-      <h2>Keys in DBMS</h2>
-      <ul>
-        <li><strong>Primary Key:</strong> Uniquely identifies each record.</li>
-        <li><strong>Foreign Key:</strong> References a key in another table.</li>
-        <li><strong>Candidate Key:</strong> All possible unique identifiers.</li>
-        <li><strong>Alternate Key:</strong> Candidate keys not chosen as primary.</li>
-        <li><strong>Composite Key:</strong> Combination of two or more attributes.</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Foreign Key Example</h2>
-      <p><strong>Student</strong> and <strong>Course</strong> tables linked by <code>CourseID</code>.</p>
-      <table>
-        <tr><th>RollNo</th><th>Name</th><th>CourseID (FK)</th></tr>
-        <tr><td>101</td><td>Ankit</td><td>CS1</td></tr>
-        <tr><td>102</td><td>Meera</td><td>CO2</td></tr>
-      </table>
-      <table>
-        <tr><th>CourseID</th><th>CourseName</th></tr>
-        <tr><td>CS1</td><td>Computer Science</td></tr>
-        <tr><td>CO2</td><td>Commerce</td></tr>
-      </table>
-    </section>
-
-    <section class="slide">
-      <h2>Normalization</h2>
-      <p>Process of organizing data to reduce redundancy and improve data integrity.</p>
-      <ul>
-        <li><strong>1NF:</strong> Atomic values only.</li>
-        <li><strong>2NF:</strong> No partial dependency.</li>
-        <li><strong>3NF:</strong> No transitive dependency.</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>SQL Overview</h2>
-      <ul>
-        <li><strong>DDL:</strong> CREATE, ALTER, DROP</li>
-        <li><strong>DML:</strong> INSERT, UPDATE, DELETE</li>
-        <li><strong>DCL:</strong> GRANT, REVOKE</li>
-        <li><strong>TCL:</strong> COMMIT, ROLLBACK</li>
-      </ul>
-      <pre><code>CREATE TABLE Students(
+      <h2>Relational Model & SQL</h2>
+      <p>Data is represented as tables (relations) with rows and columns.</p>
+      <pre><code>CREATE TABLE Students (
   RollNo INT PRIMARY KEY,
   Name VARCHAR(50),
   Age INT,
   Course VARCHAR(30)
 );</code></pre>
     </section>
-
     <section class="slide">
-      <h2>Database Users</h2>
+      <h2>Normalization</h2>
       <ul>
-        <li><strong>Database Administrator (DBA):</strong> Manages and maintains database system.</li>
-        <li><strong>Application Programmer:</strong> Develops software that interacts with DB.</li>
-        <li><strong>End User:</strong> Uses applications to access data.</li>
+        <li>Reduces redundancy.</li>
+        <li>Improves data integrity.</li>
+        <li>Ensures efficient storage and retrieval.</li>
       </ul>
     </section>
-
     <section class="slide">
       <h2>Summary</h2>
       <ul>
-        <li>DBMS efficiently stores, retrieves, and manages data.</li>
-        <li>Relational model organizes data into tables.</li>
-        <li>Keys establish relationships and ensure uniqueness.</li>
-        <li>Normalization reduces redundancy.</li>
-        <li>SQL is the standard language for managing relational databases.</li>
+        <li>Databases organize and manage structured data.</li>
+        <li>DBMS ensures integrity, security, and efficiency.</li>
+        <li>SQL is the standard language for relational data.</li>
       </ul>
     </section>
-
-    <section class="slide title">
+    <section class="slide">
       <h1>Thank You</h1>
-      <p style="margin-top:12px">Questions?</p>
+      <p style="font-size:22px">Questions?</p>
     </section>
   </div>
-
   <div class="nav">
     <button class="btn" id="prev">← Prev</button>
-    <div class="counter" id="counter">Slide 1 / 15</div>
+    <div class="counter" id="counter">Slide 1 / 7</div>
     <button class="btn" id="next">Next →</button>
   </div>
-
   <script>
-    const slides = Array.from(document.querySelectorAll('.slide'));
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
     const prev = document.getElementById('prev');
     const next = document.getElementById('next');
     const counter = document.getElementById('counter');
-    let idx = 0;
-    function show(i){slides.forEach(s=>s.style.display='none');slides[i].style.display='flex';counter.textContent = `Slide ${i+1} / ${slides.length}`;prev.disabled = i===0;next.disabled = i===slides.length-1}
-    prev.addEventListener('click',()=>{if(idx>0){idx--;show(idx)}});
-    next.addEventListener('click',()=>{if(idx<slides.length-1){idx++;show(idx)}});
-    show(0);
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+    function showSlide(i){
+      slides[current].classList.remove('active');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      counter.textContent = `Slide ${current+1} / ${slides.length}`;
+    }
+
+    prev.onclick = () => showSlide(current - 1);
+    next.onclick = () => showSlide(current + 1);
+    document.addEventListener('keydown', e => {
+      if(e.key==='ArrowRight') showSlide(current+1);
+      if(e.key==='ArrowLeft') showSlide(current-1);
+    });
+
+    fullscreenBtn.addEventListener('click',()=>{
+      if(!document.fullscreenElement){document.documentElement.requestFullscreen();fullscreenBtn.textContent='❐ Exit Full Screen';}
+      else{document.exitFullscreen();fullscreenBtn.textContent='⛶ Full Screen';}
+    });
   </script>
 </body>
 </html>
