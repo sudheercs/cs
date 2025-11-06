@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL: Structured Query Language — 30-slide Presentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #000000;
+            overflow: hidden; /* Keep slide feel */
+        }
+
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 5% 8%;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.35s ease-in-out;
+        }
+
+        .slide.active { display: flex; opacity: 1; }
+
+        .slide h1 { color: #0056b3; font-size: 3.0em; margin-bottom: 0.1em; border-bottom: 2px solid #0056b3; padding-bottom: 6px; }
+        .slide h2 { color: #222222; font-size: 1.8em; margin-top: 0.4em; }
+        .slide h3 { color: #000000; font-size: 1.4em; margin-top: 0.5em; }
+        .slide p, .slide li { font-size: 1.05em; line-height: 1.6; color: #000000; }
+
+        /* Code styling: use <pre><code> so multiline preserved */
+        pre.code-block { background-color: #f5f5f5; padding: 18px; border-radius: 8px; font-family: 'Consolas', 'Courier New', monospace; white-space: pre; margin: 14px 0; width: 92%; box-sizing: border-box; overflow-x: auto; border: 1px solid #cccccc; font-size: 0.95em; color: #000000; }
+        pre.code-block code { display: block; }
+
+        .slide ul { list-style-type: '👉 '; padding-left: 30px; }
+        .ddl-dml-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 100%; margin-top: 8px; }
+        .ddl-dml-container > div { background-color: #f5f5f5; padding: 18px; border-radius: 8px; border-left: 5px solid #a371f7; }
+
+        .nav-controls { position: fixed; bottom: 16px; right: 16px; z-index: 200; }
+        .nav-controls button { background-color: #0056b3; color: #ffffff; border: none; padding: 10px 14px; margin-left: 8px; border-radius: 6px; cursor: pointer; font-size: 0.95em; }
+        .nav-controls button:hover { background-color: #007bff; }
+
+        #slide-indicator { position: fixed; bottom: 26px; left: 36px; font-size: 1.05em; color: #333333; }
+        .top-controls { position: fixed; top: 16px; right: 16px; z-index: 300; display: flex; gap: 8px; align-items:center; }
+        .top-controls button { background: #e7f1ff; color: #0056b3; border: 1px solid #0056b3; padding: 8px 10px; border-radius: 6px; cursor: pointer; }
+        .top-controls input { width: 56px; padding: 6px 8px; border-radius: 6px; border: 1px solid #ccc; background: #ffffff; color: #000000; }
+
+        @media (max-width: 800px) {
+            .slide h1 { font-size: 2em; }
+            .slide h2 { font-size: 1.4em; }
+            .ddl-dml-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- --- Slides start --- -->
+
+    <div class="slide active" data-slide-num="1">
+        <h1>🚀 Structured Query Language (SQL)</h1>
+        <h2>The Foundation of Relational Data</h2>
+        <p>SQL is the standard language to manage and query relational databases (RDBMS).</p>
+        <p><em>Navigate with Next/Previous buttons, Arrow keys, or press <strong>F</strong> for fullscreen.</em></p>
+    </div>
+
+    <div class="slide" data-slide-num="2">
+        <h1>🛠️ DDL vs. DML</h1>
+        <p>Commands are categorized into DDL (structure) and DML (data).</p>
+        <div class="ddl-dml-container">
+            <div>
+                <h3>DDL</h3>
+                <ul>
+                    <li>CREATE, ALTER, DROP</li>
+                    <li>Schema & table structure</li>
+                </ul>
+                <pre class="code-block"><code>CREATE TABLE Departments (
+    DeptID INT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+</code></pre>
+                <p><strong>Question:</strong> What DDL command removes a table but keeps the database?</p>
+            </div>
+            <div>
+                <h3>DML</h3>
+                <ul>
+                    <li>SELECT, INSERT, UPDATE, DELETE</li>
+                    <li>Manipulate record data</li>
+                </ul>
+                <pre class="code-block"><code>INSERT INTO Departments (DeptID, Name)
+VALUES (1, 'Engineering');
+</code></pre>
+                <p><strong>Question:</strong> Which DML command modifies existing rows?</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" data-slide-num="3">
+        <h1>📊 Data Types & Constraints</h1>
+        <h3>Common Data Types</h3>
+        <pre class="code-block"><code>INT, FLOAT, CHAR(n), VARCHAR(n), DATE, TIMESTAMP
+</code></pre>
+        <h3>Constraints</h3>
+        <pre class="code-block"><code>NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK, DEFAULT
+</code></pre>
+        <p><strong>Example:</strong></p>
+        <pre class="code-block"><code>CREATE TABLE Users (
+    ID INT PRIMARY KEY,
+    Email VARCHAR(255) UNIQUE NOT NULL
+);
+</code></pre>
+        <p><strong>Question:</strong> Why use VARCHAR over CHAR for variable-length text?</p>
+    </div>
+
+    <div class="slide" data-slide-num="4">
+        <h1>🗃️ CREATE / USE / SHOW / DROP</h1>
+        <pre class="code-block"><code>CREATE DATABASE ProjectDB;
+USE ProjectDB;
+SHOW DATABASES;
+DROP DATABASE ProjectDB;
+</code></pre>
+        <p><strong>Practice:</strong> Create a database 'SchoolDB' and a table 'Students' with columns (ID, Name, DOB).</p>
+    </div>
+
+    <div class="slide" data-slide-num="5">
+        <h1>🧱 CREATE TABLE: Examples</h1>
+        <pre class="code-block"><code>CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Salary FLOAT DEFAULT 0.0,
+    HireDate DATE
+);
+</code></pre>
+        <p><strong>Question:</strong> How would you add a column 'Email' that must be unique?</p>
+    </div>
+
+    <div class="slide" data-slide-num="6">
+        <h1>✏️ ALTER TABLE (Modify Structure)</h1>
+        <pre class="code-block"><code>ALTER TABLE Employees
+ADD DeptID INT;
+
+ALTER TABLE Employees
+DROP COLUMN Salary;
+
+ALTER TABLE Employees
+ADD CONSTRAINT fk_dept FOREIGN KEY (DeptID) REFERENCES Departments(DeptID);
+</code></pre>
+        <p><strong>Exercise:</strong> Add a NOT NULL constraint to 'Email' (note: some DBs require creating a new column and copying data).</p>
+    </div>
+
+    <div class="slide" data-slide-num="7">
+        <h1>🔄 DML: INSERT / UPDATE / DELETE</h1>
+        <pre class="code-block"><code>INSERT INTO Employees (EmpID, Name, DeptID)
+VALUES (101, 'Alice', 1);
+
+UPDATE Employees
+SET Name = 'Alice Smith'
+WHERE EmpID = 101;
+
+DELETE FROM Employees
+WHERE EmpID = 101;
+</code></pre>
+        <p><strong>Question:</strong> How to insert multiple rows in a single INSERT statement?</p>
+    </div>
+
+    <div class="slide" data-slide-num="8">
+        <h1>🔍 SELECT: Basics & Aliasing</h1>
+        <pre class="code-block"><code>SELECT Name AS FullName, Salary
+FROM Employees;
+
+SELECT DISTINCT DeptID
+FROM Employees;
+</code></pre>
+        <p><strong>Question:</strong> What does DISTINCT do and when to use it?</p>
+    </div>
+
+    <div class="slide" data-slide-num="9">
+        <h1>🔎 WHERE: Filtering Rows</h1>
+        <pre class="code-block"><code>SELECT *
+FROM Employees
+WHERE DeptID IN (1, 3, 5);
+
+SELECT *
+FROM Employees
+WHERE HireDate BETWEEN '2023-01-01' AND '2023-12-31';
+
+SELECT *
+FROM Employees
+WHERE Name LIKE 'A%';
+</code></pre>
+        <p><strong>Practice:</strong> Find employees hired in the last 2 years (use appropriate dates).</p>
+    </div>
+
+    <div class="slide" data-slide-num="10">
+        <h1>❓ NULL, IS NULL, IS NOT NULL</h1>
+        <pre class="code-block"><code>SELECT *
+FROM Employees
+WHERE ManagerID IS NULL;
+
+SELECT *
+FROM Employees
+WHERE ManagerID IS NOT NULL;
+</code></pre>
+        <p><strong>Question:</strong> Why is NULL not equal to 0 or an empty string?</p>
+    </div>
+
+    <div class="slide" data-slide-num="11">
+        <h1>📚 ORDER BY & LIMIT</h1>
+        <pre class="code-block"><code>SELECT *
+FROM Employees
+ORDER BY DeptID ASC, Name DESC;
+
+SELECT *
+FROM Employees
+ORDER BY HireDate DESC
+LIMIT 10;
+</code></pre>
+        <p><strong>Exercise:</strong> Show top 5 highest paid employees.</p>
+    </div>
+
+    <div class="slide" data-slide-num="12">
+        <h1>📈 Aggregate Functions</h1>
+        <pre class="code-block"><code>SELECT AVG(Salary) AS AvgSal, COUNT(*) AS Total
+FROM Employees;
+
+SELECT MAX(Salary), MIN(Salary)
+FROM Employees;
+</code></pre>
+        <p><strong>Question:</strong> When should you use SUM vs COUNT?</p>
+    </div>
+
+    <div class="slide" data-slide-num="13">
+        <h1>🧩 GROUP BY & HAVING</h1>
+        <pre class="code-block"><code>SELECT DeptID, COUNT(*)
+FROM Employees
+GROUP BY DeptID
+HAVING COUNT(*) > 5;
+</code></pre>
+        <p><strong>Practice:</strong> Group sales by month and filter months with total > 1000.</p>
+    </div>
+
+    <div class="slide" data-slide-num="14">
+        <h1>🤝 JOINS: Inner, Left, Right, Full</h1>
+        <pre class="code-block"><code>-- Inner Join
+SELECT e.Name, d.Name AS Dept
+FROM Employees e
+JOIN Departments d ON e.DeptID = d.DeptID;
+
+-- Left Join
+SELECT e.Name, d.Name AS Dept
+FROM Employees e
+LEFT JOIN Departments d ON e.DeptID = d.DeptID;
+</code></pre>
+        <p><strong>Question:</strong> When would you use LEFT JOIN over INNER JOIN?</p>
+    </div>
+
+    <div class="slide" data-slide-num="15">
+        <h1>🧠 NATURAL & CROSS JOIN (Cartesian)</h1>
+        <pre class="code-block"><code>-- Natural join (auto on same-named columns)
+SELECT *
+FROM A
+NATURAL JOIN B;
+
+-- Cartesian product (use carefully)
+SELECT *
+FROM A
+CROSS JOIN B;
+</code></pre>
+        <p><strong>Warning:</strong> CROSS JOIN can explode row counts dramatically.</p>
+    </div>
+
+    <div class="slide" data-slide-num="16">
+        <h1>🕳️ Subqueries & Correlated Subqueries</h1>
+        <pre class="code-block"><code>SELECT Name
+FROM Employees
+WHERE Salary > (
+    SELECT AVG(Salary)
+    FROM Employees
+);
+
+SELECT e.Name
+FROM Employees e
+WHERE Salary > (
+    SELECT AVG(Salary)
+    FROM Employees
+    WHERE DeptID = e.DeptID
+);
+</code></pre>
+        <p><strong>Exercise:</strong> Find employees who earn above their department's average.</p>
+    </div>
+
+    <div class="slide" data-slide-num="17">
+        <h1>🔀 Set Operations: UNION / INTERSECT / EXCEPT</h1>
+        <pre class="code-block"><code>SELECT Name FROM A
+UNION
+SELECT Name FROM B;
+
+SELECT Name FROM A
+INTERSECT
+SELECT Name FROM B;
+
+SELECT Name FROM A
+EXCEPT
+SELECT Name FROM B;
+</code></pre>
+        <p><strong>Question:</strong> What's the difference between UNION and UNION ALL?</p>
+    </div>
+
+    <div class="slide" data-slide-num="18">
+        <h1>🏷️ Indexes & Views</h1>
+        <pre class="code-block"><code>-- Create index
+CREATE INDEX idx_emp_name ON Employees(Name);
+
+-- Create view
+CREATE VIEW vw_high_earners AS
+SELECT Name, Salary
+FROM Employees
+WHERE Salary > 100000;
+</code></pre>
+        <p><strong>Practice:</strong> Create an index to speed up searches on Email.</p>
+    </div>
+
+    <div class="slide" data-slide-num="19">
+        <h1>🧾 Transactions & ACID</h1>
+        <pre class="code-block"><code>START TRANSACTION;
+UPDATE Accounts SET Balance = Balance - 100 WHERE ID = 1;
+UPDATE Accounts SET Balance = Balance + 100 WHERE ID = 2;
+COMMIT;
+-- or ROLLBACK;
+</code></pre>
+        <p><strong>Question:</strong> Which ACID property ensures durability after commit?</p>
+    </div>
+
+    <div class="slide" data-slide-num="20">
+        <h1>🧩 Normalization (1NF, 2NF, 3NF)</h1>
+        <p>Normalization reduces redundancy and improves integrity.</p>
+        <pre class="code-block"><code>-- Example: Move repeating phone numbers to separate table 'Phones'
+-- Users table
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+-- Phones table
+CREATE TABLE Phones (
+    PhoneID INT PRIMARY KEY,
+    UserID INT REFERENCES Users(UserID),
+    Phone VARCHAR(20)
+);
+</code></pre>
+        <p><strong>Exercise:</strong> Given a single table with customer and order columns, sketch tables for 1NF → 3NF.</p>
+    </div>
+
+    <div class="slide" data-slide-num="21">
+        <h1>🔎 Constraints Examples</h1>
+        <pre class="code-block"><code>CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    Qty INT CHECK (Qty > 0),
+    OrderDate DATE DEFAULT CURRENT_DATE,
+    CustomerID INT REFERENCES Customers(ID)
+);
+</code></pre>
+        <p><strong>Question:</strong> How does CHECK differ from a trigger-based validation?</p>
+    </div>
+
+    <div class="slide" data-slide-num="22">
+        <h1>🪟 Window Functions (OVER())</h1>
+        <pre class="code-block"><code>SELECT Name, DeptID, Salary,
+       RANK() OVER (PARTITION BY DeptID ORDER BY Salary DESC) AS DeptRank
+FROM Employees;
+</code></pre>
+        <p><strong>Practice:</strong> Show top 3 earners per department.</p>
+    </div>
+
+    <div class="slide" data-slide-num="23">
+        <h1>🔤 String Functions & Pattern Matching</h1>
+        <pre class="code-block"><code>SELECT UPPER(Name), LOWER(Name), SUBSTR(Name,1,3)
+FROM Employees;
+
+SELECT * FROM Employees
+WHERE Email LIKE '%@example.com';
+</code></pre>
+        <p><strong>Question:</strong> How to extract domain from email using SQL string functions?</p>
+    </div>
+
+    <div class="slide" data-slide-num="24">
+        <h1>📅 Date/Time Functions</h1>
+        <pre class="code-block"><code>SELECT CURRENT_DATE, CURRENT_TIMESTAMP;
+
+SELECT DATE_ADD(HireDate, INTERVAL 30 DAY)
+FROM Employees;
+
+SELECT DATEDIFF(CURRENT_DATE, HireDate) AS DaysWorked
+FROM Employees;
+</code></pre>
+        <p><strong>Exercise:</strong> Calculate employee tenure in years (approx).</p>
+    </div>
+
+    <div class="slide" data-slide-num="25">
+        <h1>🎭 CASE / Conditional Logic</h1>
+        <pre class="code-block"><code>SELECT Name, Salary,
+       CASE
+         WHEN Salary > 100000 THEN 'High'
+         WHEN Salary > 50000 THEN 'Medium'
+         ELSE 'Low'
+       END AS SalaryBand
+FROM Employees;
+</code></pre>
+        <p><strong>Question:</strong> When is CASE preferred over multiple WHERE conditions?</p>
+    </div>
+
+    <div class="slide" data-slide-num="26">
+        <h1>🔁 Temporary Tables & CTEs</h1>
+        <pre class="code-block"><code>-- CTE
+WITH RecentSales AS (
+    SELECT * FROM Sales
+    WHERE SaleDate > '2025-01-01'
+)
+SELECT * FROM RecentSales WHERE Amount > 100;
+
+-- Temp table (syntax varies)
+CREATE TEMP TABLE tmp_users AS
+SELECT * FROM Users WHERE Active = 1;
+</code></pre>
+        <p><strong>Practice:</strong> Use a CTE to compute moving average.</p>
+    </div>
+
+    <div class="slide" data-slide-num="27">
+        <h1>💾 Stored Procedures & Functions</h1>
+        <pre class="code-block"><code>-- Example (MySQL-like)
+DELIMITER $$
+CREATE PROCEDURE GiveRaise (IN emp INT, IN amt FLOAT)
+BEGIN
+    UPDATE Employees SET Salary = Salary + amt WHERE EmpID = emp;
+END$$
+DELIMITER ;
+</code></pre>
+        <p><strong>Question:</strong> When use stored procedures vs application logic?</p>
+    </div>
+
+    <div class="slide" data-slide-num="28">
+        <h1>🔐 Security: Users, Roles & Permissions</h1>
+        <pre class="code-block"><code>CREATE USER 'report'@'%' IDENTIFIED BY 'pwd';
+GRANT SELECT ON ProjectDB.* TO 'report'@'%';
+REVOKE INSERT ON ProjectDB.Employees FROM 'report'@'%';
+</code></pre>
+        <p><strong>Exercise:</strong> Create a read-only role for analytics users.</p>
+    </div>
+
+    <div class="slide" data-slide-num="29">
+        <h1>⚡ Performance Tuning Tips</h1>
+        <ul>
+            <li>Use indexes selectively</li>
+            <li>Avoid SELECT *</li>
+            <li>Analyze query plans (EXPLAIN)</li>
+            <li>Denormalize for read-heavy workloads when justified</li>
+        </ul>
+        <pre class="code-block"><code>EXPLAIN SELECT * FROM Employees WHERE Email = 'a@b.com';
+</code></pre>
+        <p><strong>Question:</strong> What index type helps with full-text search (DB-specific)?</p>
+    </div>
+
+    <div class="slide" data-slide-num="30">
+        <h1>📚 Practice Questions & Summary</h1>
+        <ol>
+            <li>Write a query to list departments with average salary &gt; 70,000.</li>
+            <li>Find employees without assigned departments.</li>
+            <li>Create a CTE that returns top 5 salespersons by amount.</li>
+        </ol>
+        <p>You've reached the end. Use the controls to replay or jump to any slide.</p>
+    </div>
+
+    <!-- Controls -->
+    <div class="nav-controls">
+        <button id="prevBtn" title="Previous (Left Arrow)">Previous</button>
+        <button id="nextBtn" title="Next (Right Arrow / Space)">Next</button>
+    </div>
+
+    <div class="top-controls">
+        <button id="fsBtn" title="Toggle Fullscreen (F)">⛶ Fullscreen</button>
+        <label for="goto" style="color:#333333;">Go to</label>
+        <input id="goto" type="number" min="1" max="30" value="1" title="Enter slide number (1-30)">
+        <button id="jumpBtn" title="Jump to slide">Go</button>
+    </div>
+
+    <div id="slide-indicator"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const fsBtn = document.getElementById('fsBtn');
+        const gotoInput = document.getElementById('goto');
+        const jumpBtn = document.getElementById('jumpBtn');
+
+        function updateSlideIndicator() {
+            const indicator = document.getElementById('slide-indicator');
+            indicator.textContent = `Slide ${currentSlide + 1} of ${total}`;
+        }
+
+        function showSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= slides.length) index = slides.length - 1;
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            });
+            currentSlide = index;
+            gotoInput.value = currentSlide + 1;
+            updateSlideIndicator();
+        }
+
+        function changeSlide(n) {
+            showSlide((currentSlide + n + total) % total);
+        }
+
+        prevBtn.addEventListener('click', () => changeSlide(-1));
+        nextBtn.addEventListener('click', () => changeSlide(1));
+        jumpBtn.addEventListener('click', () => {
+            const v = parseInt(gotoInput.value, 10) - 1;
+            if (!isNaN(v)) showSlide(v);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' ) {
+                e.preventDefault();
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullScreen();
+            } else if (e.key === 'Home') {
+                showSlide(0);
+            } else if (e.key === 'End') {
+                showSlide(total - 1);
+            }
+        });
+
+        // Fullscreen handling
+        function isFullscreen() {
+            return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+        }
+        function toggleFullScreen() {
+            const el = document.documentElement;
+            if (!isFullscreen()) {
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+                else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+                else if (el.msRequestFullscreen) el.msRequestFullscreen();
+                fsBtn.textContent = '❐ Exit Fullscreen';
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+                else if (document.msExitFullscreen) document.msExitFullscreen();
+                fsBtn.textContent = '⛶ Fullscreen';
+            }
+        }
+        fsBtn.addEventListener('click', toggleFullScreen);
+
+        // Touch swipe support (basic)
+        let touchStartX = null;
+        document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+        document.addEventListener('touchend', (e) => {
+            if (touchStartX === null) return;
+            const diff = e.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(diff) > 40) {
+                if (diff < 0) changeSlide(1); else changeSlide(-1);
+            }
+            touchStartX = null;
+        });
+
+        // Initialize
+        showSlide(currentSlide);
+
+        // Accessibility: announce slide changes to screen readers (simple)
+        const sr = document.createElement('div');
+        sr.setAttribute('aria-live', 'polite');
+        sr.style.position = 'absolute'; sr.style.left = '-10000px';
+        document.body.appendChild(sr);
+        function announce() { sr.textContent = `Showing slide ${currentSlide + 1} of ${total}`; }
+        const observer = new MutationObserver(announce);
+        observer.observe(document.getElementById('slide-indicator'), { childList: true });
+
+    </script>
+</body>
+</html>
