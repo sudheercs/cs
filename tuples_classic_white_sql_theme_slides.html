@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tuples — Introduction, Operations & Programs</title>
+  <style>
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+    body{background:white;color:black;display:flex;align-items:center;justify-content:center}
+    .deck{width:1000px;height:650px;border:1px solid #ddd;box-shadow:0 8px 30px rgba(0,0,0,0.06);overflow:hidden;border-radius:6px}
+    .slide{width:100%;height:100%;padding:48px 64px;box-sizing:border-box;display:none;overflow-y:auto}
+    .slide.active{display:block}
+    h1{font-size:36px;margin:0 0 12px;font-weight:700;color:#222;border-bottom:2px solid #000;padding-bottom:8px}
+    h2{font-size:22px;margin:12px 0;font-weight:600;color:#333}
+    p{font-size:16px;line-height:1.5}
+    ul{margin:8px 0 0 20px}
+    .code{background:#f5f5f5;border:1px solid #e0e0e0;padding:12px;border-radius:8px;margin-top:12px;overflow-x:auto}
+    pre code{display:block;white-space:pre-wrap;font-family:Consolas,Monaco,'Courier New',monospace;font-size:14px}
+    .kw{color:#005cc5;font-weight:600}
+    .fn{color:#6f42c1}
+    .cm{color:#6a737d;font-style:italic}
+    .str{color:#032f62}
+    .num{color:#d73a49}
+    .footer{position:absolute;left:64px;bottom:18px;font-size:13px;color:#444}
+    .controls{position:absolute;right:64px;bottom:18px}
+    button{background:#fff;border:1px solid #ccc;padding:8px 12px;border-radius:6px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="deck">
+
+    <section class="slide active" id="s1">
+      <h1>Tuples — Introduction</h1>
+      <p>A <strong>tuple</strong> is an <em>immutable</em> ordered collection of items. Tuples are written with parentheses and commas.</p>
+      <div class="code"><pre><code><span class="cm"># examples</span>
+empty = <span class="kw">()</span>
+single = (<span class="num">42</span>,)
+nums = (<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>)
+mixed = (<span class="num">1</span>, <span class="str">'two'</span>, <span class="num">3.0</span>, <span class="kw">True</span>)
+</code></pre></div>
+      <p><strong>Explanation:</strong> Tuples are created using parentheses. They can hold elements of different data types. The tuple <code>single</code> needs a comma to distinguish it from a simple integer in parentheses.</p>
+    </section>
+
+    <section class="slide" id="s2">
+      <h1>Indexing & Access</h1>
+      <div class="code"><pre><code>t = (<span class="str">'a'</span>,<span class="str">'b'</span>,<span class="str">'c'</span>,<span class="str">'d'</span>)
+first = t[<span class="num">0</span>]      <span class="cm"># 'a'</span>
+last = t[-<span class="num">1</span>]      <span class="cm"># 'd'</span>
+slice_mid = t[<span class="num">1</span>:<span class="num">3</span>] <span class="cm"># ('b','c')</span>
+</code></pre></div>
+      <p><strong>Explanation:</strong> Indexing allows access to specific elements. Negative indices count from the end. Slicing extracts a portion of the tuple, creating a new tuple.</p>
+    </section>
+
+    <section class="slide" id="s3">
+      <h1>Tuple Operations — Part 1</h1>
+      <h2>Concatenation & Repetition</h2>
+      <div class="code"><pre><code>a = (<span class="num">1</span>,<span class="num">2</span>)
+b = (<span class="num">3</span>,<span class="num">4</span>)
+c = a + b   <span class="cm"># (1,2,3,4)</span>
+
+t = (<span class="num">0</span>,<span class="num">1</span>)
+rep = t * <span class="num">3</span>  <span class="cm"># (0,1,0,1,0,1)</span>
+</code></pre></div>
+      <p><strong>Explanation:</strong> The <code>+</code> operator joins two tuples, creating a new one. The <code>*</code> operator repeats the tuple contents a given number of times.</p>
+    </section>
+
+    <section class="slide" id="s4">
+      <h1>Tuple Operations — Part 2</h1>
+      <h2>Membership & Slicing</h2>
+      <div class="code"><pre><code><span class="num">3</span> in (<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>)   <span class="cm"># True</span>
+(<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>)[<span class="num">1</span>:<span class="num">3</span>]    <span class="cm"># (2,3)</span>
+</code></pre></div>
+      <p><strong>Explanation:</strong> The <code>in</code> keyword checks whether an element exists in the tuple. Slicing extracts a range of elements by index positions.</p>
+    </section>
+
+    <section class="slide" id="s5">
+      <h1>Built-in Functions — Part 1</h1>
+      <ul>
+        <li><code>len(t)</code> — length</li>
+        <li><code>tuple(iterable)</code> — construct a tuple</li>
+        <li><code>t.count(x)</code> — frequency of x</li>
+        <li><code>t.index(x)</code> — first index of x</li>
+      </ul>
+      <p><strong>Explanation:</strong> These built-in functions simplify tuple management, letting you find length, convert data, or locate values efficiently.</p>
+    </section>
+
+    <section class="slide" id="s6">
+      <h1>Built-in Functions — Part 2</h1>
+      <ul>
+        <li><code>sorted(t)</code> — sorted list</li>
+        <li><code>min(t), max(t), sum(t)</code> — numeric operations</li>
+      </ul>
+      <div class="code"><pre><code>t = (<span class="num">3</span>,<span class="num">1</span>,<span class="num">2</span>,<span class="num">1</span>)
+len(t) <span class="cm"># 4</span>
+min(t), max(t), sum(t) <span class="cm"># (1,3,7)</span>
+</code></pre></div>
+      <p><strong>Explanation:</strong> The <code>sorted()</code> function returns a sorted list, while <code>min()</code>, <code>max()</code>, and <code>sum()</code> return numeric results across tuple values.</p>
+    </section>
+
+    <section class="slide" id="s7">
+      <h1>Tuple Assignment</h1>
+      <div class="code"><pre><code>a, b, c = (<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>)
+x, y = <span class="num">1</span>, <span class="num">2</span>
+x, y = y, x  <span class="cm"># swap</span>
+</code></pre></div>
+      <p><strong>Explanation:</strong> Tuple unpacking lets you assign multiple values at once. Swapping variables is simple with tuple unpacking — no temporary variable needed.</p>
+    </section>
+
+    <section class="slide" id="s8">
+      <h1>Nested Tuples</h1>
+      <div class="code"><pre><code>nested = (<span class="num">1</span>, (<span class="num">2</span>, <span class="num">3</span>), (<span class="num">4</span>, (<span class="num">5</span>,<span class="num">6</span>)))
+</code></pre></div>
+      <p><strong>Explanation:</strong> Tuples can contain other tuples, creating a hierarchical structure. Access elements using multiple indices like <code>nested[1][1]</code>.</p>
+    </section>
+
+    <section class="slide" id="s9">
+      <h1>Suggested Programs — Part 1</h1>
+      <h2>Find Min, Max, Mean</h2>
+      <div class="code"><pre><code>values = (<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>, <span class="num">5</span>, <span class="num">15</span>)
+print(min(values), max(values), sum(values)/len(values))
+</code></pre></div>
+      <p><strong>Explanation:</strong> This program uses built-in functions to compute the minimum, maximum, and average (mean) of tuple values.</p>
+    </section>
+
+    <section class="slide" id="s10">
+      <h1>Suggested Programs — Part 2</h1>
+      <h2>Linear Search</h2>
+      <div class="code"><pre><code><span class="kw">def</span> <span class="fn">linear_search</span>(t, key):
+    <span class="kw">for</span> i, v <span class="kw">in</span> enumerate(t):
+        <span class="kw">if</span> v == key:
+            <span class="kw">return</span> i
+    <span class="kw">return</span> -<span class="num">1</span>
+</code></pre></div>
+      <p><strong>Explanation:</strong> This function iterates through each element of the tuple to find the specified <code>key</code>. If found, it returns its index; otherwise, <code>-1</code>.</p>
+    </section>
+
+    <section class="slide" id="s11">
+      <h1>Suggested Programs — Part 3</h1>
+      <h2>Frequency Count</h2>
+      <div class="code"><pre><code><span class="kw">def</span> <span class="fn">freq_table</span>(t):
+    counts = {}
+    <span class="kw">for</span> x <span class="kw">in</span> t:
+        counts[x] = counts.get(x, <span class="num">0</span>) + <span class="num">1</span>
+    <span class="kw">return</span> counts
+</code></pre></div>
+      <p><strong>Explanation:</strong> This function counts how many times each element appears in a tuple and stores results in a dictionary.</p>
+    </section>
+
+    <section class="slide" id="s12">
+      <h1>Extras: Tips & Gotchas</h1>
+      <ul>
+        <li>Singleton tuple: <code>(42,)</code></li>
+        <li>Tuples are hashable if all elements are hashable</li>
+        <li>Use tuples for fixed data, lists for mutable</li>
+      </ul>
+      <p><strong>Explanation:</strong> Tuples are immutable and can serve as keys in dictionaries if their contents are hashable. Lists should be used for changeable data.</p>
+    </section>
+
+    <div class="footer">Theme: Classic White SQL — explanations added for each code example</div>
+    <div class="controls">
+      <button id="prev">◀ Prev</button>
+      <button id="next">Next ▶</button>
+    </div>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let idx = 0;
+    function show(i){slides.forEach(s=>s.classList.remove('active'));slides[i].classList.add('active');}
+    document.getElementById('next').addEventListener('click',()=>{idx=(idx+1)%slides.length;show(idx)});
+    document.getElementById('prev').addEventListener('click',()=>{idx=(idx-1+slides.length)%slides.length;show(idx)});
+    window.addEventListener('keydown',e=>{if(e.key==='ArrowRight')document.getElementById('next').click();if(e.key==='ArrowLeft')document.getElementById('prev').click();});
+  </script>
+</body>
+</html>
