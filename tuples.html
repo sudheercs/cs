@@ -12,7 +12,9 @@
       --accent: #f59e0b;
       --light: #f8fafc;
       --dark: #1e293b;
-      --code-bg: #0f172a;
+      --code-bg: #f8fafc;
+      --code-border: #e2e8f0;
+      --code-text: #1e293b;
       --border: #e2e8f0;
       --success: #10b981;
     }
@@ -108,12 +110,12 @@
     
     .code {
       background: var(--code-bg);
-      border: 1px solid #334155;
+      border: 2px solid var(--code-border);
       padding: 20px;
       border-radius: 12px;
       margin: 15px 0;
       overflow-x: auto;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
     
     pre code {
@@ -122,14 +124,17 @@
       font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
       font-size: 1rem;
       line-height: 1.5;
+      color: var(--code-text);
     }
     
-    .kw { color: #c678dd; font-weight: 600; }
-    .fn { color: #61afef; }
-    .cm { color: #5c6370; font-style: italic; }
-    .str { color: #98c379; }
-    .num { color: #d19a66; }
-    .op { color: #56b6c2; }
+    /* Improved syntax highlighting colors for light background */
+    .kw { color: #dc2626; font-weight: 600; } /* Red for keywords */
+    .fn { color: #7c3aed; } /* Purple for functions */
+    .cm { color: #64748b; font-style: italic; } /* Gray for comments */
+    .str { color: #059669; } /* Green for strings */
+    .num { color: #d97706; } /* Amber for numbers */
+    .op { color: #0369a1; } /* Blue for operators */
+    .br { color: #475569; } /* Slate for brackets */
     
     .explanation {
       background: #f1f5f9;
@@ -272,10 +277,10 @@
         
         <div class="code">
           <pre><code><span class="cm"># Creating tuples</span>
-empty = <span class="kw">()</span>
-single = (<span class="num">42</span>,)  <span class="cm"># Note the comma for single-element tuples</span>
-nums = (<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>)
-mixed = (<span class="num">1</span>, <span class="str">'two'</span>, <span class="num">3.0</span>, <span class="kw">True</span>)</code></pre>
+empty = <span class="br">(</span><span class="br">)</span>
+single = <span class="br">(</span><span class="num">42</span><span class="br">,</span><span class="br">)</span>  <span class="cm"># Note the comma for single-element tuples</span>
+nums = <span class="br">(</span><span class="num">1</span><span class="br">,</span> <span class="num">2</span><span class="br">,</span> <span class="num">3</span><span class="br">,</span> <span class="num">4</span><span class="br">)</span>
+mixed = <span class="br">(</span><span class="num">1</span><span class="br">,</span> <span class="str">'two'</span><span class="br">,</span> <span class="num">3.0</span><span class="br">,</span> <span class="kw">True</span><span class="br">)</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -293,10 +298,10 @@ mixed = (<span class="num">1</span>, <span class="str">'two'</span>, <span class
         <p>Access tuple elements using indexing and slicing, similar to lists.</p>
         
         <div class="code">
-          <pre><code>t = (<span class="str">'a'</span>, <span class="str">'b'</span>, <span class="str">'c'</span>, <span class="str">'d'</span>)
-first = t[<span class="num">0</span>]      <span class="cm"># 'a'</span>
-last = t[-<span class="num">1</span>]      <span class="cm"># 'd'</span>
-slice_mid = t[<span class="num">1</span>:<span class="num">3</span>] <span class="cm"># ('b', 'c')</span></code></pre>
+          <pre><code>t = <span class="br">(</span><span class="str">'a'</span><span class="br">,</span> <span class="str">'b'</span><span class="br">,</span> <span class="str">'c'</span><span class="br">,</span> <span class="str">'d'</span><span class="br">)</span>
+first = t<span class="br">[</span><span class="num">0</span><span class="br">]</span>      <span class="cm"># 'a'</span>
+last = t<span class="br">[</span><span class="op">-</span><span class="num">1</span><span class="br">]</span>      <span class="cm"># 'd'</span>
+slice_mid = t<span class="br">[</span><span class="num">1</span><span class="br">:</span><span class="num">3</span><span class="br">]</span> <span class="cm"># ('b', 'c')</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -308,12 +313,12 @@ slice_mid = t[<span class="num">1</span>:<span class="num">3</span>] <span class
         <h1>➕ Tuple Operations — Concatenation & Repetition</h1>
         
         <div class="code">
-          <pre><code>a = (<span class="num">1</span>, <span class="num">2</span>)
-b = (<span class="num">3</span>, <span class="num">4</span>)
-c = a + b   <span class="cm"># (1, 2, 3, 4)</span>
+          <pre><code>a = <span class="br">(</span><span class="num">1</span><span class="br">,</span> <span class="num">2</span><span class="br">)</span>
+b = <span class="br">(</span><span class="num">3</span><span class="br">,</span> <span class="num">4</span><span class="br">)</span>
+c = a <span class="op">+</span> b   <span class="cm"># (1, 2, 3, 4)</span>
 
-t = (<span class="num">0</span>, <span class="num">1</span>)
-rep = t * <span class="num">3</span>  <span class="cm"># (0, 1, 0, 1, 0, 1)</span></code></pre>
+t = <span class="br">(</span><span class="num">0</span><span class="br">,</span> <span class="num">1</span><span class="br">)</span>
+rep = t <span class="op">*</span> <span class="num">3</span>  <span class="cm"># (0, 1, 0, 1, 0, 1)</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -325,9 +330,9 @@ rep = t * <span class="num">3</span>  <span class="cm"># (0, 1, 0, 1, 0, 1)</spa
         <h1>🔎 Tuple Operations — Membership & Slicing</h1>
         
         <div class="code">
-          <pre><code><span class="num">3</span> <span class="kw">in</span> (<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>)   <span class="cm"># True</span>
-<span class="num">5</span> <span class="kw">not in</span> (<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>) <span class="cm"># True</span>
-(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>)[<span class="num">1</span>:<span class="num">3</span>]    <span class="cm"># (2, 3)</span></code></pre>
+          <pre><code><span class="num">3</span> <span class="kw">in</span> <span class="br">(</span><span class="num">1</span><span class="br">,</span> <span class="num">2</span><span class="br">,</span> <span class="num">3</span><span class="br">)</span>   <span class="cm"># True</span>
+<span class="num">5</span> <span class="kw">not in</span> <span class="br">(</span><span class="num">1</span><span class="br">,</span> <span class="num">2</span><span class="br">,</span> <span class="num">3</span><span class="br">)</span> <span class="cm"># True</span>
+<span class="br">(</span><span class="num">1</span><span class="br">,</span> <span class="num">2</span><span class="br">,</span> <span class="num">3</span><span class="br">,</span> <span class="num">4</span><span class="br">)</span><span class="br">[</span><span class="num">1</span><span class="br">:</span><span class="num">3</span><span class="br">]</span>    <span class="cm"># (2, 3)</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -346,10 +351,10 @@ rep = t * <span class="num">3</span>  <span class="cm"># (0, 1, 0, 1, 0, 1)</spa
         </ul>
         
         <div class="code">
-          <pre><code>t = (<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">2</span>, <span class="num">1</span>)
-<span class="kw">print</span>(len(t))           <span class="cm"># 5</span>
-<span class="kw">print</span>(t.count(<span class="num">2</span>))      <span class="cm"># 2</span>
-<span class="kw">print</span>(t.index(<span class="num">3</span>))      <span class="cm"># 2</span></code></pre>
+          <pre><code>t = <span class="br">(</span><span class="num">1</span><span class="br">,</span> <span class="num">2</span><span class="br">,</span> <span class="num">3</span><span class="br">,</span> <span class="num">2</span><span class="br">,</span> <span class="num">1</span><span class="br">)</span>
+<span class="kw">print</span><span class="br">(</span><span class="fn">len</span><span class="br">(</span>t<span class="br">)</span><span class="br">)</span>           <span class="cm"># 5</span>
+<span class="kw">print</span><span class="br">(</span>t<span class="fn">.count</span><span class="br">(</span><span class="num">2</span><span class="br">)</span><span class="br">)</span>      <span class="cm"># 2</span>
+<span class="kw">print</span><span class="br">(</span>t<span class="fn">.index</span><span class="br">(</span><span class="num">3</span><span class="br">)</span><span class="br">)</span>      <span class="cm"># 2</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -366,10 +371,10 @@ rep = t * <span class="num">3</span>  <span class="cm"># (0, 1, 0, 1, 0, 1)</spa
         </ul>
         
         <div class="code">
-          <pre><code>t = (<span class="num">3</span>, <span class="num">1</span>, <span class="num">2</span>, <span class="num">1</span>)
-<span class="kw">print</span>(len(t))                    <span class="cm"># 4</span>
-<span class="kw">print</span>(min(t), max(t), sum(t))   <span class="cm"># (1, 3, 7)</span>
-<span class="kw">print</span>(sorted(t))                <span class="cm"># [1, 1, 2, 3]</span></code></pre>
+          <pre><code>t = <span class="br">(</span><span class="num">3</span><span class="br">,</span> <span class="num">1</span><span class="br">,</span> <span class="num">2</span><span class="br">,</span> <span class="num">1</span><span class="br">)</span>
+<span class="kw">print</span><span class="br">(</span><span class="fn">len</span><span class="br">(</span>t<span class="br">)</span><span class="br">)</span>                    <span class="cm"># 4</span>
+<span class="kw">print</span><span class="br">(</span><span class="fn">min</span><span class="br">(</span>t<span class="br">)</span><span class="br">,</span> <span class="fn">max</span><span class="br">(</span>t<span class="br">)</span><span class="br">,</span> <span class="fn">sum</span><span class="br">(</span>t<span class="br">)</span><span class="br">)</span>   <span class="cm"># (1, 3, 7)</span>
+<span class="kw">print</span><span class="br">(</span><span class="fn">sorted</span><span class="br">(</span>t<span class="br">)</span><span class="br">)</span>                <span class="cm"># [1, 1, 2, 3]</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -382,14 +387,14 @@ rep = t * <span class="num">3</span>  <span class="cm"># (0, 1, 0, 1, 0, 1)</spa
         
         <div class="code">
           <pre><code><span class="cm"># Multiple assignment</span>
-a, b, c = (<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>)
-<span class="kw">print</span>(a, b, c)  <span class="cm"># 10 20 30</span>
+a<span class="br">,</span> b<span class="br">,</span> c = <span class="br">(</span><span class="num">10</span><span class="br">,</span> <span class="num">20</span><span class="br">,</span> <span class="num">30</span><span class="br">)</span>
+<span class="kw">print</span><span class="br">(</span>a<span class="br">,</span> b<span class="br">,</span> c<span class="br">)</span>  <span class="cm"># 10 20 30</span>
 
 <span class="cm"># Shorthand (parentheses optional)</span>
-x, y = <span class="num">1</span>, <span class="num">2</span>
+x<span class="br">,</span> y = <span class="num">1</span><span class="br">,</span> <span class="num">2</span>
 
 <span class="cm"># Variable swapping</span>
-x, y = y, x  <span class="cm"># swap values</span></code></pre>
+x<span class="br">,</span> y = y<span class="br">,</span> x  <span class="cm"># swap values</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -406,10 +411,10 @@ x, y = y, x  <span class="cm"># swap values</span></code></pre>
         <h1>📂 Nested Tuples</h1>
         
         <div class="code">
-          <pre><code>nested = (<span class="num">1</span>, (<span class="num">2</span>, <span class="num">3</span>), (<span class="num">4</span>, (<span class="num">5</span>, <span class="num">6</span>)))
-<span class="kw">print</span>(nested[<span class="num">1</span>])        <span class="cm"># (2, 3)</span>
-<span class="kw">print</span>(nested[<span class="num">1</span>][<span class="num">1</span>])    <span class="cm"># 3</span>
-<span class="kw">print</span>(nested[<span class="num">2</span>][<span class="num">1</span>][<span class="num">0</span>]) <span class="cm"># 5</span></code></pre>
+          <pre><code>nested = <span class="br">(</span><span class="num">1</span><span class="br">,</span> <span class="br">(</span><span class="num">2</span><span class="br">,</span> <span class="num">3</span><span class="br">)</span><span class="br">,</span> <span class="br">(</span><span class="num">4</span><span class="br">,</span> <span class="br">(</span><span class="num">5</span><span class="br">,</span> <span class="num">6</span><span class="br">)</span><span class="br">)</span><span class="br">)</span>
+<span class="kw">print</span><span class="br">(</span>nested<span class="br">[</span><span class="num">1</span><span class="br">]</span><span class="br">)</span>        <span class="cm"># (2, 3)</span>
+<span class="kw">print</span><span class="br">(</span>nested<span class="br">[</span><span class="num">1</span><span class="br">]</span><span class="br">[</span><span class="num">1</span><span class="br">]</span><span class="br">)</span>    <span class="cm"># 3</span>
+<span class="kw">print</span><span class="br">(</span>nested<span class="br">[</span><span class="num">2</span><span class="br">]</span><span class="br">[</span><span class="num">1</span><span class="br">]</span><span class="br">[</span><span class="num">0</span><span class="br">]</span><span class="br">)</span> <span class="cm"># 5</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -421,12 +426,12 @@ x, y = y, x  <span class="cm"># swap values</span></code></pre>
         <h1>📈 Program: Find Min, Max, Mean</h1>
         
         <div class="code">
-          <pre><code>values = (<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>, <span class="num">5</span>, <span class="num">15</span>)
-minimum = min(values)
-maximum = max(values)
-mean = sum(values) / len(values)
+          <pre><code>values = <span class="br">(</span><span class="num">10</span><span class="br">,</span> <span class="num">20</span><span class="br">,</span> <span class="num">30</span><span class="br">,</span> <span class="num">5</span><span class="br">,</span> <span class="num">15</span><span class="br">)</span>
+minimum = <span class="fn">min</span><span class="br">(</span>values<span class="br">)</span>
+maximum = <span class="fn">max</span><span class="br">(</span>values<span class="br">)</span>
+mean = <span class="fn">sum</span><span class="br">(</span>values<span class="br">)</span> <span class="op">/</span> <span class="fn">len</span><span class="br">(</span>values<span class="br">)</span>
 
-<span class="kw">print</span>(<span class="str">f"Min: {minimum}, Max: {maximum}, Mean: {mean:.2f}"</span>)</code></pre>
+<span class="kw">print</span><span class="br">(</span><span class="str">f"Min: {minimum}, Max: {maximum}, Mean: {mean:.2f}"</span><span class="br">)</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -438,17 +443,17 @@ mean = sum(values) / len(values)
         <h1>🔍 Program: Linear Search</h1>
         
         <div class="code">
-          <pre><code><span class="kw">def</span> <span class="fn">linear_search</span>(t, key):
+          <pre><code><span class="kw">def</span> <span class="fn">linear_search</span><span class="br">(</span>t<span class="br">,</span> key<span class="br">)</span><span class="br">:</span>
     <span class="cm">"""Search for key in tuple, return index or -1 if not found"""</span>
-    <span class="kw">for</span> i, v <span class="kw">in</span> enumerate(t):
-        <span class="kw">if</span> v == key:
+    <span class="kw">for</span> i<span class="br">,</span> v <span class="kw">in</span> <span class="fn">enumerate</span><span class="br">(</span>t<span class="br">)</span><span class="br">:</span>
+        <span class="kw">if</span> v <span class="op">==</span> key<span class="br">:</span>
             <span class="kw">return</span> i
-    <span class="kw">return</span> -<span class="num">1</span>
+    <span class="kw">return</span> <span class="op">-</span><span class="num">1</span>
 
 <span class="cm"># Usage</span>
-data = (<span class="str">'apple'</span>, <span class="str">'banana'</span>, <span class="str">'cherry'</span>)
-result = linear_search(data, <span class="str">'banana'</span>)
-<span class="kw">print</span>(result)  <span class="cm"># 1</span></code></pre>
+data = <span class="br">(</span><span class="str">'apple'</span><span class="br">,</span> <span class="str">'banana'</span><span class="br">,</span> <span class="str">'cherry'</span><span class="br">)</span>
+result = <span class="fn">linear_search</span><span class="br">(</span>data<span class="br">,</span> <span class="str">'banana'</span><span class="br">)</span>
+<span class="kw">print</span><span class="br">(</span>result<span class="br">)</span>  <span class="cm"># 1</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -460,17 +465,17 @@ result = linear_search(data, <span class="str">'banana'</span>)
         <h1>📊 Program: Frequency Count</h1>
         
         <div class="code">
-          <pre><code><span class="kw">def</span> <span class="fn">freq_table</span>(t):
+          <pre><code><span class="kw">def</span> <span class="fn">freq_table</span><span class="br">(</span>t<span class="br">)</span><span class="br">:</span>
     <span class="cm">"""Count frequency of each element in tuple"""</span>
-    counts = {}
-    <span class="kw">for</span> x <span class="kw">in</span> t:
-        counts[x] = counts.get(x, <span class="num">0</span>) + <span class="num">1</span>
+    counts = <span class="br">{</span><span class="br">}</span>
+    <span class="kw">for</span> x <span class="kw">in</span> t<span class="br">:</span>
+        counts<span class="br">[</span>x<span class="br">]</span> = counts<span class="fn">.get</span><span class="br">(</span>x<span class="br">,</span> <span class="num">0</span><span class="br">)</span> <span class="op">+</span> <span class="num">1</span>
     <span class="kw">return</span> counts
 
 <span class="cm"># Usage</span>
-items = (<span class="str">'A'</span>, <span class="str">'B'</span>, <span class="str">'A'</span>, <span class="str">'C'</span>, <span class="str">'B'</span>, <span class="str">'A'</span>)
-frequencies = freq_table(items)
-<span class="kw">print</span>(frequencies)  <span class="cm"># {'A': 3, 'B': 2, 'C': 1}</span></code></pre>
+items = <span class="br">(</span><span class="str">'A'</span><span class="br">,</span> <span class="str">'B'</span><span class="br">,</span> <span class="str">'A'</span><span class="br">,</span> <span class="str">'C'</span><span class="br">,</span> <span class="str">'B'</span><span class="br">,</span> <span class="str">'A'</span><span class="br">)</span>
+frequencies = <span class="fn">freq_table</span><span class="br">(</span>items<span class="br">)</span>
+<span class="kw">print</span><span class="br">(</span>frequencies<span class="br">)</span>  <span class="cm"># {'A': 3, 'B': 2, 'C': 1}</span></code></pre>
         </div>
         
         <div class="explanation">
@@ -491,10 +496,10 @@ frequencies = freq_table(items)
         
         <div class="code">
           <pre><code><span class="cm"># Tuples as dictionary keys</span>
-locations = {
-    (<span class="num">40.7128</span>, -<span class="num">74.0060</span>): <span class="str">"New York"</span>,
-    (<span class="num">34.0522</span>, -<span class="num">118.2437</span>): <span class="str">"Los Angeles"</span>
-}</code></pre>
+locations = <span class="br">{</span>
+    <span class="br">(</span><span class="num">40.7128</span><span class="br">,</span> <span class="op">-</span><span class="num">74.0060</span><span class="br">)</span><span class="br">:</span> <span class="str">"New York"</span><span class="br">,</span>
+    <span class="br">(</span><span class="num">34.0522</span><span class="br">,</span> <span class="op">-</span><span class="num">118.2437</span><span class="br">)</span><span class="br">:</span> <span class="str">"Los Angeles"</span>
+<span class="br">}</span></code></pre>
         </div>
         
         <div class="explanation">
