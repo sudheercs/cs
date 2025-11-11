@@ -46,6 +46,15 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .deck.fullscreen {
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      border-radius: 0;
+      box-shadow: none;
     }
     
     .slide-container {
@@ -174,12 +183,23 @@
       font-weight: 600;
       transition: all 0.2s ease;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     button:hover {
       background: var(--primary-dark);
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    button.secondary {
+      background: var(--secondary);
+    }
+    
+    button.secondary:hover {
+      background: #475569;
     }
     
     .slide-indicator {
@@ -224,6 +244,47 @@
       content: "💡";
     }
     
+    .fullscreen-btn {
+      position: absolute;
+      top: 20px;
+      left: 60px;
+      background: var(--light);
+      border: 1px solid var(--border);
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--secondary);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    
+    .fullscreen-btn:hover {
+      background: #e2e8f0;
+      transform: translateY(-1px);
+    }
+    
+    .fullscreen-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .keyboard-hint {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: var(--secondary);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 5px 10px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+    
     @media (max-width: 768px) {
       body {
         padding: 10px;
@@ -259,6 +320,26 @@
         top: 10px;
         right: 20px;
       }
+      
+      .fullscreen-btn {
+        top: 10px;
+        left: 20px;
+      }
+      
+      .keyboard-hint {
+        display: none;
+      }
+    }
+    
+    /* Fullscreen styles */
+    body.fullscreen {
+      padding: 0;
+      background: white;
+    }
+    
+    body.fullscreen .deck {
+      border-radius: 0;
+      box-shadow: none;
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -269,6 +350,13 @@
   <div class="deck">
     <div class="progress-bar" id="progress-bar"></div>
     <div class="slide-indicator" id="slide-indicator">Slide 1 of 12</div>
+    
+    <button class="fullscreen-btn" id="fullscreen-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+      </svg>
+      Full Screen
+    </button>
     
     <div class="slide-container">
       <section class="slide active" id="s1">
@@ -515,16 +603,32 @@ locations = <span class="br">{</span>
     
     <div class="footer">Tuples Presentation | Enhanced with modern styling</div>
     <div class="controls">
-      <button id="prev">◀ Previous</button>
-      <button id="next">Next ▶</button>
+      <button id="prev">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"></path>
+        </svg>
+        Previous
+      </button>
+      <button id="next">
+        Next
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
     </div>
+    
+    <div class="keyboard-hint">Use ← → arrow keys to navigate</div>
   </div>
 
   <script>
     const slides = Array.from(document.querySelectorAll('.slide'));
     const progressBar = document.getElementById('progress-bar');
     const slideIndicator = document.getElementById('slide-indicator');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    const deck = document.querySelector('.deck');
+    const body = document.body;
     let idx = 0;
+    let isFullscreen = false;
     
     function show(i) {
       slides.forEach(s => s.classList.remove('active'));
@@ -537,6 +641,33 @@ locations = <span class="br">{</span>
       slideIndicator.textContent = `Slide ${i + 1} of ${slides.length}`;
     }
     
+    function toggleFullscreen() {
+      if (!isFullscreen) {
+        // Enter fullscreen
+        deck.classList.add('fullscreen');
+        body.classList.add('fullscreen');
+        fullscreenBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+          </svg>
+          Exit Full Screen
+        `;
+        isFullscreen = true;
+      } else {
+        // Exit fullscreen
+        deck.classList.remove('fullscreen');
+        body.classList.remove('fullscreen');
+        fullscreenBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+          Full Screen
+        `;
+        isFullscreen = false;
+      }
+    }
+    
+    // Event listeners
     document.getElementById('next').addEventListener('click', () => {
       idx = (idx + 1) % slides.length;
       show(idx);
@@ -547,9 +678,13 @@ locations = <span class="br">{</span>
       show(idx);
     });
     
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+    
     window.addEventListener('keydown', e => {
       if (e.key === 'ArrowRight') document.getElementById('next').click();
       if (e.key === 'ArrowLeft') document.getElementById('prev').click();
+      if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+      if (e.key === 'Escape' && isFullscreen) toggleFullscreen();
     });
     
     // Initialize
