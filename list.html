@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Lists Presentation (Blue Code, Wider Boxes)</title>
+    <title>Python Lists Presentation (Responsive Code Boxes)</title>
     <style>
         /* General Body and Layout */
         body {
@@ -21,15 +21,16 @@
             width: 100vw;
             display: none; 
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: flex-start;
-            padding: 3% 5%; 
+            padding: 2% 5%; 
             box-sizing: border-box;
             position: absolute; 
             top: 0;
             left: 0;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
+            overflow-y: auto;
         }
 
         /* Active Slide */
@@ -41,54 +42,65 @@
         /* Slide Headings and Text */
         .slide h1 {
             color: #61dafb; 
-            font-size: 3em; 
+            font-size: clamp(1.8em, 4vw, 3em);
             margin-bottom: 0.5em;
             border-bottom: 3px solid #61dafb;
             padding-bottom: 10px;
+            width: 100%;
         }
         .slide h2 {
             color: #ffffff;
-            font-size: 2em; 
+            font-size: clamp(1.5em, 3vw, 2em);
             margin-top: 1em; 
+            width: 100%;
         }
         .slide h3 {
             color: #a9d97a; 
-            font-size: 1.6em; 
+            font-size: clamp(1.2em, 2.5vw, 1.6em);
             margin-top: 1em; 
+            width: 100%;
         }
         .slide p, .slide li {
-            font-size: 1.6em; 
+            font-size: clamp(1em, 2.5vw, 1.6em);
             line-height: 1.6;
+            width: 100%;
         }
         .slide strong {
             color: #f7b95d; 
         }
 
-        /* Code Block Styling (Blue code, wider box) */
+        /* Code Block Styling (Responsive) */
         .code-block {
             background-color: #2d2d2d; 
             padding: 15px; 
             border-radius: 8px;
             font-family: 'Consolas', 'Courier New', monospace;
-            white-space: pre; 
-            margin: 20px 0; 
-            width: 90%; /* Increased width to 90% */
-            min-height: 120px; 
-            display: flex; 
-            flex-direction: column;
-            justify-content: center; 
+            margin: 15px 0; 
+            width: 95%;
+            max-width: 100%;
+            display: block;
             box-sizing: border-box;
-            overflow-x: auto; /* Allow horizontal scroll if line is excessively long */
+            overflow-x: auto;
             border: 2px solid #5a6270;
-            font-size: 1.5em; 
-            color: #8be9fd; /* Changed code color to blue */
+            font-size: clamp(0.9em, 2vw, 1.5em);
+            color: #8be9fd;
+            white-space: pre;
+            tab-size: 4;
+            -moz-tab-size: 4;
         }
-        .code-block span { color: #56b6c2; } /* Python keywords (can keep or adjust) */
+        .code-block code {
+            display: block;
+            white-space: pre;
+        }
+        .code-block span { 
+            color: #56b6c2; 
+        }
 
         /* Lists */
         .slide ul {
             list-style-type: '👉 ';
-            padding-left: 30px;
+            padding-left: 20px;
+            width: 100%;
         }
 
         /* Navigation Buttons and Footer */
@@ -97,134 +109,297 @@
             bottom: 20px;
             right: 20px;
             z-index: 100;
+            display: flex;
+            gap: 10px;
         }
         .nav-controls button {
             background-color: #61dafb;
             color: #1e1e1e;
             border: none;
             padding: 10px 20px; 
-            margin-left: 10px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 1.1em; 
+            font-size: clamp(0.9em, 2vw, 1.1em);
             transition: background-color 0.3s;
+        }
+        .nav-controls button:hover {
+            background-color: #4ec1e0;
         }
         #slide-indicator {
             position: fixed;
             bottom: 30px;
-            left: 40px;
-            font-size: 1.2em;
+            left: 20px;
+            font-size: clamp(0.9em, 2vw, 1.2em);
             color: #a9d97a;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #333;
+            z-index: 101;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: #61dafb;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Slide Counter */
+        .slide-counter {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            font-size: clamp(0.9em, 2vw, 1.2em);
+            color: #a9d97a;
+            z-index: 102;
+        }
+        
+        /* Table Styling */
+        table {
+            width: 95%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: clamp(0.8em, 2vw, 1.4em);
+            overflow-x: auto;
+            display: block;
+        }
+        
+        th, td {
+            border: 1px solid #5a6270;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #2d2d2d;
+            color: #61dafb;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #252525;
+        }
+        
+        /* Quiz Styling */
+        .quiz-question {
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            width: 95%;
+        }
+        
+        .quiz-options {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .quiz-options li {
+            margin: 8px 0;
+            padding: 8px;
+            background-color: #3a3a3a;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: clamp(0.9em, 2vw, 1.4em);
+        }
+        
+        .quiz-options li:hover {
+            background-color: #4a4a4a;
+        }
+        
+        .quiz-options li.correct {
+            background-color: #2d7a2d;
+        }
+        
+        .quiz-options li.incorrect {
+            background-color: #7a2d2d;
+        }
+        
+        .quiz-feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: clamp(0.9em, 2vw, 1.4em);
+        }
+        
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 10% 5%;
+                justify-content: flex-start;
+            }
+            
+            .code-block {
+                padding: 10px;
+                width: 100%;
+                font-size: 0.9em;
+            }
+            
+            .nav-controls {
+                bottom: 10px;
+                right: 10px;
+            }
+            
+            #slide-indicator {
+                bottom: 20px;
+                left: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slide {
+                padding: 15% 5%;
+            }
+            
+            .code-block {
+                font-size: 0.8em;
+                padding: 8px;
+            }
+            
+            .nav-controls button {
+                padding: 8px 15px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    
+    <div class="slide-counter" id="slide-counter"></div>
 
     <div class="slide active" data-slide-num="1">
         <h1>📊 Python Lists: The Essential Sequence</h1>
         <h2>Introduction</h2>
         <ul>
-            <li>**Definition**: A List is a **mutable** (changeable), ordered sequence of elements.</li>
-            <li>Lists can hold items of **different data types**.</li>
-            <li>**Syntax**: Created using square brackets `[]`.</li>
+            <li><strong>Definition</strong>: A List is a <strong>mutable</strong> (changeable), ordered sequence of elements.</li>
+            <li>Lists can hold items of <strong>different data types</strong>.</li>
+            <li><strong>Syntax</strong>: Created using square brackets <code>[]</code>.</li>
         </ul>
-        <div class="code-block">
-            my_list = [10, "hello", 3.14, <span>True</span>]
-            empty_list = []
-        </div>
+        <div class="code-block"><code>my_list = [10, "hello", 3.14, <span>True</span>]
+empty_list = []</code></div>
     </div>
 
     <div class="slide" data-slide-num="2">
         <h1>🔢 Indexing and Slicing</h1>
         <h2>Accessing Elements</h2>
         <ul>
-            <li>**Indexing**: Access elements using non-negative (from start) or negative (from end) integers.</li>
-            <li>**Slicing**: Extracts a sub-list: `list[start:stop:step]`.</li>
+            <li><strong>Indexing</strong>: Access elements using non-negative (from start) or negative (from end) integers.</li>
+            <li><strong>Slicing</strong>: Extracts a sub-list: <code>list[start:stop:step]</code>.</li>
         </ul>
-        <div class="code-block">
-            L = ['A', 'B', 'C', 'D']
-            print(L[1])       <span># Output: B</span>
-            print(L[-1])      <span># Output: D</span>
-            print(L[1:3])     <span># Output: ['B', 'C']</span>
-        </div>
+        <div class="code-block"><code>L = ['A', 'B', 'C', 'D']
+print(L[1])       <span># Output: B</span>
+print(L[-1])      <span># Output: D</span>
+print(L[1:3])     <span># Output: ['B', 'C']</span></code></div>
+        
+        <h3>Index Reference Table</h3>
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>Element</th>
+                <th>Negative Index</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>'A'</td>
+                <td>-4</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>'B'</td>
+                <td>-3</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>'C'</td>
+                <td>-2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>'D'</td>
+                <td>-1</td>
+            </tr>
+        </table>
     </div>
     
     <div class="slide" data-slide-num="3">
         <h1>➕ Basic List Operations</h1>
         <h2>Concatenation, Repetition, and Membership</h2>
         <ul>
-            <li>**Concatenation (+)**: Combines two lists.</li>
-            <li>**Repetition (*)**: Repeats the list elements.</li>
-            <li>**Membership (in)**: Checks if an element exists in the list.</li>
+            <li><strong>Concatenation (+)</strong>: Combines two lists.</li>
+            <li><strong>Repetition (*)</strong>: Repeats the list elements.</li>
+            <li><strong>Membership (in)</strong>: Checks if an element exists in the list.</li>
         </ul>
-        <div class="code-block">
-            L1 = [1, 2]; L2 = [3, 4]
-            print(L1 + L2)       <span># Output: [1, 2, 3, 4]</span>
-            print(['a'] * 3)     <span># Output: ['a', 'a', 'a']</span>
-            print(2 <span>in</span> L1)       <span># Output: True</span>
-        </div>
+        <div class="code-block"><code>L1 = [1, 2]; L2 = [3, 4]
+print(L1 + L2)       <span># Output: [1, 2, 3, 4]</span>
+print(['a'] * 3)     <span># Output: ['a', 'a', 'a']</span>
+print(2 <span>in</span> L1)       <span># Output: True</span></code></div>
     </div>
 
     <div class="slide" data-slide-num="4">
         <h1>🚶 Traversal using Loops</h1>
         <h2>Iterating Through List Elements</h2>
-        <p>The `for...in` loop is the most common way to process every element in a list.</p>
-        <div class="code-block">
-            my_numbers = [1, 5, 8]
-            <span>for</span> item <span>in</span> my_numbers:
-                print(item * 2) 
-            <span># Output: 2, 10, 16 (on separate lines)</span>
-        </div>
+        <p>The <code>for...in</code> loop is the most common way to process every element in a list.</p>
+        <div class="code-block"><code>my_numbers = [1, 5, 8]
+<span>for</span> item <span>in</span> my_numbers:
+    print(item * 2) 
+<span># Output: 2, 10, 16 (on separate lines)</span></code></div>
+        
+        <h3>Alternative: Using enumerate()</h3>
+        <div class="code-block"><code>my_numbers = [1, 5, 8]
+<span>for</span> index, value <span>in</span> enumerate(my_numbers):
+    print(f"Index {index}: {value}")</code></div>
     </div>
 
     <div class="slide" data-slide-num="5">
         <h1>🔗 Built-in Functions</h1>
         <h2>General Utility and Conversion</h2>
         <ul>
-            <li>**len(list)**: Returns the number of elements in the list.</li>
-            <li>**list(iterable)**: Converts an iterable (like a tuple) into a list.</li>
+            <li><strong>len(list)</strong>: Returns the number of elements in the list.</li>
+            <li><strong>list(iterable)</strong>: Converts an iterable (like a tuple) into a list.</li>
         </ul>
-        <div class="code-block">
-            data = (1, 2, 3) <span># tuple</span>
-            L = list(data)
-            print(len(L)) <span># Output: 3</span>
-            print(L) <span># Output: [1, 2, 3]</span>
-        </div>
+        <div class="code-block"><code>data = (1, 2, 3) <span># tuple</span>
+L = list(data)
+print(len(L)) <span># Output: 3</span>
+print(L) <span># Output: [1, 2, 3]</span></code></div>
     </div>
 
     <div class="slide" data-slide-num="6">
         <h1>📈 Built-in Functions (Statistics)</h1>
         <h2>Statistical Calculations</h2>
-        <p>These functions operate only on lists containing **numeric values**.</p>
+        <p>These functions operate only on lists containing <strong>numeric values</strong>.</p>
         <ul>
-            <li>**min(list)**: Finds the minimum element.</li>
-            <li>**max(list)**: Finds the maximum element.</li>
-            <li>**sum(list)**: Calculates the sum of all elements.</li>
+            <li><strong>min(list)</strong>: Finds the minimum element.</li>
+            <li><strong>max(list)</strong>: Finds the maximum element.</li>
+            <li><strong>sum(list)</strong>: Calculates the sum of all elements.</li>
         </ul>
-        <div class="code-block">
-            scores = [85, 92, 78, 95]
-            print(f"Max: {max(scores)}, Min: {min(scores)}")
-            print(f"Sum: {sum(scores)}")
-        </div>
+        <div class="code-block"><code>scores = [85, 92, 78, 95]
+print(f"Max: {max(scores)}, Min: {min(scores)}")
+print(f"Sum: {sum(scores)}")</code></div>
     </div>
 
     <div class="slide" data-slide-num="7">
         <h1>➕ Mutator Methods: Adding Elements</h1>
-        <p>These methods modify the list **in place**.</p>
+        <p>These methods modify the list <strong>in place</strong>.</p>
         
-        <h2>`append()`, `extend()`, `insert()`</h2>
+        <h2><code>append()</code>, <code>extend()</code>, <code>insert()</code></h2>
         <ul>
-            <li>**append(element)**: Adds **one** item to the end.</li>
-            <li>**extend(iterable)**: Adds **all** items from an iterable to the end.</li>
-            <li>**insert(index, element)**: Inserts an item at a specific position.</li>
+            <li><strong>append(element)</strong>: Adds <strong>one</strong> item to the end.</li>
+            <li><strong>extend(iterable)</strong>: Adds <strong>all</strong> items from an iterable to the end.</li>
+            <li><strong>insert(index, element)</strong>: Inserts an item at a specific position.</li>
         </ul>
-        <div class="code-block">
-            L = [10]
-            L.append(20)
-            L.insert(0, 5)
-            L.extend([30, 40])
-            <span># L is now [5, 10, 20, 30, 40]</span>
-        </div>
+        <div class="code-block"><code>L = [10]
+L.append(20)
+L.insert(0, 5)
+L.extend([30, 40])
+<span># L is now [5, 10, 20, 30, 40]</span></code></div>
     </div>
 
     <div class="slide" data-slide-num="8">
@@ -232,16 +407,14 @@
         
         <h2>Removal & Indexing</h2>
         <ul>
-            <li>**pop([index])**: Removes and **returns** element at the index.</li>
-            <li>**remove(value)**: Removes the **first occurrence** of the value.</li>
-            <li>**count(value)**: Returns the frequency of a value.</li>
-            <li>**index(value)**: Returns the index of the **first occurrence**.</li>
+            <li><strong>pop([index])</strong>: Removes and <strong>returns</strong> element at the index.</li>
+            <li><strong>remove(value)</strong>: Removes the <strong>first occurrence</strong> of the value.</li>
+            <li><strong>count(value)</strong>: Returns the frequency of a value.</li>
+            <li><strong>index(value)</strong>: Returns the index of the <strong>first occurrence</strong>.</li>
         </ul>
-        <div class="code-block">
-            L = [1, 2, 1, 3]
-            print(L.count(1)) <span># Output: 2</span>
-            print(L.index(3)) <span># Output: 3</span>
-        </div>
+        <div class="code-block"><code>L = [1, 2, 1, 3]
+print(L.count(1)) <span># Output: 2</span>
+print(L.index(3)) <span># Output: 3</span></code></div>
     </div>
     
     <div class="slide" data-slide-num="9">
@@ -249,15 +422,13 @@
         
         <h2>Sorting and Reversal</h2>
         <ul>
-            <li>**reverse()**: Reverses the order of elements **in place**.</li>
-            <li>**sort()**: Sorts the list **in place**.</li>
-            <li>**sorted(list)**: Returns a **new sorted list** (non-mutating).</li>
+            <li><strong>reverse()</strong>: Reverses the order of elements <strong>in place</strong>.</li>
+            <li><strong>sort()</strong>: Sorts the list <strong>in place</strong>.</li>
+            <li><strong>sorted(list)</strong>: Returns a <strong>new sorted list</strong> (non-mutating).</li>
         </ul>
-        <div class="code-block">
-            L = [5, 1, 4]
-            L.sort(reverse=<span>True</span>) <span># L is now [5, 4, 1]</span>
-            L.reverse() <span># L is now [1, 4, 5]</span>
-        </div>
+        <div class="code-block"><code>L = [5, 1, 4]
+L.sort(reverse=<span>True</span>) <span># L is now [5, 4, 1]</span>
+L.reverse() <span># L is now [1, 4, 5]</span></code></div>
     </div>
 
     <div class="slide" data-slide-num="10">
@@ -266,52 +437,147 @@
         <p>A list where elements are themselves lists. Used to model 2D data like matrices.</p>
         
         <h2>Accessing Elements</h2>
-        <div class="code-block">
-            matrix = [[1, 2], [3, 4], [5, 6]]
-            print(matrix[1])
-            print(matrix[1][0])   <span># Output: 3</span>
-        </div>
+        <div class="code-block"><code>matrix = [[1, 2], [3, 4], [5, 6]]
+print(matrix[1])
+print(matrix[1][0])   <span># Output: 3</span></code></div>
+        
+        <h3>Iterating Through Nested Lists</h3>
+        <div class="code-block"><code>matrix = [[1, 2], [3, 4], [5, 6]]
+<span>for</span> row <span>in</span> matrix:
+    <span>for</span> element <span>in</span> row:
+        print(element, end=' ')
+    print()</code></div>
     </div>
 
     <div class="slide" data-slide-num="11">
         <h1>🧠 Program: Max, Min, Mean</h1>
         <h2>Finding Statistics using Built-ins</h2>
-        <div class="code-block">
-            data = [15, 8, 22, 11]
-            
-            max_val = max(data)
-            min_val = min(data)
-            mean_val = sum(data) / len(data)
-            
-            print(f"Mean: {mean_val}")
-        </div>
+        <div class="code-block"><code>data = [15, 8, 22, 11]
+
+max_val = max(data)
+min_val = min(data)
+mean_val = sum(data) / len(data)
+
+print(f"Max: {max_val}, Min: {min_val}, Mean: {mean_val}")</code></div>
     </div>
 
     <div class="slide" data-slide-num="12">
         <h1>🔍 Program: Linear Search</h1>
         <h2>Searching for an Element Iteratively</h2>
-        <div class="code-block">
-            numbers = [10, 4, 7, 20, 5]
-            target = 7
-            
-            <span>for</span> i <span>in</span> range(len(numbers)):
-                <span>if</span> numbers[i] == target:
-                    print(f"Found at index {i}")
-                    <span>break</span>
-            <span>else</span>:
-                print("Element not found")
-        </div>
+        <div class="code-block"><code>numbers = [10, 4, 7, 20, 5]
+target = 7
+
+<span>for</span> i <span>in</span> range(len(numbers)):
+    <span>if</span> numbers[i] == target:
+        print(f"Found at index {i}")
+        <span>break</span>
+<span>else</span>:
+    print("Element not found")</code></div>
     </div>
 
     <div class="slide" data-slide-num="13">
         <h1>🔢 Program: Counting Frequency</h1>
         <h2>Counting Element Occurrences</h2>
-        <div class="code-block">
-            items = ['A', 'B', 'A', 'C', 'B', 'A']
-            
-            <span># Using the built-in count method</span>
-            count_A = items.count('A')
-            print(f"Frequency of 'A': {count_A}")
+        <div class="code-block"><code>items = ['A', 'B', 'A', 'C', 'B', 'A']
+
+<span># Using the built-in count method</span>
+count_A = items.count('A')
+print(f"Frequency of 'A': {count_A}")</code></div>
+    </div>
+    
+    <div class="slide" data-slide-num="14">
+        <h1>📋 List Methods Summary</h1>
+        
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><code>append(x)</code></td>
+                <td>Adds x to the end of the list</td>
+                <td><code>lst.append(5)</code></td>
+            </tr>
+            <tr>
+                <td><code>extend(iterable)</code></td>
+                <td>Adds all elements from iterable</td>
+                <td><code>lst.extend([1,2])</code></td>
+            </tr>
+            <tr>
+                <td><code>insert(i, x)</code></td>
+                <td>Inserts x at position i</td>
+                <td><code>lst.insert(0, 'a')</code></td>
+            </tr>
+            <tr>
+                <td><code>remove(x)</code></td>
+                <td>Removes first occurrence of x</td>
+                <td><code>lst.remove('a')</code></td>
+            </tr>
+            <tr>
+                <td><code>pop([i])</code></td>
+                <td>Removes and returns element at i</td>
+                <td><code>lst.pop()</code></td>
+            </tr>
+            <tr>
+                <td><code>clear()</code></td>
+                <td>Removes all elements</td>
+                <td><code>lst.clear()</code></td>
+            </tr>
+            <tr>
+                <td><code>index(x)</code></td>
+                <td>Returns index of first x</td>
+                <td><code>lst.index('a')</code></td>
+            </tr>
+            <tr>
+                <td><code>count(x)</code></td>
+                <td>Returns count of x</td>
+                <td><code>lst.count('a')</code></td>
+            </tr>
+            <tr>
+                <td><code>sort()</code></td>
+                <td>Sorts list in place</td>
+                <td><code>lst.sort()</code></td>
+            </tr>
+            <tr>
+                <td><code>reverse()</code></td>
+                <td>Reverses list in place</td>
+                <td><code>lst.reverse()</code></td>
+            </tr>
+            <tr>
+                <td><code>copy()</code></td>
+                <td>Returns shallow copy</td>
+                <td><code>new = lst.copy()</code></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="slide" data-slide-num="15">
+        <h1>🧪 Quick Quiz</h1>
+        <h2>Test Your Knowledge</h2>
+        
+        <div class="quiz-question">
+            <p>What is the output of the following code?</p>
+            <div class="code-block"><code>my_list = [1, 2, 3, 4, 5]
+print(my_list[1:4])</code></div>
+            <ul class="quiz-options">
+                <li onclick="checkAnswer(this, 'correct')">[2, 3, 4]</li>
+                <li onclick="checkAnswer(this, 'incorrect')">[1, 2, 3]</li>
+                <li onclick="checkAnswer(this, 'incorrect')">[2, 3, 4, 5]</li>
+                <li onclick="checkAnswer(this, 'incorrect')">[1, 2, 3, 4]</li>
+            </ul>
+            <div class="quiz-feedback" id="feedback-1"></div>
+        </div>
+        
+        <div class="quiz-question">
+            <p>Which method would you use to add multiple elements to a list?</p>
+            <ul class="quiz-options">
+                <li onclick="checkAnswer(this, 'incorrect')">append()</li>
+                <li onclick="checkAnswer(this, 'correct')">extend()</li>
+                <li onclick="checkAnswer(this, 'incorrect')">insert()</li>
+                <li onclick="checkAnswer(this, 'incorrect')">add()</li>
+            </ul>
+            <div class="quiz-feedback" id="feedback-2"></div>
         </div>
     </div>
 
@@ -328,6 +594,12 @@
         function updateSlideIndicator() {
             const indicator = document.getElementById('slide-indicator');
             indicator.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+            
+            const counter = document.getElementById('slide-counter');
+            counter.textContent = `${currentSlide + 1}/${slides.length}`;
+            
+            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
         }
 
         function showSlide(index) {
@@ -345,12 +617,41 @@
             showSlide(currentSlide);
         }
 
+        function checkAnswer(element, result) {
+            // Reset all options
+            const options = element.parentElement.querySelectorAll('li');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+            
+            // Mark the selected option
+            element.classList.add(result);
+            
+            // Show feedback
+            const feedbackId = element.parentElement.nextElementSibling.id;
+            const feedback = document.getElementById(feedbackId);
+            
+            if (result === 'correct') {
+                feedback.textContent = "Correct! Well done.";
+                feedback.style.color = "#a9d97a";
+            } else {
+                feedback.textContent = "Incorrect. Try again!";
+                feedback.style.color = "#f7b95d";
+            }
+        }
+
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
                 changeSlide(1);
-            } else if (e.key === 'ArrowLeft') {
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
                 changeSlide(-1);
+            } else if (e.key === 'Home') {
+                currentSlide = 0;
+                showSlide(currentSlide);
+            } else if (e.key === 'End') {
+                currentSlide = slides.length - 1;
+                showSlide(currentSlide);
             }
         });
 
