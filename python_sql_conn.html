@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Interface with SQL Database</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .nav-container {
+            display: flex;
+            background-color: #34495e;
+        }
+        
+        .nav-btn {
+            flex: 1;
+            padding: 15px;
+            background-color: #34495e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .nav-btn:hover {
+            background-color: #2c3e50;
+        }
+        
+        .nav-btn.active {
+            background-color: #1abc9c;
+        }
+        
+        .content {
+            padding: 30px;
+            min-height: 500px;
+        }
+        
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1abc9c;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+        }
+        
+        .code-comment {
+            color: #7f8c8d;
+        }
+        
+        .code-keyword {
+            color: #e74c3c;
+        }
+        
+        .code-function {
+            color: #3498db;
+        }
+        
+        .code-string {
+            color: #2ecc71;
+        }
+        
+        .code-var {
+            color: #f39c12;
+        }
+        
+        .example-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .quiz-container {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .question {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #bdc3c7;
+        }
+        
+        .options {
+            margin-left: 20px;
+        }
+        
+        .option {
+            margin: 8px 0;
+        }
+        
+        .explanation {
+            background-color: #d5f5e3;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #34495e;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Python Interface with SQL Database</h1>
+            <p class="subtitle">Connecting Python with SQL, Performing CRUD Operations, and Database Connectivity Applications</p>
+        </header>
+        
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSlide(0)">Introduction</button>
+            <button class="nav-btn" onclick="showSlide(1)">Connecting to DB</button>
+            <button class="nav-btn" onclick="showSlide(2)">CRUD Operations</button>
+            <button class="nav-btn" onclick="showSlide(3)">Fetching Data</button>
+            <button class="nav-btn" onclick="showSlide(4)">Parameterized Queries</button>
+            <button class="nav-btn" onclick="showSlide(5)">Applications</button>
+            <button class="nav-btn" onclick="showSlide(6)">Quiz</button>
+        </div>
+        
+        <div class="content">
+            <!-- Slide 1: Introduction -->
+            <div class="slide active">
+                <h2>Introduction to Python-SQL Interface</h2>
+                <p>Python provides several libraries to connect with SQL databases, allowing you to interact with databases directly from your Python code. The most common approach is using database-specific connectors or the DB-API standard.</p>
+                
+                <h3>Why Connect Python with SQL?</h3>
+                <ul>
+                    <li>Automate database operations</li>
+                    <li>Build data-driven applications</li>
+                    <li>Perform data analysis and visualization</li>
+                    <li>Create web applications with database backends</li>
+                    <li>Implement ETL (Extract, Transform, Load) processes</li>
+                </ul>
+                
+                <h3>Key Components</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>Database Connector</td>
+                            <td>Library that enables Python to communicate with a specific database (e.g., mysql-connector-python, psycopg2, sqlite3)</td>
+                        </tr>
+                        <tr>
+                            <td>Connection Object</td>
+                            <td>Represents the connection to the database</td>
+                        </tr>
+                        <tr>
+                            <td>Cursor Object</td>
+                            <td>Used to execute SQL commands and fetch results</td>
+                        </tr>
+                        <tr>
+                            <td>SQL Queries</td>
+                            <td>Commands to interact with the database (SELECT, INSERT, UPDATE, DELETE)</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="example-box">
+                    <h3>Common Database Connectors</h3>
+                    <ul>
+                        <li><strong>MySQL:</strong> mysql-connector-python, PyMySQL</li>
+                        <li><strong>PostgreSQL:</strong> psycopg2</li>
+                        <li><strong>SQLite:</strong> sqlite3 (built-in)</li>
+                        <li><strong>Oracle:</strong> cx_Oracle</li>
+                        <li><strong>SQL Server:</strong> pyodbc, pymssql</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Slide 2: Connecting to Database -->
+            <div class="slide">
+                <h2>Connecting to SQL Database</h2>
+                <p>To connect Python with an SQL database, we use the <span class="highlight">connect()</span> function from the database connector. This function returns a connection object that represents the database session.</p>
+                
+                <h3>Steps to Connect:</h3>
+                <ol>
+                    <li>Import the database connector module</li>
+                    <li>Use <span class="highlight">connect()</span> with connection parameters</li>
+                    <li>Create a cursor object using <span class="highlight">cursor()</span> method</li>
+                    <li>Execute SQL queries using the cursor</li>
+                    <li>Commit changes if needed with <span class="highlight">commit()</span></li>
+                    <li>Close the connection when done</li>
+                </ol>
+                
+                <h3>Example: Connecting to MySQL</h3>
+                <div class="code-block">
+                    <span class="code-keyword">import</span> mysql.connector<br><br>
+                    
+                    <span class="code-comment"># Establish connection to the database</span><br>
+                    connection = mysql.connector.<span class="code-function">connect</span>(<br>
+                    &nbsp;&nbsp;host=<span class="code-string">"localhost"</span>,<br>
+                    &nbsp;&nbsp;user=<span class="code-string">"username"</span>,<br>
+                    &nbsp;&nbsp;password=<span class="code-string">"password"</span>,<br>
+                    &nbsp;&nbsp;database=<span class="code-string">"mydatabase"</span><br>
+                    )<br><br>
+                    
+                    <span class="code-comment"># Create a cursor object</span><br>
+                    cursor = connection.<span class="code-function">cursor</span>()<br><br>
+                    
+                    <span class="code-comment"># Execute a simple query</span><br>
+                    cursor.<span class="code-function">execute</span>(<span class="code-string">"SELECT VERSION()"</span>)<br><br>
+                    
+                    <span class="code-comment"># Fetch the result</span><br>
+                    result = cursor.<span class="code-function">fetchone</span>()<br>
+                    <span class="code-function">print</span>(<span class="code-string">"Database version:"</span>, result[<span class="code-var">0</span>])<br><br>
+                    
+                    <span class="code-comment"># Close the connection</span><br>
+                    cursor.<span class="code-function">close</span>()<br>
+                    connection.<span class="code-function">close</span>()
+                </div>
+                
+                <div class="example-box">
+                    <h3>Connection Parameters</h3>
+                    <ul>
+                        <li><strong>host:</strong> Database server address</li>
+                        <li><strong>user:</strong> Database username</li>
+                        <li><strong>password:</strong> Database password</li>
+                        <li><strong>database:</strong> Name of the database to connect to</li>
+                        <li><strong>port:</strong> Port number (default varies by database)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Slide 3: CRUD Operations -->
+            <div class="slide">
+                <h2>CRUD Operations with Cursor</h2>
+                <p>CRUD stands for Create, Read, Update, Delete - the four basic operations for persistent storage. In SQL, these correspond to INSERT, SELECT, UPDATE, and DELETE statements.</p>
+                
+                <h3>INSERT Operation</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Insert a single record</span><br>
+                    sql = <span class="code-string">"INSERT INTO employees (name, department, salary) VALUES (%s, %s, %s)"</span><br>
+                    values = (<span class="code-string">"John Doe"</span>, <span class="code-string">"Engineering"</span>, <span class="code-var">75000</span>)<br>
+                    cursor.<span class="code-function">execute</span>(sql, values)<br><br>
+                    
+                    <span class="code-comment"># Commit the transaction</span><br>
+                    connection.<span class="code-function">commit</span>()<br><br>
+                    
+                    <span class="code-comment"># Print the number of rows inserted</span><br>
+                    <span class="code-function">print</span>(<span class="code-string">"Rows inserted:"</span>, cursor.rowcount)
+                </div>
+                
+                <h3>UPDATE Operation</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Update employee salary</span><br>
+                    sql = <span class="code-string">"UPDATE employees SET salary = %s WHERE name = %s"</span><br>
+                    values = (<span class="code-var">80000</span>, <span class="code-string">"John Doe"</span>)<br>
+                    cursor.<span class="code-function">execute</span>(sql, values)<br><br>
+                    
+                    <span class="code-comment"># Commit the transaction</span><br>
+                    connection.<span class="code-function">commit</span>()<br><br>
+                    
+                    <span class="code-comment"># Print the number of rows updated</span><br>
+                    <span class="code-function">print</span>(<span class="code-string">"Rows updated:"</span>, cursor.rowcount)
+                </div>
+                
+                <h3>DELETE Operation</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Delete an employee record</span><br>
+                    sql = <span class="code-string">"DELETE FROM employees WHERE name = %s"</span><br>
+                    values = (<span class="code-string">"John Doe"</span>,)<br>
+                    cursor.<span class="code-function">execute</span>(sql, values)<br><br>
+                    
+                    <span class="code-comment"># Commit the transaction</span><br>
+                    connection.<span class="code-function">commit</span>()<br><br>
+                    
+                    <span class="code-comment"># Print the number of rows deleted</span><br>
+                    <span class="code-function">print</span>(<span class="code-string">"Rows deleted:"</span>, cursor.rowcount)
+                </div>
+                
+                <div class="example-box">
+                    <h3>Important Notes:</h3>
+                    <ul>
+                        <li>Always use parameterized queries (with %s) to prevent SQL injection</li>
+                        <li>Call <span class="highlight">commit()</span> after INSERT, UPDATE, or DELETE to save changes</li>
+                        <li><span class="highlight">rowcount</span> returns the number of rows affected by the last operation</li>
+                        <li>For SELECT queries, use <span class="highlight">fetchone()</span>, <span class="highlight">fetchall()</span>, or <span class="highlight">fetchmany()</span> to retrieve results</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Slide 4: Fetching Data -->
+            <div class="slide">
+                <h2>Fetching Data from Database</h2>
+                <p>After executing a SELECT query, you can retrieve the results using various fetch methods provided by the cursor object.</p>
+                
+                <h3>fetchone() Method</h3>
+                <p>Retrieves the next row of a query result set, returning a single tuple, or None when no more data is available.</p>
+                <div class="code-block">
+                    <span class="code-comment"># Fetch one row at a time</span><br>
+                    cursor.<span class="code-function">execute</span>(<span class="code-string">"SELECT * FROM employees"</span>)<br><br>
+                    
+                    row = cursor.<span class="code-function">fetchone</span>()<br>
+                    <span class="code-keyword">while</span> row <span class="code-keyword">is not</span> <span class="code-keyword">None</span>:<br>
+                    &nbsp;&nbsp;<span class="code-function">print</span>(row)<br>
+                    &nbsp;&nbsp;row = cursor.<span class="code-function">fetchone</span>()
+                </div>
+                
+                <h3>fetchall() Method</h3>
+                <p>Fetches all rows of a query result, returning them as a list of tuples.</p>
+                <div class="code-block">
+                    <span class="code-comment"># Fetch all rows at once</span><br>
+                    cursor.<span class="code-function">execute</span>(<span class="code-string">"SELECT * FROM employees"</span>)<br>
+                    rows = cursor.<span class="code-function">fetchall</span>()<br><br>
+                    
+                    <span class="code-keyword">for</span> row <span class="code-keyword">in</span> rows:<br>
+                    &nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">f"Name: {row[0]}, Department: {row[1]}, Salary: {row[2]}"</span>)
+                </div>
+                
+                <h3>rowcount Property</h3>
+                <p>Returns the number of rows affected by the last execute() call for UPDATE, INSERT, and DELETE operations.</p>
+                <div class="code-block">
+                    <span class="code-comment"># Check how many rows were affected</span><br>
+                    cursor.<span class="code-function">execute</span>(<span class="code-string">"UPDATE employees SET salary = salary * 1.1 WHERE department = 'Engineering'"</span>)<br>
+                    connection.<span class="code-function">commit</span>()<br>
+                    <span class="code-function">print</span>(<span class="code-string">f"Updated {cursor.rowcount} employee records"</span>)
+                </div>
+                
+                <div class="example-box">
+                    <h3>Fetch Methods Comparison</h3>
+                    <ul>
+                        <li><strong>fetchone():</strong> Good for large datasets to avoid memory issues</li>
+                        <li><strong>fetchall():</strong> Convenient for small datasets</li>
+                        <li><strong>fetchmany(size):</strong> Fetches the next set of rows specified by size parameter</li>
+                        <li><strong>rowcount:</strong> Useful for checking the impact of data modification operations</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Slide 5: Parameterized Queries -->
+            <div class="slide">
+                <h2>Parameterized Queries with %s and format()</h2>
+                <p>Parameterized queries help prevent SQL injection attacks and make your code more readable and maintainable.</p>
+                
+                <h3>Using %s Format Specifier</h3>
+                <p>The %s placeholder is the most common way to parameterize queries in Python database connectors.</p>
+                <div class="code-block">
+                    <span class="code-comment"># Insert with parameterized query</span><br>
+                    sql = <span class="code-string">"INSERT INTO products (name, price, category) VALUES (%s, %s, %s)"</span><br>
+                    values = (<span class="code-string">"Laptop"</span>, <span class="code-var">999.99</span>, <span class="code-string">"Electronics"</span>)<br>
+                    cursor.<span class="code-function">execute</span>(sql, values)<br><br>
+                    
+                    <span class="code-comment"># Update with parameterized query</span><br>
+                    sql = <span class="code-string">"UPDATE products SET price = %s WHERE name = %s"</span><br>
+                    values = (<span class="code-var">899.99</span>, <span class="code-string">"Laptop"</span>)<br>
+                    cursor.<span class="code-function">execute</span>(sql, values)<br><br>
+                    
+                    <span class="code-comment"># Select with parameterized query</span><br>
+                    sql = <span class="code-string">"SELECT * FROM products WHERE category = %s AND price > %s"</span><br>
+                    values = (<span class="code-string">"Electronics"</span>, <span class="code-var">500</span>)<br>
+                    cursor.<span class="code-function">execute</span>(sql, values)<br>
+                    results = cursor.<span class="code-function">fetchall</span>()
+                </div>
+                
+                <h3>Using format() Method</h3>
+                <p>While less common for SQL parameters due to security concerns, Python's format() method can be used for dynamic SQL when properly validated.</p>
+                <div class="code-block">
+                    <span class="code-comment"># Using format() for table name (with caution)</span><br>
+                    table_name = <span class="code-string">"employees"</span><br>
+                    sql = <span class="code-string">"SELECT * FROM {} WHERE department = %s"</span>.<span class="code-function">format</span>(table_name)<br>
+                    cursor.<span class="code-function">execute</span>(sql, (<span class="code-string">"Engineering"</span>,))<br><br>
+                    
+                    <span class="code-comment"># Using format() with multiple parameters (not recommended for values)</span><br>
+                    column = <span class="code-string">"salary"</span><br>
+                    operator = <span class="code-string">">"</span><br>
+                    sql = <span class="code-string">"SELECT * FROM employees WHERE {} {} %s"</span>.<span class="code-function">format</span>(column, operator)<br>
+                    cursor.<span class="code-function">execute</span>(sql, (<span class="code-var">50000</span>,))
+                </div>
+                
+                <div class="example-box">
+                    <h3>Security Best Practices</h3>
+                    <ul>
+                        <li>Always use parameterized queries (%s) for values to prevent SQL injection</li>
+                        <li>Never use string formatting for user-input values in SQL queries</li>
+                        <li>If you must use format() for table/column names, validate the input first</li>
+                        <li>Consider using an ORM (Object-Relational Mapping) library for complex applications</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Slide 6: Database Connectivity Applications -->
+            <div class="slide">
+                <h2>Database Connectivity Applications</h2>
+                <p>Python's database connectivity capabilities enable the development of various real-world applications.</p>
+                
+                <h3>Example: Employee Management System</h3>
+                <div class="code-block">
+                    <span class="code-keyword">import</span> mysql.connector<br><br>
+                    
+                    <span class="code-keyword">class</span> EmployeeDB:<br>
+                    &nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-var">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-var">self</span>.connection = mysql.connector.<span class="code-function">connect</span>(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;host=<span class="code-string">"localhost"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user=<span class="code-string">"root"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password=<span class="code-string">"password"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;database=<span class="code-string">"company"</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-var">self</span>.cursor = <span class="code-var">self</span>.connection.<span class="code-function">cursor</span>()<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">add_employee</span>(<span class="code-var">self</span>, name, department, salary):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;sql = <span class="code-string">"INSERT INTO employees (name, department, salary) VALUES (%s, %s, %s)"</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;values = (name, department, salary)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-var">self</span>.cursor.<span class="code-function">execute</span>(sql, values)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-var">self</span>.connection.<span class="code-function">commit</span>()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">f"Employee {name} added successfully"</span>)<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">get_employees_by_department</span>(<span class="code-var">self</span>, department):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;sql = <span class="code-string">"SELECT * FROM employees WHERE department = %s"</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-var">self</span>.cursor.<span class="code-function">execute</span>(sql, (department,))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;employees = <span class="code-var">self</span>.cursor.<span class="code-function">fetchall</span>()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> employees<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">update_salary</span>(<span class="code-var">self</span>, name, new_salary):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;sql = <span class="code-string">"UPDATE employees SET salary = %s WHERE name = %s"</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;values = (new_salary, name)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-var">self</span>.cursor.<span class="code-function">execute</span>(sql, values)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-var">self</span>.connection.<span class="code-function">commit</span>()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">f"Salary updated for {name}"</span>)<br><br>
+                    
+                    &nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">close_connection</span>(<span class="code-var">self</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-var">self</span>.cursor.<span class="code-function">close</span>()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-var">self</span>.connection.<span class="code-function">close</span>()<br><br>
+                    
+                    <span class="code-comment"># Usage example</span><br>
+                    db = <span class="code-function">EmployeeDB</span>()<br>
+                    db.<span class="code-function">add_employee</span>(<span class="code-string">"Alice Smith"</span>, <span class="code-string">"Marketing"</span>, <span class="code-var">60000</span>)<br>
+                    marketing_employees = db.<span class="code-function">get_employees_by_department</span>(<span class="code-string">"Marketing"</span>)<br>
+                    <span class="code-function">print</span>(<span class="code-string">"Marketing employees:"</span>, marketing_employees)<br>
+                    db.<span class="code-function">close_connection</span>()
+                </div>
+                
+                <h3>Real-World Applications</h3>
+                <ul>
+                    <li><strong>Web Applications:</strong> Django, Flask with database backends</li>
+                    <li><strong>Data Analysis:</strong> Pandas with SQL databases for data processing</li>
+                    <li><strong>ETL Pipelines:</strong> Extracting, transforming, and loading data between systems</li>
+                    <li><strong>Reporting Systems:</strong> Generating reports from database data</li>
+                    <li><strong>Inventory Management:</strong> Tracking products, orders, and stock levels</li>
+                </ul>
+            </div>
+            
+            <!-- Slide 7: Quiz -->
+            <div class="slide">
+                <h2>Test Your Knowledge</h2>
+                <p>Answer these questions to check your understanding of Python-SQL database connectivity.</p>
+                
+                <div class="quiz-container">
+                    <div class="question">
+                        <p><strong>1. Which method is used to establish a connection to a SQL database in Python?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"> a) connect()</div>
+                            <div class="option"><input type="radio" name="q1" value="b"> b) cursor()</div>
+                            <div class="option"><input type="radio" name="q1" value="c"> c) execute()</div>
+                            <div class="option"><input type="radio" name="q1" value="d"> d) fetchall()</div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(1)">Check Answer</button>
+                        <div class="explanation" id="explanation1">
+                            <p><strong>Correct Answer: a) connect()</strong><br>
+                            The connect() function is used to establish a connection to the database. It returns a connection object that represents the database session.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p><strong>2. Which method should you use to retrieve all rows from a SELECT query result?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"> a) fetchone()</div>
+                            <div class="option"><input type="radio" name="q2" value="b"> b) fetchmany()</div>
+                            <div class="option"><input type="radio" name="q2" value="c"> c) fetchall()</div>
+                            <div class="option"><input type="radio" name="q2" value="d"> d) getall()</div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(2)">Check Answer</button>
+                        <div class="explanation" id="explanation2">
+                            <p><strong>Correct Answer: c) fetchall()</strong><br>
+                            The fetchall() method retrieves all rows of a query result and returns them as a list of tuples.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p><strong>3. Why should you use parameterized queries with %s placeholders instead of string formatting for SQL values?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"> a) It makes code run faster</div>
+                            <div class="option"><input type="radio" name="q3" value="b"> b) It prevents SQL injection attacks</div>
+                            <div class="option"><input type="radio" name="q3" value="c"> c) It uses less memory</div>
+                            <div class="option"><input type="radio" name="q3" value="d"> d) It makes code more readable</div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(3)">Check Answer</button>
+                        <div class="explanation" id="explanation3">
+                            <p><strong>Correct Answer: b) It prevents SQL injection attacks</strong><br>
+                            Parameterized queries separate SQL code from data, preventing malicious users from injecting SQL commands through input values.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p><strong>4. Which method must be called after INSERT, UPDATE, or DELETE operations to save changes to the database?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"> a) save()</div>
+                            <div class="option"><input type="radio" name="q4" value="b"> b) commit()</div>
+                            <div class="option"><input type="radio" name="q4" value="c"> c) execute()</div>
+                            <div class="option"><input type="radio" name="q4" value="d"> d) close()</div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(4)">Check Answer</button>
+                        <div class="explanation" id="explanation4">
+                            <p><strong>Correct Answer: b) commit()</strong><br>
+                            The commit() method saves all changes made during the current transaction to the database.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p><strong>5. What does the rowcount property of a cursor object return?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q5" value="a"> a) The number of rows in a table</div>
+                            <div class="option"><input type="radio" name="q5" value="b"> b) The number of rows returned by a SELECT query</div>
+                            <div class="option"><input type="radio" name="q5" value="c"> c) The number of rows affected by the last operation</div>
+                            <div class="option"><input type="radio" name="q5" value="d"> d) The total number of rows in the database</div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(5)">Check Answer</button>
+                        <div class="explanation" id="explanation5">
+                            <p><strong>Correct Answer: c) The number of rows affected by the last operation</strong><br>
+                            The rowcount property returns the number of rows affected by the last execute() call for UPDATE, INSERT, or DELETE operations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Python SQL Interface Presentation &copy; 2023 | Created for Educational Purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Navigation functionality
+        function showSlide(slideIndex) {
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show selected slide
+            slides[slideIndex].classList.add('active');
+            
+            // Update active nav button
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach((button, index) => {
+                if (index === slideIndex) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+        
+        // Quiz functionality
+        function checkAnswer(questionNum) {
+            const correctAnswers = {
+                1: 'a',
+                2: 'c',
+                3: 'b',
+                4: 'b',
+                5: 'c'
+            };
+            
+            const selectedOption = document.querySelector(`input[name="q${questionNum}"]:checked`);
+            const explanation = document.getElementById(`explanation${questionNum}`);
+            
+            if (selectedOption) {
+                if (selectedOption.value === correctAnswers[questionNum]) {
+                    explanation.innerHTML = `<p><strong style="color: green;">Correct!</strong> ${explanation.innerHTML.split('<strong>')[1]}`;
+                } else {
+                    explanation.innerHTML = `<p><strong style="color: red;">Incorrect.</strong> ${explanation.innerHTML.split('<strong>')[1]}`;
+                }
+                explanation.style.display = 'block';
+            } else {
+                alert('Please select an answer!');
+            }
+        }
+    </script>
+</body>
+</html>
