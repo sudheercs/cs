@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Dictionaries - Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .nav-container {
+            display: flex;
+            background-color: #34495e;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            background-color: #34495e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .nav-btn:hover {
+            background-color: #2c3e50;
+        }
+        
+        .nav-btn.active {
+            background-color: #1abc9c;
+        }
+        
+        .content {
+            padding: 30px;
+            min-height: 500px;
+        }
+        
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1abc9c;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+        }
+        
+        .code-comment {
+            color: #7f8c8d;
+        }
+        
+        .code-keyword {
+            color: #e74c3c;
+        }
+        
+        .code-function {
+            color: #3498db;
+        }
+        
+        .code-string {
+            color: #2ecc71;
+        }
+        
+        .code-var {
+            color: #f39c12;
+        }
+        
+        .example-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .quiz-container {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .question {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #bdc3c7;
+        }
+        
+        .options {
+            margin-left: 20px;
+        }
+        
+        .option {
+            margin: 8px 0;
+        }
+        
+        .explanation {
+            background-color: #d5f5e3;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-success {
+            background-color: #2ecc71;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-danger {
+            background-color: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .interactive-demo {
+            background-color: #f0f8ff;
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .demo-controls {
+            margin: 15px 0;
+        }
+        
+        .demo-output {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 100px;
+            font-family: 'Courier New', monospace;
+            margin-top: 15px;
+        }
+        
+        input[type="text"], input[type="number"] {
+            padding: 8px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            margin: 5px;
+            width: 200px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #34495e;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-btn {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Python Dictionaries - Complete Guide</h1>
+            <p class="subtitle">Master dictionary operations, methods, and practical applications</p>
+        </header>
+        
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSlide(0)">Introduction</button>
+            <button class="nav-btn" onclick="showSlide(1)">Access & Modify</button>
+            <button class="nav-btn" onclick="showSlide(2)">Traversal</button>
+            <button class="nav-btn" onclick="showSlide(3)">Methods - Part 1</button>
+            <button class="nav-btn" onclick="showSlide(4)">Methods - Part 2</button>
+            <button class="nav-btn" onclick="showSlide(5)">Programs</button>
+            <button class="nav-btn" onclick="showSlide(6)">Quiz</button>
+        </div>
+        
+        <div class="content">
+            <!-- Slide 1: Introduction -->
+            <div class="slide active">
+                <h2>Introduction to Python Dictionaries</h2>
+                <p>A dictionary in Python is an unordered collection of key-value pairs. It's mutable, indexed by keys (which must be immutable types), and doesn't allow duplicate keys.</p>
+                
+                <h3>Dictionary Characteristics:</h3>
+                <ul>
+                    <li><strong>Unordered:</strong> Items don't have a defined order (before Python 3.7)</li>
+                    <li><strong>Mutable:</strong> Can be changed after creation</li>
+                    <li><strong>Indexed by keys:</strong> Access values using unique keys</li>
+                    <li><strong>No duplicate keys:</strong> Each key must be unique</li>
+                    <li><strong>Keys must be immutable:</strong> Strings, numbers, or tuples (with immutable elements)</li>
+                </ul>
+                
+                <h3>Creating Dictionaries</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Empty dictionary</span><br>
+                    empty_dict = {}<br>
+                    empty_dict = <span class="code-function">dict</span>()<br><br>
+                    
+                    <span class="code-comment"># Dictionary with initial values</span><br>
+                    student = {<span class="code-string">"name"</span>: <span class="code-string">"John"</span>, <span class="code-string">"age"</span>: <span class="code-var">20</span>, <span class="code-string">"grade"</span>: <span class="code-string">"A"</span>}<br><br>
+                    
+                    <span class="code-comment"># Using dict() constructor</span><br>
+                    employee = <span class="code-function">dict</span>(name=<span class="code-string">"Alice"</span>, department=<span class="code-string">"HR"</span>, salary=<span class="code-var">50000</span>)<br><br>
+                    
+                    <span class="code-comment"># From list of tuples</span><br>
+                    pairs = [(<span class="code-string">"a"</span>, <span class="code-var">1</span>), (<span class="code-string">"b"</span>, <span class="code-var">2</span>), (<span class="code-string">"c"</span>, <span class="code-var">3</span>)]<br>
+                    my_dict = <span class="code-function">dict</span>(pairs)<br>
+                    <span class="code-function">print</span>(my_dict)  <span class="code-comment"># Output: {'a': 1, 'b': 2, 'c': 3}</span>
+                </div>
+                
+                <div class="example-box">
+                    <h3>Dictionary Structure Visualization</h3>
+                    <p>A dictionary is like a real-world dictionary where you look up a word (key) to find its definition (value):</p>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                            </tr>
+                            <tr>
+                                <td>"name"</td>
+                                <td>"Alice"</td>
+                            </tr>
+                            <tr>
+                                <td>"age"</td>
+                                <td>25</td>
+                            </tr>
+                            <tr>
+                                <td>"city"</td>
+                                <td>"New York"</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2: Accessing and Modifying Dictionaries -->
+            <div class="slide">
+                <h2>Accessing and Modifying Dictionaries</h2>
+                <p>Dictionaries are mutable, meaning you can change, add, or remove items after creation.</p>
+                
+                <h3>Accessing Items</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Accessing using key</span><br>
+                    student = {<span class="code-string">"name"</span>: <span class="code-string">"John"</span>, <span class="code-string">"age"</span>: <span class="code-var">20</span>, <span class="code-string">"grade"</span>: <span class="code-string">"A"</span>}<br>
+                    <span class="code-function">print</span>(student[<span class="code-string">"name"</span>])   <span class="code-comment"># Output: John</span><br>
+                    <span class="code-function">print</span>(student[<span class="code-string">"age"</span>])    <span class="code-comment"># Output: 20</span><br><br>
+                    
+                    <span class="code-comment"># Using get() method (safer)</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">get</span>(<span class="code-string">"name"</span>))     <span class="code-comment"># Output: John</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">get</span>(<span class="code-string">"phone"</span>))    <span class="code-comment"># Output: None</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">get</span>(<span class="code-string">"phone"</span>, <span class="code-string">"N/A"</span>))  <span class="code-comment"># Output: N/A</span>
+                </div>
+                
+                <h3>Adding and Modifying Items</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Adding new key-value pair</span><br>
+                    student[<span class="code-string">"phone"</span>] = <span class="code-string">"123-456-7890"</span><br>
+                    <span class="code-function">print</span>(student)  <span class="code-comment"># Output: {'name': 'John', 'age': 20, 'grade': 'A', 'phone': '123-456-7890'}</span><br><br>
+                    
+                    <span class="code-comment"># Modifying existing value</span><br>
+                    student[<span class="code-string">"age"</span>] = <span class="code-var">21</span><br>
+                    <span class="code-function">print</span>(student)  <span class="code-comment"># Output: {'name': 'John', 'age': 21, 'grade': 'A', 'phone': '123-456-7890'}</span><br><br>
+                    
+                    <span class="code-comment"># Using update() method</span><br>
+                    student.<span class="code-function">update</span>({<span class="code-string">"city"</span>: <span class="code-string">"Boston"</span>, <span class="code-string">"grade"</span>: <span class="code-string">"A+"</span>})<br>
+                    <span class="code-function">print</span>(student)  <span class="code-comment"># Output includes city and updated grade</span>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h3>Interactive Dictionary Demo</h3>
+                    <p>Try adding, modifying, and accessing dictionary items:</p>
+                    <div class="demo-controls">
+                        <input type="text" id="keyInput" placeholder="Enter key">
+                        <input type="text" id="valueInput" placeholder="Enter value">
+                        <button class="btn btn-success" onclick="addToDemoDict()">Add/Update</button>
+                        <button class="btn" onclick="getFromDemoDict()">Get Value</button>
+                        <button class="btn btn-danger" onclick="removeFromDemoDict()">Remove Key</button>
+                        <button class="btn" onclick="clearDemoDict()">Clear Dictionary</button>
+                    </div>
+                    <div class="demo-output" id="demoOutput">
+                        Current dictionary: {}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3: Traversing Dictionaries -->
+            <div class="slide">
+                <h2>Traversing Dictionaries</h2>
+                <p>You can iterate through dictionaries using various methods to access keys, values, or both.</p>
+                
+                <h3>Iterating Through Keys</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Using for loop directly (iterates through keys)</span><br>
+                    student = {<span class="code-string">"name"</span>: <span class="code-string">"John"</span>, <span class="code-string">"age"</span>: <span class="code-var">20</span>, <span class="code-string">"grade"</span>: <span class="code-string">"A"</span>}<br>
+                    <span class="code-keyword">for</span> key <span class="code-keyword">in</span> student:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(key)<br>
+                    <span class="code-comment"># Output: name, age, grade</span><br><br>
+                    
+                    <span class="code-comment"># Using keys() method explicitly</span><br>
+                    <span class="code-keyword">for</span> key <span class="code-keyword">in</span> student.<span class="code-function">keys</span>():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(key, <span class="code-string">"-"</span>, student[key])<br>
+                    <span class="code-comment"># Output: name - John, age - 20, grade - A</span>
+                </div>
+                
+                <h3>Iterating Through Values and Items</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Iterating through values only</span><br>
+                    <span class="code-keyword">for</span> value <span class="code-keyword">in</span> student.<span class="code-function">values</span>():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(value)<br>
+                    <span class="code-comment"># Output: John, 20, A</span><br><br>
+                    
+                    <span class="code-comment"># Iterating through key-value pairs</span><br>
+                    <span class="code-keyword">for</span> key, value <span class="code-keyword">in</span> student.<span class="code-function">items</span>():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(key, <span class="code-string">":"</span>, value)<br>
+                    <span class="code-comment"># Output: name : John, age : 20, grade : A</span>
+                </div>
+                
+                <h3>Dictionary Comprehension</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Creating a new dictionary with comprehension</span><br>
+                    numbers = {x: x**2 <span class="code-keyword">for</span> x <span class="code-keyword">in</span> <span class="code-function">range</span>(<span class="code-var">1</span>, <span class="code-var">6</span>)}<br>
+                    <span class="code-function">print</span>(numbers)  <span class="code-comment"># Output: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</span><br><br>
+                    
+                    <span class="code-comment"># With conditional</span><br>
+                    even_squares = {x: x**2 <span class="code-keyword">for</span> x <span class="code-keyword">in</span> <span class="code-function">range</span>(<span class="code-var">1</span>, <span class="code-var">11</span>) <span class="code-keyword">if</span> x % <span class="code-var">2</span> == <span class="code-var">0</span>}<br>
+                    <span class="code-function">print</span>(even_squares)  <span class="code-comment"># Output: {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}</span>
+                </div>
+            </div>
+            
+            <!-- Slide 4: Dictionary Methods - Part 1 -->
+            <div class="slide">
+                <h2>Dictionary Methods - Part 1</h2>
+                <p>Python provides several built-in methods to work with dictionaries efficiently.</p>
+                
+                <h3>Basic Methods</h3>
+                <div class="code-block">
+                    <span class="code-comment"># len() - returns number of key-value pairs</span><br>
+                    student = {<span class="code-string">"name"</span>: <span class="code-string">"John"</span>, <span class="code-string">"age"</span>: <span class="code-var">20</span>, <span class="code-string">"grade"</span>: <span class="code-string">"A"</span>}<br>
+                    <span class="code-function">print</span>(<span class="code-function">len</span>(student))  <span class="code-comment"># Output: 3</span><br><br>
+                    
+                    <span class="code-comment"># keys() - returns view of all keys</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">keys</span>())   <span class="code-comment"># Output: dict_keys(['name', 'age', 'grade'])</span><br><br>
+                    
+                    <span class="code-comment"># values() - returns view of all values</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">values</span>()) <span class="code-comment"># Output: dict_values(['John', 20, 'A'])</span><br><br>
+                    
+                    <span class="code-comment"># items() - returns view of all key-value pairs</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">items</span>())  <span class="code-comment"># Output: dict_items([('name', 'John'), ('age', 20), ('grade', 'A')])</span>
+                </div>
+                
+                <h3>Retrieval Methods</h3>
+                <div class="code-block">
+                    <span class="code-comment"># get() - returns value for key, or default if key doesn't exist</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">get</span>(<span class="code-string">"name"</span>))        <span class="code-comment"># Output: John</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">get</span>(<span class="code-string">"phone"</span>))       <span class="code-comment"># Output: None</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">get</span>(<span class="code-string">"phone"</span>, <span class="code-string">"N/A"</span>)) <span class="code-comment"># Output: N/A</span><br><br>
+                    
+                    <span class="code-comment"># setdefault() - returns value if key exists, else sets key to default and returns it</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">setdefault</span>(<span class="code-string">"name"</span>, <span class="code-string">"Unknown"</span>))  <span class="code-comment"># Output: John (key exists)</span><br>
+                    <span class="code-function">print</span>(student.<span class="code-function">setdefault</span>(<span class="code-string">"city"</span>, <span class="code-string">"Unknown"</span>)) <span class="code-comment"># Output: Unknown (key added)</span><br>
+                    <span class="code-function">print</span>(student)  <span class="code-comment"># Now includes 'city': 'Unknown'</span>
+                </div>
+                
+                <div class="example-box">
+                    <h3>Method Summary - Part 1</h3>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>Method</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>len(d)</td>
+                                <td>Returns the number of items in dictionary d</td>
+                            </tr>
+                            <tr>
+                                <td>d.keys()</td>
+                                <td>Returns a view of all keys in d</td>
+                            </tr>
+                            <tr>
+                                <td>d.values()</td>
+                                <td>Returns a view of all values in d</td>
+                            </tr>
+                            <tr>
+                                <td>d.items()</td>
+                                <td>Returns a view of all key-value pairs in d</td>
+                            </tr>
+                            <tr>
+                                <td>d.get(key, default)</td>
+                                <td>Returns value for key, or default if key doesn't exist</td>
+                            </tr>
+                            <tr>
+                                <td>d.setdefault(key, default)</td>
+                                <td>Returns value if key exists, else sets key=default and returns it</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 5: Dictionary Methods - Part 2 -->
+            <div class="slide">
+                <h2>Dictionary Methods - Part 2</h2>
+                <p>More advanced dictionary methods for modification and utility operations.</p>
+                
+                <h3>Modification Methods</h3>
+                <div class="code-block">
+                    <span class="code-comment"># update() - adds or updates multiple key-value pairs</span><br>
+                    student = {<span class="code-string">"name"</span>: <span class="code-string">"John"</span>, <span class="code-string">"age"</span>: <span class="code-var">20</span>}<br>
+                    student.<span class="code-function">update</span>({<span class="code-string">"age"</span>: <span class="code-var">21</span>, <span class="code-string">"grade"</span>: <span class="code-string">"A"</span>, <span class="code-string">"city"</span>: <span class="code-string">"Boston"</span>})<br>
+                    <span class="code-function">print</span>(student)  <span class="code-comment"># Output: {'name': 'John', 'age': 21, 'grade': 'A', 'city': 'Boston'}</span><br><br>
+                    
+                    <span class="code-comment"># pop() - removes specified key and returns its value</span><br>
+                    age = student.<span class="code-function">pop</span>(<span class="code-string">"age"</span>)<br>
+                    <span class="code-function">print</span>(age)      <span class="code-comment"># Output: 21</span><br>
+                    <span class="code-function">print</span>(student)  <span class="code-comment"># age key removed</span><br><br>
+                    
+                    <span class="code-comment"># popitem() - removes and returns last inserted key-value pair</span><br>
+                    last_item = student.<span class="code-function">popitem</span>()<br>
+                    <span class="code-function">print</span>(last_item) <span class="code-comment"># Output: ('city', 'Boston')</span><br>
+                    <span class="code-function">print</span>(student)    <span class="code-comment"># city key removed</span>
+                </div>
+                
+                <h3>Utility Methods</h3>
+                <div class="code-block">
+                    <span class="code-comment"># copy() - returns a shallow copy of the dictionary</span><br>
+                    original = {<span class="code-string">"a"</span>: <span class="code-var">1</span>, <span class="code-string">"b"</span>: <span class="code-var">2</span>}<br>
+                    copied = original.<span class="code-function">copy</span>()<br>
+                    copied[<span class="code-string">"c"</span>] = <span class="code-var">3</span><br>
+                    <span class="code-function">print</span>(original)  <span class="code-comment"># Output: {'a': 1, 'b': 2}</span><br>
+                    <span class="code-function">print</span>(copied)    <span class="code-comment"># Output: {'a': 1, 'b': 2, 'c': 3}</span><br><br>
+                    
+                    <span class="code-comment"># clear() - removes all items from the dictionary</span><br>
+                    student.<span class="code-function">clear</span>()<br>
+                    <span class="code-function">print</span>(student)  <span class="code-comment"># Output: {}</span><br><br>
+                    
+                    <span class="code-comment"># fromkeys() - creates a new dictionary with keys from sequence and values set to value</span><br>
+                    keys = [<span class="code-string">"name"</span>, <span class="code-string">"age"</span>, <span class="code-string">"city"</span>]<br>
+                    new_dict = <span class="code-function">dict</span>.<span class="code-function">fromkeys</span>(keys, <span class="code-string">"unknown"</span>)<br>
+                    <span class="code-function">print</span>(new_dict)  <span class="code-comment"># Output: {'name': 'unknown', 'age': 'unknown', 'city': 'unknown'}</span>
+                </div>
+                
+                <h3>Using max(), min(), sorted() with Dictionaries</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Working with numeric dictionaries</span><br>
+                    scores = {<span class="code-string">"Alice"</span>: <span class="code-var">85</span>, <span class="code-string">"Bob"</span>: <span class="code-var">92</span>, <span class="code-string">"Charlie"</span>: <span class="code-var">78</span>, <span class="code-string">"Diana"</span>: <span class="code-var">95</span>}<br><br>
+                    
+                    <span class="code-comment"># max() and min() with keys</span><br>
+                    <span class="code-function">print</span>(<span class="code-function">max</span>(scores))          <span class="code-comment"># Output: Diana (max key alphabetically)</span><br>
+                    <span class="code-function">print</span>(<span class="code-function">min</span>(scores))          <span class="code-comment"># Output: Alice (min key alphabetically)</span><br>
+                    <span class="code-function">print</span>(<span class="code-function">max</span>(scores.<span class="code-function">values</span>())) <span class="code-comment"># Output: 95 (max value)</span><br>
+                    <span class="code-function">print</span>(<span class="code-function">min</span>(scores.<span class="code-function">values</span>())) <span class="code-comment"># Output: 78 (min value)</span><br><br>
+                    
+                    <span class="code-comment"># sorted() with dictionaries</span><br>
+                    <span class="code-function">print</span>(<span class="code-function">sorted</span>(scores))                 <span class="code-comment"># Output: ['Alice', 'Bob', 'Charlie', 'Diana']</span><br>
+                    <span class="code-function">print</span>(<span class="code-function">sorted</span>(scores.<span class="code-function">items</span>()))          <span class="code-comment"># Output: sorted by keys</span><br>
+                    <span class="code-function">print</span>(<span class="code-function">sorted</span>(scores.<span class="code-function">items</span>(), key=<span class="code-keyword">lambda</span> x: x[<span class="code-var">1</span>])) <span class="code-comment"># Output: sorted by values</span>
+                </div>
+            </div>
+            
+            <!-- Slide 6: Practical Programs -->
+            <div class="slide">
+                <h2>Practical Dictionary Programs</h2>
+                <p>Let's implement some practical programs using dictionaries.</p>
+                
+                <h3>Program 1: Character Frequency Counter</h3>
+                <div class="code-block">
+                    <span class="code-keyword">def</span> <span class="code-function">count_characters</span>(text):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Initialize an empty dictionary</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;char_count = {}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Count each character</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">for</span> char <span class="code-keyword">in</span> text:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Ignore spaces if needed</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> char != <span class="code-string">' '</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char_count[char] = char_count.<span class="code-function">get</span>(char, <span class="code-var">0</span>) + <span class="code-var">1</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> char_count<br><br>
+                    
+                    <span class="code-comment"># Test the function</span><br>
+                    text = <span class="code-string">"hello world"</span><br>
+                    result = <span class="code-function">count_characters</span>(text)<br>
+                    <span class="code-function">print</span>(<span class="code-string">"Character frequencies:"</span>, result)<br>
+                    <span class="code-comment"># Output: {'h': 1, 'e': 1, 'l': 3, 'o': 2, 'w': 1, 'r': 1, 'd': 1}</span>
+                </div>
+                
+                <h3>Program 2: Employee Management System</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Create employee dictionary</span><br>
+                    employees = {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"E001"</span>: {<span class="code-string">"name"</span>: <span class="code-string">"Alice Johnson"</span>, <span class="code-string">"salary"</span>: <span class="code-var">50000</span>, <span class="code-string">"department"</span>: <span class="code-string">"HR"</span>},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"E002"</span>: {<span class="code-string">"name"</span>: <span class="code-string">"Bob Smith"</span>, <span class="code-string">"salary"</span>: <span class="code-var">75000</span>, <span class="code-string">"department"</span>: <span class="code-string">"Engineering"</span>},<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"E003"</span>: {<span class="code-string">"name"</span>: <span class="code-string">"Charlie Brown"</span>, <span class="code-string">"salary"</span>: <span class="code-var">60000</span>, <span class="code-string">"department"</span>: <span class="code-string">"Marketing"</span>}<br>
+                    }<br><br>
+                    
+                    <span class="code-comment"># Access employee information</span><br>
+                    <span class="code-function">print</span>(<span class="code-string">"Employee E002:"</span>, employees[<span class="code-string">"E002"</span>])<br>
+                    <span class="code-function">print</span>(<span class="code-string">"Bob's salary:"</span>, employees[<span class="code-string">"E002"</span>][<span class="code-string">"salary"</span>])<br><br>
+                    
+                    <span class="code-comment"># Add new employee</span><br>
+                    employees[<span class="code-string">"E004"</span>] = {<span class="code-string">"name"</span>: <span class="code-string">"Diana Prince"</span>, <span class="code-string">"salary"</span>: <span class="code-var">80000</span>, <span class="code-string">"department"</span>: <span class="code-string">"Engineering"</span>}<br><br>
+                    
+                    <span class="code-comment"># Give raise to an employee</span><br>
+                    employees[<span class="code-string">"E001"</span>][<span class="code-string">"salary"</span>] = <span class="code-var">55000</span><br><br>
+                    
+                    <span class="code-comment"># Display all employees</span><br>
+                    <span class="code-function">print</span>(<span class="code-string">"\nAll Employees:"</span>)<br>
+                    <span class="code-keyword">for</span> emp_id, details <span class="code-keyword">in</span> employees.<span class="code-function">items</span>():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-string">f"</span>{emp_id}<span class="code-string">: </span>{details[<span class="code-string">'name'</span>]}<span class="code-string"> - </span>{details[<span class="code-string">'department'</span>]}<span class="code-string"> - $</span>{details[<span class="code-string">'salary'</span>]}<span class="code-string">"</span>)
+                </div>
+                
+                <div class="interactive-demo">
+                    <h3>Try It Yourself: Character Counter</h3>
+                    <p>Enter text to see character frequencies:</p>
+                    <div class="demo-controls">
+                        <input type="text" id="textInput" placeholder="Enter text here" style="width: 300px;">
+                        <button class="btn btn-success" onclick="countChars()">Count Characters</button>
+                    </div>
+                    <div class="demo-output" id="charOutput">
+                        Character frequencies will appear here
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 7: Quiz -->
+            <div class="slide">
+                <h2>Test Your Dictionary Knowledge</h2>
+                <p>Answer these questions to check your understanding of Python dictionaries.</p>
+                
+                <div class="quiz-container">
+                    <div class="question">
+                        <p><strong>1. Which of the following is a valid dictionary creation in Python?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q1" value="a"> a) dict = [1: 'a', 2: 'b']</div>
+                            <div class="option"><input type="radio" name="q1" value="b"> b) dict = {1: 'a', 2: 'b'}</div>
+                            <div class="option"><input type="radio" name="q1" value="c"> c) dict = (1: 'a', 2: 'b')</div>
+                            <div class="option"><input type="radio" name="q1" value="d"> d) dict = \<1: 'a', 2: 'b'\></div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(1)">Check Answer</button>
+                        <div class="explanation" id="explanation1">
+                            <p><strong>Correct Answer: b) dict = {1: 'a', 2: 'b'}</strong><br>
+                            Dictionaries are created using curly braces {} with key:value pairs separated by commas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p><strong>2. What will be the output of the following code?<br>my_dict = {'a': 1, 'b': 2}<br>print(my_dict.get('c', 0))</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q2" value="a"> a) KeyError</div>
+                            <div class="option"><input type="radio" name="q2" value="b"> b) None</div>
+                            <div class="option"><input type="radio" name="q2" value="c"> c) 0</div>
+                            <div class="option"><input type="radio" name="q2" value="d"> d) False</div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(2)">Check Answer</button>
+                        <div class="explanation" id="explanation2">
+                            <p><strong>Correct Answer: c) 0</strong><br>
+                            The get() method returns the default value (0) when the key is not found in the dictionary.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p><strong>3. Which method removes all items from a dictionary?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q3" value="a"> a) remove()</div>
+                            <div class="option"><input type="radio" name="q3" value="b"> b) delete()</div>
+                            <div class="option"><input type="radio" name="q3" value="c"> c) clear()</div>
+                            <div class="option"><input type="radio" name="q3" value="d"> d) purge()</div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(3)">Check Answer</button>
+                        <div class="explanation" id="explanation3">
+                            <p><strong>Correct Answer: c) clear()</strong><br>
+                            The clear() method removes all items from the dictionary, leaving it empty.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p><strong>4. What does the popitem() method do?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q4" value="a"> a) Removes a random item</div>
+                            <div class="option"><input type="radio" name="q4" value="b"> b) Removes the first item</div>
+                            <div class="option"><input type="radio" name="q4" value="c"> c) Removes the last inserted item</div>
+                            <div class="option"><input type="radio" name="q4" value="d"> d) Removes all items</div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(4)">Check Answer</button>
+                        <div class="explanation" id="explanation4">
+                            <p><strong>Correct Answer: c) Removes the last inserted item</strong><br>
+                            popitem() removes and returns the last inserted (key, value) pair as a tuple.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <p><strong>5. Which of these is NOT a valid dictionary key?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" name="q5" value="a"> a) "name"</div>
+                            <div class="option"><input type="radio" name="q5" value="b"> b) 123</div>
+                            <div class="option"><input type="radio" name="q5" value="c"> c) [1, 2, 3]</div>
+                            <div class="option"><input type="radio" name="q5" value="d"> d) ("a", "b")</div>
+                        </div>
+                        <button class="btn" onclick="checkAnswer(5)">Check Answer</button>
+                        <div class="explanation" id="explanation5">
+                            <p><strong>Correct Answer: c) [1, 2, 3]</strong><br>
+                            Dictionary keys must be immutable. Lists are mutable and cannot be used as dictionary keys.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Python Dictionaries Presentation &copy; 2023 | Created for Educational Purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Global demo dictionary
+        let demoDict = {};
+        let demoOutput = document.getElementById('demoOutput');
+        
+        // Navigation functionality
+        function showSlide(slideIndex) {
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show selected slide
+            slides[slideIndex].classList.add('active');
+            
+            // Update active nav button
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach((button, index) => {
+                if (index === slideIndex) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+        
+        // Interactive dictionary functions
+        function addToDemoDict() {
+            const key = document.getElementById('keyInput').value;
+            const value = document.getElementById('valueInput').value;
+            
+            if (key) {
+                demoDict[key] = value;
+                updateDemoOutput();
+                document.getElementById('keyInput').value = '';
+                document.getElementById('valueInput').value = '';
+            } else {
+                alert('Please enter a key');
+            }
+        }
+        
+        function getFromDemoDict() {
+            const key = document.getElementById('keyInput').value;
+            if (key) {
+                const value = demoDict[key] !== undefined ? demoDict[key] : 'Key not found';
+                demoOutput.innerHTML = `Value for "${key}": ${value}<br>Current dictionary: ${JSON.stringify(demoDict)}`;
+            } else {
+                alert('Please enter a key');
+            }
+        }
+        
+        function removeFromDemoDict() {
+            const key = document.getElementById('keyInput').value;
+            if (key && demoDict[key] !== undefined) {
+                delete demoDict[key];
+                updateDemoOutput();
+                document.getElementById('keyInput').value = '';
+            } else {
+                alert('Key not found in dictionary');
+            }
+        }
+        
+        function clearDemoDict() {
+            demoDict = {};
+            updateDemoOutput();
+        }
+        
+        function updateDemoOutput() {
+            demoOutput.innerHTML = `Current dictionary: ${JSON.stringify(demoDict)}`;
+        }
+        
+        // Character counter function
+        function countChars() {
+            const text = document.getElementById('textInput').value;
+            if (!text) {
+                document.getElementById('charOutput').innerHTML = 'Please enter some text';
+                return;
+            }
+            
+            const charCount = {};
+            for (let char of text) {
+                if (char !== ' ') {
+                    charCount[char] = (charCount[char] || 0) + 1;
+                }
+            }
+            
+            let output = 'Character frequencies:<br>';
+            for (let char in charCount) {
+                output += `${char}: ${charCount[char]}<br>`;
+            }
+            
+            document.getElementById('charOutput').innerHTML = output;
+        }
+        
+        // Quiz functionality
+        function checkAnswer(questionNum) {
+            const correctAnswers = {
+                1: 'b',
+                2: 'c',
+                3: 'c',
+                4: 'c',
+                5: 'c'
+            };
+            
+            const selectedOption = document.querySelector(`input[name="q${questionNum}"]:checked`);
+            const explanation = document.getElementById(`explanation${questionNum}`);
+            
+            if (selectedOption) {
+                if (selectedOption.value === correctAnswers[questionNum]) {
+                    explanation.innerHTML = `<p><strong style="color: green;">Correct!</strong> ${explanation.innerHTML.split('<strong>')[1]}`;
+                } else {
+                    explanation.innerHTML = `<p><strong style="color: red;">Incorrect.</strong> ${explanation.innerHTML.split('<strong>')[1]}`;
+                }
+                explanation.style.display = 'block';
+            } else {
+                alert('Please select an answer!');
+            }
+        }
+    </script>
+</body>
+</html>
