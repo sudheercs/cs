@@ -1,108 +1,790 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NCERT Class 12 Web Portal</title>
-  <style>
-    body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f5f7fa;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background: #1e88e5;
-      color: white;
-      padding: 1.5rem 0;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-    }
-
-    h2 {
-      text-align: center;
-      color: #1e88e5;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin-top: 2rem;
-    }
-
-    li {
-      margin: 1rem 0;
-      text-align: center;
-    }
-
-    a {
-      text-decoration: none;
-      background: #1e88e5;
-      color: white;
-      padding: 0.7rem 1.5rem;
-      border-radius: 8px;
-      transition: background 0.3s;
-      display: inline-block;
-      font-weight: 500;
-    }
-
-    a:hover {
-      background: #1565c0;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      color: #666;
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Networks - Unit 2</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .tabs-container {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .tabs-header {
+            display: flex;
+            flex-wrap: wrap;
+            background: var(--primary);
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab.active {
+            background: var(--secondary);
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .content-section {
+            margin-bottom: 25px;
+        }
+        
+        .content-section h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .example-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .quiz-container {
+            background: #e8f4fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .quiz-question {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .quiz-options {
+            list-style-type: none;
+        }
+        
+        .quiz-options li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .quiz-options li:hover {
+            background: #d6eaf8;
+        }
+        
+        .quiz-options li.correct {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .quiz-options li.incorrect {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .quiz-result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: var(--primary);
+        }
+        
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--secondary);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--dark);
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs-header {
+                flex-direction: column;
+            }
+            
+            .tab {
+                min-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Unit 2: Computer Networks</h1>
+            <p class="subtitle">A comprehensive guide to networking concepts, technologies, and protocols</p>
+        </header>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <div class="tabs-container">
+            <div class="tabs-header" id="tabsHeader">
+                <!-- Tabs will be generated by JavaScript -->
+            </div>
+            
+            <div id="tabsContent">
+                <!-- Tab content will be loaded here -->
+            </div>
+        </div>
+        
+        <footer>
+            <p>Computer Networks Presentation &copy; 2023</p>
+        </footer>
+    </div>
 
-  <header>
-    <h1>NCERT Class 12 — Computer Science</h1>
-  </header>
+    <script>
+        // Topic data
+        const topics = [
+            {
+                id: 'evolution',
+                title: 'Evolution of Networking',
+                content: `
+                    <div class="content-section">
+                        <h3>Introduction to Computer Networks</h3>
+                        <p>A computer network is a collection of interconnected computers and devices that can communicate with each other and share resources.</p>
+                        <p>Networks allow for:</p>
+                        <ul>
+                            <li>Resource sharing (printers, files, applications)</li>
+                            <li>Communication (email, messaging, video conferencing)</li>
+                            <li>Data sharing and collaboration</li>
+                            <li>Centralized administration and backup</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Evolution of Networking</h3>
+                        <p><strong>ARPANET (1969):</strong> Advanced Research Projects Agency Network was the first wide-area packet-switched network and the precursor to the modern Internet.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> ARPANET initially connected four universities: UCLA, Stanford, UC Santa Barbara, and the University of Utah.</p>
+                        </div>
+                        
+                        <p><strong>NSFNET (1985):</strong> National Science Foundation Network was a program of coordinated, evolving projects sponsored by the National Science Foundation to develop advanced networking infrastructure.</p>
+                        
+                        <p><strong>INTERNET (1990s):</strong> The modern Internet emerged from the interconnection of various networks, using TCP/IP as the standard protocol.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> The World Wide Web (WWW) was invented in 1989 by Tim Berners-Lee, which made the Internet accessible to the general public.</p>
+                        </div>
+                    </div>
+                `,
+                quiz: {
+                    question: "Which network was the precursor to the modern Internet?",
+                    options: [
+                        "NSFNET",
+                        "ARPANET",
+                        "WWW",
+                        "LAN"
+                    ],
+                    correct: 1
+                }
+            },
+            {
+                id: 'terminologies',
+                title: 'Data Communication Terminologies',
+                content: `
+                    <div class="content-section">
+                        <h3>Concept of Communication</h3>
+                        <p>Data communication refers to the exchange of data between two devices via some form of transmission medium.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Components of Data Communication</h3>
+                        <ul>
+                            <li><strong>Sender:</strong> The device that sends the data message</li>
+                            <li><strong>Receiver:</strong> The device that receives the message</li>
+                            <li><strong>Message:</strong> The information to be communicated</li>
+                            <li><strong>Communication Media:</strong> The physical path through which data travels</li>
+                            <li><strong>Protocols:</strong> A set of rules that govern data communications</li>
+                        </ul>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> When you send an email, your computer (sender) transmits the message (email content) through communication media (Wi-Fi, Ethernet) to the recipient's computer (receiver) using protocols (SMTP).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Measuring Capacity of Communication Media</h3>
+                        <p><strong>Bandwidth:</strong> The maximum amount of data that can be transmitted over a network in a given time, typically measured in bits per second (bps).</p>
+                        <p><strong>Data Transfer Rate:</strong> The actual speed at which data is transmitted, which is usually less than the bandwidth due to various factors.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> A network with 100 Mbps bandwidth might have an actual data transfer rate of 85 Mbps due to network congestion and protocol overhead.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>IP Address</h3>
+                        <p>An Internet Protocol address is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> IPv4 address: 192.168.1.1, IPv6 address: 2001:0db8:85a3:0000:0000:8a2e:0370:7334</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Switching Techniques</h3>
+                        <p><strong>Circuit Switching:</strong> A dedicated communication path is established between two stations for the duration of the connection.</p>
+                        <p><strong>Packet Switching:</strong> Messages are divided into packets that are transmitted independently and reassembled at the destination.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Traditional telephone networks use circuit switching, while the Internet uses packet switching.</p>
+                        </div>
+                    </div>
+                `,
+                quiz: {
+                    question: "Which component of data communication is responsible for governing how data is transmitted?",
+                    options: [
+                        "Sender",
+                        "Receiver",
+                        "Protocols",
+                        "Communication Media"
+                    ],
+                    correct: 2
+                }
+            },
+            {
+                id: 'transmission',
+                title: 'Transmission Media',
+                content: `
+                    <div class="content-section">
+                        <h3>Wired Communication Media</h3>
+                        <p><strong>Twisted Pair Cable:</strong> Consists of pairs of copper wires twisted together to reduce electromagnetic interference.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Commonly used in telephone lines and Ethernet networks (Cat5, Cat6 cables).</p>
+                        </div>
+                        
+                        <p><strong>Co-axial Cable:</strong> Consists of a central copper conductor surrounded by insulation, a braided metal shield, and an outer cover.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Used for cable television and broadband Internet connections.</p>
+                        </div>
+                        
+                        <p><strong>Fiber-optic Cable:</strong> Uses glass or plastic threads to transmit data as light pulses.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Used for high-speed Internet backbone connections and long-distance telecommunications.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Wireless Media</h3>
+                        <p><strong>Radio Waves:</strong> Use radio frequency to transmit data through the air.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Wi-Fi, Bluetooth, and AM/FM radio broadcasts.</p>
+                        </div>
+                        
+                        <p><strong>Microwaves:</strong> High-frequency radio waves that require line-of-sight transmission.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Used for satellite communications and point-to-point terrestrial links.</p>
+                        </div>
+                        
+                        <p><strong>Infrared Waves:</strong> Use infrared light to transmit data over short distances.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> TV remote controls, infrared data transfer between devices.</p>
+                        </div>
+                    </div>
+                `,
+                quiz: {
+                    question: "Which transmission media uses light pulses to transmit data?",
+                    options: [
+                        "Twisted Pair Cable",
+                        "Co-axial Cable",
+                        "Fiber-optic Cable",
+                        "Radio Waves"
+                    ],
+                    correct: 2
+                }
+            },
+            {
+                id: 'devices',
+                title: 'Network Devices',
+                content: `
+                    <div class="content-section">
+                        <h3>Common Network Devices</h3>
+                        <p><strong>Modem:</strong> Modulator-Demodulator converts digital signals to analog for transmission over telephone lines and vice versa.</p>
+                        
+                        <p><strong>Ethernet Card (NIC):</strong> Network Interface Card allows a device to connect to a network.</p>
+                        
+                        <p><strong>RJ45:</strong> Registered Jack 45 is a standard physical connector for Ethernet cables.</p>
+                        
+                        <p><strong>Repeater:</strong> Regenerates and retransmits signals to extend the range of a network.</p>
+                        
+                        <p><strong>Hub:</strong> A basic networking device that connects multiple devices in a network, broadcasting data to all connected devices.</p>
+                        
+                        <p><strong>Switch:</strong> An intelligent hub that forwards data only to the specific device it's intended for.</p>
+                        
+                        <p><strong>Router:</strong> Connects different networks and routes data packets between them.</p>
+                        
+                        <p><strong>Gateway:</strong> A network node that connects two networks using different protocols.</p>
+                        
+                        <p><strong>WIFI Card:</strong> A wireless network interface controller that connects a device to a wireless network.</p>
+                        
+                        <div class="example-box">
+                            <p><strong>Example:</strong> In a home network, a modem connects to the Internet, a router distributes the connection to multiple devices, and switches or Wi-Fi extend the network throughout the house.</p>
+                        </div>
+                    </div>
+                `,
+                quiz: {
+                    question: "Which network device connects different networks and routes data packets between them?",
+                    options: [
+                        "Hub",
+                        "Switch",
+                        "Router",
+                        "Repeater"
+                    ],
+                    correct: 2
+                }
+            },
+            {
+                id: 'topologies',
+                title: 'Network Topologies and Types',
+                content: `
+                    <div class="content-section">
+                        <h3>Types of Networks</h3>
+                        <p><strong>PAN (Personal Area Network):</strong> A network for communication among devices close to a person, typically within 10 meters.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Bluetooth connection between a smartphone and wireless headphones.</p>
+                        </div>
+                        
+                        <p><strong>LAN (Local Area Network):</strong> A network that connects devices in a limited geographical area such as a home, school, or office building.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> A Wi-Fi network in a coffee shop or an Ethernet network in an office.</p>
+                        </div>
+                        
+                        <p><strong>MAN (Metropolitan Area Network):</strong> A network that spans a city or campus.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> A city-wide Wi-Fi network or cable TV network.</p>
+                        </div>
+                        
+                        <p><strong>WAN (Wide Area Network):</strong> A network that covers a large geographical area, often a country or continent.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> The Internet is the largest WAN.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Network Topologies</h3>
+                        <p><strong>Bus Topology:</strong> All devices are connected to a single central cable (the bus).</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Early Ethernet networks used bus topology with coaxial cables.</p>
+                        </div>
+                        
+                        <p><strong>Star Topology:</strong> All devices are connected to a central hub or switch.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Most modern Ethernet networks use star topology.</p>
+                        </div>
+                        
+                        <p><strong>Tree Topology:</strong> A combination of bus and star topologies, with multiple star networks connected to a single bus.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Large corporate networks often use tree topology.</p>
+                        </div>
+                    </div>
+                `,
+                quiz: {
+                    question: "Which network type spans a city or campus?",
+                    options: [
+                        "PAN",
+                        "LAN",
+                        "MAN",
+                        "WAN"
+                    ],
+                    correct: 2
+                }
+            },
+            {
+                id: 'protocols',
+                title: 'Network Protocols',
+                content: `
+                    <div class="content-section">
+                        <h3>Common Network Protocols</h3>
+                        <p><strong>HTTP (HyperText Transfer Protocol):</strong> Used for transferring web pages on the World Wide Web.</p>
+                        
+                        <p><strong>FTP (File Transfer Protocol):</strong> Used for transferring files between computers on a network.</p>
+                        
+                        <p><strong>PPP (Point-to-Point Protocol):</strong> Used for direct connections between two nodes.</p>
+                        
+                        <p><strong>SMTP (Simple Mail Transfer Protocol):</strong> Used for sending email messages between servers.</p>
+                        
+                        <p><strong>TCP/IP (Transmission Control Protocol/Internet Protocol):</strong> The fundamental protocol suite for the Internet.</p>
+                        
+                        <p><strong>POP3 (Post Office Protocol version 3):</strong> Used by email clients to retrieve emails from a server.</p>
+                        
+                        <p><strong>HTTPS (HyperText Transfer Protocol Secure):</strong> A secure version of HTTP that uses encryption.</p>
+                        
+                        <p><strong>TELNET:</strong> A protocol used for remote login to computers over a network.</p>
+                        
+                        <p><strong>VoIP (Voice over Internet Protocol):</strong> Technologies for delivering voice communications over IP networks.</p>
+                        
+                        <div class="example-box">
+                            <p><strong>Example:</strong> When you visit a website, your browser uses HTTP/HTTPS to request the page from the web server. When you send an email, your email client uses SMTP to send it and POP3/IMAP to receive emails.</p>
+                        </div>
+                    </div>
+                `,
+                quiz: {
+                    question: "Which protocol is used for secure web browsing?",
+                    options: [
+                        "HTTP",
+                        "FTP",
+                        "HTTPS",
+                        "SMTP"
+                    ],
+                    correct: 2
+                }
+            },
+            {
+                id: 'web-services',
+                title: 'Introduction to Web Services',
+                content: `
+                    <div class="content-section">
+                        <h3>World Wide Web (WWW)</h3>
+                        <p>An information system where documents and other web resources are identified by URLs and accessed via the Internet.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Hyper Text Markup Language (HTML)</h3>
+                        <p>The standard markup language for creating web pages and web applications.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> &lt;html&gt;&lt;head&gt;&lt;title&gt;Page Title&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Heading&lt;/h1&gt;&lt;p&gt;Paragraph text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Extensible Markup Language (XML)</h3>
+                        <p>A markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> &lt;note&gt;&lt;to&gt;John&lt;/to&gt;&lt;from&gt;Jane&lt;/from&gt;&lt;message&gt;Don't forget the meeting!&lt;/message&gt;&lt;/note&gt;</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Domain Names</h3>
+                        <p>Human-readable addresses that are mapped to IP addresses, making it easier to access websites.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> www.example.com, where "example" is the domain name and ".com" is the top-level domain.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>URL (Uniform Resource Locator)</h3>
+                        <p>The address of a resource on the Internet, specifying the protocol, domain name, and path to the resource.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> https://www.example.com/path/to/page.html</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Website</h3>
+                        <p>A collection of related web pages, typically identified by a common domain name.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Web Browser</h3>
+                        <p>Software application for accessing information on the World Wide Web.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Google Chrome, Mozilla Firefox, Microsoft Edge, Safari.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Web Servers</h3>
+                        <p>Computers that store web pages and deliver them to users upon request.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Apache, Nginx, Microsoft IIS.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>Web Hosting</h3>
+                        <p>A service that allows organizations and individuals to make their website accessible via the World Wide Web.</p>
+                        <div class="example-box">
+                            <p><strong>Example:</strong> Companies like Bluehost, HostGator, and GoDaddy provide web hosting services.</p>
+                        </div>
+                    </div>
+                `,
+                quiz: {
+                    question: "What does HTML stand for?",
+                    options: [
+                        "Hyperlink Text Management Language",
+                        "Hyper Text Markup Language",
+                        "High Tech Modern Language",
+                        "Hyper Transfer Markup Language"
+                    ],
+                    correct: 1
+                }
+            }
+        ];
 
-  <main>
-    <h2>Explore Topics</h2>
-    <ul>
-      <li><a href="dbms.html">Database Management System (DBMS)</a></li>
-      <li><a href="SQL.html">Structured Query Language (SQL)</a></li>
-      <li><a href="string.html">String Handling in Python</a></li>
-      <li><a href="sql_slides_fullscreen_30.html">SQL_1</a></li>
-      <li><a href="list.html">Python List</a></li>
-      <li><a href="tuples.html">Python Tuples</a></li>
-      <li><a href="dictionary.html">Python Dictionary</a></li>
-      <li><a href="python_sql_conn.html">Python SQL_DB Connection</a></li>
-      <li><a href="computer_networks.html">Computer Networks</a></li>
-    </ul>
-  </main>
+        // Current topic index
+        let currentTopicIndex = 0;
 
-  <footer>
-    © 2025 NCERT Class 12 Learning Portal | Designed for Educational Use
-  </footer>
+        // Initialize the presentation
+        function initPresentation() {
+            renderTabs();
+            loadTopic(currentTopicIndex);
+            updateProgress();
+        }
 
+        // Render the tabs
+        function renderTabs() {
+            const tabsHeader = document.getElementById('tabsHeader');
+            const tabsContent = document.getElementById('tabsContent');
+            
+            tabsHeader.innerHTML = '';
+            tabsContent.innerHTML = '';
+            
+            topics.forEach((topic, index) => {
+                // Create tab header
+                const tab = document.createElement('div');
+                tab.className = `tab ${index === 0 ? 'active' : ''}`;
+                tab.textContent = topic.title;
+                tab.setAttribute('data-tab', topic.id);
+                tab.addEventListener('click', () => {
+                    currentTopicIndex = index;
+                    activateTab(topic.id);
+                    loadTopic(currentTopicIndex);
+                    updateProgress();
+                });
+                tabsHeader.appendChild(tab);
+                
+                // Create tab content container
+                const tabContent = document.createElement('div');
+                tabContent.className = `tab-content ${index === 0 ? 'active' : ''}`;
+                tabContent.id = `content-${topic.id}`;
+                tabsContent.appendChild(tabContent);
+            });
+        }
+
+        // Activate a specific tab
+        function activateTab(tabId) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Add active class to selected tab
+            document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
+            
+            // Add active class to selected tab content
+            document.getElementById(`content-${tabId}`).classList.add('active');
+        }
+
+        // Load a topic
+        function loadTopic(index) {
+            const topic = topics[index];
+            const tabContent = document.getElementById(`content-${topic.id}`);
+            
+            tabContent.innerHTML = `
+                <h2>${topic.title}</h2>
+                ${topic.content}
+                
+                <div class="quiz-container">
+                    <h3>Quiz</h3>
+                    <div class="quiz-question">${topic.quiz.question}</div>
+                    <ul class="quiz-options" id="quizOptions-${topic.id}">
+                        ${topic.quiz.options.map((option, i) => 
+                            `<li data-index="${i}">${option}</li>`
+                        ).join('')}
+                    </ul>
+                    <div class="quiz-result" id="quizResult-${topic.id}"></div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button id="prevBtn-${topic.id}" ${index === 0 ? 'disabled' : ''}>Previous</button>
+                    <button id="nextBtn-${topic.id}" ${index === topics.length - 1 ? 'disabled' : ''}>Next</button>
+                </div>
+            `;
+            
+            // Add event listeners for quiz options
+            const quizOptions = document.getElementById(`quizOptions-${topic.id}`);
+            const quizResult = document.getElementById(`quizResult-${topic.id}`);
+            
+            quizOptions.querySelectorAll('li').forEach(option => {
+                option.addEventListener('click', function() {
+                    const selectedIndex = parseInt(this.getAttribute('data-index'));
+                    const correctIndex = topic.quiz.correct;
+                    
+                    // Disable all options after selection
+                    quizOptions.querySelectorAll('li').forEach(li => {
+                        li.style.pointerEvents = 'none';
+                    });
+                    
+                    // Show correct/incorrect
+                    if (selectedIndex === correctIndex) {
+                        this.classList.add('correct');
+                        quizResult.textContent = 'Correct! Well done.';
+                        quizResult.style.display = 'block';
+                        quizResult.style.background = '#d4edda';
+                        quizResult.style.color = '#155724';
+                    } else {
+                        this.classList.add('incorrect');
+                        quizOptions.querySelectorAll('li')[correctIndex].classList.add('correct');
+                        quizResult.textContent = 'Incorrect. Try again.';
+                        quizResult.style.display = 'block';
+                        quizResult.style.background = '#f8d7da';
+                        quizResult.style.color = '#721c24';
+                    }
+                });
+            });
+            
+            // Add event listeners for navigation buttons
+            document.getElementById(`prevBtn-${topic.id}`).addEventListener('click', () => {
+                if (currentTopicIndex > 0) {
+                    currentTopicIndex--;
+                    const prevTopic = topics[currentTopicIndex];
+                    activateTab(prevTopic.id);
+                    loadTopic(currentTopicIndex);
+                    updateProgress();
+                }
+            });
+            
+            document.getElementById(`nextBtn-${topic.id}`).addEventListener('click', () => {
+                if (currentTopicIndex < topics.length - 1) {
+                    currentTopicIndex++;
+                    const nextTopic = topics[currentTopicIndex];
+                    activateTab(nextTopic.id);
+                    loadTopic(currentTopicIndex);
+                    updateProgress();
+                }
+            });
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = document.getElementById('progress');
+            const percentage = ((currentTopicIndex + 1) / topics.length) * 100;
+            progress.style.width = `${percentage}%`;
+        }
+
+        // Initialize when the page loads
+        document.addEventListener('DOMContentLoaded', initPresentation);
+    </script>
 </body>
 </html>
-
-
-
-
-
-
