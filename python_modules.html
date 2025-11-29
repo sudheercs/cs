@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Modules: Math, Random, Statistics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .code-block {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #1e293b; /* Slate 800 */
+            color: #f8fafc; /* Light text */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .function-card {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.25rem;
+            border-left: 4px solid #3b82f6;
+        }
+    </style>
+</head>
+<body class="p-8">
+
+    <div class="container mx-auto">
+        
+        <!-- Header -->
+        <header class="text-center mb-12 border-b-2 border-blue-400 pb-4">
+            <h1 class="text-5xl font-extrabold text-gray-900 mb-2">Python Modules</h1>
+            <p class="text-xl text-gray-600">Accessing the Power of Python's Standard Library</p>
+        </header>
+
+        <!-- Section 1: Introduction to Importing -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-cubes text-blue-500 mr-3"></i> Module Importing
+            </h2>
+            <p class="text-gray-700 mb-4">A module is a file containing Python definitions and statements. By importing a module, you gain access to its functions, classes, and variables.</p>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-2 mt-6">1. Using the `import` Statement</h3>
+            <p class="text-gray-600 mb-2">Imports the entire module. You must use the module name as a prefix to access its members.</p>
+            <div class="code-block">
+                <span class="text-blue-400"># Syntax:</span> import module_name<br>
+                <span class="text-blue-400"># Usage:</span> module_name.function_name()
+                <br><br>
+                <span class="text-yellow-300">import math</span><br>
+                print(<span class="text-yellow-300">math.pi</span>) <span class="text-gray-500"># Output: 3.14159...</span>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mb-2 mt-6">2. Using the `from ... import` Statement</h3>
+            <p class="text-gray-600 mb-2">Imports specific members (functions, variables) directly into the current namespace. You do not need the module name prefix.</p>
+            <div class="code-block">
+                <span class="text-blue-400"># Syntax:</span> from module_name import member1, member2<br>
+                <span class="text-blue-400"># Usage:</span> function_name()
+                <br><br>
+                <span class="text-yellow-300">from math import sqrt, pi</span><br>
+                print(<span class="text-yellow-300">pi</span>) <span class="text-gray-500"># Output: 3.14159...</span><br>
+                print(<span class="text-yellow-300">sqrt</span>(16)) <span class="text-gray-500"># Output: 4.0</span>
+            </div>
+        </section>
+
+        <!-- Section 2: The Math Module -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-calculator text-green-500 mr-3"></i> The `math` Module
+            </h2>
+            <p class="text-gray-700 mb-4">Provides access to common mathematical functions and constants.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="function-card">
+                    <strong class="text-lg text-blue-600">Constants: `pi`, `e`</strong>
+                    <p class="text-sm text-gray-500">Mathematical constants (Pi and Euler's number).</p>
+                    <div class="code-block p-2">print(math.<span class="text-yellow-300">pi</span>)<br>print(math.<span class="text-yellow-300">e</span>)</div>
+                </div>
+                <div class="function-card">
+                    <strong class="text-lg text-blue-600">`sqrt(x)`</strong>
+                    <p class="text-sm text-gray-500">Returns the square root of x.</p>
+                    <div class="code-block p-2">print(math.<span class="text-yellow-300">sqrt</span>(25)) <span class="text-gray-500"># 5.0</span></div>
+                </div>
+                <div class="function-card">
+                    <strong class="text-lg text-blue-600">`ceil(x)` / `floor(x)`</strong>
+                    <p class="text-sm text-gray-500">Rounds up (ceiling) or down (floor) to the nearest integer.</p>
+                    <div class="code-block p-2">print(math.<span class="text-yellow-300">ceil</span>(4.3)) <span class="text-gray-500"># 5</span><br>print(math.<span class="text-yellow-300">floor</span>(4.9)) <span class="text-gray-500"># 4</span></div>
+                </div>
+                <div class="function-card">
+                    <strong class="text-lg text-blue-600">`pow(x, y)`</strong>
+                    <p class="text-sm text-gray-500">Returns x raised to the power of y ($x^y$).</p>
+                    <div class="code-block p-2">print(math.<span class="text-yellow-300">pow</span>(2, 3)) <span class="text-gray-500"># 8.0</span></div>
+                </div>
+                <div class="function-card">
+                    <strong class="text-lg text-blue-600">`fabs(x)`</strong>
+                    <p class="text-sm text-gray-500">Returns the absolute value of x (as a float).</p>
+                    <div class="code-block p-2">print(math.<span class="text-yellow-300">fabs</span>(-10)) <span class="text-gray-500"># 10.0</span></div>
+                </div>
+                <div class="function-card">
+                    <strong class="text-lg text-blue-600">Trigonometric: `sin()`, `cos()`, `tan()`</strong>
+                    <p class="text-sm text-gray-500">Returns the sine, cosine, or tangent of an angle given in radians.</p>
+                    <div class="code-block p-2">print(math.<span class="text-yellow-300">sin</span>(math.pi / 2)) <span class="text-gray-500"># 1.0</span></div>
+                </div>
+            </div>
+            
+        </section>
+        
+        <!-- Section 3: The Random Module -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-dice text-red-500 mr-3"></i> The `random` Module
+            </h2>
+            <p class="text-gray-700 mb-4">Generates pseudo-random numbers for various distributions.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="function-card border-l-4 border-red-500">
+                    <strong class="text-lg text-red-600">`random()`</strong>
+                    <p class="text-sm text-gray-500">Returns a random float in the range [0.0, 1.0).</p>
+                    <div class="code-block p-2">import random<br>print(random.<span class="text-yellow-300">random()</span>)</div>
+                </div>
+                <div class="function-card border-l-4 border-red-500">
+                    <strong class="text-lg text-red-600">`randint(a, b)`</strong>
+                    <p class="text-sm text-gray-500">Returns a random integer N such that $a \le N \le b$ (inclusive).</p>
+                    <div class="code-block p-2">print(random.<span class="text-yellow-300">randint</span>(1, 10))</div>
+                </div>
+                <div class="function-card border-l-4 border-red-500">
+                    <strong class="text-lg text-red-600">`randrange(start, stop, step)`</strong>
+                    <p class="text-sm text-gray-500">Returns a randomly selected element from `range(start, stop, step)`.</p>
+                    <div class="code-block p-2">print(random.<span class="text-yellow-300">randrange</span>(0, 100, 5))</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 4: The Statistics Module -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-chart-bar text-purple-500 mr-3"></i> The `statistics` Module
+            </h2>
+            <p class="text-gray-700 mb-4">Provides functions for calculating mathematical statistics of numeric data.</p>
+
+            <div class="code-block">
+                data = [10, 20, 30, 40, 50, 60]<br>
+                data_b = [10, 20, 30, 30, 40]<br>
+                <span class="text-yellow-300">import statistics</span><br>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="function-card border-l-4 border-purple-500">
+                    <strong class="text-lg text-purple-600">`mean(data)`</strong>
+                    <p class="text-sm text-gray-500">Returns the average (arithmetic mean) of the data.</p>
+                    <div class="code-block p-2">print(statistics.<span class="text-yellow-300">mean</span>(data)) <span class="text-gray-500"># 35.0</span></div>
+                </div>
+                <div class="function-card border-l-4 border-purple-500">
+                    <strong class="text-lg text-purple-600">`median(data)`</strong>
+                    <p class="text-sm text-gray-500">Returns the middle value in a sorted data set.</p>
+                    <div class="code-block p-2">print(statistics.<span class="text-yellow-300">median</span>(data)) <span class="text-gray-500"># 35.0</span></div>
+                </div>
+                <div class="function-card border-l-4 border-purple-500">
+                    <strong class="text-lg text-purple-600">`mode(data)`</strong>
+                    <p class="text-sm text-gray-500">Returns the most frequent data point (single mode).</p>
+                    <div class="code-block p-2">print(statistics.<span class="text-yellow-300">mode</span>(data_b)) <span class="text-gray-500"># 30</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-gray-500 text-sm border-t pt-4">
+            <p>Module documentation generated for CS Study Hub.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
