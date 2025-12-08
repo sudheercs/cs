@@ -1,642 +1,307 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CS Study Hub – Index</title>
+  <meta charset="utf-8">
+  <title>CBSE Computer Science (XI & XII) – Slides & Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Central index for CS study materials, units, and Python topics.">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta name="description"
+        content="Curated slides and notes for CBSE Computer Science (Code 083), Classes XI & XII: SQL, DBMS, Python lists/strings/tuples, and more.">
+
+  <!-- Open Graph / Social share (update og:image to your asset) -->
+  <meta property="og:title" content="CBSE Computer Science (XI & XII) – Slides & Notes">
+  <meta property="og:description" content="Teacher‑ready slides and student‑friendly notes: SQL, DBMS, Python, and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sudheercs.github.io/cs/">
+  <meta property="og:image" content="https://sudheercs.github.io/cs/assets/og-cover.png">
+
   <style>
-    :root {
-      --primary: #1f4f7b;
-      --primary-dark: #163955;
-      --accent: #ffb74d;
-      --bg: #f5f7fb;
-      --card-bg: #ffffff;
-      --text-main: #1c1c1c;
-      --text-muted: #555555;
-      --border-radius: 10px;
-      --shadow: 0 4px 16px rgba(0,0,0,0.08);
+    :root{
+      --bg: #0f172a;       /* slate-900 */
+      --panel: #111827;    /* gray-900 */
+      --text: #e5e7eb;     /* gray-200 */
+      --muted: #9ca3af;    /* gray-400 */
+      --primary: #22c55e;  /* green-500 */
+      --primary-contrast: #0b1a0f;
+      --card: #1f2937;     /* gray-800 */
+      --border: #334155;   /* slate-700 */
+      --focus: #a7f3d0;    /* green-200 */
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    html { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; }
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      line-height: 1.6;
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg), #0b1220);
     }
 
-    a {
-      color: var(--primary);
-      text-decoration: none;
+    /* Layout */
+    .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
+    header.site-header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: saturate(160%) blur(8px);
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--border);
     }
-
-    a:hover {
-      text-decoration: underline;
+    .brand { display: flex; align-items: center; gap: .75rem; padding: .75rem 0; }
+    .brand h1 { font-size: 1.25rem; margin: 0; letter-spacing: .2px; }
+    nav ul { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; }
+    nav a {
+      color: var(--text); text-decoration: none; font-weight: 600; padding: .4rem .6rem; border-radius: .4rem;
     }
+    nav a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
-    header {
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: #ffffff;
-      padding: 2.5rem 1.5rem 2rem;
+    .hero {
+      padding: 3rem 0 2rem;
+      display: grid; grid-template-columns: 1fr; gap: 1rem;
     }
+    .hero h2 { font-size: 2rem; margin: 0 0 .5rem; }
+    .hero p { color: var(--muted); margin: 0 0 1rem; }
+    .tools { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
 
-    .header-inner {
-      max-width: 1050px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    .searchbox {
+      display: flex; gap: .6rem; align-items: center; flex: 1 1 380px;
+      background: var(--panel); border: 1px solid var(--border); border-radius: .6rem; padding: .4rem .6rem;
     }
-
-    .site-title {
-      font-size: 2.1rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
+    .searchbox input {
+      width: 100%; background: transparent; border: none; color: var(--text);
+      padding: .5rem; font-size: 1rem;
     }
-
-    .site-subtitle {
-      font-size: 1rem;
-      max-width: 580px;
-      color: #e3edf7;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.5rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      border-radius: 999px;
-      padding: 0.55rem 1.2rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #2b2b2b;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.18);
-    }
-
-    .btn-primary:hover {
-      background: #ffa726;
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: #ffffff;
-      border: 1px solid rgba(255,255,255,0.5);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    main {
-      max-width: 1050px;
-      margin: 1.5rem auto 2.5rem;
-      padding: 0 1.5rem 1.5rem;
-    }
-
-    .section {
-      margin-top: 1.8rem;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-size: 1.25rem;
-      font-weight: 650;
-      color: var(--primary-dark);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      padding: 0.9rem 1rem 0.8rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 130px;
-    }
-
-    .card-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .card-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: rgba(31,79,123,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary-dark);
-      flex-shrink: 0;
-    }
-
-    .card-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.1rem;
-    }
-
-    .card-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .card-footer {
-      margin-top: 0.6rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-    }
-
-    .chip-row {
-      display: flex;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-    }
-
+    .searchbox input::placeholder { color: var(--muted); }
     .chip {
-      font-size: 0.74rem;
-      background: #eef2fb;
-      color: #41506b;
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
+      background: var(--card); border: 1px solid var(--border); color: var(--text);
+      padding: .4rem .6rem; border-radius: 999px; cursor: pointer; font-size: .9rem;
+    }
+    .chip[data-active="true"] { background: var(--primary); color: var(--primary-contrast); border-color: var(--primary); }
+
+    /* Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: .8rem; overflow: hidden;
+      display: flex; flex-direction: column; min-height: 180px;
+      position: relative; /* needed for stretched link */
+    }
+    .card header { padding: .9rem .9rem .4rem; }
+    .card h3 { margin: 0; font-size: 1.1rem; }
+    .card p { margin: .35rem .9rem 0; color: var(--muted); font-size: .95rem; }
+    .card footer { margin-top: auto; padding: .9rem; display: flex; justify-content: space-between; align-items: center; }
+    .card a.btn {
+      display: inline-block; background: var(--primary); color: var(--primary-contrast);
+      padding: .45rem .7rem; border-radius: .5rem; text-decoration: none; font-weight: 700;
+      border: 1px solid var(--primary);
+      position: relative; z-index: 6; /* ensure button stays above stretched link */
+    }
+    .card a.btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+    /* Entire card clickable via stretched link */
+    .card .stretched-link {
+      position: absolute; inset: 0; z-index: 5;
+      background: transparent; border: none; text-indent: -9999px;
+    }
+    .card .stretched-link:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 0;
+    }
+    .card:hover { border-color: var(--primary); }
+    .card:hover header h3 { color: var(--primary); }
+
+    /* Footer */
+    footer.site-footer {
+      margin-top: 2rem; padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--border);
     }
 
-    .card-link {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--primary-dark);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
+    /* Ensure visible focus (WCAG-friendly) */
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
-    footer {
-      max-width: 1050px;
-      margin: 0 auto 1.5rem;
-      padding: 0 1.5rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    footer a {
-      color: var(--primary-dark);
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 1.8rem 1rem 1.6rem;
-      }
-      main {
-        padding: 0 1rem 1.3rem;
-        margin-top: 1.1rem;
-      }
-      .site-title {
-        font-size: 1.7rem;
-      }
+    @media (min-width: 720px){
+      .hero { grid-template-columns: 1.6fr 1fr; align-items: center; }
     }
   </style>
 </head>
 <body>
-  <!-- Hero / Top -->
-  <header>
-    <div class="header-inner">
-      <div>
-        <h1 class="site-title">CS Study Hub</h1>
-        <p class="site-subtitle">
-          Central index for Class 11–12 / CS resources, slides, and reference material curated for easy classroom and self-paced learning.
-        </p>
-      </div>
-
-      <div class="hero-actions">
-        <a href="#core-units" class="btn btn-primary">
-          <i class="fa-solid fa-book-open"></i>
-          Browse core units
-        </a>
-        <a href="https://github.com/sudheercs/cs" class="btn btn-ghost" target="_blank" rel="noopener">
-          <i class="fa-brands fa-github"></i>
-          View GitHub repository
-        </a>
-      </div>
+  <header class="site-header" role="banner">
+    <div class="container brand">
+      <div aria-hidden="true" style="width:28px;height:28px;border-radius:6px;background:var(--primary)"></div>
+      <h1>CBSE Computer Science (Code 083)</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li>#topicsTopics</a></li>
+          <li>#aboutAbout</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <!-- Main content -->
-  <main>
-    <!-- Core units -->
-    <section id="core-units" class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fa-solid fa-layer-group"></i>
-          Core units
-        </h2>
-        <p class="section-subtitle">Foundational theory and concepts aligned with the syllabus.</p>
+  <main id="main" class="container" role="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h2 id="hero-title">Slides & Notes for Classes XI & XII</h2>
+        <p>
+          Teacher‑ready presentations and student‑friendly notes aligned to the CBSE Computer Science syllabus—SQL, DBMS, and Python (lists, strings, tuples), plus more. <!-- repo overview -->
+        </p>
+        <div class="tools" role="search">
+          <div class="searchbox" aria-label="Search topics">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z" stroke="currentColor" stroke-width="2"/></svg>
+            <input id="search" type="search" placeholder="Search: SQL, DBMS, lists, strings…" aria-label="Search by topic title">
+          </div>
+          <button class="chip" data-filter="all" data-active="true" aria-pressed="true">All</button>
+          <button class="chip" data-filter="python">Python</button>
+          <button class="chip" data-filter="sql">SQL/DBMS</button>
+        </div>
       </div>
-
-      <div class="card-grid">
-        <!-- Unit 1 -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-microchip"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Unit 1 – Computer Systems & Organization</h3>
-                <p class="card-desc">
-                  Overview of hardware, software, number systems, and basic architecture concepts.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Notes</span>
-            </div>
-            <a href="UNIT1.html" class="card-link">
-              Open unit
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Unit 2 -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-network-wired"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Unit 2 – Computer Networks</h3>
-                <p class="card-desc">
-                  Networking concepts, topologies, protocols, and basic communication models.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Diagrams</span>
-            </div>
-            <a href="UNIT2.html" class="card-link">
-              Open unit
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Unit 3 -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-code"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Unit 3 – Programming & Python Basics</h3>
-                <p class="card-desc">
-                  Introduction to algorithms, flowcharts, and core Python syntax and constructs.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Examples</span>
-            </div>
-            <a href="UNIT3.html" class="card-link">
-              Open unit
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- DBMS + SQL as core block -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-database"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Database Management & SQL</h3>
-                <p class="card-desc">
-                  Data models, relational concepts, and SQL queries with classroom-ready examples.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Reference</span>
-            </div>
-            <a href="DBMS-SQL.html" class="card-link">
-              Open module
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-      </div>
+      <aside aria-label="Helpful notes">
+        <ul>
+          <li>Semantic HTML & headings improve accessibility and navigation for screen‑readers.</li>
+          <li>Color choices meet WCAG 2.2 AA contrast ratios for readability.</li>
+          <li>Rich share previews via Open Graph meta tags.</li>
+        </ul>
+      </aside>
     </section>
 
-    <!-- Python topics -->
-    <section id="python-topics" class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fa-brands fa-python"></i>
-          Python topics
-        </h2>
-        <p class="section-subtitle">Focused Python concepts and practice-oriented resources.</p>
+    <section id="topics" aria-labelledby="topics-title">
+      <h2 id="topics-title">Browse Topics</h2>
+      <div class="grid" id="card-grid" aria-live="polite">
+
+        <!-- SQL / DBMS -->
+        <article class="card" data-tags="sql dbms">
+          <header><h3>SQL – Slides (Fullscreen)</h3></header>
+          sql_slides_fullscreen_30.html</a>
+          <p>Quick-launch fullscreen slides for SQL basics & queries.</p>
+          <footer>
+            <span aria-hidden="true">SQL</span>
+            sql_slides_fullscreen_30.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="sql dbms">
+          <header><h3>SQL – Overview</h3></header>
+          <a class="stretched-link" href="SQL.html" aria-label="Openauses, and examples.</p>
+          <footer>
+            <span aria-hidden="true">SQL</span>
+            SQL.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="sql dbms">
+          <header><h3>DBMS – Concepts</h3></header>
+          dbms.html</a>
+          <p>Introduction to database systems, models, and design.</p>
+          <footer>
+            <span aria-hidden="true">DBMS</span>
+            dbms.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="sql dbms python">
+          <header><h3>Python ↔ SQL Connection</h3></header>
+          python_sql_conn.html</a>
+          <p>Connect Python to a database: drivers, cursors, queries.</p>
+          <footer>
+            <span aria-hidden="true">Integration</span>
+            python_sql_conn.htmlOpen</a>
+          </footer>
+        </article>
+
+        <!-- Python: Lists, Strings, Tuples -->
+        <article class="card" data-tags="python">
+          <header><h3>Python – Lists</h3></header>
+          list.html</a>
+          <p>List operations, slicing, methods, and common patterns.</p>
+          <footer>
+            <span aria-hidden="true">Python</span>
+            list.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="python">
+          <header><h3>Python – Strings</h3></header>
+          string.html</a>
+          <p>String handling, immutability, methods, formatting.</p>
+          <footer>
+            <span aria-hidden="true">Python</span>
+            string.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="python">
+          <header><h3>Python – Tuples</h3></header>
+          tuples.html</a>
+          <p>Tuples vs lists, packing/unpacking, use‑cases.</p>
+          <footer>
+            <span aria-hidden="true">Python</span>
+            tuples.htmlOpen</a>
+          </footer>
+        </article>
+
+        <!-- Dictionary / Glossary -->
+        <article class="card" data-tags="python reference">
+          <header><h3>Dictionary / Glossary</h3></header>
+          dictionary.html</a>
+          <p>Quick reference of terms, methods, and definitions.</p>
+          <footer>
+            <span aria-hidden="true">Reference</span>
+            dictionary.htmlOpen</a>
+          </footer>
+        </article>
+
       </div>
-
-      <div class="card-grid">
-        <!-- Lists -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-list-ol"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Lists & List Operations</h3>
-                <p class="card-desc">
-                  Creating, updating, traversing, and applying built-in functions on lists.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Examples</span>
-            </div>
-            <a href="PYTHON_LISTS.html" class="card-link">
-              Open topic
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Strings -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-font"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Strings & String Methods</h3>
-                <p class="card-desc">
-                  String operations, slicing, and commonly used methods with examples.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Practice</span>
-            </div>
-            <a href="PYTHON_STRINGS.html" class="card-link">
-              Open topic
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Tuples -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-circle-nodes"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Tuples & Immutability</h3>
-                <p class="card-desc">
-                  Tuple characteristics, usage patterns, and comparison with lists.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Reference</span>
-            </div>
-            <a href="PYTHON_TUPLES.html" class="card-link">
-              Open topic
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Dictionaries -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-table-columns"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Dictionaries & Key–Value Data</h3>
-                <p class="card-desc">
-                  Creating and manipulating dictionaries for structured data.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Examples</span>
-            </div>
-            <a href="PYTHON_DICTIONARIES.html" class="card-link">
-              Open topic
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Modules -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-puzzle-piece"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Modules & Libraries</h3>
-                <p class="card-desc">
-                  Importing modules, using standard libraries, and organizing reusable code.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Examples</span>
-            </div>
-            <a href="PYTHON_MODULES.html" class="card-link">
-              Open topic
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Python + SQL connection -->
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-plug"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Python & SQL Connectivity</h3>
-                <p class="card-desc">
-                  Connecting Python to databases, executing queries, and handling result sets.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Slides</span>
-              <span class="chip">Code</span>
-            </div>
-            <a href="PYTHON_SQL_CONNECT.html" class="card-link">
-              Open topic
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-      </div>
+      <p style="color:var(--muted);margin-top:.75rem">
+        (Links point to your existing pages in the repository.)
+      </p>
     </section>
 
-    <!-- Misc / utilities section (optional) -->
-    <section id="utilities" class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fa-solid fa-toolbox"></i>
-          Utilities & extras
-        </h2>
-        <p class="section-subtitle">Supporting material, reference documents, or lab files.</p>
-      </div>
-
-      <div class="card-grid">
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-file-lines"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Syllabus & Blueprint</h3>
-                <p class="card-desc">
-                  Official syllabus outline and marks distribution for quick reference.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">PDF</span>
-            </div>
-            <a href="SYLLABUS.html" class="card-link">
-              View document
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div>
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fa-solid fa-flask"></i>
-              </div>
-              <div>
-                <h3 class="card-title">Lab / Practice Files</h3>
-                <p class="card-desc">
-                  Practice programs and datasets for lab sessions and assignments.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="chip-row">
-              <span class="chip">Code</span>
-              <span class="chip">Examples</span>
-            </div>
-            <a href="LAB_FILES.html" class="card-link">
-              Open resources
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </article>
-      </div>
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About This Project</h2>
+      <p style="max-width:70ch;color:var(--muted)">
+        A comprehensive set of teacher‑ready slides and student resources aligned with CBSE Computer Science (Code 083) for Classes XI & XII. Materials are shared under CC BY‑NC‑SA 4.0 and intended for classroom use and revision.
+      </p>
+      <p style="max-width:70ch;color:var(--muted)">
+        If GitHub Pages ever shows README instead of this page, push another commit or reconfigure the Pages source; it typically resolves with a fresh deploy.
+      </p>
     </section>
   </main>
 
-  <footer>
-    <p>
-      Maintained as part of the CS Study Hub. Links can be opened directly in class or shared with learners.
-      Update this index as new units and topics are added.
-    </p>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© <span id="year"></span> CBSE CS Resources. Built for clarity, accessibility, and easy sharing.</p>
+      <p>Ensure color contrast meets WCAG AA (use WebAIM Contrast Checker when tweaking colors).</p>
+    </div>
   </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Search & filter
+    const search = document.getElementById('search');
+    const chips = Array.from(document.querySelectorAll('.chip'));
+    const cards = Array.from(document.querySelectorAll('.card'));
+    let activeTag = 'all';
+
+    function applyFilters(){
+      const q = (search.value || '').toLowerCase().trim();
+      cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const tags = (card.dataset.tags || '').split(/\s+/);
+        const matchesText = !q || title.includes(q);
+        const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+        card.style.display = (matchesText && matchesTag) ? '' : 'none';
+      });
+    }
+
+    search.addEventListener('input', applyFilters);
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => { c.dataset.active = "false"; c.setAttribute('aria-pressed', 'false'); });
+        chip.dataset.active = "true";
+        chip.setAttribute('aria-pressed', 'true');
+        activeTag = chip.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    // Initial
+    applyFilters();
+  </script>
 </body>
 </html>
