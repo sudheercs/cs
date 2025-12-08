@@ -1,250 +1,289 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS Repository Index - Study Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* light background */
-        }
-        .container {
-            max-width: 1200px; /* Increased max width for more cards */
-        }
-        .card {
-            transition: all 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        /* Custom scrollbar for better look */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e2e8f0;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #2563eb;
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>CBSE Computer Science (XI & XII) – Slides & Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+        content="Curated slides and notes for CBSE Computer Science (Code 083), Classes XI & XII: SQL, DBMS, Python lists/strings/tuples, and more.">
+
+  <!-- Open Graph / Social share -->
+  <meta property="og:title" content="CBSE Computer Science (XI & XII) – Slides & Notes">
+  <meta property="og:description" content="Teacher-ready slides and student-friendly notes: SQL, DBMS, Python, and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sudheercs.github.io/cs/">
+  <meta property="og:image" content="https://sudheercs.github.io/cs/assets/og-cover.png">
+  <!-- Tip: 1200×630 image for best cross-platform previews -->
+
+  <!-- Favicon (optional)
+  assets/favicon.png
+  -->
+
+  <style>
+    :root{
+      --bg: #0f172a;       /* slate-900 */
+      --panel: #111827;    /* gray-900 */
+      --text: #e5e7eb;     /* gray-200 */
+      --muted: #9ca3af;    /* gray-400 */
+      --primary: #22c55e;  /* green-500 */
+      --primary-contrast: #0b1a0f;
+      --card: #1f2937;     /* gray-800 */
+      --border: #334155;   /* slate-700 */
+      --focus: #a7f3d0;    /* green-200 */
+    }
+
+    /* Prefer system fonts */
+    html { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg), #0b1220);
+    }
+
+    /* Layout */
+    .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
+    header.site-header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: saturate(160%) blur(8px);
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand { display: flex; align-items: center; gap: .75rem; padding: .75rem 0; }
+    .brand h1 { font-size: 1.25rem; margin: 0; letter-spacing: .2px; }
+    nav ul { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; }
+    nav a {
+      color: var(--text); text-decoration: none; font-weight: 600; padding: .4rem .6rem; border-radius: .4rem;
+    }
+    nav a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+    .hero {
+      padding: 3rem 0 2rem;
+      display: grid; grid-template-columns: 1fr; gap: 1rem;
+    }
+    .hero h2 { font-size: 2rem; margin: 0 0 .5rem; }
+    .hero p { color: var(--muted); margin: 0 0 1rem; }
+    .tools { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+
+    .searchbox {
+      display: flex; gap: .6rem; align-items: center; flex: 1 1 380px;
+      background: var(--panel); border: 1px solid var(--border); border-radius: .6rem; padding: .4rem .6rem;
+    }
+    .searchbox input {
+      width: 100%; background: transparent; border: none; color: var(--text);
+      padding: .5rem; font-size: 1rem;
+    }
+    .searchbox input::placeholder { color: var(--muted); }
+    .chip {
+      background: var(--card); border: 1px solid var(--border); color: var(--text);
+      padding: .4rem .6rem; border-radius: 999px; cursor: pointer; font-size: .9rem;
+    }
+    .chip[data-active="true"] { background: var(--primary); color: var(--primary-contrast); border-color: var(--primary); }
+
+    /* Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: .8rem; overflow: hidden;
+      display: flex; flex-direction: column; min-height: 180px;
+    }
+    .card header { padding: .9rem .9rem .4rem; }
+    .card h3 { margin: 0; font-size: 1.1rem; }
+    .card p { margin: .35rem .9rem 0; color: var(--muted); font-size: .95rem; }
+    .card footer { margin-top: auto; padding: .9rem; display: flex; justify-content: space-between; align-items: center; }
+    .card a.btn {
+      display: inline-block; background: var(--primary); color: var(--primary-contrast);
+      padding: .45rem .7rem; border-radius: .5rem; text-decoration: none; font-weight: 700;
+      border: 1px solid var(--primary);
+    }
+    .card a.btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+    /* Footer */
+    footer.site-footer {
+      margin-top: 2rem; padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--border);
+    }
+
+    /* Ensure focus styles visible (WCAG 2.2 A/AA practices) */
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+    @media (min-width: 720px){
+      .hero { grid-template-columns: 1.6fr 1fr; align-items: center; }
+    }
+  </style>
 </head>
-<body class="p-8">
-
-    <div class="container mx-auto">
-        
-        <!-- Header Section -->
-        <header class="text-center mb-16 pt-8">
-            <div class="flex items-center justify-center space-x-4 mb-4">
-                <i class="fas fa-desktop text-5xl text-blue-600"></i>
-                <h1 class="text-6xl font-extrabold text-gray-900">CS Study Hub</h1>
-            </div>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Welcome to the central index for all Computer Science learning materials in this repository. Use the links below to access the specific topics and presentations.
-            </p>
-            <div class="mt-6">
-                <a href="https://github.com/sudheercs/cs" target="_blank" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-gray-800 hover:bg-gray-700 transition duration-150">
-                    <i class="fab fa-github mr-2"></i>
-                    View GitHub Repository
-                </a>
-            </div>
-        </header>
-
-        <!-- Content Grid (Unit List) -->
-        <main>
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b-4 border-blue-400 pb-2">All Available Topics & Units</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Unit 1 Placeholder -->
-                <div class="card bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full text-blue-600 text-xl mr-4">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-gray-900">Unit 1: Fundamentals</h3>
-                    </div>
-                    <p class="text-gray-500 mb-4">Introduction to Computing, Hardware, and Software Concepts.</p>
-                    <a href="unit_1_fundamentals.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                        Explore Unit <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-                
-                <!-- Unit 2: Computer Networks (Updated Link) -->
-                <div class="card bg-blue-50 p-6 rounded-xl shadow-lg border-2 border-blue-300 ring-2 ring-blue-500">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-blue-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-blue-700">Unit 2: Computer Networks</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4 font-semibold">Evolution, Protocols, Media, and Web Services.</p>
-                    <a href="computer_networks.html" class="inline-flex items-center text-white bg-blue-600 px-4 py-2 rounded-full hover:bg-blue-700 font-bold transition duration-150">
-                        <i class="fas fa-slide-forward mr-2 text-sm"></i>
-                        Open Presentation
-                    </a>
-                </div>
-                
-                <!-- Unit 3 Placeholder -->
-                <div class="card bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full text-blue-600 text-xl mr-4">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-gray-900">Unit 3: Programming Basics</h3>
-                    </div>
-                    <p class="text-gray-500 mb-4">Concepts of Logic, Algorithms, and a primary programming language.</p>
-                    <a href="unit_3_programming_basics.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                        Explore Unit <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-
-                <!-- Database: DBMS -->
-                <div class="card bg-yellow-50 p-6 rounded-xl shadow-lg border-2 border-yellow-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-yellow-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-yellow-800">Database Management Systems</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Concepts, Architecture, and importance of DBMS.</p>
-                    <a href="dbms.html" class="inline-flex items-center text-yellow-700 hover:text-yellow-900 font-medium">
-                        View Document <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-
-                <!-- Database: SQL -->
-                <div class="card bg-yellow-50 p-6 rounded-xl shadow-lg border-2 border-yellow-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-yellow-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-keyboard"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-yellow-800">SQL Language Essentials</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Structured Query Language syntax and commands (DML, DDL).</p>
-                    <a href="SQL.html" class="inline-flex items-center text-yellow-700 hover:text-yellow-900 font-medium">
-                        View Document <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-
-                <!-- Database: SQL Slides -->
-                <div class="card bg-yellow-50 p-6 rounded-xl shadow-lg border-2 border-yellow-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-yellow-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-chalkboard-user"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-yellow-800">SQL Fullscreen Slides</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">A full-screen presentation deck on advanced SQL topics.</p>
-                    <a href="sql_slides_fullscreen_30.html" class="inline-flex items-center text-yellow-700 hover:text-yellow-900 font-medium">
-                        View Slides <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-                
-                <!-- Programming: Python/SQL Connection -->
-                <div class="card bg-green-50 p-6 rounded-xl shadow-lg border-2 border-green-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-green-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-link"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-green-800">Python & SQL Connection</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Guide and code examples for connecting Python to a database.</p>
-                    <a href="python_sql_conn.html" class="inline-flex items-center text-green-700 hover:text-green-900 font-medium">
-                        View Code <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-
-                <!-- Python Data Structures -->
-                <div class="card bg-purple-50 p-6 rounded-xl shadow-lg border-2 border-purple-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-purple-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-list-ul"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-purple-800">Python Lists</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Documentation and usage for mutable ordered sequences.</p>
-                    <a href="list.html" class="inline-flex items-center text-purple-700 hover:text-purple-900 font-medium">
-                        View Document <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-                
-                <!-- Python Data Structures -->
-                <div class="card bg-purple-50 p-6 rounded-xl shadow-lg border-2 border-purple-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-purple-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-quote-right"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-purple-800">Python Strings</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Documentation on manipulation and properties of immutable sequences.</p>
-                    <a href="string.html" class="inline-flex items-center text-purple-700 hover:text-purple-900 font-medium">
-                        View Document <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-
-                <!-- Python Data Structures -->
-                <div class="card bg-purple-50 p-6 rounded-xl shadow-lg border-2 border-purple-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-purple-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-purple-800">Python Tuples</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Documentation and usage for immutable ordered sequences.</p>
-                    <a href="tuples.html" class="inline-flex items-center text-purple-700 hover:text-purple-900 font-medium">
-                        View Document <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-
-                <!-- Python Data Structures -->
-                <div class="card bg-purple-50 p-6 rounded-xl shadow-lg border-2 border-purple-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-purple-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-purple-800">Python Dictionaries</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Documentation and usage for mutable, unordered key-value pairs.</p>
-                    <a href="dictionary.html" class="inline-flex items-center text-purple-700 hover:text-purple-900 font-medium">
-                        View Document <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-                <!-- Python Modules -->
-                <div class="card bg-purple-50 p-6 rounded-xl shadow-lg border-2 border-purple-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-purple-600 rounded-full text-white text-xl mr-4">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-purple-800">Python Modules</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Documentation and usage for Python Modules, Accessing the Power of Python's Standard Library.</p>
-                    <a href="python_modules.html" class="inline-flex items-center text-purple-700 hover:text-purple-900 font-medium">
-                        View Document <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
-                </div>
-                
-            </div>
-        </main>
-
-        <!-- Footer -->
-        <footer class="mt-20 text-center text-gray-500 text-sm border-t pt-6">
-            <p>Generated Index Page for sudheercs/cs Repository. All links refer to corresponding HTML files listed in the file structure.</p>
-        </footer>
-
+<body>
+  <header class="site-header" role="banner">
+    <div class="container brand">
+      <div aria-hidden="true" style="width:28px;height:28px;border-radius:6px;background:var(--primary)"></div>
+      <h1>CBSE Computer Science (Code 083)</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li>#topicsTopics</a></li>
+          <li>#aboutAbout</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
+  <main id="main" class="container" role="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h2 id="hero-title">Slides & Notes for Classes XI & XII</h2>
+        <p>
+          Teacher‑ready presentations and student‑friendly notes aligned to the CBSE Computer Science syllabus—SQL, DBMS, and Python (lists, strings, tuples), plus more. [1](https://github.com/sudheercs/cs)
+        </p>
+        <div class="tools" role="search">
+          <div class="searchbox" aria-label="Search topics">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z" stroke="currentColor" stroke-width="2"/></svg>
+            <input id="search" type="search" placeholder="Search: SQL, DBMS, lists, strings…" aria-label="Search by topic title">
+          </div>
+          <button class="chip" data-filter="all" data-active="true" aria-pressed="true">All</button>
+          <button class="chip" data-filter="python">Python</button>
+          <button class="chip" data-filter="sql">SQL/DBMS</button>
+        </div>
+      </div>
+      <aside aria-label="Helpful notes">
+        <ul>
+          <li>Semantic HTML & headings improve accessibility and navigation for screen‑readers. [3](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML)[4](https://www.w3.org/WAI/tutorials/page-structure/headings/)</li>
+          <li>Color choices meet WCAG 2.2 AA contrast ratios for readability. [5](https://www.w3.org/TR/WCAG22/)[6](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Color_contrast)</li>
+          <li>Rich share previews via Open Graph meta tags. [7](https://ogp.me/)</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="topics" aria-labelledby="topics-title">
+      <h2 id="topics-title">Browse Topics</h2>
+      <div class="grid" id="card-grid" aria-live="polite">
+
+        <!-- SQL / DBMS -->
+        <article class="card" data-tags="sql dbms">
+          <header><h3>SQL – Slides (Fullscreen)</h3></header>
+          <p>Quick-launch fullscreen slides for SQL basics & queries.</p>
+          <footer>
+            <span aria-hidden="true">SQL</span>
+            <al_slides_fullscreen_30.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="sql dbms">
+          <header><h3>SQL – Overview</h3></header>
+          <p>SQL fundamentals: statements, clauses, and examples.</p>
+          <footer>
+            <span aria-hidden="true">SQL</span>
+            SQL.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="sql dbms">
+          <header><h3>DBMS – Concepts</h3></header>
+          <p>Introduction to database systems, models, and design.</p>
+          <footer>
+            <span aria-hidden="true">DBMS</span>
+            dbms.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="sql dbms python">
+          <header><h3>Python ↔ SQL Connection</h3></header>
+          <p>Connect Python to a database: drivers, cursors, queries.</p>
+          <footer>
+            <span aria-hidden="true">Integration</span>
+            python_sql_conn.htmlOpen</a>
+          </footer>
+        </article>
+
+        <!-- Python: Lists, Strings, Tuples -->
+        <article class="card" data-tags="python">
+          <header><h3>Python – Lists</h3></header>
+          <p>List operations, slicing, methods, and common patterns.</p>
+          <footer>
+            <span aria-hidden="true">Python</span>
+            list.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="python">
+          <header><h3>Python – Strings</h3></header>
+          <p>String handling, immutability, methods, formatting.</p>
+          <footer>
+            <span aria-hidden="true">Python</span>
+            string.htmlOpen</a>
+          </footer>
+        </article>
+
+        <article class="card" data-tags="python">
+          <header><h3>Python – Tuples</h3></header>
+          <p>Tuples vs lists, packing/unpacking, use‑cases.</p>
+          <footer>
+            <span aria-hidden="true">Python</span>
+            tuples.htmlOpen</a>
+          </footer>
+        </article>
+
+        <!-- Dictionary / Glossary -->
+        <article class="card" data-tags="python reference">
+          <header><h3>Dictionary / Glossary</h3></header>
+          <p>Quick reference of terms, methods, and definitions.</p>
+          <footer>
+            <span aria-hidden="true">Reference</span>
+            dictionary.htmlOpen</a>
+          </footer>
+        </article>
+
+      </div>
+      <p style="color:var(--muted);margin-top:.75rem">
+        (Links point to your existing pages in the repository.) [1](https://github.com/sudheercs/cs)
+      </p>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About This Project</h2>
+      <p style="max-width:70ch;color:var(--muted)">
+        A comprehensive set of teacher‑ready slides and student resources aligned with CBSE Computer Science (Code 083) for Classes XI & XII. Materials are shared under CC BY‑NC‑SA 4.0 and intended for classroom use and revision. [1](https://github.com/sudheercs/cs)
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© <span id="year"></span> CBSE CS Resources. Built for clarity, accessibility, and easy sharing.</p>
+      <p>Ensure color contrast meets WCAG AA (use WebAIM Contrast Checker when tweaking colors). [6](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Color_contrast)[11](https://webaim.org/resources/contrastchecker/)</p>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Search & filter
+    const search = document.getElementById('search');
+    const chips = Array.from(document.querySelectorAll('.chip'));
+    const cards = Array.from(document.querySelectorAll('.card'));
+    let activeTag = 'all';
+
+    function applyFilters(){
+      const q = (search.value || '').toLowerCase().trim();
+      cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const tags = (card.dataset.tags || '').split(/\s+/);
+        const matchesText = !q || title.includes(q);
+        const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+        card.style.display = (matchesText && matchesTag) ? '' : 'none';
+      });
+    }
+
+    search.addEventListener('input', applyFilters);
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => { c.dataset.active = "false"; c.setAttribute('aria-pressed', 'false'); });
+        chip.dataset.active = "true";
+        chip.setAttribute('aria-pressed', 'true');
+        activeTag = chip.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    // Initial
+    applyFilters();
+  </script>
 </body>
 </html>
-
