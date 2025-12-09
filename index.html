@@ -1,307 +1,348 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>CBSE Computer Science (XI & XII) – Slides & Notes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description"
-        content="Curated slides and notes for CBSE Computer Science (Code 083), Classes XI & XII: SQL, DBMS, Python lists/strings/tuples, and more.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repository Index</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.4);
+            --hover-scale: 1.02;
+        }
 
-  <!-- Open Graph / Social share (update og:image to your asset) -->
-  <meta property="og:title" content="CBSE Computer Science (XI & XII) – Slides & Notes">
-  <meta property="og:description" content="Teacher‑ready slides and student‑friendly notes: SQL, DBMS, Python, and more.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sudheercs.github.io/cs/">
-  <meta property="og:image" content="https://sudheercs.github.io/cs/assets/og-cover.png">
+        body {
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-  <style>
-    :root{
-      --bg: #0f172a;       /* slate-900 */
-      --panel: #111827;    /* gray-900 */
-      --text: #e5e7eb;     /* gray-200 */
-      --muted: #9ca3af;    /* gray-400 */
-      --primary: #22c55e;  /* green-500 */
-      --primary-contrast: #0b1a0f;
-      --card: #1f2937;     /* gray-800 */
-      --border: #334155;   /* slate-700 */
-      --focus: #a7f3d0;    /* green-200 */
-    }
+        header {
+            width: 100%;
+            padding: 3rem 1rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.8);
+        }
 
-    html { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; }
-    body {
-      margin: 0;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg), #0b1220);
-    }
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
 
-    /* Layout */
-    .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
-    header.site-header {
-      position: sticky; top: 0; z-index: 20;
-      backdrop-filter: saturate(160%) blur(8px);
-      background: rgba(15, 23, 42, 0.85);
-      border-bottom: 1px solid var(--border);
-    }
-    .brand { display: flex; align-items: center; gap: .75rem; padding: .75rem 0; }
-    .brand h1 { font-size: 1.25rem; margin: 0; letter-spacing: .2px; }
-    nav ul { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; }
-    nav a {
-      color: var(--text); text-decoration: none; font-weight: 600; padding: .4rem .6rem; border-radius: .4rem;
-    }
-    nav a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+        p.subtitle {
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
 
-    .hero {
-      padding: 3rem 0 2rem;
-      display: grid; grid-template-columns: 1fr; gap: 1rem;
-    }
-    .hero h2 { font-size: 2rem; margin: 0 0 .5rem; }
-    .hero p { color: var(--muted); margin: 0 0 1rem; }
-    .tools { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding-bottom: 3rem;
+        }
 
-    .searchbox {
-      display: flex; gap: .6rem; align-items: center; flex: 1 1 380px;
-      background: var(--panel); border: 1px solid var(--border); border-radius: .6rem; padding: .4rem .6rem;
-    }
-    .searchbox input {
-      width: 100%; background: transparent; border: none; color: var(--text);
-      padding: .5rem; font-size: 1rem;
-    }
-    .searchbox input::placeholder { color: var(--muted); }
-    .chip {
-      background: var(--card); border: 1px solid var(--border); color: var(--text);
-      padding: .4rem .6rem; border-radius: 999px; cursor: pointer; font-size: .9rem;
-    }
-    .chip[data-active="true"] { background: var(--primary); color: var(--primary-contrast); border-color: var(--primary); }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+        }
 
-    /* Cards */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .card {
-      background: var(--card); border: 1px solid var(--border); border-radius: .8rem; overflow: hidden;
-      display: flex; flex-direction: column; min-height: 180px;
-      position: relative; /* needed for stretched link */
-    }
-    .card header { padding: .9rem .9rem .4rem; }
-    .card h3 { margin: 0; font-size: 1.1rem; }
-    .card p { margin: .35rem .9rem 0; color: var(--muted); font-size: .95rem; }
-    .card footer { margin-top: auto; padding: .9rem; display: flex; justify-content: space-between; align-items: center; }
-    .card a.btn {
-      display: inline-block; background: var(--primary); color: var(--primary-contrast);
-      padding: .45rem .7rem; border-radius: .5rem; text-decoration: none; font-weight: 700;
-      border: 1px solid var(--primary);
-      position: relative; z-index: 6; /* ensure button stays above stretched link */
-    }
-    .card a.btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+        .card:hover {
+            transform: translateY(-5px) scale(var(--hover-scale));
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px -10px var(--accent-glow);
+        }
 
-    /* Entire card clickable via stretched link */
-    .card .stretched-link {
-      position: absolute; inset: 0; z-index: 5;
-      background: transparent; border: none; text-indent: -9999px;
-    }
-    .card .stretched-link:focus-visible {
-      outline: 3px solid var(--focus);
-      outline-offset: 0;
-    }
-    .card:hover { border-color: var(--primary); }
-    .card:hover header h3 { color: var(--primary); }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
 
-    /* Footer */
-    footer.site-footer {
-      margin-top: 2rem; padding: 2rem 0; color: var(--muted); border-top: 1px solid var(--border);
-    }
+        .card:hover::before {
+            transform: translateX(100%);
+        }
 
-    /* Ensure visible focus (WCAG-friendly) */
-    :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
 
-    @media (min-width: 720px){
-      .hero { grid-template-columns: 1.6fr 1fr; align-items: center; }
-    }
-  </style>
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+            word-break: break-word;
+        }
+
+        .card-meta {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-border);
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p.subtitle {
+                font-size: 1rem;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                /* Single column on mobile */
+                width: 95%;
+                /* More width on small screens */
+                gap: 1rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+            }
+
+            header {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                /* 2 columns on tablet */
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header class="site-header" role="banner">
-    <div class="container brand">
-      <div aria-hidden="true" style="width:28px;height:28px;border-radius:6px;background:var(--primary)"></div>
-      <h1>CBSE Computer Science (Code 083)</h1>
-      <nav aria-label="Primary">
-        <ul>
-          <li>#topicsTopics</a></li>
-          <li>#aboutAbout</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <main id="main" class="container" role="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div>
-        <h2 id="hero-title">Slides & Notes for Classes XI & XII</h2>
-        <p>
-          Teacher‑ready presentations and student‑friendly notes aligned to the CBSE Computer Science syllabus—SQL, DBMS, and Python (lists, strings, tuples), plus more. <!-- repo overview -->
-        </p>
-        <div class="tools" role="search">
-          <div class="searchbox" aria-label="Search topics">
-            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z" stroke="currentColor" stroke-width="2"/></svg>
-            <input id="search" type="search" placeholder="Search: SQL, DBMS, lists, strings…" aria-label="Search by topic title">
-          </div>
-          <button class="chip" data-filter="all" data-active="true" aria-pressed="true">All</button>
-          <button class="chip" data-filter="python">Python</button>
-          <button class="chip" data-filter="sql">SQL/DBMS</button>
-        </div>
-      </div>
-      <aside aria-label="Helpful notes">
-        <ul>
-          <li>Semantic HTML & headings improve accessibility and navigation for screen‑readers.</li>
-          <li>Color choices meet WCAG 2.2 AA contrast ratios for readability.</li>
-          <li>Rich share previews via Open Graph meta tags.</li>
-        </ul>
-      </aside>
-    </section>
+    <header>
+        <h1>Resource Index</h1>
+        <p class="subtitle">A curated collection of documentation and learning materials</p>
+    </header>
 
-    <section id="topics" aria-labelledby="topics-title">
-      <h2 id="topics-title">Browse Topics</h2>
-      <div class="grid" id="card-grid" aria-live="polite">
-
-        <!-- SQL / DBMS -->
-        <article class="card" data-tags="sql dbms">
-          <header><h3>SQL – Slides (Fullscreen)</h3></header>
-          sql_slides_fullscreen_30.html</a>
-          <p>Quick-launch fullscreen slides for SQL basics & queries.</p>
-          <footer>
-            <span aria-hidden="true">SQL</span>
-            sql_slides_fullscreen_30.htmlOpen</a>
-          </footer>
-        </article>
-
-        <article class="card" data-tags="sql dbms">
-          <header><h3>SQL – Overview</h3></header>
-          <a class="stretched-link" href="SQL.html" aria-label="Openauses, and examples.</p>
-          <footer>
-            <span aria-hidden="true">SQL</span>
-            SQL.htmlOpen</a>
-          </footer>
-        </article>
-
-        <article class="card" data-tags="sql dbms">
-          <header><h3>DBMS – Concepts</h3></header>
-          dbms.html</a>
-          <p>Introduction to database systems, models, and design.</p>
-          <footer>
-            <span aria-hidden="true">DBMS</span>
-            dbms.htmlOpen</a>
-          </footer>
-        </article>
-
-        <article class="card" data-tags="sql dbms python">
-          <header><h3>Python ↔ SQL Connection</h3></header>
-          python_sql_conn.html</a>
-          <p>Connect Python to a database: drivers, cursors, queries.</p>
-          <footer>
-            <span aria-hidden="true">Integration</span>
-            python_sql_conn.htmlOpen</a>
-          </footer>
-        </article>
-
-        <!-- Python: Lists, Strings, Tuples -->
-        <article class="card" data-tags="python">
-          <header><h3>Python – Lists</h3></header>
-          list.html</a>
-          <p>List operations, slicing, methods, and common patterns.</p>
-          <footer>
-            <span aria-hidden="true">Python</span>
-            list.htmlOpen</a>
-          </footer>
-        </article>
-
-        <article class="card" data-tags="python">
-          <header><h3>Python – Strings</h3></header>
-          string.html</a>
-          <p>String handling, immutability, methods, formatting.</p>
-          <footer>
-            <span aria-hidden="true">Python</span>
-            string.htmlOpen</a>
-          </footer>
-        </article>
-
-        <article class="card" data-tags="python">
-          <header><h3>Python – Tuples</h3></header>
-          tuples.html</a>
-          <p>Tuples vs lists, packing/unpacking, use‑cases.</p>
-          <footer>
-            <span aria-hidden="true">Python</span>
-            tuples.htmlOpen</a>
-          </footer>
-        </article>
-
-        <!-- Dictionary / Glossary -->
-        <article class="card" data-tags="python reference">
-          <header><h3>Dictionary / Glossary</h3></header>
-          dictionary.html</a>
-          <p>Quick reference of terms, methods, and definitions.</p>
-          <footer>
-            <span aria-hidden="true">Reference</span>
-            dictionary.htmlOpen</a>
-          </footer>
-        </article>
-
-      </div>
-      <p style="color:var(--muted);margin-top:.75rem">
-        (Links point to your existing pages in the repository.)
-      </p>
-    </section>
-
-    <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">About This Project</h2>
-      <p style="max-width:70ch;color:var(--muted)">
-        A comprehensive set of teacher‑ready slides and student resources aligned with CBSE Computer Science (Code 083) for Classes XI & XII. Materials are shared under CC BY‑NC‑SA 4.0 and intended for classroom use and revision.
-      </p>
-      <p style="max-width:70ch;color:var(--muted)">
-        If GitHub Pages ever shows README instead of this page, push another commit or reconfigure the Pages source; it typically resolves with a fresh deploy.
-      </p>
-    </section>
-  </main>
-
-  <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>© <span id="year"></span> CBSE CS Resources. Built for clarity, accessibility, and easy sharing.</p>
-      <p>Ensure color contrast meets WCAG AA (use WebAIM Contrast Checker when tweaking colors).</p>
+        <!-- Generated Cards -->
+
+        <a href="computer_networks.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">CN</div>
+                <h2 class="card-title">Computer Networks</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">HTML</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+        <a href="dbms.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">DB</div>
+                <h2 class="card-title">DBMS</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">Database</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+        <a href="dictionary.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">Di</div>
+                <h2 class="card-title">Dictionary</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">Reference</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+        <a href="list.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">Li</div>
+                <h2 class="card-title">Python Lists</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">Python</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+        <a href="python_modules.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">PM</div>
+                <h2 class="card-title">Python Modules</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">Python</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+        <a href="python_sql_conn.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">Py</div>
+                <h2 class="card-title">Python SQL Conn</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">Integration</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+        <a href="SQL.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">SQ</div>
+                <h2 class="card-title">SQL</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">Database</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+        <a href="sql_slides_fullscreen_30.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">SL</div>
+                <h2 class="card-title">SQL Slides</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">Presentation</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+        <a href="string.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">St</div>
+                <h2 class="card-title">Python Strings</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">Python</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+        <a href="tuples.html" class="card">
+            <div class="card-header">
+                <div class="card-icon">Tu</div>
+                <h2 class="card-title">Python Tuples</h2>
+            </div>
+            <div class="card-meta">
+                <span class="category-badge">Python</span>
+                <span>View Document</span>
+            </div>
+        </a>
+
+
     </div>
-  </footer>
 
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    <footer>
+        <p>Designed with Antigravity</p>
+    </footer>
 
-    // Search & filter
-    const search = document.getElementById('search');
-    const chips = Array.from(document.querySelectorAll('.chip'));
-    const cards = Array.from(document.querySelectorAll('.card'));
-    let activeTag = 'all';
-
-    function applyFilters(){
-      const q = (search.value || '').toLowerCase().trim();
-      cards.forEach(card => {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        const tags = (card.dataset.tags || '').split(/\s+/);
-        const matchesText = !q || title.includes(q);
-        const matchesTag = activeTag === 'all' || tags.includes(activeTag);
-        card.style.display = (matchesText && matchesTag) ? '' : 'none';
-      });
-    }
-
-    search.addEventListener('input', applyFilters);
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        chips.forEach(c => { c.dataset.active = "false"; c.setAttribute('aria-pressed', 'false'); });
-        chip.dataset.active = "true";
-        chip.setAttribute('aria-pressed', 'true');
-        activeTag = chip.dataset.filter;
-        applyFilters();
-      });
-    });
-
-    // Initial
-    applyFilters();
-  </script>
 </body>
+
 </html>
