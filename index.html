@@ -1,348 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <!-- Essential for Mobile Responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repository Index</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-color: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.4);
-            --hover-scale: 1.02;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-color);
-            background-image:
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header {
-            width: 100%;
-            padding: 3rem 1rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--card-border);
-            margin-bottom: 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: rgba(15, 23, 42, 0.8);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-
-        p.subtitle {
-            margin-top: 0.5rem;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            padding-bottom: 3rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            backdrop-filter: blur(10px);
-        }
-
-        .card:hover {
-            transform: translateY(-5px) scale(var(--hover-scale));
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 30px -10px var(--accent-glow);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-
-        .card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #38bdf8, #818cf8);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: white;
-            font-weight: bold;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 0;
-            word-break: break-word;
-        }
-
-        .card-meta {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .category-badge {
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
-            padding: 0.25rem 0.6rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            border-top: 1px solid var(--card-border);
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            p.subtitle {
-                font-size: 1rem;
-            }
-
-            .container {
-                grid-template-columns: 1fr;
-                /* Single column on mobile */
-                width: 95%;
-                /* More width on small screens */
-                gap: 1rem;
-            }
-
-            .card {
-                padding: 1.25rem;
-            }
-
-            header {
-                padding: 2rem 1rem;
-            }
-        }
-
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .container {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-                /* 2 columns on tablet */
-            }
-        }
-    </style>
+    <title>CS Resources | Home</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
     <header>
-        <h1>Resource Index</h1>
-        <p class="subtitle">A curated collection of documentation and learning materials</p>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Sudheer CS</a>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="https://github.com/sudheercs/cs">GitHub Repo</a>
+            </nav>
+        </div>
     </header>
 
-    <div class="container">
-        <!-- Generated Cards -->
+    <main>
+        <h1>Computer Science Resources</h1>
+        <p class="subtitle">Select a semester or category to view lecture notes and lab manuals.</p>
 
-        <a href="computer_networks.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">CN</div>
-                <h2 class="card-title">Computer Networks</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">HTML</span>
-                <span>View Document</span>
-            </div>
-        </a>
+        <!-- Category Grid -->
+        <div class="grid-container">
+            <!-- Card 1 -->
+            <a href="semester1.html" class="card">
+                <span class="card-title">First Year (Sem 1 & 2)</span>
+                <span class="card-desc">C Programming, English, Basic Electronics.</span>
+            </a>
 
-        <a href="dbms.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">DB</div>
-                <h2 class="card-title">DBMS</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">Database</span>
-                <span>View Document</span>
-            </div>
-        </a>
+            <!-- Card 2 -->
+            <a href="data-structures.html" class="card">
+                <span class="card-title">Data Structures</span>
+                <span class="card-desc">Stacks, Queues, Linked Lists, and Trees.</span>
+            </a>
 
-        <a href="dictionary.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">Di</div>
-                <h2 class="card-title">Dictionary</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">Reference</span>
-                <span>View Document</span>
-            </div>
-        </a>
+            <!-- Card 3 -->
+            <a href="dbms.html" class="card">
+                <span class="card-title">DBMS</span>
+                <span class="card-desc">SQL, Normalization, and Transaction Management.</span>
+            </a>
 
-        <a href="list.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">Li</div>
-                <h2 class="card-title">Python Lists</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">Python</span>
-                <span>View Document</span>
-            </div>
-        </a>
-
-        <a href="python_modules.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">PM</div>
-                <h2 class="card-title">Python Modules</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">Python</span>
-                <span>View Document</span>
-            </div>
-        </a>
-
-        <a href="python_sql_conn.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">Py</div>
-                <h2 class="card-title">Python SQL Conn</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">Integration</span>
-                <span>View Document</span>
-            </div>
-        </a>
-
-        <a href="SQL.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">SQ</div>
-                <h2 class="card-title">SQL</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">Database</span>
-                <span>View Document</span>
-            </div>
-        </a>
-
-        <a href="sql_slides_fullscreen_30.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">SL</div>
-                <h2 class="card-title">SQL Slides</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">Presentation</span>
-                <span>View Document</span>
-            </div>
-        </a>
-
-        <a href="string.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">St</div>
-                <h2 class="card-title">Python Strings</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">Python</span>
-                <span>View Document</span>
-            </div>
-        </a>
-
-        <a href="tuples.html" class="card">
-            <div class="card-header">
-                <div class="card-icon">Tu</div>
-                <h2 class="card-title">Python Tuples</h2>
-            </div>
-            <div class="card-meta">
-                <span class="category-badge">Python</span>
-                <span>View Document</span>
-            </div>
-        </a>
-
-
-    </div>
+            <!-- Card 4 -->
+            <a href="os.html" class="card">
+                <span class="card-title">Operating Systems</span>
+                <span class="card-desc">Process Scheduling, Deadlocks, Memory Management.</span>
+            </a>
+            
+            <!-- Card 5 -->
+            <a href="labs.html" class="card">
+                <span class="card-title">Lab Manuals</span>
+                <span class="card-desc">Code snippets and execution guides.</span>
+            </a>
+        </div>
+    </main>
 
     <footer>
-        <p>Designed with Antigravity</p>
+        <p>&copy; 2024 Sudheer CS. Hosted on GitHub Pages.</p>
     </footer>
 
 </body>
-
 </html>
