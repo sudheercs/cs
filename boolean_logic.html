@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundations of Computing - Web Slides</title>
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/white.min.css">
+    <!-- Mermaid.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js">
+    </script>
+
+    <style>
+        /* Custom styling for professional look */
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .gate-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            min-width: 150px;
+            flex: 1;
+        }
+        .gate-card svg {
+            display: block;
+            margin: 10px auto;
+            width: 100px;
+            height: 60px;
+        }
+        .truth-table {
+            font-size: 0.75rem;
+            margin: 10px auto;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 150px;
+        }
+        .truth-table th,
+        .truth-table td {
+            border: 1px solid #dee2e6;
+            padding: 4px 8px;
+            text-align: center;
+            background: white;
+        }
+        .truth-table th {
+            background: #e9ecef;
+            font-weight: 600;
+        }
+        .highlight-blue {
+            color: #1b6fb0;
+            font-weight: bold;
+        }
+        .highlight-red {
+            color: #b01b1b;
+            font-weight: bold;
+        }
+        .flex-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+        .conversion-box {
+            background: #f1f3f5;
+            padding: 20px 30px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .de-morgan-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .de-morgan-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 5px solid #1b6fb0;
+        }
+        .unicode-table {
+            font-size: 0.7rem;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .unicode-table th,
+        .unicode-table td {
+            border: 1px solid #dee2e6;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .unicode-table th {
+            background: #343a40;
+            color: white;
+        }
+        .badge {
+            display: inline-block;
+            background: #1b6fb0;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin: 0 5px;
+        }
+        .slide-title {
+            font-size: 2.2rem !important;
+            font-weight: 700 !important;
+            color: #212529;
+            margin-bottom: 20px !important;
+        }
+        .reveal .slides section {
+            padding: 20px;
+        }
+        .reveal p,
+        .reveal li {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .mermaid-container {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin: 10px 0;
+        }
+        /* Fix mermaid scaling */
+        .mermaid svg {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE 1: TITLE -->
+            <section>
+                <h1 class="slide-title">Foundations of Computing</h1>
+                <h3 style="color: #495057;">Boolean Logic, Number Systems &amp; Data Encoding</h3>
+                <br>
+                <p style="color: #868e96;">Presented by: [Your Name/Department]</p>
+                <p style="color: #868e96; font-size: 0.8rem;">[Date of Presentation]</p>
+            </section>
+
+            <!-- SLIDE 2: AGENDA -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Agenda</h2>
+                <div class="flex-row" style="justify-content: left; text-align: left; gap: 40px;">
+                    <div>
+                        <h4 style="color: #1b6fb0;">▸ Part 1: Boolean Logic</h4>
+                        <ul>
+                            <li>NOT, AND, OR</li>
+                            <li>Universal: NAND, NOR</li>
+                            <li>Exclusive: XOR</li>
+                            <li>De Morgan's Laws</li>
+                            <li>Logic Circuits</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #1b6fb0;">▸ Part 2: Number Systems</h4>
+                        <ul>
+                            <li>Binary, Octal, Decimal, Hex</li>
+                            <li>Conversion methodologies</li>
+                        </ul>
+                        <br>
+                        <h4 style="color: #1b6fb0;">▸ Part 3: Encoding Schemes</h4>
+                        <ul>
+                            <li>ASCII, ISCII</li>
+                            <li>Unicode (UTF-8, UTF-16, UTF-32)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: BOOLEAN INTRO -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Introduction to Boolean Logic</h2>
+                <ul>
+                    <li><strong>What is it?</strong> Algebra used for creating <span class="highlight-blue">True/False</span> (1/0) statements.</li>
+                    <li><strong>Why?</strong> The foundation of digital electronics and CPU decision-making.</li>
+                    <li><strong>Core values:</strong> <span class="highlight-blue">True (1)</span> or <span class="highlight-red">False (0)</span>.</li>
+                    <li><strong>Basic Operations:</strong> NOT, AND, OR.</li>
+                </ul>
+                <br>
+                <div style="background: #e9ecef; padding: 15px; border-radius: 8px;">
+                    <p style="margin: 0; font-family: monospace;">"Every decision a computer makes is a series of Boolean logic operations."</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: BASIC GATES (NOT, AND, OR) -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">The Basic Gates</h2>
+                <div class="container">
+
+                    <!-- NOT Gate -->
+                    <div class="gate-card">
+                        <h4>NOT (Inverter)</h4>
+                        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="20,10 20,50 55,30" fill="white" stroke="#212529" stroke-width="2"/>
+                            <circle cx="60" cy="30" r="5" fill="white" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="30" x2="20" y2="30" stroke="#212529" stroke-width="2"/>
+                            <line x1="65" y1="30" x2="100" y2="30" stroke="#212529" stroke-width="2"/>
+                            <text x="10" y="15" font-size="10" fill="#868e96">A</text>
+                            <text x="75" y="15" font-size="10" fill="#868e96">¬A</text>
+                        </svg>
+                        <p><code>Y = ¬A</code></p>
+                        <table class="truth-table">
+                            <tr><th>A</th><th>Output</th></tr>
+                            <tr><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td></tr>
+                        </table>
+                    </div>
+
+                    <!-- AND Gate -->
+                    <div class="gate-card">
+                        <h4>AND</h4>
+                        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 15,10 L 15,50 L 35,50 C 55,50 65,35 65,30 C 65,25 55,10 35,10 Z" fill="white" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="20" x2="15" y2="20" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="40" x2="15" y2="40" stroke="#212529" stroke-width="2"/>
+                            <line x1="65" y1="30" x2="100" y2="30" stroke="#212529" stroke-width="2"/>
+                            <text x="5" y="15" font-size="10" fill="#868e96">A</text>
+                            <text x="5" y="55" font-size="10" fill="#868e96">B</text>
+                            <text x="75" y="15" font-size="10" fill="#868e96">A·B</text>
+                        </svg>
+                        <p><code>Y = A · B</code></p>
+                        <table class="truth-table">
+                            <tr><th>A</th><th>B</th><th>Out</th></tr>
+                            <tr><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                        </table>
+                    </div>
+
+                    <!-- OR Gate -->
+                    <div class="gate-card">
+                        <h4>OR</h4>
+                        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 15,10 C 30,10 38,20 38,30 C 38,40 30,50 15,50 C 35,50 50,40 50,30 C 50,20 35,10 15,10 Z" fill="white" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="20" x2="15" y2="20" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="40" x2="15" y2="40" stroke="#212529" stroke-width="2"/>
+                            <line x1="50" y1="30" x2="100" y2="30" stroke="#212529" stroke-width="2"/>
+                            <text x="5" y="15" font-size="10" fill="#868e96">A</text>
+                            <text x="5" y="55" font-size="10" fill="#868e96">B</text>
+                            <text x="60" y="15" font-size="10" fill="#868e96">A+B</text>
+                        </svg>
+                        <p><code>Y = A + B</code></p>
+                        <table class="truth-table">
+                            <tr><th>A</th><th>B</th><th>Out</th></tr>
+                            <tr><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: UNIVERSAL GATES (NAND, NOR) -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Universal Gates: NAND &amp; NOR</h2>
+                <p style="font-size: 0.9rem;">These are <span class="highlight-blue">"Universal"</span> because you can build <em>any</em> other logic gate using only NAND or only NOR gates.</p>
+                <div class="container">
+
+                    <div class="gate-card">
+                        <h4>NAND (NOT + AND)</h4>
+                        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 15,10 L 15,50 L 35,50 C 55,50 65,35 65,30 C 65,25 55,10 35,10 Z" fill="white" stroke="#212529" stroke-width="2"/>
+                            <circle cx="68" cy="30" r="5" fill="white" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="20" x2="15" y2="20" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="40" x2="15" y2="40" stroke="#212529" stroke-width="2"/>
+                            <line x1="73" y1="30" x2="100" y2="30" stroke="#212529" stroke-width="2"/>
+                            <text x="5" y="15" font-size="10" fill="#868e96">A</text>
+                            <text x="5" y="55" font-size="10" fill="#868e96">B</text>
+                            <text x="80" y="15" font-size="10" fill="#868e96">¬(A·B)</text>
+                        </svg>
+                        <table class="truth-table">
+                            <tr><th>A</th><th>B</th><th>Out</th></tr>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="gate-card">
+                        <h4>NOR (NOT + OR)</h4>
+                        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 15,10 C 30,10 38,20 38,30 C 38,40 30,50 15,50 C 35,50 50,40 50,30 C 50,20 35,10 15,10 Z" fill="white" stroke="#212529" stroke-width="2"/>
+                            <circle cx="53" cy="30" r="5" fill="white" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="20" x2="15" y2="20" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="40" x2="15" y2="40" stroke="#212529" stroke-width="2"/>
+                            <line x1="58" y1="30" x2="100" y2="30" stroke="#212529" stroke-width="2"/>
+                            <text x="5" y="15" font-size="10" fill="#868e96">A</text>
+                            <text x="5" y="55" font-size="10" fill="#868e96">B</text>
+                            <text x="65" y="15" font-size="10" fill="#868e96">¬(A+B)</text>
+                        </svg>
+                        <table class="truth-table">
+                            <tr><th>A</th><th>B</th><th>Out</th></tr>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: XOR -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Exclusive OR (XOR)</h2>
+                <div class="container">
+                    <div class="gate-card" style="flex: 2;">
+                        <h4>XOR</h4>
+                        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Extra left curve -->
+                            <path d="M 10,15 C 20,15 25,25 25,30 C 25,35 20,45 10,45" fill="none" stroke="#212529" stroke-width="2"/>
+                            <!-- Main OR body -->
+                            <path d="M 15,10 C 30,10 38,20 38,30 C 38,40 30,50 15,50 C 35,50 50,40 50,30 C 50,20 35,10 15,10 Z" fill="white" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="22" x2="10" y2="22" stroke="#212529" stroke-width="2"/>
+                            <line x1="0" y1="38" x2="10" y2="38" stroke="#212529" stroke-width="2"/>
+                            <line x1="50" y1="30" x2="100" y2="30" stroke="#212529" stroke-width="2"/>
+                            <text x="5" y="15" font-size="10" fill="#868e96">A</text>
+                            <text x="5" y="55" font-size="10" fill="#868e96">B</text>
+                            <text x="60" y="15" font-size="10" fill="#868e96">A⊕B</text>
+                        </svg>
+                        <p><code>Y = A ⊕ B</code> (Output is 1 if inputs are <strong>different</strong>)</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <table class="truth-table" style="max-width: 100%;">
+                            <tr><th>A</th><th>B</th><th>Out</th></tr>
+                            <tr><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>0</td></tr>
+                        </table>
+                        <p style="font-size: 0.7rem; margin-top: 10px;"><span class="badge">Use Case</span> Cryptography, Error Detection, Binary Adders.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: DE MORGAN'S LAWS -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">De Morgan's Laws</h2>
+                <p>Simplifying logic circuits: Equivalence between AND/OR with inversions.</p>
+                <div class="de-morgan-container">
+                    <div class="de-morgan-item">
+                        <h4>Law 1</h4>
+                        <p style="font-family: monospace; font-size: 1.2rem;">¬(A · B) = ¬A + ¬B</p>
+                        <div class="mermaid-container">
+                            <div class="mermaid">
+                                graph LR
+                                A[Input A] --> NAND[NAND Gate] --> Out1[Output]
+                                B[Input B] --> NAND
+                                Out1 --> Eq{Equivalent To}
+                                Eq --> NOTA[NOT A] --> OR1[OR Gate] --> Out2[Output]
+                                Eq --> NOTB[NOT B] --> OR1
+                            </div>
+                        </div>
+                    </div>
+                    <div class="de-morgan-item">
+                        <h4>Law 2</h4>
+                        <p style="font-family: monospace; font-size: 1.2rem;">¬(A + B) = ¬A · ¬B</p>
+                        <div class="mermaid-container">
+                            <div class="mermaid">
+                                graph LR
+                                A[Input A] --> NOR[NOR Gate] --> Out1[Output]
+                                B[Input B] --> NOR
+                                Out1 --> Eq{Equivalent To}
+                                Eq --> NOTA[NOT A] --> AND1[AND Gate] --> Out2[Output]
+                                Eq --> NOTB[NOT B] --> AND1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: LOGIC CIRCUITS (Half Adder) -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Logic Circuits: Half Adder</h2>
+                <p>Adds two single binary digits (A + B) → <span class="highlight-blue">Sum</span> &amp; <span class="highlight-red">Carry</span>.</p>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+                        graph LR
+                        A[Input A] --> XOR[XOR Gate] --> Sum[Sum]
+                        B[Input B] --> XOR
+                        A --> AND[AND Gate] --> Carry[Carry]
+                        B --> AND
+                        style XOR fill:#bbf,stroke:#333,stroke-width:2px
+                        style AND fill:#bbf,stroke:#333,stroke-width:2px
+                    </div>
+                </div>
+                <table class="truth-table" style="max-width: 300px;">
+                    <tr><th>A</th><th>B</th><th>Sum (XOR)</th><th>Carry (AND)</th></tr>
+                    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                    <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                    <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                </table>
+            </section>
+
+            <!-- SLIDE 9: NUMBER SYSTEMS INTRO -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Number Systems Overview</h2>
+                <table class="unicode-table" style="font-size: 0.9rem;">
+                    <tr><th>System</th><th>Base</th><th>Digits Used</th><th>Example</th></tr>
+                    <tr><td><strong>Binary</strong></td><td>2</td><td>0, 1</td><td><code>1011₂</code></td></tr>
+                    <tr><td><strong>Octal</strong></td><td>8</td><td>0–7</td><td><code>173₈</code></td></tr>
+                    <tr><td><strong>Decimal</strong></td><td>10</td><td>0–9</td><td><code>123₁₀</code></td></tr>
+                    <tr><td><strong>Hexadecimal</strong></td><td>16</td><td>0–9, A–F</td><td><code>7B₁₆</code></td></tr>
+                </table>
+                <br>
+                <div style="background: #e9ecef; padding: 15px; border-radius: 8px;">
+                    <p style="margin: 0;"><span class="badge">Why Hex?</span> One Hex digit = exactly 4 binary bits (e.g., <code>F</code> = <code>1111</code>). It's a human-friendly shorthand for Binary.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: CONVERSION TO DECIMAL -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Conversion: <span style="color: #1b6fb0;">Other Bases → Decimal</span></h2>
+                <p>Multiply each digit by its <strong>place value</strong> and sum them.</p>
+                <div class="conversion-box">
+                    Value = Σ (Digit × Base<sup>Position</sup>)
+                </div>
+                <div class="flex-row">
+                    <div>
+                        <h4>Binary → Decimal</h4>
+                        <p><code>1101₂</code></p>
+                        <p>= (1×2³) + (1×2²) + (0×2¹) + (1×2⁰)</p>
+                        <p>= 8 + 4 + 0 + 1 = <span class="highlight-blue">13₁₀</span></p>
+                    </div>
+                    <div>
+                        <h4>Hex → Decimal</h4>
+                        <p><code>2A₁₆</code></p>
+                        <p>= (2×16¹) + (10×16⁰) <small>(A=10)</small></p>
+                        <p>= 32 + 10 = <span class="highlight-blue">42₁₀</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 11: DECIMAL TO BINARY -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Conversion: <span style="color: #1b6fb0;">Decimal → Binary</span></h2>
+                <p><strong>Method:</strong> Repeated Division by Base (2). Read remainders <em>backwards</em>.</p>
+                <div class="mermaid-container">
+                    <div class="mermaid">
+                        graph TD
+                        A["25 / 2 = 12, Remainder 1"] --> B["12 / 2 = 6, Remainder 0"]
+                        B --> C["6 / 2 = 3, Remainder 0"]
+                        C --> D["3 / 2 = 1, Remainder 1"]
+                        D --> E["1 / 2 = 0, Remainder 1"]
+                        F[Read remainders from bottom to top] --> G["Answer: <b>11001₂</b>"]
+                        style F fill:#f9f,stroke:#333,stroke-width:2px
+                    </div>
+                </div>
+                <p><small>Check: 16+8+0+0+1 = 25₁₀</small></p>
+            </section>
+
+            <!-- SLIDE 12: BINARY ↔ OCTAL & HEX -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Binary ↔ Octal &amp; Hex</h2>
+                <p>Group binary digits into sets of <strong>3</strong> (Octal) or <strong>4</strong> (Hex).</p>
+                <div class="flex-row">
+                    <div class="gate-card" style="min-width: 200px;">
+                        <h4>Binary → Octal</h4>
+                        <p><code>10 101 110</code> → Pad <code>010 101 110</code></p>
+                        <p><code>2   5   6</code> → <span class="highlight-blue">256₈</span></p>
+                    </div>
+                    <div class="gate-card" style="min-width: 200px;">
+                        <h4>Binary → Hex</h4>
+                        <p><code>1010 1110</code></p>
+                        <p><code>A   E</code> → <span class="highlight-blue">AE₁₆</span></p>
+                    </div>
+                </div>
+                <p style="margin-top: 15px;"><strong>Reverse:</strong> Expand each Octal/Hex digit into 3 or 4 binary bits. <br>e.g., <code>3A₁₆</code> = <code>0011 1010</code> = <code>111010₂</code></p>
+            </section>
+
+            <!-- SLIDE 13: ENCODING INTRO -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Encoding Schemes</h2>
+                <p>Computers store everything as binary numbers. <span class="highlight-blue">Encoding</span> maps characters to specific binary values.</p>
+                <ul>
+                    <li><strong>Why?</strong> So systems can communicate text consistently.</li>
+                    <li><strong>How it works:</strong> When you type "Hi", the keyboard sends a number for 'H' and a number for 'i'. The OS renders the corresponding glyphs.</li>
+                </ul>
+                <div style="background: #e9ecef; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                    <p style="margin: 0; font-family: monospace;">'H' → 0x48 (Hex) → 0100 1000 (Binary) → Display "H"</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 14: ASCII -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">ASCII</h2>
+                <p><strong>A</strong>merican <strong>S</strong>tandard <strong>C</strong>ode for <strong>I</strong>nformation <strong>I</strong>nterchange</p>
+                <ul>
+                    <li><strong>Bits:</strong> 7-bits (stored in 1 byte). <strong>Capacity:</strong> 128 characters.</li>
+                    <li><strong>Covers:</strong> English letters, digits, punctuation, control characters.</li>
+                </ul>
+                <table class="truth-table" style="max-width: 400px;">
+                    <tr><th>Char</th><th>Decimal</th><th>Hex</th><th>Binary</th></tr>
+                    <tr><td>'A'</td><td>65</td><td>41</td><td>1000001</td></tr>
+                    <tr><td>'B'</td><td>66</td><td>42</td><td>1000010</td></tr>
+                    <tr><td>'a'</td><td>97</td><td>61</td><td>1100001</td></tr>
+                    <tr><td>'0'</td><td>48</td><td>30</td><td>0110000</td></tr>
+                </table>
+                <p style="font-size: 0.8rem; color: #868e96;">⚠️ Limitation: Only English. No support for Hindi, Arabic, Chinese, etc.</p>
+            </section>
+
+            <!-- SLIDE 15: ISCII -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">ISCII</h2>
+                <p><strong>I</strong>ndian <strong>S</strong>cript <strong>C</strong>ode for <strong>I</strong>nformation <strong>I</strong>nterchange</p>
+                <ul>
+                    <li><strong>Bits:</strong> 8-bits (1 byte). <strong>Capacity:</strong> 256 characters.</li>
+                    <li><strong>Supports:</strong> Devanagari, Bengali, Gujarati, Kannada, Malayalam, etc.</li>
+                    <li><strong>Mechanism:</strong> Uses a base script structure; font rendering changes the shape.</li>
+                </ul>
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 5px solid #ffc107;">
+                    <p style="margin: 0;">📌 <strong>Legacy:</strong> ISCII is now largely obsolete, replaced by the universal standard: <strong>Unicode</strong>.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 16: UNICODE -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Unicode: The Universal Solution</h2>
+                <p><strong>The Problem:</strong> ASCII &amp; ISCII couldn't handle the world's languages simultaneously.</p>
+                <p><strong>The Solution:</strong> Unicode provides a <span class="highlight-blue">unique number</span> for every character, across every language.</p>
+                <ul>
+                    <li><strong>Capacity:</strong> Over 1.1 million code points (U+0000 to U+10FFFF).</li>
+                    <li><strong>Coverage:</strong> Latin, Devanagari (अ), CJK, Emojis (😊), etc.</li>
+                </ul>
+                <div class="conversion-box" style="background: #e9ecef;">
+                    <p style="margin: 0;">'A' = U+0041 &nbsp;&nbsp;|&nbsp;&nbsp; 'अ' (Devanagari) = U+0905</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 17: UTF-8, UTF-16, UTF-32 -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">UTF-8, UTF-16, UTF-32</h2>
+                <p>Unicode defines the <em>code point</em>; <strong>UTF</strong> defines how to <em>store</em> it in memory.</p>
+                <table class="unicode-table" style="font-size: 0.75rem;">
+                    <tr><th>Format</th><th>Bits per Char</th><th>Description</th><th>Pros / Cons</th></tr>
+                    <tr>
+                        <td><strong>UTF-32</strong></td>
+                        <td>32 (4 bytes)</td>
+                        <td>Fixed length.</td>
+                        <td>✅ Fast processing. ❌ Wastes bandwidth/space.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UTF-16</strong></td>
+                        <td>16 or 32 bits</td>
+                        <td>Variable. 2 bytes for common chars.</td>
+                        <td>✅ Windows/Java standard. ❌ Can still use 4 bytes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UTF-8</strong></td>
+                        <td>8 to 32 bits</td>
+                        <td>Variable. <span class="highlight-blue">ASCII uses 1 byte.</span></td>
+                        <td>✅ ✅ <strong>Best for the web.</strong> Backward compatible with ASCII.</td>
+                    </tr>
+                </table>
+                <div class="mermaid-container" style="margin-top: 10px;">
+                    <div class="mermaid">
+                        graph LR
+                        Char[Character] --> Range{Code Point Range}
+                        Range -- "U+0000 to U+007F (ASCII)" --> B1[1 Byte]
+                        Range -- "U+0080 to U+07FF" --> B2[2 Bytes]
+                        Range -- "U+0800 to U+FFFF" --> B3[3 Bytes]
+                        Range -- "U+10000 to U+10FFFF" --> B4[4 Bytes]
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 18: SUMMARY -->
+            <section>
+                <h2 class="slide-title" style="font-size: 1.8rem;">Summary</h2>
+                <div style="text-align: left; max-width: 800px; margin: 0 auto;">
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 5px solid #1b6fb0;">
+                        <h4>🔹 Boolean Logic</h4>
+                        <p style="margin: 0;">The language of "Yes/No" decisions. Implemented via <strong>Logic Gates</strong>. <strong>De Morgan's Laws</strong> simplify circuits.</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 5px solid #20c997;">
+                        <h4>🔹 Number Systems</h4>
+                        <p style="margin: 0;">Binary is native to hardware. Octal/Hex are human-readable shortcuts. Conversions rely on place values or grouping.</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 5px solid #fd7e14;">
+                        <h4>🔹 Encoding Schemes</h4>
+                        <p style="margin: 0;">ASCII (English) → ISCII (Indian) → <strong>Unicode</strong> (Universal). <strong>UTF-8</strong> is the most efficient and widely used storage format.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 19: Q&A -->
+            <section>
+                <h1 style="font-size: 4rem; margin-bottom: 0;">🙋</h1>
+                <h2 class="slide-title" style="font-size: 2.5rem;">Thank You!</h2>
+                <h3 style="color: #495057;">Questions &amp; Discussion</h3>
+                <br>
+                <p style="color: #868e96;">[Your Contact Information]</p>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js & Mermaid Initialization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js">
+    </script>
+    <script>
+        // Initialize Reveal.js
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            transition: 'slide', // Options: slide, fade, convex, concave, zoom
+            dependencies: []
+        });
+
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                background: '#ffffff',
+                primaryColor: '#1b6fb0',
+                primaryTextColor: '#212529',
+                primaryBorderColor: '#212529',
+                lineColor: '#495057',
+                secondaryColor: '#f8f9fa',
+                tertiaryColor: '#e9ecef'
+            }
+        });
+
+        // Re-render mermaid when slides change to fix sizing issues
+        Reveal.on('slidechanged', function() {
+            mermaid.run({
+                nodes: document.querySelectorAll('.mermaid')
+            });
+        });
+
+        // Initial render
+        setTimeout(() => {
+            mermaid.run({
+                nodes: document.querySelectorAll('.mermaid')
+            });
+        }, 500);
+    </script>
+
+</body>
+</html>
