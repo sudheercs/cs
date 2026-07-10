@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operating System — Functions & User Interface</title>
+    <meta name="description"
+        content="Graduation-level interactive slides on Operating Systems: OS Functions and User Interface.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- ═══════ SLIDE 1 — Title ═══════ -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science — Graduation Level</div>
+            <h1 class="slide-title">Operating System (OS)</h1>
+            <p class="slide-subtitle">Functions of the Operating System & OS User Interface</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- ═══════ SLIDE 2 — What is an OS? ═══════ -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. What is an Operating System?</h2>
+            <p class="slide-subtitle">The bridge between the hardware and the user.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Definition</h3>
+                    <p>An <span class="key-term">Operating System (OS)</span> is system software that manages computer
+                        hardware, software resources, and provides common services for computer programs. It is the most
+                        important program that runs on a computer.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏗️</div>
+                    <h3>Resource Manager</h3>
+                    <p>Think of the OS as the "Manager" or "Government" of the computer. It doesn't do the actual useful
+                        work (like a spreadsheet does), but it provides the environment in which other programs can do
+                        useful work safely and efficiently.</p>
+                </div>
+            </div>
+            <div class="diagram-flow" style="margin-top: 30px;">
+                <div class="diagram-box">
+                    <div class="card-icon">👤</div><strong>User</strong>
+                </div>
+                <span class="diagram-arrow">↕</span>
+                <div class="diagram-box"><strong>Applications</strong></div>
+                <span class="diagram-arrow">↕</span>
+                <div class="diagram-box" style="border-color: var(--accent-1); background: rgba(99,102,241,0.1);">
+                    <strong>Operating System</strong></div>
+                <span class="diagram-arrow">↕</span>
+                <div class="diagram-box">
+                    <div class="card-icon">💻</div><strong>Hardware</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 3 — Functions of OS Overview ═══════ -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">2. Functions of the Operating System</h2>
+            <p class="slide-subtitle">The OS handles countless tasks behind the scenes. We categorize them into major
+                functions.</p>
+
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>Process Management</h3>
+                    <p>Managing the execution of programs.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Memory Management</h3>
+                    <p>Allocating and deallocating RAM.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🗂️</div>
+                    <h3>File Management</h3>
+                    <p>Organizing data on storage devices.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🖨️</div>
+                    <h3>Device / I/O Management</h3>
+                    <p>Communicating with hardware peripherals.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Security & Protection</h3>
+                    <p>Guarding against unauthorized access.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Job Accounting & Error Detection</h3>
+                    <p>Tracking usage and preventing system crashes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 4 — Process Management ═══════ -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">2.1 Process Management</h2>
+            <p class="slide-subtitle">How the OS handles programs in execution.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>What is a Process?</h3>
+                    <p>A program in execution is called a <span class="key-term">process</span>. When you open Chrome,
+                        the OS creates a process. If you open 10 tabs, you might have 10+ processes running
+                        simultaneously.</p>
+                </div>
+                <div class="card">
+                    <h3>OS Responsibilities</h3>
+                    <ul class="highlight-list">
+                        <li>Creating and deleting both user and system processes.</li>
+                        <li>Suspending and resuming processes.</li>
+                        <li>Providing mechanisms for process synchronization and communication.</li>
+                        <li><strong>CPU Scheduling:</strong> Deciding which process gets the CPU and for how long.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="example-block">
+                <h4>💡 CPU Multitasking</h4>
+                <p>A CPU core can only execute one instruction at a time. The OS uses <strong>context switching</strong>
+                    to rapidly switch the CPU's attention between different processes so fast (milliseconds) that it
+                    appears they are running concurrently.</p>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 5 — Memory Management ═══════ -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">2.2 Memory Management</h2>
+            <p class="slide-subtitle">Ensuring programs have the RAM they need to run without interfering with each
+                other.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">RAM</div>
+                    <h3>Main Memory Allocation</h3>
+                    <p>The OS decides which processes get to be loaded into RAM. It keeps track of every byte in main
+                        memory (which parts are in use and by whom, and which parts are free).</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Memory Protection</h3>
+                    <p>The OS ensures that one process cannot accidentally or maliciously access or overwrite the memory
+                        space allocated to another process. If it tries, the OS throws a <strong>Segmentation
+                            Fault</strong> or Access Violation.</p>
+                </div>
+            </div>
+            <div class="example-block">
+                <h4>💡 Virtual Memory</h4>
+                <p>If you have 8GB of RAM but try to run 12GB worth of applications, the OS uses <span
+                        class="key-term">Virtual Memory</span>. It moves inactive data from RAM to the Hard Drive
+                    (paging/swapping) to free up space. This prevents the system from crashing, though it slows down
+                    performance.</p>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 6 — File & Device Management ═══════ -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">2.3 File & Device Management</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>🗂️ File Management</h3>
+                    <p>The OS provides a uniform logical view of information storage regardless of the physical medium
+                        (HDD, SSD, USB).</p>
+                    <ul style="margin-top:10px;">
+                        <li>Creates, deletes, reads, and writes files and directories.</li>
+                        <li>Maps files to secondary storage blocks.</li>
+                        <li>Enforces access controls (read/write/execute permissions).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🖨️ Device (I/O) Management</h3>
+                    <p>The OS manages all hardware peripherals (printers, keyboards, webcams) using Device Drivers.</p>
+                    <ul style="margin-top:10px;">
+                        <li>Keeps track of all devices using an I/O controller.</li>
+                        <li>Decides which process gets the device, when, and for how long.</li>
+                        <li>Allocates and de-allocates devices in an efficient manner.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 7 — Security & Other Functions ═══════ -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">2.4 Security & System Health</h2>
+
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">🔐</div>
+                    <h3>Security & Privacy</h3>
+                    <p>The OS prevents unauthorized access to programs and data.</p>
+                    <ul>
+                        <li>User authentication (passwords, biometrics).</li>
+                        <li>File access permissions.</li>
+                        <li>Firewalls and defense mechanisms against malware.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>Job Accounting</h3>
+                    <p>Keeping track of time and resources used by various users and processes. Very important in
+                        enterprise servers and mainframe environments for billing and throttling.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🚨</div>
+                    <h3>Error Detection</h3>
+                    <p>The OS constantly checks for hardware and software defects (e.g., bad sectors on a hard drive,
+                        CPU overheating, running out of memory). It attempts to recover or display an error message
+                        (like the Blue Screen of Death) to prevent data corruption.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 8 — OS User Interface Introduction ═══════ -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">3. OS User Interface</h2>
+            <p class="slide-subtitle">How human users interact with the Operating System.</p>
+            <div class="card" style="margin-bottom: 20px;">
+                <h3>What is a User Interface (UI)?</h3>
+                <p>The User Interface is the part of the OS that allows you to issue commands to the computer and
+                    receive feedback. Without a UI, you would not be able to tell the OS to launch an application, copy
+                    a file, or connect to Wi-Fi.</p>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-icon">🖥️</div>
+                    <h3>Categories of UI</h3>
+                    <p>Historically, there have been primarily two types of interfaces for interacting with an Operating
+                        System:</p>
+                    <ol style="margin-top:10px; margin-left:20px;">
+                        <li><strong>CUI / CLI:</strong> Character/Command Line User Interface</li>
+                        <li><strong>GUI:</strong> Graphical User Interface</li>
+                    </ol>
+                    <p style="margin-top:10px;">More recently, Natural Language Interfaces (Voice) have also become
+                        prevalent (e.g., Siri, Alexa).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 9 — CUI / CLI ═══════ -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">3.1 Command Line Interface (CLI/CUI)</h2>
+            <p class="slide-subtitle">Interaction through text-based commands.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>How it works</h3>
+                    <p>The user interacts with the OS by typing text commands into a console or terminal prompt and
+                        hitting Enter. The OS parses the text, executes it, and outputs text back.</p>
+                </div>
+                <div class="card">
+                    <h3>Advantages & Disadvantages</h3>
+                    <ul>
+                        <li>✅ Consumes very few system resources (no graphics to render).</li>
+                        <li>✅ Highly preferred by advanced users for scripting and automation.</li>
+                        <li>❌ Steep learning curve; the user must memorize specific syntax.</li>
+                        <li>❌ Not intuitive for general users.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="example-block">
+                <h4>💡 Examples</h4>
+                <ul>
+                    <li><strong>MS-DOS</strong> (Microsoft Disk Operating System)</li>
+                    <li><strong>Unix/Linux Shell</strong> (Bash, sh)</li>
+                    <li><strong>Windows Command Prompt / PowerShell</strong></li>
+                </ul>
+                <div style="margin-top:10px;">
+                    <code>C:\Users\Admin> dir</code> <br>
+                    <code>$ ls -l /var/www</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 10 — GUI ═══════ -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">3.2 Graphical User Interface (GUI)</h2>
+            <p class="slide-subtitle">Interaction through visual elements.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>How it works</h3>
+                    <p>The user interacts with visual representations of files, folders, and applications using a
+                        pointing device (mouse) or touch. It usually follows the WIMP paradigm: <span
+                            class="key-term">Windows, Icons, Menus, Pointer</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>Advantages & Disadvantages</h3>
+                    <ul>
+                        <li>✅ Extremely user-friendly and intuitive. No need to memorize syntax.</li>
+                        <li>✅ Easy multitasking (viewing multiple windows at once).</li>
+                        <li>❌ Resource-intensive (requires a GPU and more RAM).</li>
+                        <li>❌ Can be slower for deeply technical, repetitive configuration tasks.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="example-block">
+                <h4>💡 Examples</h4>
+                <ul>
+                    <li><strong>Microsoft Windows</strong> (Windows 10, 11)</li>
+                    <li><strong>macOS</strong> (Aqua interface)</li>
+                    <li><strong>Linux Desktop Environments</strong> (GNOME, KDE Plasma)</li>
+                    <li><strong>Mobile OS</strong> (iOS, Android Touch GUI)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 11 — Summary ═══════ -->
+        <div class="slide" id="slide-10">
+            <h2 class="slide-title">📝 Summary</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>⚙️ OS Functions</h3>
+                    <ul>
+                        <li><strong>Process Management:</strong> Scheduling and running programs.</li>
+                        <li><strong>Memory Management:</strong> RAM allocation, protection, virtual memory.</li>
+                        <li><strong>File Management:</strong> Organizing and securing data on drives.</li>
+                        <li><strong>Device Management:</strong> Handling I/O peripherals via drivers.</li>
+                        <li><strong>Security & Error Detection:</strong> Keeping the system safe and stable.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🖥️ OS User Interfaces</h3>
+                    <ul>
+                        <li><strong>CLI (Command Line):</strong> Text-based, fast, scriptable, but hard to learn (e.g.,
+                            DOS, Bash).</li>
+                        <li><strong>GUI (Graphical):</strong> Visual, WIMP paradigm (Windows, Icons, Menus, Pointers),
+                            very intuitive but resource-heavy.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 12 — Quiz ═══════ -->
+        <div class="slide" id="slide-11" style="padding-bottom:80px;">
+            <div class="quiz-header">
+                <h2 class="slide-title">🧪 Interactive Quiz</h2>
+                <p class="slide-subtitle">Test your knowledge — 12 questions on OS Functions & UI.</p>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                </div>
+                <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+            </div>
+            <div id="quizContainer"></div>
+            <div id="quizResults" class="quiz-results" style="display:none;"></div>
+        </div>
+
+    </div>
+
+    <!-- ═══ Navigation ═══ -->
+    <nav id="navBar">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <span id="slideCounter">1 / 12</span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </nav>
+
+    <script src="quiz.js"></script>
+    <script src="slides.js"></script>
+</body>
+
+</html>

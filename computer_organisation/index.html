@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Computer Organisation — Graduation Level Slides</title>
+    <meta name="description" content="Comprehensive graduation-level interactive slides on Basic Computer Organisation covering hardware, software, CPU, memory hierarchy, and units of memory.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="progressBar"></div>
+<div id="slideshow">
+
+<!-- ═══════ SLIDE 1 — Title ═══════ -->
+<div class="slide hero-slide active" id="slide-0">
+    <div class="hero-badge">📘 CBSE Computer Science — Graduation Level</div>
+    <h1 class="slide-title">Basic Computer Organisation</h1>
+    <p class="slide-subtitle">A comprehensive study of computer systems — hardware, software, CPU architecture, memory hierarchy, and units of memory, with real-world examples and an interactive quiz.</p>
+    <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to navigate</p>
+</div>
+
+<!-- ═══════ SLIDE 2 — Introduction to Computer System ═══════ -->
+<div class="slide" id="slide-1">
+    <h2 class="slide-title">1. Introduction to Computer System</h2>
+    <p class="slide-subtitle">What is a computer? Understanding the fundamental concept and its evolution.</p>
+    <div class="content-grid">
+        <div class="card">
+            <div class="card-icon">🖥️</div>
+            <h3>Definition</h3>
+            <p>A <span class="key-term">computer</span> is an electronic device that accepts data as input, processes it according to a set of instructions (program), and produces meaningful output (information). It can also store data for future use.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>IPO Cycle</h3>
+            <p>Every computer operates on the <span class="key-term">Input → Process → Output (IPO)</span> cycle. Data enters via input devices, the CPU processes it using stored instructions, and results are delivered through output devices.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📐</div>
+            <h3>Characteristics</h3>
+            <ul>
+                <li><strong>Speed</strong> — Millions of calculations per second</li>
+                <li><strong>Accuracy</strong> — Error-free if input is correct (GIGO)</li>
+                <li><strong>Diligence</strong> — No fatigue or boredom</li>
+                <li><strong>Versatility</strong> — Multi-purpose machine</li>
+                <li><strong>Storage</strong> — Vast data storage capacity</li>
+                <li><strong>Automation</strong> — Minimal human intervention</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">📜</div>
+            <h3>Generations Overview</h3>
+            <ul>
+                <li><strong>1st (1940–56)</strong> — Vacuum tubes, ENIAC</li>
+                <li><strong>2nd (1956–63)</strong> — Transistors</li>
+                <li><strong>3rd (1964–71)</strong> — Integrated Circuits</li>
+                <li><strong>4th (1971–present)</strong> — Microprocessors</li>
+                <li><strong>5th (emerging)</strong> — AI & quantum computing</li>
+            </ul>
+        </div>
+    </div>
+    <div class="example-block">
+        <h4>💡 Real-World Example</h4>
+        <p>When you type a search query into Google, your <strong>keyboard</strong> (input) sends data to the <strong>CPU</strong> (processing), which communicates with servers. The results appear on your <strong>monitor</strong> (output). The entire IPO cycle completes in milliseconds.</p>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 3 — Hardware ═══════ -->
+<div class="slide" id="slide-2">
+    <h2 class="slide-title">2. Hardware</h2>
+    <p class="slide-subtitle">The physical, tangible components of a computer system.</p>
+    <div class="content-grid">
+        <div class="card">
+            <div class="card-icon">🔩</div>
+            <h3>What is Hardware?</h3>
+            <p><span class="key-term">Hardware</span> refers to all the physical parts of a computer that you can see and touch. Without hardware, software has no platform to run on. Hardware provides the computational power, storage, and I/O capabilities.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🏗️</div>
+            <h3>Categories of Hardware</h3>
+            <ul>
+                <li><strong>Input Devices</strong> — Keyboard, Mouse, Scanner</li>
+                <li><strong>Output Devices</strong> — Monitor, Printer, Speaker</li>
+                <li><strong>Processing Unit</strong> — CPU (ALU + CU + Registers)</li>
+                <li><strong>Memory/Storage</strong> — RAM, ROM, HDD, SSD</li>
+                <li><strong>Motherboard</strong> — Main circuit board connecting all</li>
+                <li><strong>Communication</strong> — NIC, Modem, Wi-Fi adapter</li>
+            </ul>
+        </div>
+    </div>
+    <div class="example-block">
+        <h4>💡 Example — Inside a Desktop PC</h4>
+        <p>Opening a desktop reveals the <strong>motherboard</strong> hosting the CPU, RAM sticks, and expansion slots. A <strong>power supply unit (PSU)</strong> provides electricity. An <strong>HDD/SSD</strong> stores the operating system and files. <strong>Cooling fans</strong> prevent overheating. A <strong>GPU</strong> (Graphics Processing Unit) handles display rendering.</p>
+    </div>
+    <div class="diagram-flow" style="margin-top:20px;">
+        <div class="diagram-box"><div class="card-icon">⌨️</div><strong>Input</strong></div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-box"><div class="card-icon">🧠</div><strong>CPU</strong></div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-box"><div class="card-icon">💾</div><strong>Memory</strong></div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-box"><div class="card-icon">🖥️</div><strong>Output</strong></div>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 4 — Software ═══════ -->
+<div class="slide" id="slide-3">
+    <h2 class="slide-title">3. Software</h2>
+    <p class="slide-subtitle">The intangible instructions that make hardware perform tasks.</p>
+    <div class="two-col">
+        <div>
+            <div class="card" style="margin-bottom:16px;">
+                <div class="card-icon">📦</div>
+                <h3>System Software</h3>
+                <p>Manages hardware resources and provides a platform for application software.</p>
+                <ul style="margin-top:8px;">
+                    <li><strong>Operating Systems</strong> — Windows, Linux, macOS</li>
+                    <li><strong>Device Drivers</strong> — Printer driver, GPU driver</li>
+                    <li><strong>Utilities</strong> — Disk Defragmenter, Antivirus</li>
+                    <li><strong>Language Translators</strong> — Compiler, Interpreter, Assembler</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="card" style="margin-bottom:16px;">
+                <div class="card-icon">📱</div>
+                <h3>Application Software</h3>
+                <p>Designed for end-users to perform specific tasks.</p>
+                <ul style="margin-top:8px;">
+                    <li><strong>General Purpose</strong> — MS Word, Excel, Chrome</li>
+                    <li><strong>Specific Purpose</strong> — Tally (Accounting), AutoCAD</li>
+                    <li><strong>Customised</strong> — Railway reservation system</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Hardware vs Software</h3>
+                <table class="styled-table">
+                    <tr><th>Hardware</th><th>Software</th></tr>
+                    <tr><td>Tangible</td><td>Intangible</td></tr>
+                    <tr><td>Wears out over time</td><td>Does not wear out</td></tr>
+                    <tr><td>Physical failures</td><td>Logical bugs</td></tr>
+                    <tr><td>Made in factories</td><td>Developed by programmers</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="example-block">
+        <h4>💡 Relationship Example</h4>
+        <p>When you click a file on your desktop, the <strong>OS</strong> (system software) interprets the mouse click (via the mouse <strong>driver</strong>), locates the file on the <strong>HDD</strong> (hardware), and opens it with the appropriate <strong>application</strong> (e.g., Adobe Reader for PDFs). Hardware and software are interdependent.</p>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 5 — Input Devices ═══════ -->
+<div class="slide" id="slide-4">
+    <h2 class="slide-title">4. Input Devices</h2>
+    <p class="slide-subtitle">Devices used to enter data and instructions into a computer.</p>
+    <div class="content-grid">
+        <div class="card">
+            <div class="card-icon">⌨️</div>
+            <h3>Keyboard</h3>
+            <p>The most common input device with 104–108 keys. Types: <strong>QWERTY</strong>, DVORAK, ergonomic. Keys include alphanumeric, function (F1–F12), cursor control, and modifier keys (Ctrl, Alt, Shift).</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🖱️</div>
+            <h3>Mouse</h3>
+            <p>A pointing device that controls the cursor. Types: <strong>Mechanical</strong> (ball-based), <strong>Optical</strong> (LED sensor), <strong>Wireless</strong> (Bluetooth/RF). Operations: click, double-click, drag, scroll.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📷</div>
+            <h3>Scanner & Camera</h3>
+            <p><strong>Scanner</strong> — Converts physical documents to digital images (flatbed, handheld, drum). <strong>Webcam / Digital Camera</strong> — Captures images and video for input.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🎤</div>
+            <h3>Microphone & Others</h3>
+            <p><strong>Microphone</strong> — Audio input for voice commands, recording. <strong>Touchscreen</strong> — Dual I/O (input + output). <strong>Barcode Reader</strong> — scans product barcodes. <strong>Biometric</strong> — fingerprint, retina scanner. <strong>Joystick</strong> — gaming input.</p>
+        </div>
+    </div>
+    <div class="example-block">
+        <h4>💡 Example — Supermarket Checkout</h4>
+        <p>A <strong>barcode reader</strong> scans the product, a <strong>weighing scale</strong> (sensor input) measures produce, and a <strong>touchscreen POS</strong> registers the payment. Multiple input devices work together in real-world systems.</p>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 6 — Output Devices ═══════ -->
+<div class="slide" id="slide-5">
+    <h2 class="slide-title">5. Output Devices</h2>
+    <p class="slide-subtitle">Devices that convey processed information to the user.</p>
+    <div class="content-grid">
+        <div class="card">
+            <div class="card-icon">🖥️</div>
+            <h3>Monitor (Visual Display Unit)</h3>
+            <p>Displays text, images, and video. Types: <strong>CRT</strong> (old, bulky), <strong>LCD</strong> (Liquid Crystal Display), <strong>LED</strong> (backlit LCD), <strong>OLED</strong> (organic, per-pixel lighting). Resolution measured in pixels (e.g., 1920×1080 = Full HD).</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🖨️</div>
+            <h3>Printer</h3>
+            <p><strong>Impact</strong> — Dot-matrix (uses pins striking ribbon). <strong>Non-impact</strong> — Inkjet (sprays tiny droplets), Laser (uses toner &amp; heat, fastest for text). <strong>3D Printer</strong> — Creates physical objects layer by layer.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔊</div>
+            <h3>Speaker & Headphones</h3>
+            <p>Convert digital audio signals to analog sound waves. Used for music, video conferences, voice assistants. Quality measured in frequency response (Hz) and wattage.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📽️</div>
+            <h3>Projector & Plotter</h3>
+            <p><strong>Projector</strong> — Projects display onto a large screen (LCD, DLP, laser). <strong>Plotter</strong> — Prints large-scale engineering drawings, maps, and architectural plans with high precision.</p>
+        </div>
+    </div>
+    <div class="example-block">
+        <h4>💡 Softcopy vs Hardcopy</h4>
+        <p><strong>Softcopy</strong> — Output displayed on screens (temporary, editable). <strong>Hardcopy</strong> — Output printed on paper (permanent, not directly editable). A PDF on a monitor is softcopy; the same PDF printed is hardcopy.</p>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 7 — CPU ═══════ -->
+<div class="slide" id="slide-6">
+    <h2 class="slide-title">6. Central Processing Unit (CPU)</h2>
+    <p class="slide-subtitle">The "brain" of the computer — where all processing happens.</p>
+    <div class="two-col">
+        <div>
+            <div class="card" style="margin-bottom:16px;">
+                <h3>🧮 Arithmetic Logic Unit (ALU)</h3>
+                <p>Performs all <strong>arithmetic</strong> operations (addition, subtraction, multiplication, division) and <strong>logical</strong> operations (AND, OR, NOT, comparisons). The ALU is where actual data manipulation occurs.</p>
+            </div>
+            <div class="card" style="margin-bottom:16px;">
+                <h3>🎛️ Control Unit (CU)</h3>
+                <p>Acts as the <strong>coordinator/director</strong>. It does not process data itself but directs the flow of data between the CPU, memory, and I/O devices. It fetches instructions from memory, decodes them, and orchestrates execution.</p>
+            </div>
+            <div class="card">
+                <h3>📋 Registers</h3>
+                <p>Ultra-fast, small-capacity storage <strong>inside the CPU</strong>. Types:</p>
+                <ul>
+                    <li><strong>Accumulator (ACC)</strong> — Stores intermediate results</li>
+                    <li><strong>Program Counter (PC)</strong> — Address of next instruction</li>
+                    <li><strong>Instruction Register (IR)</strong> — Current instruction</li>
+                    <li><strong>Memory Address Register (MAR)</strong></li>
+                    <li><strong>Memory Data Register (MDR)</strong></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="card" style="margin-bottom:16px;">
+                <h3>🔄 Fetch-Decode-Execute Cycle</h3>
+                <ul class="highlight-list">
+                    <li><strong>Fetch</strong> — CU fetches the next instruction from RAM using the address in the PC</li>
+                    <li><strong>Decode</strong> — CU decodes the instruction to understand what operation to perform</li>
+                    <li><strong>Execute</strong> — ALU performs the operation; result stored in register or memory</li>
+                    <li><strong>Repeat</strong> — PC increments; cycle continues billions of times per second</li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <h4>💡 Example — Adding Two Numbers</h4>
+                <p>Instruction: <code>ADD R1, R2, R3</code> (Add contents of R2 and R3, store in R1)</p>
+                <p>1. <strong>Fetch:</strong> CU reads instruction from memory</p>
+                <p>2. <strong>Decode:</strong> CU identifies it as an ADD operation</p>
+                <p>3. <strong>Execute:</strong> ALU adds values in R2 and R3, result → R1</p>
+            </div>
+            <div class="card" style="margin-top:16px;">
+                <h3>⏱️ Clock Speed</h3>
+                <p>Measured in <strong>GHz</strong> (Gigahertz). A 3.5 GHz CPU performs 3.5 billion clock cycles per second. Higher clock speed ≈ faster processing (but architecture matters too).</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 8 — Memory Overview ═══════ -->
+<div class="slide" id="slide-7">
+    <h2 class="slide-title">7. Memory — Overview & Hierarchy</h2>
+    <p class="slide-subtitle">How computers store data at different levels of speed and capacity.</p>
+
+    <div class="card" style="margin-bottom:24px;">
+        <h3>Memory Hierarchy Pyramid</h3>
+        <p style="color:var(--text-secondary);margin-bottom:16px;">Speed decreases ↓ and Capacity increases ↓ as we go down the pyramid.</p>
+        <div class="pyramid">
+            <div class="pyramid-level" style="width:180px;background:linear-gradient(135deg,#6366f1,#8b5cf6);">CPU Registers</div>
+            <div class="pyramid-level" style="width:260px;background:linear-gradient(135deg,#7c3aed,#a78bfa);">Cache Memory (L1, L2, L3)</div>
+            <div class="pyramid-level" style="width:360px;background:linear-gradient(135deg,#06b6d4,#22d3ee);">Primary Memory (RAM / ROM)</div>
+            <div class="pyramid-level" style="width:480px;background:linear-gradient(135deg,#10b981,#34d399);">Secondary Storage (HDD, SSD)</div>
+            <div class="pyramid-level" style="width:580px;background:linear-gradient(135deg,#f59e0b,#fbbf24);">Tertiary / Offline (Tape, Cloud)</div>
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <div class="card">
+            <h3>🔑 Key Concepts</h3>
+            <ul>
+                <li><strong>Volatile Memory</strong> — Data lost when power off (e.g., RAM)</li>
+                <li><strong>Non-volatile Memory</strong> — Data retained without power (e.g., ROM, HDD, SSD)</li>
+                <li><strong>Access Time</strong> — Time taken to read/write data</li>
+                <li><strong>Cost per bit</strong> — Higher for faster memory</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>📊 Hierarchy Comparison</h3>
+            <table class="styled-table">
+                <tr><th>Level</th><th>Speed</th><th>Size</th><th>Cost/bit</th></tr>
+                <tr><td>Registers</td><td>~1 ns</td><td>Bytes</td><td>Highest</td></tr>
+                <tr><td>Cache</td><td>~2-10 ns</td><td>KB–MB</td><td>Very High</td></tr>
+                <tr><td>RAM</td><td>~50-100 ns</td><td>GB</td><td>Moderate</td></tr>
+                <tr><td>SSD</td><td>~0.1 ms</td><td>TB</td><td>Low</td></tr>
+                <tr><td>HDD</td><td>~5-10 ms</td><td>TB</td><td>Lowest</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 9 — Primary Memory ═══════ -->
+<div class="slide" id="slide-8">
+    <h2 class="slide-title">8. Primary Memory (Main Memory)</h2>
+    <p class="slide-subtitle">The memory directly accessible by the CPU — RAM and ROM.</p>
+    <div class="two-col">
+        <div>
+            <div class="card" style="margin-bottom:16px;">
+                <div class="card-icon">⚡</div>
+                <h3>RAM (Random Access Memory)</h3>
+                <p><span class="key-term">Volatile</span> — data erased when power is turned off. Used to store currently running programs and data being actively processed.</p>
+                <ul style="margin-top:8px;">
+                    <li><strong>SRAM</strong> (Static RAM) — Uses flip-flops, faster, used in cache. No need to refresh. Expensive.</li>
+                    <li><strong>DRAM</strong> (Dynamic RAM) — Uses capacitors, needs periodic refresh, cheaper, used as main memory.</li>
+                    <li><strong>SDRAM</strong> — Synchronized with CPU clock</li>
+                    <li><strong>DDR SDRAM</strong> — DDR4, DDR5 (latest) — Double Data Rate</li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <h4>💡 Example</h4>
+                <p>When you open Chrome, the program is loaded from <strong>SSD/HDD → RAM</strong>. Each new tab consumes more RAM (often 100–300 MB each). When RAM fills up, the system slows due to swapping (using HDD as virtual memory).</p>
+            </div>
+        </div>
+        <div>
+            <div class="card" style="margin-bottom:16px;">
+                <div class="card-icon">🔒</div>
+                <h3>ROM (Read-Only Memory)</h3>
+                <p><span class="key-term">Non-volatile</span> — data persists without power. Contains firmware and boot instructions (BIOS/UEFI).</p>
+                <ul style="margin-top:8px;">
+                    <li><strong>PROM</strong> — Programmable once (fuse-based)</li>
+                    <li><strong>EPROM</strong> — Erasable using UV light</li>
+                    <li><strong>EEPROM</strong> — Electrically erasable, sector-by-sector</li>
+                    <li><strong>Flash Memory</strong> — Type of EEPROM, used in USB drives, SSDs</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>RAM vs ROM</h3>
+                <table class="styled-table">
+                    <tr><th>Feature</th><th>RAM</th><th>ROM</th></tr>
+                    <tr><td>Volatility</td><td>Volatile</td><td>Non-volatile</td></tr>
+                    <tr><td>Speed</td><td>Faster</td><td>Slower</td></tr>
+                    <tr><td>Usage</td><td>Running programs</td><td>Firmware/BIOS</td></tr>
+                    <tr><td>Writability</td><td>Read & Write</td><td>Mostly Read</td></tr>
+                    <tr><td>Typical Size</td><td>8-64 GB</td><td>Few MB</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 10 — Cache Memory ═══════ -->
+<div class="slide" id="slide-9">
+    <h2 class="slide-title">9. Cache Memory</h2>
+    <p class="slide-subtitle">A small, ultra-fast memory between the CPU and RAM that bridges the speed gap.</p>
+    <div class="content-grid">
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>What is Cache?</h3>
+            <p>Cache memory is a high-speed <span class="key-term">SRAM</span> that stores frequently accessed data and instructions. It exploits the principle of <strong>locality of reference</strong> — programs tend to access the same data (temporal) or nearby data (spatial) repeatedly.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>Levels of Cache</h3>
+            <ul>
+                <li><strong>L1 Cache</strong> — Smallest (32-64 KB per core), fastest, built into CPU core</li>
+                <li><strong>L2 Cache</strong> — Larger (256 KB–1 MB per core), slightly slower, on-die</li>
+                <li><strong>L3 Cache</strong> — Shared among all cores (4-64 MB), slowest of the three</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">🎯</div>
+            <h3>Cache Hit vs Miss</h3>
+            <p><strong>Cache Hit</strong> — Requested data IS found in cache → fast access.<br>
+               <strong>Cache Miss</strong> — Data NOT found → must fetch from slower RAM.<br>
+               <strong>Hit Ratio</strong> = Hits / (Hits + Misses). Modern CPUs aim for >95% hit ratio.</p>
+        </div>
+    </div>
+    <div class="example-block">
+        <h4>💡 Real-World Analogy</h4>
+        <p>Think of cache like a <strong>desk</strong> vs a <strong>bookshelf</strong> vs a <strong>library</strong>. You keep the book you're currently reading (L1) on your desk. Recently used books (L2) sit on a nearby shelf. Older references (L3) go to the bookshelf. The library (RAM) has everything but takes much longer to access.</p>
+    </div>
+    <div class="diagram-flow" style="margin-top: 16px;">
+        <div class="diagram-box"><strong>CPU</strong><br><small>needs data</small></div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-box" style="border-color: var(--accent-1);"><strong>L1 Cache</strong><br><small>~1 ns</small></div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-box" style="border-color: var(--accent-2);"><strong>L2 Cache</strong><br><small>~4 ns</small></div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-box" style="border-color: var(--accent-4);"><strong>L3 Cache</strong><br><small>~10 ns</small></div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-box" style="border-color: var(--accent-5);"><strong>RAM</strong><br><small>~100 ns</small></div>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 11 — Secondary Memory ═══════ -->
+<div class="slide" id="slide-10">
+    <h2 class="slide-title">10. Secondary Memory (Auxiliary Storage)</h2>
+    <p class="slide-subtitle">Non-volatile, large-capacity storage for permanent data retention.</p>
+    <div class="content-grid">
+        <div class="card">
+            <div class="card-icon">💿</div>
+            <h3>Hard Disk Drive (HDD)</h3>
+            <p>Uses <strong>magnetic storage</strong> on spinning platters. Read/write heads float on an air cushion. Measured in RPM (5400/7200/10000). Capacity: typically 500 GB – 20 TB. Cheaper per GB but slower and has moving parts (prone to physical damage).</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Solid State Drive (SSD)</h3>
+            <p>Uses <strong>flash memory</strong> (NAND chips) — no moving parts. 5–10× faster than HDD. Types: <strong>SATA SSD</strong> (~550 MB/s), <strong>NVMe SSD</strong> (~3500-7000 MB/s via PCIe). More durable, shock-resistant. Higher cost per GB.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">💾</div>
+            <h3>Removable Media</h3>
+            <ul>
+                <li><strong>USB Flash Drive (Pen Drive)</strong> — Portable, 4 GB – 2 TB</li>
+                <li><strong>SD Card</strong> — Used in cameras, phones</li>
+                <li><strong>Optical Discs</strong> — CD (700 MB), DVD (4.7/8.5 GB), Blu-ray (25-128 GB)</li>
+                <li><strong>Magnetic Tape</strong> — Sequential access, used for enterprise backups (up to 45 TB per cartridge)</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">☁️</div>
+            <h3>Cloud Storage</h3>
+            <p>Data stored on remote servers accessed via the internet. Examples: <strong>Google Drive, AWS S3, Dropbox</strong>. Advantages: accessible anywhere, scalable, auto-backup. Concerns: internet dependency, privacy, ongoing cost.</p>
+        </div>
+    </div>
+    <div class="example-block">
+        <h4>💡 HDD vs SSD — Boot Time Comparison</h4>
+        <p>A Windows PC with HDD boots in ~45–90 seconds. The same PC with an NVMe SSD boots in ~8–15 seconds. SSDs excel at random read/write (4K) operations, making the entire OS feel snappier.</p>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 12 — Units of Memory ═══════ -->
+<div class="slide" id="slide-11">
+    <h2 class="slide-title">11. Units of Memory</h2>
+    <p class="slide-subtitle">Understanding how data is measured — from bits to petabytes.</p>
+    <div class="card" style="margin-bottom:20px;">
+        <h3>📐 Complete Conversion Table</h3>
+        <table class="styled-table">
+            <tr><th>Unit</th><th>Symbol</th><th>Equivalent</th><th>Approx. Size</th></tr>
+            <tr><td>Bit</td><td>b</td><td>0 or 1 (smallest)</td><td>A single binary digit</td></tr>
+            <tr><td>Nibble</td><td>—</td><td>4 bits</td><td>One hex digit (0–F)</td></tr>
+            <tr><td>Byte</td><td>B</td><td>8 bits</td><td>One character (e.g., 'A')</td></tr>
+            <tr><td>Kilobyte</td><td>KB</td><td>1024 Bytes</td><td>A short email (~2-5 KB)</td></tr>
+            <tr><td>Megabyte</td><td>MB</td><td>1024 KB ≈ 10⁶ B</td><td>An MP3 song (~3-5 MB)</td></tr>
+            <tr><td>Gigabyte</td><td>GB</td><td>1024 MB ≈ 10⁹ B</td><td>A movie (~1.5-4 GB)</td></tr>
+            <tr><td>Terabyte</td><td>TB</td><td>1024 GB ≈ 10¹² B</td><td>~500 hrs of HD video</td></tr>
+            <tr><td>Petabyte</td><td>PB</td><td>1024 TB ≈ 10¹⁵ B</td><td>All US academic libraries ≈ 2 PB</td></tr>
+        </table>
+    </div>
+    <div class="two-col">
+        <div class="card">
+            <h3>🔢 Binary vs Decimal</h3>
+            <p><strong>Binary (IEC):</strong> 1 KiB = 2¹⁰ = 1024 bytes (used by OS)</p>
+            <p><strong>Decimal (SI):</strong> 1 kB = 10³ = 1000 bytes (used by manufacturers)</p>
+            <p style="margin-top:8px;">This is why a "500 GB" HDD shows as ~465 GB in Windows: 500,000,000,000 ÷ 1024³ ≈ 465 GiB.</p>
+        </div>
+        <div class="example-block">
+            <h4>💡 Quick Calculation Example</h4>
+            <p><strong>Q:</strong> How many bits in 2 KB?</p>
+            <p><strong>A:</strong> 2 KB = 2 × 1024 Bytes = 2048 Bytes</p>
+            <p>2048 × 8 bits = <code>16,384 bits</code></p>
+            <p style="margin-top:8px;"><strong>Q:</strong> Convert 5 GB to MB</p>
+            <p><strong>A:</strong> 5 × 1024 = <code>5120 MB</code></p>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 13 — Summary ═══════ -->
+<div class="slide" id="slide-12">
+    <h2 class="slide-title">📝 Summary — Key Takeaways</h2>
+    <p class="slide-subtitle">Quick revision of all major concepts covered.</p>
+    <div class="content-grid">
+        <div class="card"><h3>🖥️ Computer System</h3><p>An electronic device following the IPO cycle. Characteristics: speed, accuracy, diligence, versatility, storage, automation.</p></div>
+        <div class="card"><h3>🔩 Hardware</h3><p>Tangible components: Input, Output, CPU, Memory, Motherboard. Without hardware, software cannot function.</p></div>
+        <div class="card"><h3>📦 Software</h3><p>Intangible programs: System software (OS, drivers) and Application software (Word, Chrome). Interdependent with hardware.</p></div>
+        <div class="card"><h3>⌨️ Input / 🖥️ Output</h3><p>Input: Keyboard, Mouse, Scanner, Mic. Output: Monitor, Printer, Speaker. Some devices are dual (touchscreen).</p></div>
+        <div class="card"><h3>🧠 CPU</h3><p>Brain of the computer — ALU (arithmetic/logic), CU (control/coordination), Registers (ultra-fast storage). Fetch-Decode-Execute cycle.</p></div>
+        <div class="card"><h3>💾 Memory</h3><p>Hierarchy: Registers → Cache (L1/L2/L3) → RAM → SSD/HDD. Trade-off between speed, size, and cost. Volatile vs Non-volatile.</p></div>
+    </div>
+    <div class="example-block" style="margin-top:10px;">
+        <h4>🔑 Master Formula</h4>
+        <p><code>1 Byte = 8 bits</code> → <code>1 KB = 1024 B</code> → <code>1 MB = 1024 KB</code> → <code>1 GB = 1024 MB</code> → <code>1 TB = 1024 GB</code> → <code>1 PB = 1024 TB</code></p>
+    </div>
+</div>
+
+<!-- ═══════ SLIDE 14 — Quiz ═══════ -->
+<div class="slide" id="slide-13" style="padding-bottom:80px;">
+    <div class="quiz-header">
+        <h2 class="slide-title">🧪 Interactive Quiz</h2>
+        <p class="slide-subtitle">Test your knowledge — 15 questions covering all topics.</p>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+        <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+    </div>
+    <div id="quizContainer"></div>
+    <div id="quizResults" class="quiz-results" style="display:none;"></div>
+</div>
+
+</div><!-- end slideshow -->
+
+<!-- ═══ Navigation ═══ -->
+<nav id="navBar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <span id="slideCounter">1 / 14</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</nav>
+
+<script src="quiz.js"></script>
+<script src="slides.js"></script>
+</body>
+</html>

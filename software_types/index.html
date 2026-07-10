@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of Software — Graduation Level Slides</title>
+    <meta name="description"
+        content="Comprehensive graduation-level interactive slides on Types of Software: System Software, Application Software, and Programming Tools.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- ═══════ SLIDE 1 — Title ═══════ -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science — Graduation Level</div>
+            <h1 class="slide-title">Types of Software</h1>
+            <p class="slide-subtitle">An in-depth study of System Software, Application Software, and Programming Tools
+                (Translators, Compilers, Interpreters) with interactive examples and quiz.</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- ═══════ SLIDE 2 — Introduction ═══════ -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. What is Software?</h2>
+            <p class="slide-subtitle">A quick recap and categorization of computer software.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Definition</h3>
+                    <p>Software is a set of <span class="key-term">instructions, programs, and procedures</span> that
+                        govern the operation of a computer system. It bridges the gap between hardware and the end-user.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🗂️</div>
+                    <h3>Broad Categories</h3>
+                    <ul>
+                        <li><strong>System Software:</strong> Manages hardware and runs the computer (e.g., OS).</li>
+                        <li><strong>Application Software:</strong> Performs specific tasks for the user (e.g., MS Word).
+                        </li>
+                        <li><strong>Programming Tools:</strong> Used by developers to write and translate code.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="diagram-flow" style="margin-top: 30px;">
+                <div class="diagram-box">
+                    <div class="card-icon">👤</div><strong>User</strong>
+                </div>
+                <span class="diagram-arrow">↔</span>
+                <div class="diagram-box" style="border-color: var(--accent-1);"><strong>Application Software</strong>
+                </div>
+                <span class="diagram-arrow">↔</span>
+                <div class="diagram-box" style="border-color: var(--accent-3);"><strong>System Software</strong></div>
+                <span class="diagram-arrow">↔</span>
+                <div class="diagram-box">
+                    <div class="card-icon">💻</div><strong>Hardware</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 3 — System Software Overview ═══════ -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">2. System Software</h2>
+            <p class="slide-subtitle">The backbone of the computer that manages resources and provides a platform.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Purpose and Functionality</h3>
+                    <p>System software acts as an <span class="key-term">interface</span> between the hardware
+                        components and the user/application software. Its primary functions include:</p>
+                    <ul style="margin-top:12px;">
+                        <li>Handling input and output operations.</li>
+                        <li>Managing memory and storage.</li>
+                        <li>Providing a secure and stable environment for applications.</li>
+                        <li>Scheduling tasks and CPU execution.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Categories of System Software</h3>
+                    <ul class="highlight-list">
+                        <li><strong>Operating Systems (OS)</strong> — The master controller (Windows, Linux, macOS).
+                        </li>
+                        <li><strong>System Utilities</strong> — Housekeeping and maintenance tools.</li>
+                        <li><strong>Device Drivers</strong> — Translators for specific hardware peripherals.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 4 — Operating Systems ═══════ -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">2.1 Operating Systems (OS)</h2>
+            <p class="slide-subtitle">The most critical piece of system software.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">🎛️</div>
+                    <h3>What is an OS?</h3>
+                    <p>An Operating System is the master control program that manages computer hardware and software
+                        resources. Without an OS, a computer is essentially useless.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>Core Functions</h3>
+                    <ul>
+                        <li><strong>Process Management:</strong> Allocating CPU time to different programs.</li>
+                        <li><strong>Memory Management:</strong> Managing RAM space.</li>
+                        <li><strong>File Management:</strong> Organizing data into directories.</li>
+                        <li><strong>I/O Management:</strong> Handling peripheral devices.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Examples</h3>
+                    <ul>
+                        <li><strong>Desktop/Laptop:</strong> Microsoft Windows, macOS, Linux (Ubuntu, Fedora).</li>
+                        <li><strong>Mobile:</strong> Android, iOS.</li>
+                        <li><strong>Servers:</strong> Windows Server, Red Hat Enterprise Linux.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 5 — System Utilities ═══════ -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">2.2 System Utilities</h2>
+            <p class="slide-subtitle">Tools designed to help analyze, configure, optimize, or maintain a computer.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">🧹</div>
+                    <h3>Disk Utilities</h3>
+                    <p><strong>Disk Defragmenter:</strong> Rearranges fragmented files on an HDD for faster access.<br>
+                        <strong>Disk Cleanup:</strong> Removes temporary/unnecessary files to free space.<br>
+                        <strong>Disk Formatter:</strong> Prepares a storage medium for initial use.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Security & Maintenance</h3>
+                    <p><strong>Antivirus/Anti-malware:</strong> Scans for and removes malicious software.<br>
+                        <strong>Firewall:</strong> Monitors and controls incoming/outgoing network traffic.<br>
+                        <strong>Backup Utilities:</strong> Creates copies of data for recovery purposes.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🗜️</div>
+                    <h3>File Compression</h3>
+                    <p>Tools like <strong>WinRAR, 7-Zip, or gzip</strong> that reduce the size of files to save disk
+                        space and make network transfer faster.</p>
+                </div>
+            </div>
+            <div class="example-block">
+                <h4>💡 Note on Availability</h4>
+                <p>Many system utilities come pre-installed with the Operating System, but third-party utilities are
+                    also widely used for advanced features (e.g., Norton Antivirus, CCleaner).</p>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 6 — Device Drivers ═══════ -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">2.3 Device Drivers</h2>
+            <p class="slide-subtitle">The software interface for hardware devices.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>How They Work</h3>
+                    <p>A device driver is a specialized, low-level program that <span class="key-term">translates</span>
+                        generalized commands from the OS into the specific instructions required by a piece of hardware.
+                    </p>
+                    <p style="margin-top: 10px;">If you install a new graphics card or a specialized printer, the OS
+                        will not know how to fully utilize it until the proper driver is installed.</p>
+                </div>
+                <div class="card">
+                    <h3>Plug and Play (PnP)</h3>
+                    <p>Modern operating systems include a vast library of generic drivers and support <strong>Plug and
+                            Play</strong>. When you plug in a standard USB mouse, the OS automatically detects it and
+                        loads the necessary generic driver, allowing it to work instantly without manual installation.
+                    </p>
+                </div>
+            </div>
+            <div class="diagram-flow" style="margin-top: 20px;">
+                <div class="diagram-box"><strong>Application</strong><br><small>(e.g., Chrome)</small></div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-box"><strong>Operating System</strong><br><small>(Print Command)</small></div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-box" style="border-color: var(--accent-1);"><strong>Device
+                        Driver</strong><br><small>(Translates to hardware signals)</small></div>
+                <span class="diagram-arrow">→</span>
+                <div class="diagram-box"><strong>Hardware</strong><br><small>(Printer)</small></div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 7 — Application Software ═══════ -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">3. Application Software</h2>
+            <p class="slide-subtitle">Programs developed to perform specific tasks for end-users.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">📱</div>
+                    <h3>General Purpose</h3>
+                    <p>Also known as "off-the-shelf" software. Designed to fulfill common needs for a broad audience.
+                        Examples:</p>
+                    <ul>
+                        <li><strong>Word Processors:</strong> MS Word, Google Docs</li>
+                        <li><strong>Spreadsheets:</strong> MS Excel</li>
+                        <li><strong>Web Browsers:</strong> Chrome, Firefox</li>
+                        <li><strong>Media Players:</strong> VLC</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Specific Purpose</h3>
+                    <p>Designed for specialized tasks or professional use cases, but still mass-produced. Examples:</p>
+                    <ul>
+                        <li><strong>Accounting:</strong> Tally, QuickBooks</li>
+                        <li><strong>Design:</strong> AutoCAD, Adobe Photoshop</li>
+                        <li><strong>Video Editing:</strong> Premiere Pro</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛠️</div>
+                    <h3>Custom / Bespoke Software</h3>
+                    <p>Software developed exclusively for a specific organization or business to meet their precise
+                        requirements.</p>
+                    <ul>
+                        <li>Banking management systems</li>
+                        <li>Railway/Flight reservation systems</li>
+                        <li>University ERP systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 8 — Programming Tools ═══════ -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">4. Programming Tools</h2>
+            <p class="slide-subtitle">Software used by developers to create, debug, and maintain other software.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Language Translators</h3>
+                    <p>CPUs only understand <strong>Machine Language (Binary: 0s and 1s)</strong>. However, programmers
+                        write code in High-Level Languages (Python, Java, C++) or Assembly Language for readability and
+                        productivity.</p>
+                    <p style="margin-top:10px;"><span class="key-term">Translators</span> are specialized system
+                        software that convert human-readable source code into machine-executable object code.</p>
+                </div>
+                <div class="card">
+                    <h3>Types of Translators</h3>
+                    <ul class="highlight-list">
+                        <li><strong>Assembler:</strong> Converts Assembly Language to Machine Code.</li>
+                        <li><strong>Compiler:</strong> Converts High-Level Language to Machine Code (whole program at
+                            once).</li>
+                        <li><strong>Interpreter:</strong> Converts High-Level Language to Machine Code (line by line).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 9 — Assembler ═══════ -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">4.1 Assembler</h2>
+            <p class="slide-subtitle">Translating low-level mnemonics into machine code.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>What is Assembly Language?</h3>
+                    <p>A low-level programming language where machine instructions are represented by
+                        <strong>mnemonics</strong> (e.g., ADD, SUB, MOV) instead of binary codes. It is highly
+                        hardware-dependent.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <h3>The Role of the Assembler</h3>
+                    <p>The assembler program takes an Assembly Language file (source code) and translates those
+                        mnemonics directly into binary <strong>Object Code / Machine Code</strong>.</p>
+                </div>
+            </div>
+            <div class="example-block">
+                <h4>💡 Example Translation</h4>
+                <p><strong>Assembly Code:</strong> <code>ADD A, B</code></p>
+                <p><strong>Assembler translates to:</strong> <code>1000 0110 1101</code> (Machine Code)</p>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 10 — Compiler vs Interpreter ═══════ -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">4.2 Compiler vs Interpreter</h2>
+            <p class="slide-subtitle">Two approaches to translating High-Level Languages.</p>
+
+            <div class="two-col" style="margin-bottom: 20px;">
+                <div class="card">
+                    <h3>📦 Compiler</h3>
+                    <p>Scans the <strong>entire source code at once</strong> and translates it into a separate machine
+                        code file (executable). It produces an object code.</p>
+                    <ul>
+                        <li><strong>Speed:</strong> Execution is fast (already translated).</li>
+                        <li><strong>Debugging:</strong> Errors are reported all at once at the end; harder to debug.
+                        </li>
+                        <li><strong>Examples:</strong> C, C++, Go.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📜 Interpreter</h3>
+                    <p>Translates the source code <strong>line by line</strong> while the program is running. Does not
+                        produce a separate executable file.</p>
+                    <ul>
+                        <li><strong>Speed:</strong> Execution is slower (translated on the fly).</li>
+                        <li><strong>Debugging:</strong> Stops at the first error; much easier to debug.</li>
+                        <li><strong>Examples:</strong> Python, JavaScript, Ruby.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 11 — Translation Summary Table ═══════ -->
+        <div class="slide" id="slide-10">
+            <h2 class="slide-title">Comparing Translators</h2>
+            <div class="card">
+                <table class="styled-table">
+                    <tr>
+                        <th>Feature</th>
+                        <th>Assembler</th>
+                        <th>Compiler</th>
+                        <th>Interpreter</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Source Code Level</strong></td>
+                        <td>Low-Level (Assembly)</td>
+                        <td>High-Level (C, C++)</td>
+                        <td>High-Level (Python, JS)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Translation Method</strong></td>
+                        <td>Mnemonic to Binary directly</td>
+                        <td>Whole program at once</td>
+                        <td>Line by line</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Output File Produced?</strong></td>
+                        <td>Yes (Object/Executable)</td>
+                        <td>Yes (Object/Executable)</td>
+                        <td>No separate executable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Execution Speed</strong></td>
+                        <td>Very Fast</td>
+                        <td>Fast</td>
+                        <td>Relatively Slower</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Error Reporting</strong></td>
+                        <td>Syntax errors</td>
+                        <td>All errors after complete scan</td>
+                        <td>Stops at first error encountered</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 12 — Summary ═══════ -->
+        <div class="slide" id="slide-11">
+            <h2 class="slide-title">📝 Summary</h2>
+            <p class="slide-subtitle">Quick revision of all major concepts covered.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>⚙️ System Software</h3>
+                    <p>Manages hardware and platform. Includes <strong>OS</strong> (resource manager),
+                        <strong>Utilities</strong> (maintenance), and <strong>Drivers</strong> (hardware translators).
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>📱 Application Software</h3>
+                    <p>Used for specific user tasks. Can be <strong>General Purpose</strong> (Word/Excel),
+                        <strong>Specific Purpose</strong> (Tally), or <strong>Customized</strong> (ERP systems).</p>
+                </div>
+                <div class="card">
+                    <h3>🛠️ Modularity</h3>
+                    <p>Software is layered: Hardware ↔ Device Drivers ↔ OS ↔ Application Software ↔ User.</p>
+                </div>
+                <div class="card">
+                    <h3>🔄 Language Translators</h3>
+                    <p>Convert human-readable code to machine code. <strong>Assembler</strong> (low-level),
+                        <strong>Compiler</strong> (high-level, whole program), <strong>Interpreter</strong> (high-level,
+                        line-by-line).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 13 — Quiz ═══════ -->
+        <div class="slide" id="slide-12" style="padding-bottom:80px;">
+            <div class="quiz-header">
+                <h2 class="slide-title">🧪 Interactive Quiz</h2>
+                <p class="slide-subtitle">Test your knowledge — 15 questions covering software types.</p>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                </div>
+                <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+            </div>
+            <div id="quizContainer"></div>
+            <div id="quizResults" class="quiz-results" style="display:none;"></div>
+        </div>
+
+    </div>
+
+    <!-- ═══ Navigation ═══ -->
+    <nav id="navBar">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <span id="slideCounter">1 / 13</span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </nav>
+
+    <script src="quiz.js"></script>
+    <script src="slides.js"></script>
+</body>
+
+</html>
