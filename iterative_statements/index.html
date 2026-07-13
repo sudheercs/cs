@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterative Statements — CBSE CS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .code-block {
+            background: #0a0e1a;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+            text-align: left;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .function {
+            color: #61afef;
+        }
+
+        .number {
+            color: #d19a66;
+        }
+
+        .operator {
+            color: #56b6c2;
+            font-weight: bold;
+        }
+
+        .flowchart-diamond {
+            display: inline-block;
+            padding: 14px 20px;
+            border: 2px solid var(--warning);
+            border-radius: 6px;
+            background: rgba(229, 192, 123, 0.08);
+            color: var(--warning);
+            font-family: monospace;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .flowchart-rect {
+            display: inline-block;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-1);
+            border-radius: 6px;
+            background: rgba(97, 175, 239, 0.08);
+            color: var(--accent-1);
+            font-family: monospace;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .flowchart-oval {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 2px solid var(--success);
+            border-radius: 50px;
+            background: rgba(80, 200, 120, 0.08);
+            color: var(--success);
+            font-family: monospace;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            margin: 0 8px;
+        }
+
+        .output-box {
+            background: #111827;
+            border: 1px dashed var(--success);
+            border-radius: 6px;
+            padding: 12px 18px;
+            font-family: monospace;
+            color: var(--success);
+            margin-top: 10px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1 -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science</div>
+            <h1 class="slide-title">Iterative Statements</h1>
+            <p class="slide-subtitle">for · range() · while · break · continue · Nested Loops · Programs</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. What is Iteration?</h2>
+            <div class="card">
+                <p><strong>Iteration</strong> (Looping) is executing a block of statements repeatedly until a condition
+                    is met or a sequence is exhausted.</p>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card" style="border-top:4px solid var(--accent-1);">
+                    <h3>for Loop</h3>
+                    <p><strong>Definite iteration.</strong> Repeats a known number of times (driven by a sequence or
+                        range).</p>
+                </div>
+                <div class="card" style="border-top:4px solid var(--warning);">
+                    <h3>while Loop</h3>
+                    <p><strong>Indefinite iteration.</strong> Repeats as long as a Boolean condition remains True.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ SECTION: FOR LOOP ═══════════ -->
+        <div class="slide" id="slide-2">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(97,175,239,0.5);">The
+                    'for' Loop</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Definite Iteration over
+                    Sequences.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">2. for Loop — Syntax & Flowchart</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Syntax</h3>
+                    <div class="code-block" style="padding:15px; margin-top:10px;">
+                        <span class="keyword">for</span> &lt;variable&gt; <span class="keyword">in</span>
+                        &lt;sequence&gt;:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;body_statement(s)
+                    </div>
+                    <p style="margin-top:10px; font-size:0.9rem;">The loop variable takes on each element of the
+                        sequence, one at a time. After the last element, the loop terminates.</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <h3>Flowchart</h3>
+                    <div style="margin-top:15px;">
+                        <div class="flowchart-oval">START</div><br>
+                        <span class="flow-arrow">↓</span><br>
+                        <div class="flowchart-diamond">More items?</div><br>
+                        <span style="color:var(--success);">Yes ↓</span>
+                        <span style="color:var(--danger); margin-left:40px;">No → EXIT</span><br>
+                        <div class="flowchart-rect">Get next item<br>Execute body</div><br>
+                        <span class="flow-arrow">↑ ←←←←←←←</span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">3. Iterating Over a String</h2>
+            <div class="two-col">
+                <div class="code-block">
+                    word = <span class="string">"HELLO"</span><br>
+                    <br>
+                    <span class="keyword">for</span> ch <span class="keyword">in</span> word:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(ch, end=<span class="string">" "</span>)
+                </div>
+                <div class="card">
+                    <h4>Trace:</h4>
+                    <table class="styled-table" style="width:100%; text-align:center; margin-top:5px;">
+                        <tr>
+                            <th>Cycle</th>
+                            <th>ch =</th>
+                            <th>Prints</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>'H'</td>
+                            <td>H</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>'E'</td>
+                            <td>E</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>'L'</td>
+                            <td>L</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>'L'</td>
+                            <td>L</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>'O'</td>
+                            <td>O</td>
+                        </tr>
+                    </table>
+                    <div class="output-box">H E L L O</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">4. Iterating Over a List</h2>
+            <div class="two-col">
+                <div class="code-block">
+                    fruits = [<span class="string">"Apple"</span>, <span class="string">"Mango"</span>, <span
+                        class="string">"Banana"</span>]<br>
+                    <br>
+                    <span class="keyword">for</span> f <span class="keyword">in</span> fruits:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"I love
+                        {f}"</span>)
+                </div>
+                <div class="card">
+                    <div class="output-box">I love Apple
+                        I love Mango
+                        I love Banana</div>
+                    <p style="margin-top:10px; font-size:0.9rem;">The loop variable <code>f</code> becomes each list
+                        element in order.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ SECTION: RANGE ═══════════ -->
+        <div class="slide" id="slide-6">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-2); text-shadow: 0 0 20px rgba(99,102,241,0.5);">The
+                    range() Function</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Generating numeric
+                    sequences on the fly.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">5. range() — Three Forms</h2>
+            <div class="card">
+                <table class="styled-table" style="width:100%; text-align:left;">
+                    <tr>
+                        <th>Form</th>
+                        <th>Generates</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>range(stop)</code></td>
+                        <td>0, 1, 2, … , stop−1</td>
+                        <td><code>range(5)</code> → 0,1,2,3,4</td>
+                    </tr>
+                    <tr>
+                        <td><code>range(start, stop)</code></td>
+                        <td>start, start+1, … , stop−1</td>
+                        <td><code>range(3,7)</code> → 3,4,5,6</td>
+                    </tr>
+                    <tr>
+                        <td><code>range(start, stop, step)</code></td>
+                        <td>start, start+step, … , &lt;stop</td>
+                        <td><code>range(2,11,3)</code> → 2,5,8</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card" style="margin-top:15px; border-left:4px solid var(--danger);">
+                <p><strong>Critical Rule:</strong> The <code>stop</code> value is <strong>always excluded</strong>.
+                    <code>range(5)</code> goes up to 4, never 5.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 9 -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">6. range() — Counting Backwards</h2>
+            <div class="two-col">
+                <div class="code-block">
+                    <span class="comment"># Negative step counts DOWN</span><br>
+                    <span class="keyword">for</span> i <span class="keyword">in</span> <span
+                        class="function">range</span>(<span class="number">10</span>, <span class="number">0</span>,
+                    <span class="number">-1</span>):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(i, end=<span class="string">" "</span>)
+                </div>
+                <div class="card">
+                    <div class="output-box">10 9 8 7 6 5 4 3 2 1</div>
+                    <p style="margin-top:10px; font-size:0.9rem;">Start at 10, step by −1, stop before 0.</p>
+                </div>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                <span class="comment"># Printing only even numbers between 2 and 20</span><br>
+                <span class="keyword">for</span> i <span class="keyword">in</span> <span
+                    class="function">range</span>(<span class="number">2</span>, <span class="number">21</span>, <span
+                    class="number">2</span>):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(i, end=<span class="string">" "</span>)
+            </div>
+            <div class="output-box">2 4 6 8 10 12 14 16 18 20</div>
+        </div>
+
+        <!-- ═══════════ SECTION: WHILE LOOP ═══════════ -->
+        <div class="slide" id="slide-9">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--warning); text-shadow: 0 0 20px rgba(229,192,123,0.5);">The
+                    'while' Loop</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Indefinite Iteration.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 11 -->
+        <div class="slide" id="slide-10">
+            <h2 class="slide-title">7. while Loop — Syntax & Flowchart</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Syntax</h3>
+                    <div class="code-block" style="padding:15px; margin-top:10px;">
+                        <span class="keyword">while</span> &lt;condition&gt;:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;body_statement(s)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Must update state!</span>
+                    </div>
+                    <p style="margin-top:10px; font-size:0.9rem;">If the condition is True, the body executes. After
+                        each cycle, the condition is re-checked. Loop ends when condition becomes False.</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <h3>Flowchart</h3>
+                    <div style="margin-top:15px;">
+                        <div class="flowchart-oval">START</div><br>
+                        <span class="flow-arrow">↓</span><br>
+                        <div class="flowchart-diamond">condition True?</div><br>
+                        <span style="color:var(--success);">Yes ↓</span>
+                        <span style="color:var(--danger); margin-left:40px;">No → EXIT</span><br>
+                        <div class="flowchart-rect">Execute body<br>Update state</div><br>
+                        <span class="flow-arrow">↑ ←←←←←←←</span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12 -->
+        <div class="slide" id="slide-11">
+            <h2 class="slide-title">8. while Example: Countdown Timer</h2>
+            <div class="two-col">
+                <div class="code-block">
+                    count = <span class="number">5</span><br>
+                    <br>
+                    <span class="keyword">while</span> count > <span class="number">0</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(count)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;count -= <span class="number">1</span> <span class="comment"># state
+                        update!</span><br>
+                    <br>
+                    <span class="function">print</span>(<span class="string">"🚀 Liftoff!"</span>)
+                </div>
+                <div class="card">
+                    <h4>Trace:</h4>
+                    <table class="styled-table" style="width:100%; text-align:center; margin-top:5px;">
+                        <tr>
+                            <th>Cycle</th>
+                            <th>count</th>
+                            <th>count > 0?</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>5</td>
+                            <td style="color:var(--success);">True</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>4</td>
+                            <td style="color:var(--success);">True</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3</td>
+                            <td style="color:var(--success);">True</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>2</td>
+                            <td style="color:var(--success);">True</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>1</td>
+                            <td style="color:var(--success);">True</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>0</td>
+                            <td style="color:var(--danger);">False → EXIT</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13 -->
+        <div class="slide" id="slide-12">
+            <h2 class="slide-title">9. while Example: Sum Until Sentinel</h2>
+            <div class="card">
+                <p>A <strong>sentinel value</strong> is a special input that signals the loop to stop (e.g., entering −1
+                    to quit).</p>
+            </div>
+            <div class="code-block" style="margin-top:15px;">
+                total = <span class="number">0</span><br>
+                num = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter
+                    a number (-1 to stop): "</span>))<br>
+                <br>
+                <span class="keyword">while</span> num != <span class="number">-1</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;total += num<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;num = <span class="function">int</span>(<span
+                    class="function">input</span>(<span class="string">"Enter next number (-1 to stop): "</span>))<br>
+                <br>
+                <span class="function">print</span>(f<span class="string">"Total sum = {total}"</span>)
+            </div>
+        </div>
+<!-- ═══════════ SECTION: BREAK & CONTINUE ═══════════ -->
+<div class="slide" id="slide-13">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--danger); text-shadow: 0 0 20px rgba(224,108,117,0.5);">break &
+            continue</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Transfer Statements inside loops.
+        </p>
+    </div>
+</div>
+
+<!-- SLIDE 15 -->
+<div class="slide" id="slide-14">
+    <h2 class="slide-title">10. break — Emergency Exit</h2>
+    <div class="two-col">
+        <div class="card" style="border-top:4px solid var(--danger);">
+            <h3>What it does</h3>
+            <p><code>break</code> immediately terminates the innermost loop it is inside, regardless of the loop's
+                condition or remaining iterations.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+            <h3>Flowchart</h3>
+            <div style="margin-top:10px;">
+                <div class="flowchart-diamond">condition?</div><br>
+                <span style="color:var(--success);">Yes ↓</span><br>
+                <div class="flowchart-diamond" style="border-color:var(--danger); color:var(--danger);">break hit?</div>
+                <br>
+                <span style="color:var(--danger);">Yes → EXIT LOOP</span><br>
+                <span style="color:var(--success);">No ↓</span><br>
+                <div class="flowchart-rect">Continue body</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 16 -->
+<div class="slide" id="slide-15">
+    <h2 class="slide-title">11. break — Example: Search & Stop</h2>
+    <div class="two-col">
+        <div class="code-block">
+            numbers = [<span class="number">4</span>, <span class="number">7</span>, <span class="number">2</span>,
+            <span class="number">9</span>, <span class="number">1</span>, <span class="number">6</span>]<br>
+            target = <span class="number">9</span><br>
+            <br>
+            <span class="keyword">for</span> n <span class="keyword">in</span> numbers:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> n == target:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span
+                class="string">"Found {target}!"</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">break</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"Checking {n}..."</span>)
+        </div>
+        <div class="card">
+            <div class="output-box">Checking 4...
+                Checking 7...
+                Checking 2...
+                Found 9!</div>
+            <p style="margin-top:10px; font-size:0.9rem;">Once 9 is found, the loop dies instantly. Numbers 1 and 6 are
+                never checked.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 17 -->
+<div class="slide" id="slide-16">
+    <h2 class="slide-title">12. continue — Skip This Cycle</h2>
+    <div class="two-col">
+        <div class="card" style="border-top:4px solid var(--accent-2);">
+            <h3>What it does</h3>
+            <p><code>continue</code> skips the remaining code in the current iteration and jumps straight to the next
+                cycle of the loop. The loop itself stays alive.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+            <h3>Flowchart</h3>
+            <div style="margin-top:10px;">
+                <div class="flowchart-diamond">condition?</div><br>
+                <span style="color:var(--success);">Yes ↓</span><br>
+                <div class="flowchart-diamond" style="border-color:var(--accent-2); color:var(--accent-2);">continue
+                    hit?</div><br>
+                <span style="color:var(--accent-2);">Yes → NEXT CYCLE ↑</span><br>
+                <span style="color:var(--success);">No ↓</span><br>
+                <div class="flowchart-rect">Rest of body</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 18 -->
+<div class="slide" id="slide-17">
+    <h2 class="slide-title">13. continue — Example: Skip Negatives</h2>
+    <div class="two-col">
+        <div class="code-block">
+            data = [<span class="number">10</span>, <span class="number">-3</span>, <span class="number">25</span>,
+            <span class="number">-7</span>, <span class="number">40</span>]<br>
+            total = <span class="number">0</span><br>
+            <br>
+            <span class="keyword">for</span> val <span class="keyword">in</span> data:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> val < <span class="number">0</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">continue</span> <span
+                    class="comment"># skip negatives</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;total += val<br>
+                <br>
+                <span class="function">print</span>(f<span class="string">"Sum of positives: {total}"</span>)
+        </div>
+        <div class="card">
+            <div class="output-box">Sum of positives: 75</div>
+            <p style="margin-top:10px; font-size:0.9rem;">−3 and −7 are skipped by continue. Only 10 + 25 + 40 = 75 is
+                totalled.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════ SECTION: NESTED LOOPS ═══════════ -->
+<div class="slide" id="slide-18">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--accent-3); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Nested Loops
+        </h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">A loop inside a loop.</p>
+    </div>
+</div>
+
+<!-- SLIDE 20 -->
+<div class="slide" id="slide-19">
+    <h2 class="slide-title">14. How Nested Loops Work</h2>
+    <div class="card">
+        <p>When you place one loop inside another, the <strong>inner loop runs to completion</strong> for every single
+            iteration of the outer loop.</p>
+        <p style="margin-top:10px;">If the outer loop runs <code>m</code> times and the inner loop runs <code>n</code>
+            times, the body of the inner loop executes <code>m × n</code> times total.</p>
+    </div>
+    <div class="two-col" style="margin-top:20px;">
+        <div class="code-block">
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+                class="number">1</span>, <span class="number">4</span>): <span class="comment"># Outer: 3
+                times</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> j <span class="keyword">in</span> <span
+                class="function">range</span>(<span class="number">1</span>, <span class="number">3</span>): <span
+                class="comment"># Inner: 2 times</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span
+                class="string">"({i},{j})"</span>, end=<span class="string">" "</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>() <span class="comment"># newline after each
+                row</span>
+        </div>
+        <div class="card">
+            <div class="output-box">(1,1) (1,2)
+                (2,1) (2,2)
+                (3,1) (3,2)</div>
+            <p style="margin-top:10px; font-size:0.9rem;">3 × 2 = 6 total prints.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 21 -->
+<div class="slide" id="slide-20">
+    <h2 class="slide-title">15. Nested Loop — Multiplication Table Grid</h2>
+    <div class="code-block" style="font-size:1.05rem;">
+        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+            class="number">1</span>, <span class="number">6</span>): <span class="comment"># rows 1-5</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> j <span class="keyword">in</span> <span
+            class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>): <span
+            class="comment"># columns 1-5</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span
+            class="string">"{i*j:4}"</span>, end=<span class="string">""</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>()
+    </div>
+    <div class="output-box" style="margin-top:15px; font-size:1.1rem;"> 1 2 3 4 5
+        2 4 6 8 10
+        3 6 9 12 15
+        4 8 12 16 20
+        5 10 15 20 25</div>
+</div>
+<!-- ═══════════ SECTION: PROGRAMS ═══════════ -->
+<div class="slide" id="slide-21">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--success); text-shadow: 0 0 20px rgba(80,200,120,0.5);">Solved
+            Programs</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Patterns · Series · Factorial</p>
+    </div>
+</div>
+
+<!-- ═══ PROGRAM 1: STAR PATTERN ═══ -->
+<!-- SLIDE 23 -->
+<div class="slide" id="slide-22">
+    <h2 class="slide-title">16. Program 1: Right-Angled Star Triangle</h2>
+    <div class="card">
+        <h3>Problem</h3>
+        <p>Print a right-angled triangle pattern of <code>*</code> for <code>n</code> rows.</p>
+    </div>
+    <div class="two-col" style="margin-top:15px;">
+        <div class="code-block">
+            n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Rows:
+                "</span>))<br>
+            <br>
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+                class="number">1</span>, n + <span class="number">1</span>):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> j <span class="keyword">in</span> <span
+                class="function">range</span>(i):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"*
+                "</span>, end=<span class="string">""</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>()
+        </div>
+        <div class="card">
+            <h4>Output (n=5):</h4>
+            <div class="output-box" style="font-size:1.2rem; letter-spacing:2px;">*
+                * *
+                * * *
+                * * * *
+                * * * * *</div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 24 -->
+<div class="slide" id="slide-23">
+    <h2 class="slide-title">17. Pattern Trace (n=4)</h2>
+    <div class="card">
+        <table class="styled-table" style="width:100%; text-align:center;">
+            <tr>
+                <th>Outer i</th>
+                <th>Inner range(i)</th>
+                <th>Stars Printed</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>range(1) → [0]</td>
+                <td>*</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>range(2) → [0,1]</td>
+                <td>* *</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>range(3) → [0,1,2]</td>
+                <td>* * *</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>range(4) → [0,1,2,3]</td>
+                <td>* * * *</td>
+            </tr>
+        </table>
+        <p style="margin-top:10px;">The inner loop runs <code>i</code> times per row. Row 1 gets 1 star, Row 4 gets 4
+            stars.</p>
+    </div>
+</div>
+
+<!-- SLIDE 25 -->
+<div class="slide" id="slide-24">
+    <h2 class="slide-title">18. Program 1b: Number Triangle Pattern</h2>
+    <div class="two-col">
+        <div class="code-block">
+            n = <span class="number">5</span><br>
+            <br>
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+                class="number">1</span>, n + <span class="number">1</span>):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> j <span class="keyword">in</span> <span
+                class="function">range</span>(<span class="number">1</span>, i + <span class="number">1</span>):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(j, end=<span
+                class="string">" "</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>()
+        </div>
+        <div class="card">
+            <h4>Output:</h4>
+            <div class="output-box" style="font-size:1.1rem;">1
+                1 2
+                1 2 3
+                1 2 3 4
+                1 2 3 4 5</div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 26 -->
+<div class="slide" id="slide-25">
+    <h2 class="slide-title">19. Program 1c: Inverted Star Triangle</h2>
+    <div class="two-col">
+        <div class="code-block">
+            n = <span class="number">5</span><br>
+            <br>
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(n,
+            <span class="number">0</span>, <span class="number">-1</span>):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> j <span class="keyword">in</span> <span
+                class="function">range</span>(i):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"*
+                "</span>, end=<span class="string">""</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>()
+        </div>
+        <div class="card">
+            <h4>Output:</h4>
+            <div class="output-box" style="font-size:1.1rem;">* * * * *
+                * * * *
+                * * *
+                * *
+                *</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ PROGRAM 2: SUMMATION OF SERIES ═══ -->
+<!-- SLIDE 27 -->
+<div class="slide" id="slide-26">
+    <h2 class="slide-title">20. Program 2: Summation of Series</h2>
+    <div class="card">
+        <h3>Problem A: Sum of first N natural numbers</h3>
+        <p>Calculate 1 + 2 + 3 + … + N using a for loop.</p>
+    </div>
+    <div class="two-col" style="margin-top:15px;">
+        <div class="code-block">
+            n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter N:
+                "</span>))<br>
+            total = <span class="number">0</span><br>
+            <br>
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+                class="number">1</span>, n + <span class="number">1</span>):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;total += i<br>
+            <br>
+            <span class="function">print</span>(f<span class="string">"Sum = {total}"</span>)
+        </div>
+        <div class="card">
+            <h4>Trace (N=5):</h4>
+            <table class="styled-table" style="width:100%; text-align:center; margin-top:5px;">
+                <tr>
+                    <th>i</th>
+                    <th>total</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>0+1 = 1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>1+2 = 3</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3+3 = 6</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>6+4 = 10</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>10+5 = <strong>15</strong></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 28 -->
+<div class="slide" id="slide-27">
+    <h2 class="slide-title">21. Program 2b: Sum of Squares</h2>
+    <div class="card">
+        <h3>Problem B: Calculate 1² + 2² + 3² + … + N²</h3>
+    </div>
+    <div class="two-col" style="margin-top:15px;">
+        <div class="code-block">
+            n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter N:
+                "</span>))<br>
+            total = <span class="number">0</span><br>
+            <br>
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+                class="number">1</span>, n + <span class="number">1</span>):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;total += i ** <span class="number">2</span><br>
+            <br>
+            <span class="function">print</span>(f<span class="string">"Sum of squares = {total}"</span>)
+        </div>
+        <div class="card">
+            <h4>Output (N=4):</h4>
+            <p style="font-family:monospace;">1 + 4 + 9 + 16</p>
+            <div class="output-box">Sum of squares = 30</div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 29 -->
+<div class="slide" id="slide-28">
+    <h2 class="slide-title">22. Program 2c: Harmonic Series</h2>
+    <div class="card">
+        <h3>Problem C: Calculate 1 + 1/2 + 1/3 + … + 1/N</h3>
+    </div>
+    <div class="two-col" style="margin-top:15px;">
+        <div class="code-block">
+            n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter N:
+                "</span>))<br>
+            total = <span class="number">0</span><br>
+            <br>
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+                class="number">1</span>, n + <span class="number">1</span>):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;total += <span class="number">1</span> / i<br>
+            <br>
+            <span class="function">print</span>(f<span class="string">"Harmonic sum = {total:.4f}"</span>)
+        </div>
+        <div class="card">
+            <h4>Output (N=5):</h4>
+            <p style="font-family:monospace;">1 + 0.5 + 0.333 + 0.25 + 0.2</p>
+            <div class="output-box">Harmonic sum = 2.2833</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ PROGRAM 3: FACTORIAL ═══ -->
+<!-- SLIDE 30 -->
+<div class="slide" id="slide-29">
+    <h2 class="slide-title">23. Program 3: Factorial of a Positive Number</h2>
+    <div class="card">
+        <h3>Problem</h3>
+        <p>Find the factorial of a number N. Factorial is defined as <code>N! = N × (N−1) × (N−2) × … × 1</code>. By
+            definition, <code>0! = 1</code>.</p>
+    </div>
+</div>
+
+<!-- SLIDE 31 -->
+<div class="slide" id="slide-30">
+    <h2 class="slide-title">24. Factorial — Code & Trace</h2>
+    <div class="two-col">
+        <div class="code-block">
+            n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter N:
+                "</span>))<br>
+            fact = <span class="number">1</span><br>
+            <br>
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+                class="number">1</span>, n + <span class="number">1</span>):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;fact *= i <span class="comment"># fact = fact * i</span><br>
+            <br>
+            <span class="function">print</span>(f<span class="string">"{n}! = {fact}"</span>)
+        </div>
+        <div class="card">
+            <h4>Trace (N=5):</h4>
+            <table class="styled-table" style="width:100%; text-align:center; margin-top:5px;">
+                <tr>
+                    <th>i</th>
+                    <th>fact = fact * i</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1 × 1 = 1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>1 × 2 = 2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>2 × 3 = 6</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>6 × 4 = 24</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>24 × 5 = <strong>120</strong></td>
+                </tr>
+            </table>
+            <div class="output-box">5! = 120</div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 32 -->
+<div class="slide" id="slide-31">
+    <h2 class="slide-title">25. Factorial — Using while Loop</h2>
+    <div class="card">
+        <p>The same factorial program rewritten with a while loop for comparison.</p>
+    </div>
+    <div class="code-block" style="margin-top:15px; font-size:1.1rem;">
+        n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter N:
+            "</span>))<br>
+        fact = <span class="number">1</span><br>
+        i = <span class="number">1</span><br>
+        <br>
+        <span class="keyword">while</span> i <= n:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;fact *= i<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;i += <span class="number">1</span> <span class="comment"># Don't forget the
+                update!</span><br>
+            <br>
+            <span class="function">print</span>(f<span class="string">"{n}! = {fact}"</span>)
+    </div>
+    <div class="card" style="margin-top:15px; border-left:4px solid var(--warning);">
+        <p><strong>Key Difference:</strong> The <code>while</code> version needs manual initialization
+            (<code>i = 1</code>) and manual update (<code>i += 1</code>), making it more error-prone. The
+            <code>for</code> version handles both automatically via <code>range()</code>.</p>
+    </div>
+</div>
+
+<!-- SLIDE 33 — SUMMARY -->
+<div class="slide" id="slide-32">
+    <h2 class="slide-title">26. Master Summary</h2>
+    <div class="card">
+        <table class="styled-table" style="width:100%; text-align:left;">
+            <tr>
+                <th>Concept</th>
+                <th>Key Point</th>
+            </tr>
+            <tr>
+                <td><code>for</code></td>
+                <td>Iterates over sequences (strings, lists) or range objects. Definite.</td>
+            </tr>
+            <tr>
+                <td><code>range()</code></td>
+                <td>Generates numbers. Stop is exclusive. Supports start, stop, step.</td>
+            </tr>
+            <tr>
+                <td><code>while</code></td>
+                <td>Condition-driven. Must update state inside to avoid infinite loops.</td>
+            </tr>
+            <tr>
+                <td><code>break</code></td>
+                <td>Kills the loop entirely and exits.</td>
+            </tr>
+            <tr>
+                <td><code>continue</code></td>
+                <td>Skips current cycle, jumps to next iteration.</td>
+            </tr>
+            <tr>
+                <td>Nested Loops</td>
+                <td>Inner loop completes fully for each outer iteration. m × n cycles.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- SLIDE 34 — QUIZ -->
+<div class="slide" id="slide-33" style="padding-bottom:80px;">
+    <div class="quiz-header">
+        <h2 class="slide-title">🧪 Iterative Statements Mastery Quiz</h2>
+        <p class="slide-subtitle">10 questions covering loops, patterns, and programs.</p>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+        </div>
+        <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+    </div>
+    <div id="quizContainer"></div>
+    <div id="quizResults" class="quiz-results" style="display:none;"></div>
+</div>
+
+</div>
+
+<!-- ═══ Navigation ═══ -->
+<nav id="navBar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <span id="slideCounter">1 / 34</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</nav>
+
+<script src="quiz.js"></script>
+<script src="slides.js"></script>
+</body>
+
+</html>

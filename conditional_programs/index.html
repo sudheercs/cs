@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Statements & Programs — CBSE CS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .code-block {
+            background: #0a0e1a;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+            text-align: left;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .function {
+            color: #61afef;
+        }
+
+        .number {
+            color: #d19a66;
+        }
+
+        .operator {
+            color: #56b6c2;
+            font-weight: bold;
+        }
+
+        .flowchart-box {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .flowchart-diamond {
+            display: inline-block;
+            padding: 14px 20px;
+            transform: rotate(0deg);
+            border: 2px solid var(--warning);
+            border-radius: 6px;
+            background: rgba(229, 192, 123, 0.08);
+            color: var(--warning);
+            font-family: monospace;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .flowchart-rect {
+            display: inline-block;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-1);
+            border-radius: 6px;
+            background: rgba(97, 175, 239, 0.08);
+            color: var(--accent-1);
+            font-family: monospace;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .flowchart-oval {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 2px solid var(--success);
+            border-radius: 50px;
+            background: rgba(80, 200, 120, 0.08);
+            color: var(--success);
+            font-family: monospace;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            margin: 0 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1 -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science</div>
+            <h1 class="slide-title">Conditional Statements & Programs</h1>
+            <p class="slide-subtitle">if · if-else · if-elif-else · Flowcharts · Solved Programs</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. What is a Conditional Statement?</h2>
+            <div class="card">
+                <p>A <strong>Conditional Statement</strong> allows a program to evaluate a Boolean expression and
+                    execute different blocks of code depending on whether the result is <code>True</code> or
+                    <code>False</code>.</p>
+                <p style="margin-top:10px;">Without conditions, every program would be a boring straight line that does
+                    the exact same thing each time it runs.</p>
+            </div>
+            <div class="content-grid" style="grid-template-columns: repeat(3, 1fr); margin-top:20px;">
+                <div class="card" style="text-align:center; border-top:4px solid var(--success);">
+                    <h3>if</h3>
+                    <p style="font-size:0.9rem;">Single condition check.</p>
+                </div>
+                <div class="card" style="text-align:center; border-top:4px solid var(--warning);">
+                    <h3>if-else</h3>
+                    <p style="font-size:0.9rem;">Two-way decision fork.</p>
+                </div>
+                <div class="card" style="text-align:center; border-top:4px solid var(--accent-1);">
+                    <h3>if-elif-else</h3>
+                    <p style="font-size:0.9rem;">Multi-way decision ladder.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ SECTION: SIMPLE IF ═══════════ -->
+        <div class="slide" id="slide-2">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--success); text-shadow: 0 0 20px rgba(80,200,120,0.5);">The
+                    Simple 'if'</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Execute a block only when
+                    the condition is True.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">2. Syntax & Flowchart: Simple if</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Syntax</h3>
+                    <div class="code-block" style="padding:15px; margin-top:10px;">
+                        <span class="keyword">if</span> &lt;condition&gt;:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;statement_1<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;statement_2<br>
+                        <br>
+                        <span class="comment"># code here runs always</span>
+                    </div>
+                    <p style="margin-top:10px; font-size:0.9rem;">If the condition is <code>False</code>, the indented
+                        block is <strong>entirely skipped</strong> and execution continues below.</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <h3>Flowchart</h3>
+                    <div style="margin-top:20px;">
+                        <div class="flowchart-oval">START</div><br>
+                        <span class="flow-arrow">↓</span><br>
+                        <div class="flowchart-diamond">condition?</div><br>
+                        <span style="color:var(--success);">True ↓</span>
+                        <span style="color:var(--danger); margin-left:40px;">False →</span><br>
+                        <div class="flowchart-rect">Execute Block</div><br>
+                        <span class="flow-arrow">↓</span><br>
+                        <div class="flowchart-oval">END</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">3. Simple if — Example: Checking Age</h2>
+            <div class="code-block" style="font-size:1.15rem;">
+                age = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter
+                    your age: "</span>))<br>
+                <br>
+                <span class="keyword">if</span> age >= <span class="number">18</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"You are eligible to
+                    vote!"</span>)<br>
+                <br>
+                <span class="function">print</span>(<span class="string">"Thank you for visiting."</span>)
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card" style="border-left:4px solid var(--success);">
+                    <h4>If age = 20</h4>
+                    <p style="font-family:monospace;">You are eligible to vote!<br>Thank you for visiting.</p>
+                </div>
+                <div class="card" style="border-left:4px solid var(--danger);">
+                    <h4>If age = 15</h4>
+                    <p style="font-family:monospace;">Thank you for visiting.</p>
+                    <p style="font-size:0.85rem; color:gray;">(The vote message was skipped.)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ SECTION: IF-ELSE ═══════════ -->
+        <div class="slide" id="slide-5">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--warning); text-shadow: 0 0 20px rgba(229,192,123,0.5);">The
+                    'if-else' Fork</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Two paths. Always one is
+                    guaranteed.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">4. Syntax & Flowchart: if-else</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Syntax</h3>
+                    <div class="code-block" style="padding:15px; margin-top:10px;">
+                        <span class="keyword">if</span> &lt;condition&gt;:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;block_A<br>
+                        <span class="keyword">else</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;block_B
+                    </div>
+                    <p style="margin-top:10px; font-size:0.9rem;">Exactly <strong>ONE</strong> of the two blocks will
+                        always execute. There is no scenario where neither nor both execute.</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <h3>Flowchart</h3>
+                    <div style="margin-top:20px;">
+                        <div class="flowchart-oval">START</div><br>
+                        <span class="flow-arrow">↓</span><br>
+                        <div class="flowchart-diamond">condition?</div><br>
+                        <span style="color:var(--success);">True ↓</span>
+                        <span style="margin:0 20px;color:var(--text-muted);">|</span>
+                        <span style="color:var(--danger);">False ↓</span><br>
+                        <div class="flowchart-rect" style="font-size:0.8rem;">Block A</div>
+                        <span style="margin:0 10px;"></span>
+                        <div class="flowchart-rect"
+                            style="font-size:0.8rem; border-color:var(--danger); color:var(--danger);">Block B</div><br>
+                        <span class="flow-arrow">↓</span><br>
+                        <div class="flowchart-oval">END</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">5. if-else — Example: Even or Odd</h2>
+            <div class="code-block" style="font-size:1.15rem;">
+                num = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter
+                    a number: "</span>))<br>
+                <br>
+                <span class="keyword">if</span> num % <span class="number">2</span> == <span
+                    class="number">0</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"{num} is
+                    Even"</span>)<br>
+                <span class="keyword">else</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"{num} is Odd"</span>)
+            </div>
+            <div class="card" style="margin-top:20px; border-left:4px solid var(--accent-3);">
+                <h4>Logic Trace</h4>
+                <p>The modulus operator <code>%</code> returns the remainder. If the remainder is 0 when divided by 2,
+                    the number is perfectly even. Otherwise, it must be odd.</p>
+            </div>
+        </div>
+
+        <!-- ═══════════ SECTION: IF-ELIF-ELSE ═══════════ -->
+        <div class="slide" id="slide-8">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(97,175,239,0.5);">The
+                    'if-elif-else' Ladder</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Multi-way branching.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 10 -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">6. Syntax & Flowchart: if-elif-else</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Syntax</h3>
+                    <div class="code-block" style="padding:15px; margin-top:10px;">
+                        <span class="keyword">if</span> &lt;cond_1&gt;:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;block_A<br>
+                        <span class="keyword">elif</span> &lt;cond_2&gt;:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;block_B<br>
+                        <span class="keyword">elif</span> &lt;cond_3&gt;:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;block_C<br>
+                        <span class="keyword">else</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;block_D
+                    </div>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <h3>Flowchart</h3>
+                    <div style="margin-top:15px;">
+                        <div class="flowchart-diamond" style="font-size:0.75rem;">cond_1?</div>
+                        <span style="color:var(--success); font-size:0.8rem;"> → True → Block A</span><br>
+                        <span style="color:var(--danger); font-size:0.8rem;">False ↓</span><br>
+                        <div class="flowchart-diamond" style="font-size:0.75rem;">cond_2?</div>
+                        <span style="color:var(--success); font-size:0.8rem;"> → True → Block B</span><br>
+                        <span style="color:var(--danger); font-size:0.8rem;">False ↓</span><br>
+                        <div class="flowchart-diamond" style="font-size:0.75rem;">cond_3?</div>
+                        <span style="color:var(--success); font-size:0.8rem;"> → True → Block C</span><br>
+                        <span style="color:var(--danger); font-size:0.8rem;">False ↓</span><br>
+                        <div class="flowchart-rect"
+                            style="font-size:0.75rem; border-color:var(--text-muted); color:var(--text-muted);">else:
+                            Block D</div>
+                    </div>
+                    <p style="font-size:0.8rem; margin-top:8px; color:gray;">Only the FIRST True branch executes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11 -->
+        <div class="slide" id="slide-10">
+            <h2 class="slide-title">7. if-elif-else — Example: BMI Classifier</h2>
+            <div class="code-block" style="font-size:1.05rem;">
+                weight = <span class="function">float</span>(<span class="function">input</span>(<span
+                    class="string">"Weight in Kg: "</span>))<br>
+                height = <span class="function">float</span>(<span class="function">input</span>(<span
+                    class="string">"Height in m: "</span>))<br>
+                <br>
+                bmi = weight / (height ** <span class="number">2</span>)<br>
+                <br>
+                <span class="keyword">if</span> bmi < <span class="number">18.5</span>:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span
+                        class="string">"Underweight"</span>)<br>
+                    <span class="keyword">elif</span> bmi < <span class="number">25</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Normal
+                            Weight"</span>)<br>
+                        <span class="keyword">elif</span> bmi < <span class="number">30</span>:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span
+                                class="string">"Overweight"</span>)<br>
+                            <span class="keyword">else</span>:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span
+                                class="string">"Obese"</span>)
+            </div>
+        </div>
+
+        <!-- SLIDE 12 -->
+        <div class="slide" id="slide-11">
+            <h2 class="slide-title">8. Nested if — Example: Login System</h2>
+            <div class="card">
+                <p>An outer condition checks the username; only if it passes, the inner condition verifies the password.
+                </p>
+            </div>
+            <div class="code-block" style="margin-top:15px; font-size:1.05rem;">
+                user = <span class="function">input</span>(<span class="string">"Username: "</span>)<br>
+                pwd = <span class="function">input</span>(<span class="string">"Password: "</span>)<br>
+                <br>
+                <span class="keyword">if</span> user == <span class="string">"admin"</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> pwd == <span
+                    class="string">"pass123"</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span
+                    class="string">"Login Successful!"</span>)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span
+                    class="string">"Wrong Password!"</span>)<br>
+                <span class="keyword">else</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Unknown User!"</span>)
+            </div>
+        </div>
+<!-- ═══════════ SECTION: PROGRAMS ═══════════ -->
+<div class="slide" id="slide-12">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--danger); text-shadow: 0 0 20px rgba(224,108,117,0.5);">Solved
+            Programs</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Absolute Value · Sort 3 Numbers ·
+            Divisibility</p>
+    </div>
+</div>
+
+<!-- ═══════════ PROGRAM 1: ABSOLUTE VALUE ═══════════ -->
+<!-- SLIDE 14 -->
+<div class="slide" id="slide-13">
+    <h2 class="slide-title">9. Program 1: Absolute Value</h2>
+    <div class="card">
+        <h3>Problem Statement</h3>
+        <p>Write a program that takes a number from the user and prints its absolute (positive) value without using the
+            built-in <code>abs()</code> function.</p>
+        <p style="margin-top:10px;"><strong>Logic:</strong> If the number is negative, multiply by −1. Otherwise, it is
+            already positive.</p>
+    </div>
+</div>
+
+<!-- SLIDE 15 -->
+<div class="slide" id="slide-14">
+    <h2 class="slide-title">10. Absolute Value — Flowchart</h2>
+    <div class="card" style="text-align:center; padding: 30px;">
+        <div class="flowchart-oval">START</div><br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-rect">Input num</div><br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-diamond">num &lt; 0 ?</div><br>
+        <div style="display:flex; justify-content:center; gap:80px; margin-top:10px;">
+            <div>
+                <span style="color:var(--success);">True ↓</span><br>
+                <div class="flowchart-rect" style="font-size:0.85rem;">num = num * (−1)</div>
+            </div>
+            <div>
+                <span style="color:var(--danger);">False ↓</span><br>
+                <div class="flowchart-rect"
+                    style="font-size:0.85rem; border-color:var(--text-muted); color:var(--text-muted);">No change</div>
+            </div>
+        </div>
+        <br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-rect">Print num</div><br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-oval">END</div>
+    </div>
+</div>
+
+<!-- SLIDE 16 -->
+<div class="slide" id="slide-15">
+    <h2 class="slide-title">11. Absolute Value — Code</h2>
+    <div class="code-block" style="font-size:1.15rem;">
+        num = <span class="function">float</span>(<span class="function">input</span>(<span class="string">"Enter a
+            number: "</span>))<br>
+        <br>
+        <span class="keyword">if</span> num < <span class="number">0</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;num = num * <span class="number">-1</span> <span class="comment"># Flips the
+                sign</span><br>
+            <br>
+            <span class="function">print</span>(f<span class="string">"Absolute value = {num}"</span>)
+    </div>
+    <div class="two-col" style="margin-top:20px;">
+        <div class="card" style="border-left:4px solid var(--success);">
+            <h4>Run 1: Input = −7.5</h4>
+            <p style="font-family:monospace;">Absolute value = 7.5</p>
+        </div>
+        <div class="card" style="border-left:4px solid var(--accent-1);">
+            <h4>Run 2: Input = 12</h4>
+            <p style="font-family:monospace;">Absolute value = 12.0</p>
+            <p style="font-size:0.85rem; color:gray;">(Already positive, if-block skipped.)</p>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════ PROGRAM 2: SORT 3 NUMBERS ═══════════ -->
+<!-- SLIDE 17 -->
+<div class="slide" id="slide-16">
+    <h2 class="slide-title">12. Program 2: Sort 3 Numbers (Ascending)</h2>
+    <div class="card">
+        <h3>Problem Statement</h3>
+        <p>Accept three numbers from the user and display them in ascending (smallest to largest) order using only
+            conditional statements.</p>
+        <p style="margin-top:10px;"><strong>Logic:</strong> Compare all possible orderings using nested if-elif-else to
+            find which number is smallest, middle, and largest.</p>
+    </div>
+</div>
+
+<!-- SLIDE 18 -->
+<div class="slide" id="slide-17">
+    <h2 class="slide-title">13. Sort 3 Numbers — Flowchart</h2>
+    <div class="card" style="text-align:center; padding:25px;">
+        <div class="flowchart-oval">START</div><br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-rect">Input a, b, c</div><br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-diamond">a ≤ b ≤ c ?</div>
+        <span style="color:var(--success); margin-left:10px;">→ print a, b, c</span><br>
+        <span style="color:var(--danger);">↓ No</span><br>
+        <div class="flowchart-diamond">a ≤ c ≤ b ?</div>
+        <span style="color:var(--success); margin-left:10px;">→ print a, c, b</span><br>
+        <span style="color:var(--danger);">↓ No</span><br>
+        <div class="flowchart-diamond">b ≤ a ≤ c ?</div>
+        <span style="color:var(--success); margin-left:10px;">→ print b, a, c</span><br>
+        <span style="color:var(--danger);">↓ ... (continue for all 6 permutations)</span><br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-oval">END</div>
+    </div>
+</div>
+
+<!-- SLIDE 19 -->
+<div class="slide" id="slide-18">
+    <h2 class="slide-title">14. Sort 3 Numbers — Code</h2>
+    <div class="code-block" style="font-size:1.05rem;">
+        a = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter number 1:
+            "</span>))<br>
+        b = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter number 2:
+            "</span>))<br>
+        c = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter number 3:
+            "</span>))<br>
+        <br>
+        <span class="keyword">if</span> a <= b <=c:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(a, b, c)<br>
+            <span class="keyword">elif</span> a <= c <=b:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(a, c, b)<br>
+                <span class="keyword">elif</span> b <= a <=c:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(b, a, c)<br>
+                    <span class="keyword">elif</span> b <= c <=a:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(b, c, a)<br>
+                        <span class="keyword">elif</span> c <= a <=b:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(c, a, b)<br>
+                            <span class="keyword">else</span>:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(c, b, a)
+    </div>
+</div>
+
+<!-- SLIDE 20 -->
+<div class="slide" id="slide-19">
+    <h2 class="slide-title">15. Sort 3 Numbers — Trace</h2>
+    <div class="card">
+        <h3>Sample Run: a = 30, b = 10, c = 20</h3>
+        <table class="styled-table" style="width:100%; text-align:left; margin-top:15px;">
+            <tr>
+                <th>Check</th>
+                <th>Condition</th>
+                <th>Result</th>
+            </tr>
+            <tr>
+                <td>#1</td>
+                <td><code>30 <= 10 <= 20</code></td>
+                <td style="color:var(--danger);">False → Skip</td>
+            </tr>
+            <tr>
+                <td>#2</td>
+                <td><code>30 <= 20 <= 10</code></td>
+                <td style="color:var(--danger);">False → Skip</td>
+            </tr>
+            <tr>
+                <td>#3</td>
+                <td><code>10 <= 30 <= 20</code></td>
+                <td style="color:var(--danger);">False → Skip</td>
+            </tr>
+            <tr>
+                <td>#4</td>
+                <td><code>10 <= 20 <= 30</code></td>
+                <td style="color:var(--success);">True → Execute!</td>
+            </tr>
+        </table>
+        <p style="margin-top:15px; font-family:monospace; font-size:1.3rem; text-align:center; color:var(--success);">
+            Output: 10 20 30 ✓</p>
+    </div>
+</div>
+
+<!-- ═══════════ PROGRAM 3: DIVISIBILITY ═══════════ -->
+<!-- SLIDE 21 -->
+<div class="slide" id="slide-20">
+    <h2 class="slide-title">16. Program 3: Divisibility Checker</h2>
+    <div class="card">
+        <h3>Problem Statement</h3>
+        <p>Write a program to check whether a given number is divisible by another number entered by the user.</p>
+        <p style="margin-top:10px;"><strong>Logic:</strong> A number <code>a</code> is divisible by <code>b</code> if
+            the remainder of <code>a / b</code> is exactly zero. (<code>a % b == 0</code>)</p>
+    </div>
+</div>
+
+<!-- SLIDE 22 -->
+<div class="slide" id="slide-21">
+    <h2 class="slide-title">17. Divisibility — Flowchart</h2>
+    <div class="card" style="text-align:center; padding:30px;">
+        <div class="flowchart-oval">START</div><br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-rect">Input num, divisor</div><br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-diamond">num % divisor == 0 ?</div><br>
+        <div style="display:flex; justify-content:center; gap: 60px; margin-top:10px;">
+            <div>
+                <span style="color:var(--success);">True ↓</span><br>
+                <div class="flowchart-rect" style="font-size:0.85rem;">Print "Divisible"</div>
+            </div>
+            <div>
+                <span style="color:var(--danger);">False ↓</span><br>
+                <div class="flowchart-rect" style="font-size:0.85rem; border-color:var(--danger); color:var(--danger);">
+                    Print "Not Divisible"</div>
+            </div>
+        </div>
+        <br>
+        <span class="flow-arrow">↓</span><br>
+        <div class="flowchart-oval">END</div>
+    </div>
+</div>
+
+<!-- SLIDE 23 -->
+<div class="slide" id="slide-22">
+    <h2 class="slide-title">18. Divisibility — Code</h2>
+    <div class="code-block" style="font-size:1.15rem;">
+        num = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter the
+            number: "</span>))<br>
+        divisor = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Check
+            divisibility by: "</span>))<br>
+        <br>
+        <span class="keyword">if</span> divisor == <span class="number">0</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Error! Division by zero is
+            undefined."</span>)<br>
+        <span class="keyword">elif</span> num % divisor == <span class="number">0</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"{num} IS divisible by
+            {divisor}"</span>)<br>
+        <span class="keyword">else</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"{num} is NOT divisible by
+            {divisor}"</span>)
+    </div>
+    <div class="two-col" style="margin-top:20px;">
+        <div class="card" style="border-left:4px solid var(--success);">
+            <h4>Run 1: 45, 9</h4>
+            <p style="font-family:monospace;">45 IS divisible by 9</p>
+            <p style="font-size:0.85rem; color:gray;">45 % 9 = 0 ✓</p>
+        </div>
+        <div class="card" style="border-left:4px solid var(--danger);">
+            <h4>Run 2: 17, 5</h4>
+            <p style="font-family:monospace;">17 is NOT divisible by 5</p>
+            <p style="font-size:0.85rem; color:gray;">17 % 5 = 2 ✗</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 24 -->
+<div class="slide" id="slide-23">
+    <h2 class="slide-title">19. Extended: Divisibility by Both 3 and 5</h2>
+    <div class="card">
+        <p>A classic CBSE variant: Check if a number is divisible by 3, by 5, by both, or by neither.</p>
+    </div>
+    <div class="code-block" style="margin-top:15px; font-size:1.05rem;">
+        n = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter a number:
+            "</span>))<br>
+        <br>
+        <span class="keyword">if</span> n % <span class="number">3</span> == <span class="number">0</span> <span
+            class="keyword">and</span> n % <span class="number">5</span> == <span class="number">0</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"{n} is divisible by BOTH 3
+            and 5"</span>)<br>
+        <span class="keyword">elif</span> n % <span class="number">3</span> == <span class="number">0</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"{n} is divisible by 3
+            only"</span>)<br>
+        <span class="keyword">elif</span> n % <span class="number">5</span> == <span class="number">0</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"{n} is divisible by 5
+            only"</span>)<br>
+        <span class="keyword">else</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"{n} is divisible by neither 3
+            nor 5"</span>)
+    </div>
+    <div class="card" style="margin-top:15px; border-left:4px solid var(--warning);">
+        <p><strong>Key:</strong> The <code>and</code> check MUST come first in the ladder! If we checked
+            <code>n % 3 == 0</code> alone first, a number like 15 would match that branch and never reach the "both"
+            check.</p>
+    </div>
+</div>
+<!-- SLIDE 25 -->
+<div class="slide" id="slide-24">
+    <h2 class="slide-title">20. Summary Table</h2>
+    <div class="card">
+        <table class="styled-table" style="width:100%; text-align:left;">
+            <tr>
+                <th>Construct</th>
+                <th>Branches</th>
+                <th>Best For</th>
+            </tr>
+            <tr>
+                <td><code>if</code></td>
+                <td>1 (True only)</td>
+                <td>A single guard check. False means skip.</td>
+            </tr>
+            <tr>
+                <td><code>if-else</code></td>
+                <td>2 (True / False)</td>
+                <td>Binary decisions. One of two blocks is guaranteed.</td>
+            </tr>
+            <tr>
+                <td><code>if-elif-else</code></td>
+                <td>Many</td>
+                <td>Multi-way branching. First True branch wins.</td>
+            </tr>
+            <tr>
+                <td>Nested <code>if</code></td>
+                <td>Unlimited depth</td>
+                <td>When an inner condition depends on the outer being True.</td>
+            </tr>
+        </table>
+    </div>
+    <div class="card" style="margin-top:15px; border-left:4px solid var(--accent-3);">
+        <h4>Programs Covered</h4>
+        <p>Absolute Value (simple if), Sort 3 Numbers (chained elif), Divisibility (modulus + elif ladder).</p>
+    </div>
+</div>
+
+<!-- SLIDE 26 -->
+<div class="slide" id="slide-25" style="padding-bottom:80px;">
+    <div class="quiz-header">
+        <h2 class="slide-title">🧪 Conditional Statements Quiz</h2>
+        <p class="slide-subtitle">Test your ability to trace and debug conditional logic.</p>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+        </div>
+        <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+    </div>
+    <div id="quizContainer"></div>
+    <div id="quizResults" class="quiz-results" style="display:none;"></div>
+</div>
+
+</div>
+
+<!-- ═══ Navigation ═══ -->
+<nav id="navBar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <span id="slideCounter">1 / 26</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</nav>
+
+<script src="quiz.js"></script>
+<script src="slides.js"></script>
+</body>
+
+</html>
