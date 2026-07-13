@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Data Types — Graduation Level Slides</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .code-block {
+            background: #0a0e1a;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+            text-align: left;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .function {
+            color: #61afef;
+        }
+
+        .number {
+            color: #d19a66;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1: Title -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science</div>
+            <h1 class="slide-title">Python Data Types</h1>
+            <p class="slide-subtitle">Numbers, Booleans, Sequences, Mappings, and Mutability.</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- SLIDE 2: What is a Data Type? -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. What is a Data Type?</h2>
+            <p class="slide-subtitle">Categorizing the information inside a computer.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Definition</h3>
+                    <p>A <span class="key-term">Data Type</span> specifies the exact classification or type of
+                        mathematical, logical, or textual data that a variable holds.</p>
+                </div>
+                <div class="card">
+                    <h3>Why does it matter?</h3>
+                    <p>The data type tells the Python compiler exactly <strong>what operations can be performed</strong>
+                        on that data.</p>
+                    <p><i>Example: You can mathematically divide two Numbers, but you cannot mathematically divide two
+                            Strings of Text.</i></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: The built-in type() function -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">2. Determining Data Types</h2>
+            <p class="slide-subtitle">How to ask Python what type a variable is.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>The <span class="function">type()</span> function</h3>
+                    <p>Python has a built-in function called <code>type()</code> that instantly returns the class
+                        classification of any variable or literal.</p>
+                </div>
+                <div class="code-block" style="font-size: 1.1rem; line-height: 1.6;">
+                    >>> x = <span class="number">10</span><br>
+                    >>> <span class="function">type</span>(x)<br>
+                    &lt;class 'int'&gt;<br>
+                    <br>
+                    >>> <span class="function">type</span>(<span class="string">"Hello"</span>)<br>
+                    &lt;class 'str'&gt;
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Numbers Intro -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">3. Number Data Types</h2>
+            <p class="slide-subtitle">Used to store numeric values.</p>
+            <div class="card" style="margin-bottom:20px;">
+                <p>In Python, numbers are created instantly when you assign a numeric literal to a variable. Python
+                    natively supports three distinct numerical types:</p>
+            </div>
+            <div class="content-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="card" style="text-align:center;">
+                    <h3>Integer</h3>
+                    <p>Whole numbers.<br><code>int</code></p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <h3>Floating Point</h3>
+                    <p>Decimal numbers.<br><code>float</code></p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <h3>Complex</h3>
+                    <p>Real + Imaginary parts.<br><code>complex</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Integers -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">4. Integers (int)</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Properties</h3>
+                    <p>An <span class="key-term">Integer</span> is a whole number, positive or negative, without any
+                        decimals, of unlimited length.</p>
+                    <p style="margin-top:10px;">Because Python automatically handles memory, an int can be as massive as
+                        your computer's RAM allows.</p>
+                </div>
+                <div class="code-block">
+                    x = <span class="number">1</span><br>
+                    y = <span class="number">-456789</span><br>
+                    z = <span class="number">999999999999999999</span><br>
+                    <br>
+                    <span class="function">print</span>(<span class="function">type</span>(y))<br>
+                    <span class="comment"># Output: &lt;class 'int'&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Floating Point -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">5. Floating Point (float)</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Properties</h3>
+                    <p>A <span class="key-term">Float</span> (floating point number) is a positive or negative number
+                        containing one or more decimals.</p>
+                    <p style="margin-top:10px;">Scientific notation using 'e' or 'E' (to indicate power of 10) is also
+                        inherently parsed as a float.</p>
+                </div>
+                <div class="code-block">
+                    x = <span class="number">1.10</span><br>
+                    y = <span class="number">-35.59</span><br>
+                    <br>
+                    <span class="comment"># Scientific Notation:</span><br>
+                    z = <span class="number">35e3</span> <span class="comment"># 35000.0</span><br>
+                    <br>
+                    <span class="function">print</span>(<span class="function">type</span>(z))<br>
+                    <span class="comment"># Output: &lt;class 'float'&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Complex Numbers -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">6. Complex Numbers (complex)</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Properties</h3>
+                    <p>A <span class="key-term">Complex Number</span> contains a real part and an imaginary part. In
+                        Python, the imaginary part is written with a `j` immediately following the number (unlike
+                        mathematics which uses `i`).</p>
+                    <p style="margin-top:10px;">Mainly used in heavy scientific or electrical engineering computations.
+                    </p>
+                </div>
+                <div class="code-block">
+                    x = <span class="number">3+5j</span><br>
+                    y = <span class="number">-5j</span><br>
+                    <br>
+                    <span class="function">print</span>(x.real) <span class="comment"># Output: 3.0</span><br>
+                    <span class="function">print</span>(x.imag) <span class="comment"># Output: 5.0</span><br>
+                    <br>
+                    <span class="function">print</span>(<span class="function">type</span>(x))<br>
+                    <span class="comment"># Output: &lt;class 'complex'&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: Booleans -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">7. Boolean (bool)</h2>
+            <p class="slide-subtitle">The purest form of logic.</p>
+            <div class="card" style="margin-bottom:20px;">
+                <p>A <span class="key-term">Boolean</span> represents one of exactly two possible values:
+                    <code>True</code> or <code>False</code>. They are vital for conditional statements (like IF/ELSE).
+                </p>
+            </div>
+            <div class="two-col">
+                <div class="code-block">
+                    is_active = <span class="keyword">True</span><br>
+                    is_admin = <span class="keyword">False</span><br>
+                    <br>
+                    <span class="function">print</span>(<span class="function">type</span>(is_active))<br>
+                    <span class="comment"># Output: &lt;class 'bool'&gt;</span>
+                </div>
+                <div class="card">
+                    <h4>Generated implicitly:</h4>
+                    <p>Booleans are almost always the result of comparisons:</p>
+                    <p style="font-family:monospace; margin-top:10px; font-size:1.1rem; color:var(--success);">
+                        10 &gt; 9 ➔ True<br>
+                        10 == 9 ➔ False
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: NoneType -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">8. The None Type</h2>
+            <p class="slide-subtitle">How do you define "Nothing"?</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>NoneType</h3>
+                    <p>If you want a variable to exist, but have literally zero data tied to it right now, you assign it
+                        <span class="keyword">None</span>.</p>
+                    <p style="margin-top:10px;"><code>None</code> is not 0 (which is an int). <code>None</code> is not
+                        "" (which is an empty string). It is its own distinct data type indicating absence.</p>
+                </div>
+                <div class="code-block">
+                    winner = <span class="keyword">None</span><br>
+                    <br>
+                    <span class="function">print</span>(<span class="function">type</span>(winner))<br>
+                    <span class="comment"># Output: &lt;class 'NoneType'&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: Introduction to Mutability -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">9. Concept of Mutability</h2>
+            <div class="card" style="text-align:center; padding:30px;">
+                <h3 style="font-size:2rem; color:var(--accent-4);">Mutation = Change</h3>
+                <p style="margin-top:20px; font-size:1.1rem;">In Python (and computer science at large), every data type
+                    falls directly into one of two behavior categories: <br><br><strong>Mutable</strong> or
+                    <strong>Immutable</strong>.</p>
+                <p style="margin-top:10px; color:var(--text-muted);">This dictates whether the underlying memory data
+                    can be permanently altered after creation.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: Immutable -->
+        <div class="slide" id="slide-10">
+            <h2 class="slide-title">10. Immutable Data Types</h2>
+            <div class="two-col">
+                <div class="card" style="border-top: 4px solid var(--danger);">
+                    <h3 style="color:var(--danger);">Definition</h3>
+                    <p><span class="key-term">Immutable</span> means the state of the object <strong>cannot be
+                            modified</strong> after it is created in memory.</p>
+                    <p style="margin-top:10px;">If you try to alter an immutable object, Python destroys the old object
+                        in memory and physically creates a brand new one to hold the new value.</p>
+                </div>
+                <div class="card">
+                    <h3>Which Types are Immutable?</h3>
+                    <ul style="font-size:1.1rem; line-height:1.8;">
+                        <li>Integers</li>
+                        <li>Floats</li>
+                        <li>Booleans</li>
+                        <li>Strings</li>
+                        <li>Tuples</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: Mutable -->
+        <div class="slide" id="slide-11">
+            <h2 class="slide-title">11. Mutable Data Types</h2>
+            <div class="two-col">
+                <div class="card" style="border-top: 4px solid var(--success);">
+                    <h3 style="color:var(--success);">Definition</h3>
+                    <p><span class="key-term">Mutable</span> means the internal data can be updated, appended, or
+                        deleted in-place, without changing the original memory address.</p>
+                </div>
+                <div class="card">
+                    <h3>Which Types are Mutable?</h3>
+                    <ul style="font-size:1.1rem; line-height:1.8;">
+                        <li>Lists</li>
+                        <li>Dictionaries (Mappings)</li>
+                        <li>Sets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: Mutability Analogy -->
+        <div class="slide" id="slide-12">
+            <h2 class="slide-title">12. Mutability Analogy</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3 style="color:var(--danger);">Immutable: A Carved Stone</h3>
+                    <p>If you carve "Data" into a piece of solid stone, you cannot erase or change a single letter. To
+                        change the text, you must throw away the entire stone block and buy a brand new one to carve on.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--success);">Mutable: A Whiteboard</h3>
+                    <p>If you write "Data" on a whiteboard, you can easily take an eraser, wipe out letters, and add new
+                        ones continuously, while still using the exact same physical whiteboard.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: Sequences Intro -->
+        <div class="slide" id="slide-13">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">
+                    Sequence Data Types</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Strings, Lists, and Tuples.
+                </p>
+            </div>
+        </div>
+<!-- SLIDE 15: Sequence Architecture -->
+<div class="slide" id="slide-14">
+    <h2 class="slide-title">13. The Concept of a 'Sequence'</h2>
+    <div class="card">
+        <h3>Ordered Collections</h3>
+        <p>A <span class="key-term">Sequence</span> data type represents an ordered, continuous collection of similar or
+            different data types. Sequences guarantee that the data is stored in the exact same order it was created.
+        </p>
+        <p style="margin-top:10px;">Because they are perfectly ordered, every single item gets a unique mathematical
+            index (like 0, 1, 2, 3), allowing for instant retrieval.</p>
+    </div>
+</div>
+
+<!-- SLIDE 16: Strings -->
+<div class="slide" id="slide-15">
+    <h2 class="slide-title">14. Sequence 1: Strings (str)</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>Definition</h3>
+            <p>A String is a sequence of characters surrounded by quotes (single, double, or triple).</p>
+            <p style="margin-top:10px;">In Python, a string is mathematically treated as a list of independent
+                characters. Yes, <span style="color:var(--danger);font-weight:bold;">Strings are IMMUTABLE</span>.</p>
+        </div>
+        <div class="code-block">
+            s1 = <span class="string">'Hello'</span><br>
+            s2 = <span class="string">"World"</span><br>
+            <br>
+            <span class="comment"># Multiline</span><br>
+            s3 = <span class="string">"""This spans<br>
+                multiple rows"""</span><br>
+            <br>
+            <span class="function">print</span>(<span class="function">type</span>(s1))<br>
+            <span class="comment"># &lt;class 'str'&gt;</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 17: String Indexing -->
+<div class="slide" id="slide-16">
+    <h2 class="slide-title">15. String Indexing</h2>
+    <p class="slide-subtitle">Retrieving data from a sequence via bracket [] notation.</p>
+    <div class="card">
+        <p>Because strings are ordered sequences, every character gets a numbered position (Index), starting from
+            exactly <strong>0</strong>.</p>
+    </div>
+
+    <div style="display:flex; justify-content:center; margin-top:20px;">
+        <table style="text-align:center; font-size:1.5rem; font-family:monospace; border-collapse:collapse; width:80%;">
+            <tr style="color:var(--accent-4);">
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+            <tr style="border-top: 2px solid #334155; border-bottom: 2px solid #334155; height:60px;">
+                <td><strong>P</strong></td>
+                <td><strong>Y</strong></td>
+                <td><strong>T</strong></td>
+                <td><strong>H</strong></td>
+                <td><strong>O</strong></td>
+                <td><strong>N</strong></td>
+            </tr>
+            <tr style="color:var(--danger);">
+                <td>-6</td>
+                <td>-5</td>
+                <td>-4</td>
+                <td>-3</td>
+                <td>-2</td>
+                <td>-1</td>
+            </tr>
+        </table>
+    </div>
+    <div class="card" style="margin-top:20px; text-align:center; padding:10px;">
+        <p>Python also uniquely supports <strong>Negative Indexing</strong>, reading from Right-to-Left, starting at -1.
+        </p>
+    </div>
+</div>
+
+<!-- SLIDE 18: Lists -->
+<div class="slide" id="slide-17">
+    <h2 class="slide-title">16. Sequence 2: Lists (list)</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>Definition</h3>
+            <p>A List is Python's most flexible array/sequence. Elements are enclosed in <strong>Square Brackets [
+                    ]</strong> and separated by commas.</p>
+            <p style="margin-top:10px; font-weight:bold; color:var(--success);">Lists are MUTABLE.</p>
+        </div>
+        <div class="code-block">
+            <span class="comment"># Creating a list of numbers</span><br>
+            marks = [<span class="number">85</span>, <span class="number">92</span>, <span class="number">78</span>,
+            <span class="number">99</span>]<br>
+            <br>
+            <span class="comment"># Retrieving via index 0</span><br>
+            <span class="function">print</span>(marks[<span class="number">0</span>])<br>
+            <span class="comment"># Output: 85</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 19: List Mutability -->
+<div class="slide" id="slide-18">
+    <h2 class="slide-title">17. List Flexibility (Mutable + Mixed)</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3 style="color:var(--success);">Changing Data In-Place</h3>
+            <p>Because Lists are mutable, you can re-assign data at specific indexes without destroying the list.</p>
+            <p style="margin-top:10px;">Lists can also hold <strong>mixed data types</strong> simultaneously (ints,
+                strings, and floats together).</p>
+        </div>
+        <div class="code-block" style="font-size:0.95rem;">
+            <span class="comment"># Mixed data types</span><br>
+            data = [<span class="number">10</span>, <span class="string">"Apple"</span>, <span
+                class="number">3.14</span>]<br>
+            <br>
+            <span class="comment"># Overwriting index 1</span><br>
+            data[<span class="number">1</span>] = <span class="string">"Banana"</span><br>
+            <br>
+            <span class="function">print</span>(data)<br>
+            <span class="comment"># Output: [10, "Banana", 3.14]</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 20: Tuples -->
+<div class="slide" id="slide-19">
+    <h2 class="slide-title">18. Sequence 3: Tuples (tuple)</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>Definition</h3>
+            <p>A Tuple is identical to a List, except elements are enclosed in <strong>Parentheses ( )</strong>.</p>
+            <p style="margin-top:10px; font-weight:bold; color:var(--danger);">Tuples are IMMUTABLE.</p>
+        </div>
+        <div class="code-block">
+            <span class="comment"># Creating a tuple</span><br>
+            rgb = (<span class="number">255</span>, <span class="number">128</span>, <span class="number">0</span>)<br>
+            <br>
+            <span class="comment"># Retrieval is identical</span><br>
+            <span class="function">print</span>(rgb[<span class="number">1</span>])<br>
+            <span class="comment"># Output: 128</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 21: Tuples vs Lists -->
+<div class="slide" id="slide-20">
+    <h2 class="slide-title">19. Why use Tuples over Lists?</h2>
+    <div class="card">
+        <p>If Tuples are just Lists that you can't edit... why do they exist?</p>
+    </div>
+    <div class="content-grid" style="margin-top:20px;">
+        <div class="card">
+            <h4 style="color:var(--success);">Data Integrity</h4>
+            <p>When you have critical data that should NEVER change natively throughout your program (e.g., GPS
+                Coordinates, Database settings), using a Tuple prevents logical errors where an engineer accidentally
+                overwrites index [0].</p>
+        </div>
+        <div class="card">
+            <h4 style="color:var(--accent-4);">Memory Speed</h4>
+            <p>Because Python knows a tuple's size will never change, it optimizes the memory footprint. Iterating
+                through a massive Tuple is mathematically faster than a massive List.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 22: Mappings Intro -->
+<div class="slide" id="slide-21">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Mapping Data
+            Types</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Dictionaries (dict).</p>
+    </div>
+</div>
+
+<!-- SLIDE 23: Dictionaries -->
+<div class="slide" id="slide-22">
+    <h2 class="slide-title">20. Dictionaries (dict)</h2>
+    <p class="slide-subtitle">Unordered Key-Value pairs.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>Definition</h3>
+            <p>A <span class="key-term">Dictionary</span> holds data in Key-Value pairs, enclosed in <strong>Curly
+                    Braces { }</strong>.</p>
+            <p style="margin-top:10px;">Unlike sequences, dictionaries have <strong>no numerical order</strong>. Instead
+                of asking for "Item at Index 0", you ask for "Item tied to Key 'Name'".</p>
+        </div>
+        <div class="code-block" style="font-size:0.9rem;">
+            student = {<br>
+            &nbsp;&nbsp;<span class="string">"name"</span>: <span class="string">"Rohan"</span>,<br>
+            &nbsp;&nbsp;<span class="string">"age"</span>: <span class="number">16</span>,<br>
+            &nbsp;&nbsp;<span class="string">"grade"</span>: <span class="string">"A"</span><br>
+            }<br>
+            <br>
+            <span class="function">print</span>(student[<span class="string">"name"</span>])<br>
+            <span class="comment"># Output: Rohan</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 24: Dict Mutability -->
+<div class="slide" id="slide-23">
+    <h2 class="slide-title">21. Properties of Dictionaries</h2>
+    <div class="content-grid">
+        <div class="card">
+            <h3 style="color:var(--success);">Mutable</h3>
+            <p>Dictionaries are mutable. You can freely add new keys, delete existing keys, or modify the values tied to
+                them.</p>
+        </div>
+        <div class="card">
+            <h3 style="color:var(--danger);">Key Rules</h3>
+            <p>While the <strong>Values</strong> can be mutated and be of any type, the <strong>Keys</strong> must be
+                strictly Immutable Data Types (like Strings, Integers, or Tuples).</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 25: Master Summary Type -->
+<div class="slide" id="slide-24">
+    <h2 class="slide-title">22. Cheat Sheet: Python Data Types</h2>
+    <div class="card">
+        <table class="styled-table" style="width:100%; text-align:left;">
+            <tr>
+                <th>Classification</th>
+                <th>Type Format</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>Numeric</td>
+                <td><code>int</code></td>
+                <td><code>42</code></td>
+            </tr>
+            <tr>
+                <td>Numeric</td>
+                <td><code>float</code></td>
+                <td><code>3.14</code></td>
+            </tr>
+            <tr>
+                <td>Numeric</td>
+                <td><code>complex</code></td>
+                <td><code>2+3j</code></td>
+            </tr>
+            <tr>
+                <td>Boolean</td>
+                <td><code>bool</code></td>
+                <td><code>True</code></td>
+            </tr>
+            <tr>
+                <td>None</td>
+                <td><code>NoneType</code></td>
+                <td><code>None</code></td>
+            </tr>
+            <tr>
+                <td>Sequence</td>
+                <td><code>str</code></td>
+                <td><code>"Hello"</code></td>
+            </tr>
+            <tr>
+                <td>Sequence</td>
+                <td><code>list</code></td>
+                <td><code>[1, 2, 3]</code></td>
+            </tr>
+            <tr>
+                <td>Sequence</td>
+                <td><code>tuple</code></td>
+                <td><code>(1, 2, 3)</code></td>
+            </tr>
+            <tr>
+                <td>Mapping</td>
+                <td><code>dict</code></td>
+                <td><code>{'x': 10}</code></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- SLIDE 26: Master Summary Mutability -->
+<div class="slide" id="slide-25">
+    <h2 class="slide-title">23. Cheat Sheet: Mutability Rule</h2>
+    <div class="card" style="text-align:center; padding: 40px; border-color:var(--accent-1);">
+        <h1 style="font-size:2.5rem; color:var(--accent-3);">Can I edit the data in-place?</h1>
+
+        <div style="display:flex; justify-content:space-around; margin-top:30px;">
+            <div style="flex:1; border-right: 1px solid var(--border);">
+                <h3 style="color:var(--danger); font-size:1.5rem;">NO (Immutable)</h3>
+                <ul style="list-style:none; padding:0; margin-top:10px; font-size:1.2rem; line-height:2;">
+                    <li>int</li>
+                    <li>float</li>
+                    <li>bool</li>
+                    <li>str</li>
+                    <li>tuple</li>
+                </ul>
+            </div>
+            <div style="flex:1;">
+                <h3 style="color:var(--success); font-size:1.5rem;">YES (Mutable)</h3>
+                <ul style="list-style:none; padding:0; margin-top:10px; font-size:1.2rem; line-height:2;">
+                    <li>list</li>
+                    <li>dict</li>
+                    <li>set</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 27 (Quiz Container) -->
+<div class="slide" id="slide-26" style="padding-bottom:80px;">
+    <div class="quiz-header">
+        <h2 class="slide-title">🧪 Data Types Final Quiz</h2>
+        <p class="slide-subtitle">15 questions analyzing syntax, types, shapes and mutability.</p>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+        </div>
+        <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+    </div>
+    <div id="quizContainer"></div>
+    <div id="quizResults" class="quiz-results" style="display:none;"></div>
+</div>
+
+</div>
+
+<!-- ═══ Navigation ═══ -->
+<nav id="navBar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <span id="slideCounter">1 / 27</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</nav>
+
+<script src="quiz.js"></script>
+<script src="slides.js"></script>
+</body>
+
+</html>

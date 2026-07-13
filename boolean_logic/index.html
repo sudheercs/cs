@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolean Logic & Logic Gates — Graduation Level Slides</title>
+    <meta name="description"
+        content="Graduation-level interactive slides on Boolean Logic, Logic Gates, Truth Tables, De Morgan's Laws, and Circuits.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .truth-table {
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            text-align: center;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .truth-table th {
+            background: rgba(99, 102, 241, 0.2);
+            color: #fff;
+            padding: 6px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        .truth-table td {
+            padding: 6px;
+            border: 1px solid var(--border);
+            font-family: monospace;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .gate-svg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+
+        .law-box {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid var(--accent-1);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
+            text-align: center;
+            color: var(--accent-3);
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .circuit-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hidden SVG Definitions for Gates -->
+    <svg style="display:none;">
+        <defs>
+            <!-- AND Gate -->
+            <g id="gate-and" stroke="currentColor" fill="none" stroke-width="2">
+                <path d="M 0 5 L 20 5 A 15 15 0 0 1 20 35 L 0 35 Z" fill="rgba(99,102,241,0.2)" stroke="#6366f1" />
+                <line x1="-15" y1="10" x2="0" y2="10" stroke="#94a3b8" /><text x="-25" y="14" fill="#94a3b8"
+                    font-size="10">A</text>
+                <line x1="-15" y1="30" x2="0" y2="30" stroke="#94a3b8" /><text x="-25" y="34" fill="#94a3b8"
+                    font-size="10">B</text>
+                <line x1="35" y1="20" x2="50" y2="20" stroke="#94a3b8" /><text x="55" y="24" fill="#94a3b8"
+                    font-size="10">Y</text>
+            </g>
+            <!-- OR Gate -->
+            <g id="gate-or" stroke="currentColor" fill="none" stroke-width="2">
+                <path d="M 0 5 Q 10 20 0 35 Q 20 35 35 20 Q 20 5 0 5 Z" fill="rgba(167,139,250,0.2)" stroke="#a78bfa" />
+                <line x1="-15" y1="10" x2="2" y2="10" stroke="#94a3b8" /><text x="-25" y="14" fill="#94a3b8"
+                    font-size="10">A</text>
+                <line x1="-15" y1="30" x2="2" y2="30" stroke="#94a3b8" /><text x="-25" y="34" fill="#94a3b8"
+                    font-size="10">B</text>
+                <line x1="35" y1="20" x2="50" y2="20" stroke="#94a3b8" /><text x="55" y="24" fill="#94a3b8"
+                    font-size="10">Y</text>
+            </g>
+            <!-- NOT Gate -->
+            <g id="gate-not" stroke="currentColor" fill="none" stroke-width="2">
+                <path d="M 0 10 L 20 20 L 0 30 Z" fill="rgba(6,182,212,0.2)" stroke="#06b6d4" />
+                <circle cx="23" cy="20" r="3" fill="#0a0e1a" stroke="#06b6d4" />
+                <line x1="-15" y1="20" x2="0" y2="20" stroke="#94a3b8" /><text x="-25" y="24" fill="#94a3b8"
+                    font-size="10">A</text>
+                <line x1="26" y1="20" x2="41" y2="20" stroke="#94a3b8" /><text x="46" y="24" fill="#94a3b8"
+                    font-size="10">Y</text>
+            </g>
+            <!-- NAND Gate -->
+            <g id="gate-nand" stroke="currentColor" fill="none" stroke-width="2">
+                <path d="M 0 5 L 20 5 A 15 15 0 0 1 20 35 L 0 35 Z" fill="rgba(239,68,68,0.2)" stroke="#ef4444" />
+                <circle cx="38" cy="20" r="3" fill="#0a0e1a" stroke="#ef4444" />
+                <line x1="-15" y1="10" x2="0" y2="10" stroke="#94a3b8" /><text x="-25" y="14" fill="#94a3b8"
+                    font-size="10">A</text>
+                <line x1="-15" y1="30" x2="0" y2="30" stroke="#94a3b8" /><text x="-25" y="34" fill="#94a3b8"
+                    font-size="10">B</text>
+                <line x1="41" y1="20" x2="56" y2="20" stroke="#94a3b8" /><text x="61" y="24" fill="#94a3b8"
+                    font-size="10">Y</text>
+            </g>
+            <!-- NOR Gate -->
+            <g id="gate-nor" stroke="currentColor" fill="none" stroke-width="2">
+                <path d="M 0 5 Q 10 20 0 35 Q 20 35 35 20 Q 20 5 0 5 Z" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" />
+                <circle cx="38" cy="20" r="3" fill="#0a0e1a" stroke="#f59e0b" />
+                <line x1="-15" y1="10" x2="2" y2="10" stroke="#94a3b8" /><text x="-25" y="14" fill="#94a3b8"
+                    font-size="10">A</text>
+                <line x1="-15" y1="30" x2="2" y2="30" stroke="#94a3b8" /><text x="-25" y="34" fill="#94a3b8"
+                    font-size="10">B</text>
+                <line x1="41" y1="20" x2="56" y2="20" stroke="#94a3b8" /><text x="61" y="24" fill="#94a3b8"
+                    font-size="10">Y</text>
+            </g>
+            <!-- XOR Gate -->
+            <g id="gate-xor" stroke="currentColor" fill="none" stroke-width="2">
+                <path d="M -5 5 Q 5 20 -5 35" stroke="#10b981" />
+                <path d="M 0 5 Q 10 20 0 35 Q 20 35 35 20 Q 20 5 0 5 Z" fill="rgba(16,185,129,0.2)" stroke="#10b981" />
+                <line x1="-20" y1="10" x2="-2" y2="10" stroke="#94a3b8" /><text x="-30" y="14" fill="#94a3b8"
+                    font-size="10">A</text>
+                <line x1="-20" y1="30" x2="-2" y2="30" stroke="#94a3b8" /><text x="-30" y="34" fill="#94a3b8"
+                    font-size="10">B</text>
+                <line x1="35" y1="20" x2="50" y2="20" stroke="#94a3b8" /><text x="55" y="24" fill="#94a3b8"
+                    font-size="10">Y</text>
+            </g>
+        </defs>
+    </svg>
+
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- ═══════ SLIDE 1 — Title ═══════ -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science — Graduation Level</div>
+            <h1 class="slide-title">Boolean Logic & Logic Gates</h1>
+            <p class="slide-subtitle">Understanding the fundamental mathematics of digital circuits: AND, OR, NOT,
+                Universal Gates (NAND/NOR), XOR, De Morgan's Laws, and Combinational Circuits.</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- ═══════ SLIDE 2 — Introduction ═══════ -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. Introduction to Boolean Logic</h2>
+            <p class="slide-subtitle">The foundation of modern computing.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>What is it?</h3>
+                    <p>Developed by George Boole in the 1800s, <span class="key-term">Boolean Algebra</span> is a branch
+                        of mathematics where the variables have only two possible values: <strong>True (1)</strong> or
+                        <strong>False (0)</strong>.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Application in Computers</h3>
+                    <p>Because computers process data using electrical signals (voltage High = 1, Low = 0), Boolean
+                        logic maps perfectly to computer hardware. Every computation inside a CPU is just billions of
+                        Boolean operations.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏗️</div>
+                    <h3>Logic Gates</h3>
+                    <p>A <span class="key-term">Logic Gate</span> is a physical electronic device (built using
+                        transistors) implementing a Boolean function. It takes one or more binary inputs and produces a
+                        single binary output.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 3 — The Three Basic Gates ═══════ -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">2. Basic Gates: AND, OR, NOT</h2>
+            <p class="slide-subtitle">The three fundamental building blocks of digital logic.</p>
+
+            <div class="content-grid">
+                <!-- AND Gate -->
+                <div class="card">
+                    <h3 style="text-align:center; color:#6366f1;">AND Gate ( • )</h3>
+                    <div class="gate-svg-container">
+                        <svg viewBox="-30 0 100 40" width="130" height="60">
+                            <use href="#gate-and" />
+                        </svg>
+                    </div>
+                    <p>Output is 1 <strong>ONLY IF</strong> all inputs are 1. Works like series switches.</p>
+                    <p style="font-family:monospace; color:var(--text-secondary); margin:8px 0;">Y = A • B</p>
+                    <table class="truth-table">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>Y</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr style="background:rgba(99,102,241,0.15);">
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- OR Gate -->
+                <div class="card">
+                    <h3 style="text-align:center; color:#a78bfa;">OR Gate ( + )</h3>
+                    <div class="gate-svg-container">
+                        <svg viewBox="-30 0 100 40" width="130" height="60">
+                            <use href="#gate-or" />
+                        </svg>
+                    </div>
+                    <p>Output is 1 <strong>IF ANY</strong> input is 1. Works like parallel switches.</p>
+                    <p style="font-family:monospace; color:var(--text-secondary); margin:8px 0;">Y = A + B</p>
+                    <table class="truth-table">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>Y</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr style="background:rgba(167,139,250,0.15);">
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr style="background:rgba(167,139,250,0.15);">
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr style="background:rgba(167,139,250,0.15);">
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- NOT Gate -->
+                <div class="card">
+                    <h3 style="text-align:center; color:#06b6d4;">NOT Gate ( Inverter )</h3>
+                    <div class="gate-svg-container">
+                        <svg viewBox="-30 0 100 40" width="130" height="60">
+                            <use href="#gate-not" />
+                        </svg>
+                    </div>
+                    <p>Has only one input. It <strong>inverts</strong> the input. 0 becomes 1, and 1 becomes 0.</p>
+                    <p style="font-family:monospace; color:var(--text-secondary); margin:8px 0;">Y = A' (or A̅)</p>
+                    <table class="truth-table">
+                        <tr>
+                            <th>A</th>
+                            <th>Y</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 4 — Universal Gates (NAND / NOR) ═══════ -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">3. Universal Gates: NAND and NOR</h2>
+            <p class="slide-subtitle">They are called "Universal" because any digital circuit can be built using ONLY
+                NAND or ONLY NOR gates.</p>
+
+            <div class="two-col">
+                <!-- NAND Gate -->
+                <div class="card">
+                    <h3 style="text-align:center; color:#ef4444;">NAND Gate (NOT-AND)</h3>
+                    <div class="gate-svg-container">
+                        <svg viewBox="-30 0 100 40" width="130" height="60">
+                            <use href="#gate-nand" />
+                        </svg>
+                    </div>
+                    <p>It is an AND gate followed by a NOT gate (the small bubble). It outputs 0 <strong>ONLY
+                            IF</strong> all inputs are 1.</p>
+                    <p style="font-family:monospace; color:var(--text-secondary); margin:8px 0; text-align:center;">Y =
+                        (A • B)'</p>
+                    <table class="truth-table" style="margin-top:15px;">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>Y</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr style="background:rgba(239,68,68,0.15);">
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- NOR Gate -->
+                <div class="card">
+                    <h3 style="text-align:center; color:#f59e0b;">NOR Gate (NOT-OR)</h3>
+                    <div class="gate-svg-container">
+                        <svg viewBox="-30 0 100 40" width="130" height="60">
+                            <use href="#gate-nor" />
+                        </svg>
+                    </div>
+                    <p>It is an OR gate followed by a NOT gate. It outputs 1 <strong>ONLY IF</strong> all inputs are 0.
+                    </p>
+                    <p style="font-family:monospace; color:var(--text-secondary); margin:8px 0; text-align:center;">Y =
+                        (A + B)'</p>
+                    <table class="truth-table" style="margin-top:15px;">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>Y</th>
+                        </tr>
+                        <tr style="background:rgba(245,158,11,0.15);">
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 5 — Exclusive OR (XOR) ═══════ -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">4. Exclusive OR (XOR) Gate</h2>
+            <p class="slide-subtitle">The "inequality" evaluator.</p>
+
+            <div class="two-col">
+                <div class="card" style="display:flex; flex-direction:column; justify-content:center;">
+                    <h3 style="text-align:center; color:#10b981; font-size:1.5rem;">XOR Gate ( ⊕ )</h3>
+                    <div class="gate-svg-container">
+                        <svg viewBox="-35 0 110 40" width="160" height="70">
+                            <use href="#gate-xor" />
+                        </svg>
+                    </div>
+                    <p>The XOR (Exclusive OR) gate outputs 1 if and only if the inputs are <strong>DIFFERENT</strong>.
+                    </p>
+                    <p style="margin-top:10px;">If both inputs are the same (0,0 or 1,1), it outputs 0. It is heavily
+                        used in binary addition and cryptography.</p>
+                    <p class="law-box" style="margin-top:20px; border-color:#10b981; color:#10b981;">Y = A ⊕ B = A'B +
+                        AB'</p>
+                </div>
+                <div class="card">
+                    <h3>XOR Truth Table</h3>
+                    <table class="truth-table" style="width:100%; max-width:100%; margin-top:20px; line-height:2;">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>Y</th>
+                            <th>Explanation</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>Inputs are same</td>
+                        </tr>
+                        <tr style="background:rgba(16,185,129,0.15);">
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>Inputs are different</td>
+                        </tr>
+                        <tr style="background:rgba(16,185,129,0.15);">
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>Inputs are different</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>Inputs are same</td>
+                        </tr>
+                    </table>
+
+                    <div class="example-block" style="border-left-color:#10b981; background:rgba(16,185,129,0.06);">
+                        <h4 style="color:#10b981;">💡 Real-world Example</h4>
+                        <p>A staircase light controlled by two switches (one at bottom, one at top). If you flip
+                            <em>either</em> switch (inputs differ), the light toggles state.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 6 — De Morgan's Laws ═══════ -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">5. De Morgan's Laws</h2>
+            <p class="slide-subtitle">Crucial theorems for simplifying Boolean expressions and circuits.</p>
+            <div class="two-col">
+                <div class="card">
+                    <div class="card-icon">1️⃣</div>
+                    <h3>First Law: Break the line, change the sign</h3>
+                    <p>The complement of a sum is equal to the product of the complements.</p>
+                    <div class="law-box">
+                        (A + B)' = A' • B'
+                    </div>
+                    <p style="margin-top:10px;"><strong>Circuit Meaning:</strong> A NOR gate is logically equivalent to
+                        an AND gate with inverted inputs (Bubbled AND).</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">2️⃣</div>
+                    <h3>Second Law: Break the line, change the sign</h3>
+                    <p>The complement of a product is equal to the sum of the complements.</p>
+                    <div class="law-box">
+                        (A • B)' = A' + B'
+                    </div>
+                    <p style="margin-top:10px;"><strong>Circuit Meaning:</strong> A NAND gate is logically equivalent to
+                        an OR gate with inverted inputs (Bubbled OR).</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:20px;">
+                <h3>Proving First Law via Truth Table: (A + B)' = A' • B'</h3>
+                <table class="styled-table" style="text-align:center;">
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>A + B</th>
+                        <th style="color:var(--accent-4);">(A + B)'</th>
+                        <th>A'</th>
+                        <th>B'</th>
+                        <th style="color:var(--accent-4);">A' • B'</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td style="color:var(--accent-4); font-weight:bold;">1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td style="color:var(--accent-4); font-weight:bold;">1</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td style="color:var(--accent-4); font-weight:bold;">0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td style="color:var(--accent-4); font-weight:bold;">0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td style="color:var(--accent-4); font-weight:bold;">0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td style="color:var(--accent-4); font-weight:bold;">0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td style="color:var(--accent-4); font-weight:bold;">0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td style="color:var(--accent-4); font-weight:bold;">0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 7 — Logic Circuits ═══════ -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">6. Logic Circuits in Action</h2>
+            <p class="slide-subtitle">Combining simple gates to do complex arithmetic: The Half Adder.</p>
+
+            <div class="circuit-container">
+                <h3>The Half Adder Circuit</h3>
+                <p style="color:var(--text-secondary); margin-bottom:20px;">Adds two single binary digits (A and B).
+                    Outputs a Sum and a Carry.</p>
+
+                <!-- Half Adder SVG -->
+                <svg viewBox="0 0 200 120" style="max-height: 250px; width: 100%;">
+                    <!-- Wires for A -->
+                    <line x1="10" y1="20" x2="60" y2="20" stroke="#94a3b8" stroke-width="2" />
+                    <line x1="30" y1="20" x2="30" y2="80" stroke="#94a3b8" stroke-width="2" />
+                    <line x1="30" y1="80" x2="60" y2="80" stroke="#94a3b8" stroke-width="2" />
+                    <circle cx="30" cy="20" r="3" fill="#94a3b8" />
+                    <text x="0" y="24" fill="#f1f5f9" font-size="12" font-family="monospace">A</text>
+
+                    <!-- Wires for B -->
+                    <line x1="10" y1="40" x2="60" y2="40" stroke="#94a3b8" stroke-width="2" />
+                    <line x1="45" y1="40" x2="45" y2="100" stroke="#94a3b8" stroke-width="2" />
+                    <line x1="45" y1="100" x2="60" y2="100" stroke="#94a3b8" stroke-width="2" />
+                    <circle cx="45" cy="40" r="3" fill="#94a3b8" />
+                    <text x="0" y="44" fill="#f1f5f9" font-size="12" font-family="monospace">B</text>
+
+                    <!-- XOR Gate for SUM -->
+                    <g transform="translate(60, 10)">
+                        <path d="M -5 5 Q 5 20 -5 35" stroke="#10b981" fill="none" stroke-width="2" />
+                        <path d="M 0 5 Q 10 20 0 35 Q 20 35 35 20 Q 20 5 0 5 Z" fill="rgba(16,185,129,0.2)"
+                            stroke="#10b981" stroke-width="2" />
+                    </g>
+                    <line x1="95" y1="30" x2="130" y2="30" stroke="#94a3b8" stroke-width="2" />
+                    <text x="135" y="34" fill="#f1f5f9" font-size="12" font-family="monospace">Sum = A ⊕ B</text>
+
+                    <!-- AND Gate for CARRY -->
+                    <g transform="translate(60, 70)">
+                        <path d="M 0 5 L 20 5 A 15 15 0 0 1 20 35 L 0 35 Z" fill="rgba(99,102,241,0.2)" stroke="#6366f1"
+                            stroke-width="2" />
+                    </g>
+                    <line x1="95" y1="90" x2="130" y2="90" stroke="#94a3b8" stroke-width="2" />
+                    <text x="135" y="94" fill="#f1f5f9" font-size="12" font-family="monospace">Carry = A • B</text>
+                </svg>
+            </div>
+
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card">
+                    <h3>How it works:</h3>
+                    <p><strong>Sum:</strong> Generated by the XOR gate. 1+0=1, 0+1=1. But 1+1=0 (in binary, 1+1 amounts
+                        to 10, so sum is 0, carry is 1).</p>
+                    <p><strong>Carry:</strong> Generated by the AND gate. Only outputs 1 when both A and B are 1.</p>
+                </div>
+                <div class="card">
+                    <h3>Half Adder Truth Table</h3>
+                    <table class="truth-table" style="width:100%;">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th style="color:#10b981;">Sum</th>
+                            <th style="color:#6366f1;">Carry</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td style="color:#10b981;">0</td>
+                            <td style="color:#6366f1;">0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td style="color:#10b981;">1</td>
+                            <td style="color:#6366f1;">0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td style="color:#10b981;">1</td>
+                            <td style="color:#6366f1;">0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td style="color:#10b981;">0</td>
+                            <td style="color:#6366f1;">1</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 8 — Summary ═══════ -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">📝 Summary</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>⚙️ Basic Gates</h3>
+                    <ul>
+                        <li><strong>AND (•):</strong> 1 if ALL inputs are 1.</li>
+                        <li><strong>OR (+):</strong> 1 if ANY input is 1.</li>
+                        <li><strong>NOT ('):</strong> Inverts the input.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌐 Universal & XOR Gates</h3>
+                    <ul>
+                        <li><strong>NAND:</strong> Inverted AND. Universal.</li>
+                        <li><strong>NOR:</strong> Inverted OR. Universal.</li>
+                        <li><strong>XOR (⊕):</strong> 1 if inputs are DIFFERENT.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>⚖️ De Morgan's Laws</h3>
+                    <ul>
+                        <li>(A + B)' = A' • B'</li>
+                        <li>(A • B)' = A' + B'</li>
+                        <li><em>"Break the line, change the sign."</em></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🔌 Logic Circuits</h3>
+                    <p>Gates combine to form useful combinational circuits. Example: <strong>Half Adder</strong> uses
+                        XOR for Sum and AND for Carry.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 9 — Quiz ═══════ -->
+        <div class="slide" id="slide-8" style="padding-bottom:80px;">
+            <div class="quiz-header">
+                <h2 class="slide-title">🧪 Interactive Quiz</h2>
+                <p class="slide-subtitle">Test your knowledge — 12 questions on Boolean Logic & Gates.</p>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                </div>
+                <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+            </div>
+            <div id="quizContainer"></div>
+            <div id="quizResults" class="quiz-results" style="display:none;"></div>
+        </div>
+
+    </div>
+
+    <!-- ═══ Navigation ═══ -->
+    <nav id="navBar">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <span id="slideCounter">1 / 9</span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </nav>
+
+    <script src="quiz.js"></script>
+    <script src="slides.js"></script>
+</body>
+
+</html>

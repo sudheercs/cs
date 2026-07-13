@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Problem Solving — Graduation Level Slides</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .flow-step {
+            background: rgba(99, 102, 241, 0.1);
+            border: 2px solid var(--accent-1);
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            width: 60%;
+            text-align: center;
+        }
+
+        .flow-arrow {
+            color: var(--accent-4);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: #0a0e1a;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+            text-align: left;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        /* Flowchart SVG Styles */
+        .fc-node {
+            fill: rgba(99, 102, 241, 0.1);
+            stroke: var(--accent-1);
+            stroke-width: 2;
+        }
+
+        .fc-text {
+            fill: #f8fafc;
+            font-size: 14px;
+            font-family: sans-serif;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+
+        .fc-line {
+            stroke: var(--text-primary);
+            stroke-width: 2;
+            marker-end: url(#arrowhead);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1 -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science — Graduation Level</div>
+            <h1 class="slide-title">Introduction to Problem Solving</h1>
+            <p class="slide-subtitle">Mastering the 5 Steps, Algorithms, Decomposition, Pseudocode, and Flowcharts</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. What is Problem Solving in CS?</h2>
+            <p class="slide-subtitle">It's not just about writing code.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Critical Thinking First</h3>
+                    <p>Programming is merely a tool. The core of Computer Science is <span
+                            class="key-term">computational thinking</span>—the ability to define a problem, structure a
+                        solution, and design a logical progression of steps to solve it.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚠️</div>
+                    <h3>The Danger of Rushing</h3>
+                    <p>Jumping straight into typing code without a plan almost always results in buggy, unmaintainable,
+                        and inefficient software.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">2. The 5 Steps of Problem Solving</h2>
+            <p class="slide-subtitle">The standard lifecycle of solving computational problems.</p>
+            <div class="flow-diagram">
+                <div class="flow-step">1. Analyzing the Problem</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">2. Developing an Algorithm</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="border-color:var(--success);background:rgba(16,185,129,0.1);">3. Coding
+                    (Implementation)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="border-color:var(--accent-4);background:rgba(6,182,212,0.1);">4. Testing
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step" style="border-color:var(--danger);background:rgba(239,68,68,0.1);">5. Debugging
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">3. Step 1: Analyzing the Problem</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Breaking it down</h3>
+                    <p>Before designing a solution, you must perfectly understand the boundaries of the problem. This
+                        involves identifying three core components:</p>
+                    <ol style="margin-top:10px;">
+                        <li><strong>Inputs:</strong> What information is given or required?</li>
+                        <li><strong>Outputs:</strong> What is the exact expected result?</li>
+                        <li><strong>Constraints:</strong> What are the limitations? (e.g., memory limits, speed,
+                            specific data ranges).</li>
+                    </ol>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--accent-4);">Example Scenario</h3>
+                    <p><em>"Calculate the average temperature of a city over a week."</em></p>
+                    <ul style="margin-top:10px; font-size:0.95rem;">
+                        <li><strong>Inputs:</strong> 7 numeric temperature values.</li>
+                        <li><strong>Outputs:</strong> 1 floating-point number (the average).</li>
+                        <li><strong>Constraints:</strong> Cannot divide by zero. Temps can be negative.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">4. Step 2: Developing an Algorithm</h2>
+            <p class="slide-subtitle">The architectural blueprint.</p>
+            <div class="card">
+                <h3>What is an Algorithm?</h3>
+                <p>An <span class="key-term">algorithm</span> is a finite, well-defined sequence of unambiguous
+                    instructions used to solve a specific problem.</p>
+                <p style="margin-top:10px;">Algorithms are <strong>language-independent</strong>. They represent the
+                    logic, not the syntax of Python or Java. You write algorithms before you write code.</p>
+            </div>
+            <div class="content-grid" style="margin-top:20px;">
+                <div class="card">
+                    <h4>Characteristics of a Good Algorithm</h4>
+                    <ul style="font-size:0.9rem;">
+                        <li><strong>Finiteness:</strong> Must eventually terminate.</li>
+                        <li><strong>Definiteness:</strong> Each step must be painfully clear.</li>
+                        <li><strong>Effectiveness:</strong> Steps must be basic enough to actually be executed.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">5. Step 3: Coding</h2>
+            <p class="slide-subtitle">Translating logic into machine instructions.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Implementation</h3>
+                    <p>This is where you choose a programming language (like Python, Java, or C++) and translate your
+                        abstract algorithm into specific syntax.</p>
+                    <p style="margin-top:10px;">The focus here shifts from pure logic to obeying the strict grammatical
+                        rules (syntax) of the compiler/interpreter.</p>
+                </div>
+                <div class="card">
+                    <h3>Good Coding Practices</h3>
+                    <ul>
+                        <li>Writing meaningful variable names.</li>
+                        <li>Adding comments to explain <em>why</em> code exists.</li>
+                        <li>Maintaining proper indentation and formatting.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">6. Step 4: Testing</h2>
+            <p class="slide-subtitle">Verifying that the code actually solves the problem.</p>
+            <div class="card">
+                <h3>Why Test?</h3>
+                <p>Your code might compile perfectly, but still produce the wrong mathematical answer. Testing involves
+                    feeding specific data (where the output is known) into the program to verify behavior.</p>
+            </div>
+            <div class="content-grid" style="margin-top:20px;">
+                <div class="card">
+                    <h4 style="color:var(--success);">Normal Data</h4>
+                    <p>Typical, expected inputs. <br>(e.g., finding average of 70, 80, 90).</p>
+                </div>
+                <div class="card">
+                    <h4 style="color:var(--accent-4);">Boundary Data</h4>
+                    <p>Extreme inputs at the edge of limits. <br>(e.g., maximum possible integer, or 0).</p>
+                </div>
+                <div class="card">
+                    <h4 style="color:var(--danger);">Erroneous Data</h4>
+                    <p>Invalid inputs to test error handling.<br>(e.g., calculating average of "Hello" and "World").</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">7. Step 5: Debugging</h2>
+            <p class="slide-subtitle">Identifying and removing errors from software.</p>
+            <div class="card" style="margin-bottom:20px;">
+                <p><span class="key-term">Debugging</span> is arguably the most time-consuming part of programming. When
+                    a test fails, you must hunt down the bug. Errors fall into three main categories:</p>
+            </div>
+            <div class="two-col">
+                <div class="card" style="border-top: 3px solid #f59e0b;">
+                    <h3>1. Syntax Errors</h3>
+                    <p>Grammar mistakes. The compiler cannot understand your code.</p>
+                    <p><em>Example: Missing a semicolon, misspelling `print` as `prnt`, unclosed quotes.</em></p>
+                </div>
+                <div class="card" style="border-top: 3px solid #ef4444;">
+                    <h3>2. Logical Errors</h3>
+                    <p>The program runs, but gives the wrong answer. Hardest to find.</p>
+                    <p><em>Example: Writing <code>Area = length + width</code> instead of
+                            <code>length * width</code>.</em></p>
+                </div>
+                <div class="card" style="border-top: 3px solid #6366f1;">
+                    <h3>3. Runtime Errors</h3>
+                    <p>The program compiles, but crashes while running.</p>
+                    <p><em>Example: Trying to divide a number by zero, or accessing memory that doesn't exist.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9 -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">8. Problem Decomposition</h2>
+            <p class="slide-subtitle">Divide and Conquer.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>What is it?</h3>
+                    <p><span class="key-term">Decomposition</span> (or Top-Down Design) is the process of breaking down
+                        a large, complex, and unmanageable problem into smaller, simpler, and isolated sub-problems.</p>
+                </div>
+                <div class="card">
+                    <h3>Why is it important?</h3>
+                    <ul>
+                        <li>Smaller problems are much easier to conceptualize and solve.</li>
+                        <li>Allows multiple programmers to work on different parts simultaneously.</li>
+                        <li>Reduces duplicated code through reusable modules/functions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10 -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">9. Decomposition: Real-World Example</h2>
+            <div class="flow-diagram">
+                <div class="flow-step" style="width:80%; font-size:1.2rem;">Main Goal: Organizing a School Fest</div>
+                <div class="flow-arrow">↓</div>
+                <div style="display:flex; gap:10px; width:100%; justify-content:center;">
+                    <div class="flow-step" style="width:30%;font-size:0.9rem;">Sub-task 1: <br>Arrange Venue</div>
+                    <div class="flow-step" style="width:30%;font-size:0.9rem;">Sub-task 2: <br>Manage Finances</div>
+                    <div class="flow-step" style="width:30%;font-size:0.9rem;">Sub-task 3: <br>Marketing</div>
+                </div>
+                <div class="flow-arrow" style="margin-top:10px;">↓</div>
+                <div style="display:flex; gap:10px; width:100%; justify-content:center;">
+                    <div class="flow-step"
+                        style="width:30%;font-size:0.8rem;background:rgba(255,255,255,0.05);border-color:gray;">- Book
+                        stage<br>- Rent chairs</div>
+                    <div class="flow-step"
+                        style="width:30%;font-size:0.8rem;background:rgba(255,255,255,0.05);border-color:gray;">-
+                        Collect tickets<br>- Pay vendors</div>
+                    <div class="flow-step"
+                        style="width:30%;font-size:0.8rem;background:rgba(255,255,255,0.05);border-color:gray;">- Print
+                        posters<br>- Social media</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11 -->
+        <div class="slide" id="slide-10">
+            <h2 class="slide-title">10. Decomposition: Software Example</h2>
+            <p class="slide-subtitle">Building an E-Commerce Application</p>
+            <div class="content-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">1</div>
+                    <h4 style="color:var(--accent-4);">User Auth</h4>
+                    <p style="font-size:0.8rem;">Login, Signup, Password Reset</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">2</div>
+                    <h4 style="color:var(--accent-4);">Catalog</h4>
+                    <p style="font-size:0.8rem;">Search algorithms, filtering, image loading</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">3</div>
+                    <h4 style="color:var(--accent-4);">Cart</h4>
+                    <p style="font-size:0.8rem;">Add/remove items, calculate tax and totals</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">4</div>
+                    <h4 style="color:var(--accent-4);">Payment</h4>
+                    <p style="font-size:0.8rem;">Credit card API, encryption, receipts</p>
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px;">
+                <p>Instead of 1 programmer writing a 100,000-line monolithic file, 4 teams write 4 isolated modules that
+                    communicate with each other.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 12 -->
+        <div class="slide" id="slide-11">
+            <h2 class="slide-title">11. Representing Algorithms</h2>
+            <p class="slide-subtitle">How do we communicate our logic before writing code?</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>1. Pseudocode</h3>
+                    <p>An artificial, informal language that helps programmers develop algorithms.</p>
+                    <p>It reads like English but utilizes programming structural conventions (IF, ELSE, LOOP).</p>
+                </div>
+                <div class="card">
+                    <h3>2. Flowcharts</h3>
+                    <p>A diagrammatic, visual representation of an algorithm.</p>
+                    <p>Uses standardized geometric shapes to map out the exact flow of execution and decision making.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13 -->
+        <div class="slide" id="slide-12">
+            <h2 class="slide-title">12. Pseudocode Basics</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Rules of Pseudocode</h3>
+                    <ul style="font-size:0.9rem;">
+                        <li>There is <strong>no strict syntax</strong>. As long as it is logical and unambiguous, it is
+                            valid.</li>
+                        <li>Capitalize keywords (INPUT, PRINT, IF, WHILE) for readability.</li>
+                        <li>Use indentation to indicate blocks of code (inside loops or conditionals).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Common Keywords</h3>
+                    <table class="styled-table" style="font-size:0.85rem;">
+                        <tr>
+                            <th>Action</th>
+                            <th>Keyword</th>
+                        </tr>
+                        <tr>
+                            <td>Getting data</td>
+                            <td>INPUT, READ, GET</td>
+                        </tr>
+                        <tr>
+                            <td>Showing data</td>
+                            <td>PRINT, DISPLAY, OUTPUT</td>
+                        </tr>
+                        <tr>
+                            <td>Math</td>
+                            <td>COMPUTE, CALCULATE</td>
+                        </tr>
+                        <tr>
+                            <td>Decisions</td>
+                            <td>IF, ELSE, THEN</td>
+                        </tr>
+                        <tr>
+                            <td>Looping</td>
+                            <td>WHILE, FOR, REPEAT UNTIL</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14 -->
+        <div class="slide" id="slide-13">
+            <h2 class="slide-title">13. Pseudocode: Example 1</h2>
+            <p class="slide-subtitle">Write an algorithm to find the largest of two numbers.</p>
+            <div class="card">
+                <h3>Algorithm Logic:</h3>
+                <div class="code-block" style="font-size:1.1rem; line-height:1.6;">
+                    START<br>
+                    &nbsp;&nbsp;INPUT Num1<br>
+                    &nbsp;&nbsp;INPUT Num2<br>
+                    &nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;IF Num1 > Num2 THEN<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;PRINT "Num1 is larger"<br>
+                    &nbsp;&nbsp;ELSE IF Num2 > Num1 THEN<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;PRINT "Num2 is larger"<br>
+                    &nbsp;&nbsp;ELSE<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;PRINT "Both are equal"<br>
+                    &nbsp;&nbsp;END IF<br>
+                    END
+                </div>
+            </div>
+        </div>
+<!-- SLIDE 15 -->
+<div class="slide" id="slide-14">
+    <h2 class="slide-title">14. Pseudocode: Example 2</h2>
+    <p class="slide-subtitle">Algorithm to check if a number is Even or Odd.</p>
+    <div class="card">
+        <h3>Algorithm Logic:</h3>
+        <div class="code-block" style="font-size:1.1rem; line-height:1.6;">
+            START<br>
+            &nbsp;&nbsp;PRINT "Enter a number:"<br>
+            &nbsp;&nbsp;INPUT Num<br>
+            &nbsp;&nbsp;<br>
+            &nbsp;&nbsp;REMAINDER = Num % 2<br>
+            &nbsp;&nbsp;<br>
+            &nbsp;&nbsp;IF REMAINDER == 0 THEN<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;PRINT "Number is Even"<br>
+            &nbsp;&nbsp;ELSE<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;PRINT "Number is Odd"<br>
+            &nbsp;&nbsp;END IF<br>
+            END
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 16 -->
+<div class="slide" id="slide-15">
+    <h2 class="slide-title">15. Introduction to Flowcharts</h2>
+    <p class="slide-subtitle">The visual blueprint of an algorithm.</p>
+    <div class="content-grid">
+        <div class="card">
+            <h3>What is a Flowchart?</h3>
+            <p>A flowchart is a type of diagram that represents a workflow, process, or numeric algorithm. Step-by-step
+                approaches to solving a task are shown using different shaped boxes, connected by arrows.</p>
+        </div>
+        <div class="card">
+            <h3>Why use them?</h3>
+            <ul>
+                <li>Visuals are easier for humans to understand than text.</li>
+                <li>They clearly expose logical flaws and infinite loops.</li>
+                <li>Excellent for communicating logic to non-technical stakeholders (managers/clients).</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 17 -->
+<div class="slide" id="slide-16">
+    <h2 class="slide-title">16. Standard Flowchart Symbols (Part 1)</h2>
+    <div class="two-col">
+        <div class="card" style="text-align:center;">
+            <svg width="150" height="80">
+                <rect x="10" y="10" width="130" height="60" rx="30" ry="30" class="fc-node" stroke="#10b981"
+                    fill="rgba(16,185,129,0.1)" />
+                <text x="75" y="42" class="fc-text">Start / Stop</text>
+            </svg>
+            <h3 style="color:#10b981; margin-top:10px;">Terminal (Oval)</h3>
+            <p>Indicates the beginning or end of a program.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+            <svg width="150" height="80">
+                <polygon points="30,10 140,10 120,70 10,70" class="fc-node" stroke="#3b82f6"
+                    fill="rgba(59,130,246,0.1)" />
+                <text x="75" y="42" class="fc-text">Input / Output</text>
+            </svg>
+            <h3 style="color:#3b82f6; margin-top:10px;">I/O (Parallelogram)</h3>
+            <p>Used whenever data is read from the user or displayed on the screen.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 18 -->
+<div class="slide" id="slide-17">
+    <h2 class="slide-title">17. Standard Flowchart Symbols (Part 2)</h2>
+    <div class="two-col">
+        <div class="card" style="text-align:center;">
+            <svg width="150" height="80">
+                <rect x="10" y="10" width="130" height="60" class="fc-node" stroke="#f59e0b"
+                    fill="rgba(245,158,11,0.1)" />
+                <text x="75" y="42" class="fc-text">Processing</text>
+            </svg>
+            <h3 style="color:#f59e0b; margin-top:10px;">Process (Rectangle)</h3>
+            <p>Used for mathematical calculations, variable assignments, and data manipulation.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+            <svg width="150" height="100">
+                <polygon points="75,10 140,50 75,90 10,50" class="fc-node" stroke="#ef4444"
+                    fill="rgba(239,68,68,0.1)" />
+                <text x="75" y="52" class="fc-text">Decision ?</text>
+            </svg>
+            <h3 style="color:#ef4444; margin-top:10px;">Decision (Diamond)</h3>
+            <p>Represents a condition (IF statement). Contains a Yes/No (True/False) branch. This is the only shape that
+                has more than one arrow coming out of it.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 19 -->
+<div class="slide" id="slide-18">
+    <h2 class="slide-title">18. Flowchart Rules & Best Practices</h2>
+    <div class="content-grid">
+        <div class="card">
+            <h4 style="color:var(--success);">✅ Do:</h4>
+            <ul>
+                <li>Ensure there is exactly ONE start oval, and at least ONE stop oval.</li>
+                <li>Draw arrows (flowlines) strictly from top to bottom, or left to right.</li>
+                <li>Keep logic simple. If it's too large, use connector symbols.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h4 style="color:var(--danger);">❌ Don't:</h4>
+            <ul>
+                <li>Have flowlines cross over each other (causes confusion).</li>
+                <li>Have multiple arrows exiting a Processing rectangle (only Diamonds split paths).</li>
+                <li>Use code-specific syntax inside the boxes (use plain English formulas).</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 20 -->
+<div class="slide" id="slide-19">
+    <h2 class="slide-title">19. Flowchart Example: Even or Odd?</h2>
+    <p class="slide-subtitle">Visualizing the pseudocode we wrote earlier.</p>
+
+    <div class="card" style="text-align:center; padding: 20px;">
+        <svg viewBox="0 0 400 450" width="100%" height="350">
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8" />
+                </marker>
+            </defs>
+            <!-- Start -->
+            <rect x="150" y="10" width="100" height="40" rx="20" ry="20" class="fc-node" stroke="#10b981" />
+            <text x="200" y="30" class="fc-text">Start</text>
+            <line x1="200" y1="50" x2="200" y2="80" class="fc-line" stroke="#94a3b8" />
+
+            <!-- Input -->
+            <polygon points="170,80 270,80 250,120 150,120" class="fc-node" stroke="#3b82f6" />
+            <text x="210" y="100" class="fc-text">Input N</text>
+            <line x1="200" y1="120" x2="200" y2="150" class="fc-line" stroke="#94a3b8" />
+
+            <!-- Process -->
+            <rect x="150" y="150" width="100" height="50" class="fc-node" stroke="#f59e0b" />
+            <text x="200" y="175" class="fc-text">R = N % 2</text>
+            <line x1="200" y1="200" x2="200" y2="230" class="fc-line" stroke="#94a3b8" />
+
+            <!-- Decision -->
+            <polygon points="200,230 260,260 200,290 140,260" class="fc-node" stroke="#ef4444" />
+            <text x="200" y="260" class="fc-text">R == 0 ?</text>
+
+            <!-- Yes Branch -->
+            <line x1="260" y1="260" x2="320" y2="260" class="fc-line" stroke="#94a3b8" />
+            <text x="290" y="250" class="fc-text" font-size="12">Yes</text>
+            <line x1="320" y1="260" x2="320" y2="300" class="fc-line" stroke="#94a3b8" />
+            <polygon points="280,300 380,300 360,340 260,340" class="fc-node" stroke="#3b82f6" />
+            <text x="320" y="320" class="fc-text">Print "Even"</text>
+
+            <!-- No Branch -->
+            <line x1="140" y1="260" x2="80" y2="260" class="fc-line" stroke="#94a3b8" />
+            <text x="110" y="250" class="fc-text" font-size="12">No</text>
+            <line x1="80" y1="260" x2="80" y2="300" class="fc-line" stroke="#94a3b8" />
+            <polygon points="40,300 140,300 120,340 20,340" class="fc-node" stroke="#3b82f6" />
+            <text x="80" y="320" class="fc-text">Print "Odd"</text>
+
+            <!-- Stop Lines -->
+            <line x1="80" y1="340" x2="80" y2="380" stroke="#94a3b8" stroke-width="2" />
+            <line x1="80" y1="380" x2="200" y2="380" class="fc-line" stroke="#94a3b8" />
+
+            <line x1="320" y1="340" x2="320" y2="380" stroke="#94a3b8" stroke-width="2" />
+            <line x1="320" y1="380" x2="200" y2="380" class="fc-line" stroke="#94a3b8" />
+
+            <line x1="200" y1="380" x2="200" y2="400" class="fc-line" stroke="#94a3b8" />
+
+            <!-- Stop -->
+            <rect x="150" y="400" width="100" height="40" rx="20" ry="20" class="fc-node" stroke="#10b981" />
+            <text x="200" y="420" class="fc-text">Stop</text>
+        </svg>
+    </div>
+</div>
+
+<!-- SLIDE 21 -->
+<div class="slide" id="slide-20">
+    <h2 class="slide-title">20. Advanced Concept: Loops in Flowcharts</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>How do we Loop?</h3>
+            <p>A loop is represented simply by drawing a flowline (arrow) pointing <strong>backwards</strong> (upwards)
+                to a previous step in the flowchart.</p>
+            <p style="margin-top:10px;">The loop must ALWAYS be controlled by a decision diamond to prevent an infinite
+                loop!</p>
+        </div>
+        <div class="card" style="text-align:center;">
+            <svg viewBox="0 0 200 250" width="150" height="150">
+                <rect x="50" y="10" width="100" height="40" class="fc-node" stroke="#f59e0b" />
+                <text x="100" y="30" class="fc-text">i = 0</text>
+                <line x1="100" y1="50" x2="100" y2="80" class="fc-line" stroke="#94a3b8" />
+
+                <polygon points="100,80 150,120 100,160 50,120" class="fc-node" stroke="#ef4444" />
+                <text x="100" y="120" class="fc-text">i < 5?</text>
+
+                        <!-- Loop Back (Yes) -->
+                        <line x1="150" y1="120" x2="180" y2="120" stroke="#94a3b8" stroke-width="2" />
+                        <text x="165" y="110" class="fc-text">Yes (Process & i++)</text>
+                        <line x1="180" y1="120" x2="180" y2="60" stroke="#94a3b8" stroke-width="2" />
+                        <line x1="180" y1="60" x2="100" y2="60" class="fc-line" stroke="#94a3b8" />
+
+                        <!-- Exit Loop (No) -->
+                        <line x1="100" y1="160" x2="100" y2="200" class="fc-line" stroke="#94a3b8" />
+                        <text x="115" y="180" class="fc-text">No</text>
+                        <rect x="50" y="200" width="100" height="40" rx="20" ry="20" class="fc-node" stroke="#10b981" />
+                        <text x="100" y="220" class="fc-text">Continue</text>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 22 -->
+<div class="slide" id="slide-21">
+    <h2 class="slide-title">21. Pseudocode vs Flowcharts</h2>
+    <div class="card">
+        <table class="styled-table" style="width:100%; text-align:left;">
+            <tr>
+                <th style="width:50%;">Flowcharts</th>
+                <th style="width:50%;">Pseudocode</th>
+            </tr>
+            <tr>
+                <td>✅ Easy to trace logic visually at a glance.</td>
+                <td>✅ Very fast to type out.</td>
+            </tr>
+            <tr>
+                <td>✅ Excellent for absolute beginners.</td>
+                <td>✅ Closer to actual programming code.</td>
+            </tr>
+            <tr>
+                <td>❌ Extremely time consuming to draw/modify.</td>
+                <td>❌ Harder to visualize loops and complex deeply-nested IF statements.</td>
+            </tr>
+            <tr>
+                <td>❌ Becomes a chaotic web of arrows for large, complex problems.</td>
+                <td>✅ Highly scalable for complex algorithms.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- SLIDE 23 -->
+<div class="slide" id="slide-22">
+    <h2 class="slide-title">22. Bridging the Gap: Structure to Code</h2>
+    <div class="content-grid">
+        <div class="card">
+            <h3>Algorithm</h3>
+            <p style="font-family:monospace; color:var(--text-secondary);">IF Age >= 18 THEN<br>&nbsp;&nbsp;PRINT
+                "Eligible"<br>END IF</p>
+        </div>
+        <div class="card">
+            <h3>Python Code</h3>
+            <p style="font-family:monospace; color:#3b82f6;">if age >= 18:<br>&nbsp;&nbsp;print("Eligible")</p>
+        </div>
+        <div class="card">
+            <h3>C++ / Java Code</h3>
+            <p style="font-family:monospace; color:#f59e0b;">if (age >= 18) {<br>&nbsp;&nbsp;cout &lt;&lt;
+                "Eligible";<br>}</p>
+        </div>
+    </div>
+    <div class="card" style="margin-top:20px;">
+        <p>Notice how the <strong>Core Logic</strong> (the problem solving aspect) remains completely untouched across
+            all instances. Only the grammar (syntax) changes.</p>
+    </div>
+</div>
+
+
+<!-- SLIDE 24 -->
+<div class="slide" id="slide-23">
+    <h2 class="slide-title">23. Summary: The Golden Rule</h2>
+    <div class="card" style="text-align:center; padding: 40px; border-color:var(--accent-1);">
+        <h1 style="font-size:2.5rem; color:var(--accent-3);">"Think before you type."</h1>
+        <p style="margin-top:20px; font-size:1.1rem; line-height:1.6;">
+            Never start coding a complex problem immediately.<br><br>
+            1. Analyze inputs and outputs.<br>
+            2. Decompose into smaller sub-problems.<br>
+            3. Draft your logic using Pseudocode or Flowcharts.<br>
+            4. <i>Then</i> execute the code, test it rigorously, and debug your errors.
+        </p>
+    </div>
+</div>
+
+<!-- SLIDE 25 (Quiz Container) -->
+<div class="slide" id="slide-24" style="padding-bottom:80px;">
+    <div class="quiz-header">
+        <h2 class="slide-title">🧪 Problem Solving Master Quiz</h2>
+        <p class="slide-subtitle">15 questions testing your knowledge of algorithms, debugging, and diagrams.</p>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+        </div>
+        <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+    </div>
+    <div id="quizContainer"></div>
+    <div id="quizResults" class="quiz-results" style="display:none;"></div>
+</div>
+
+</div>
+
+<!-- ═══ Navigation ═══ -->
+<nav id="navBar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <span id="slideCounter">1 / 25</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</nav>
+
+<script src="quiz.js"></script>
+<script src="slides.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Encoding Schemes — Graduation Level Slides</title>
+    <meta name="description"
+        content="Graduation-level interactive slides on Character Encoding: ASCII, ISCII, and Unicode (UTF-8, UTF-32).">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- ═══════ SLIDE 1 — Title ═══════ -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science — Graduation Level</div>
+            <h1 class="slide-title">Character Encoding Schemes</h1>
+            <p class="slide-subtitle">ASCII, ISCII, and Unicode (UTF-8 & UTF-32)</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- ═══════ SLIDE 2 — What is Encoding? ═══════ -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. What is Character Encoding?</h2>
+            <p class="slide-subtitle">How computers understand human language.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>The Problem</h3>
+                    <p>Computers only understand <strong>binary numbers</strong> (0s and 1s). They do not understand
+                        letters like <code>'A'</code>, symbols like <code>'#'</code>, or emojis like <code>'😃'</code>.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>The Solution</h3>
+                    <p>A <span class="key-term">Character Encoding Scheme</span> is a standardized dictionary that maps
+                        a unique numerical value (which can be stored in binary) to every character we want to display.
+                    </p>
+                </div>
+            </div>
+            <div class="example-block">
+                <h4>💡 Example Flow</h4>
+                <p>Keyboard press 'A' ➔ Look up 'A' in the Encoding Standard ➔ Finds numeric value <code>65</code> ➔
+                    Sends Binary <code>01000001</code> to Memory/CPU.</p>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 3 — ASCII Introduction ═══════ -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">2. ASCII (American Standard Code for Information Interchange)</h2>
+            <p class="slide-subtitle">The original standard for English characters on the early internet.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Standard 7-bit ASCII</h3>
+                    <p>ASCII originally used exactly <strong>7 bits</strong> per character. This means it could
+                        represent a total of $2^7 = 128$ unique characters.</p>
+                    <ul>
+                        <li>English Alphabets (Upper: A-Z, Lower: a-z)</li>
+                        <li>Digits (0-9)</li>
+                        <li>Punctuation (!, @, #, $, etc.)</li>
+                        <li>Control characters (Carriage Return, Tab)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Important ASCII Values</h3>
+                    <table class="styled-table" style="font-family:monospace; text-align:center;">
+                        <tr>
+                            <th>Character</th>
+                            <th>Decimal Value</th>
+                            <th>Binary</th>
+                        </tr>
+                        <tr>
+                            <td>'A'</td>
+                            <td>65</td>
+                            <td>01000001</td>
+                        </tr>
+                        <tr>
+                            <td>'a'</td>
+                            <td>97</td>
+                            <td>01100001</td>
+                        </tr>
+                        <tr>
+                            <td>'0'</td>
+                            <td>48</td>
+                            <td>00110000</td>
+                        </tr>
+                        <tr>
+                            <td>Space</td>
+                            <td>32</td>
+                            <td>00100000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 4 — Extended ASCII & Limitations ═══════ -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">3. Extended ASCII and Its Limitations</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Extended ASCII (8-bit)</h3>
+                    <p>Computers organize data into 8-bit bytes. Standard ASCII only used 7 bits, leaving the 8th bit as
+                        0. To use this wasted bit, "Extended ASCII" was created.</p>
+                    <p>It uses all <strong>8 bits</strong> ($2^8 = 256$ characters). The additional 128 characters were
+                        used for European accented letters (like é, ñ) and drawing symbols.</p>
+                </div>
+                <div class="card" style="border-color: var(--danger);">
+                    <h3 style="color:var(--danger);">The Great Limitation</h3>
+                    <p>There are over 7,000 spoken languages in the world. Chinese alone has over 50,000 characters.</p>
+                    <p><strong>A 256-character limit is completely insufficient for a globalized world.</strong> ASCII
+                        cannot represent Arabic, Hindi, Japanese, or any non-Western alphabet.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 5 — ISCII ═══════ -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">4. ISCII (Indian Script Code for Information Interchange)</h2>
+            <p class="slide-subtitle">India's solution for digital representation of regional scripts.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>What is ISCII?</h3>
+                    <p>Developed in the late 1980s, <span class="key-term">ISCII</span> is an <strong>8-bit encoding
+                            scheme</strong> standard designed by the Bureau of Indian Standards (BIS).</p>
+                    <p>It was created because standard ASCII had no provision for Indian languages.</p>
+                </div>
+                <div class="card">
+                    <h3>How it Works</h3>
+                    <p>Since it is 8-bit (256 characters):</p>
+                    <ul>
+                        <li>The first 128 codes (0-127) are identical to standard ASCII (maintaining English
+                            compatibility).</li>
+                        <li>The next 128 codes (128-255) are used to represent characters from Indian scripts based on
+                            the ancient Brahmi script.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="example-block">
+                <p><strong>Supported Scripts:</strong> Devanagari (Hindi, Marathi, Sanskrit), Bengali, Gujarati,
+                    Gurmukhi, Odia, Tamil, Telugu, Kannada, and Malayalam.</p>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 6 — Introduction to Unicode ═══════ -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">5. Unicode: The Universal Solution</h2>
+            <p class="slide-subtitle">One standard to rule them all.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">🌍</div>
+                    <h3>The Goal</h3>
+                    <p>The <span class="key-term">Unicode Standard</span> provides a unique number for every character,
+                        no matter what the platform, no matter what the program, no matter what the language.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>Capacity</h3>
+                    <p>Unlike ASCII (256 max), Unicode can define over <strong>1.1 Million</strong> distinct characters.
+                        It currently includes English, Hindi, Arabic, ancient Egyptian Hieroglyphs, and all Emojis! 🍕
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔢</div>
+                    <h3>Code Points</h3>
+                    <p>Unicode doesn't directly dictate how binary is stored; it just assigns an ID called a
+                        <strong>Code Point</strong>. Written as <code>U+XXXX</code> (e.g., <code>U+0041</code> for 'A',
+                        <code>U+1F600</code> for 😀).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 7 — How Unicode forms Binary (UTF) ═══════ -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">6. Unicode Transformation Formats (UTF)</h2>
+            <p class="slide-subtitle">Code Points must be converted into actual binary Bytes to be stored on a hard
+                drive.</p>
+
+            <div class="card" style="margin-bottom: 20px;">
+                <p>Unicode is purely a conceptual chart. To save a Unicode Code Point (like U+0915 for Devanagari 'क')
+                    to memory, we use a specific encoding algorithm called a <strong>UTF</strong>.</p>
+            </div>
+
+            <div class="two-col">
+                <div class="card">
+                    <h3>UTF-8</h3>
+                    <p>Variable-width encoding (uses 1, 2, 3, or 4 bytes per character). Optimizes memory for English
+                        text.</p>
+                </div>
+                <div class="card">
+                    <h3>UTF-32</h3>
+                    <p>Fixed-width encoding (uses exactly 4 bytes for <strong>every</strong> character). Wasteful on
+                        memory, but fast to process.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 8 — UTF-8 Details ═══════ -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">7. UTF-8 Encoding (Deep Dive)</h2>
+            <p class="slide-subtitle">The dominant encoding of the World Wide Web (used by ~98% of websites).</p>
+
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Variable Width</h3>
+                    <p><span class="key-term">UTF-8 is brilliant because it is flexible:</span></p>
+                    <ul style="margin-top:10px;">
+                        <li>Standard English (A-Z) takes <strong>1 Byte</strong>.</li>
+                        <li>European/Arabic/Hebrew letters take <strong>2 Bytes</strong>.</li>
+                        <li>Asian scripts (Hindi, Chinese) take <strong>3 Bytes</strong>.</li>
+                        <li>Emojis and historic scripts take <strong>4 Bytes</strong>.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--success);">Backward Compatibility</h3>
+                    <p>The first 128 characters of UTF-8 use exactly 1 byte and match ASCII perfectly! Any old text file
+                        created in the 1980s using standard ASCII is implicitly also a perfectly valid UTF-8 file.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 9 — UTF-32 Details ═══════ -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">8. UTF-32 Encoding</h2>
+            <p class="slide-subtitle">Fixed width for fast programmatic slicing.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>How it works</h3>
+                    <p>In UTF-32, <strong>every single character</strong> takes exactly 32 bits (4 bytes) of memory.
+                        Whether it is 'A' or '😀', it occupies 4 bytes.</p>
+                </div>
+                <div class="card">
+                    <h3>Pros & Cons</h3>
+                    <ul>
+                        <li>✅ <strong>Fast Indexing:</strong> If you want to jump to the 100th character in a string,
+                            the CPU exactly calculates its memory address (100 × 4 bytes). In UTF-8, you have to scan
+                            from the start because widths vary.</li>
+                        <li>❌ <strong>Massive Memory Waste:</strong> Standard English files become 4 times larger on the
+                            hard drive compared to ASCII/UTF-8.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 10 — Summary Comparison ═══════ -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">📝 Summary Comparison</h2>
+            <div class="card">
+                <table class="styled-table">
+                    <tr>
+                        <th>Scheme</th>
+                        <th>Bits per Char</th>
+                        <th>Total Characters</th>
+                        <th>Primary Purpose</th>
+                    </tr>
+                    <tr>
+                        <td><strong>ASCII (Std)</strong></td>
+                        <td>7 bits</td>
+                        <td>128</td>
+                        <td>Original English encoding.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ASCII (Ext)</strong></td>
+                        <td>8 bits</td>
+                        <td>256</td>
+                        <td>Added European accents.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ISCII</strong></td>
+                        <td>8 bits</td>
+                        <td>256</td>
+                        <td>Indian scripts + English (ASCII compatible).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UTF-8 (Unicode)</strong></td>
+                        <td>8 to 32 bits</td>
+                        <td>1.1 Million+</td>
+                        <td>Global web standard, memory efficient.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UTF-32 (Unicode)</strong></td>
+                        <td>32 bits (Fixed)</td>
+                        <td>1.1 Million+</td>
+                        <td>Global, fast indexing, high memory usage.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════ SLIDE 11 — Quiz ═══════ -->
+        <div class="slide" id="slide-10" style="padding-bottom:80px;">
+            <div class="quiz-header">
+                <h2 class="slide-title">🧪 Interactive Quiz</h2>
+                <p class="slide-subtitle">Test your knowledge — 12 questions on ASCII, ISCII, and Unicode.</p>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                </div>
+                <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+            </div>
+            <div id="quizContainer"></div>
+            <div id="quizResults" class="quiz-results" style="display:none;"></div>
+        </div>
+
+    </div>
+
+    <!-- ═══ Navigation ═══ -->
+    <nav id="navBar">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <span id="slideCounter">1 / 11</span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </nav>
+
+    <script src="quiz.js"></script>
+    <script src="slides.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Basics — Graduation Level Slides</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .code-block {
+            background: #0a0e1a;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+            text-align: left;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .function {
+            color: #61afef;
+        }
+
+        .operator {
+            color: #56b6c2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1: Title -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science</div>
+            <h1 class="slide-title">Familiarization with Python Basics</h1>
+            <p class="slide-subtitle">Introduction, Features, Execution Modes, Tokens, Variables, and Logic.</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- SLIDE 2: What is Python -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. Introduction to Python</h2>
+            <p class="slide-subtitle">The world's most versatile programming language.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>What is it?</h3>
+                    <p><span class="key-term">Python</span> is a widely used general-purpose, high-level programming
+                        language.</p>
+                    <p>Unlike languages built purely for web development (like JavaScript) or system programming (like
+                        C), Python is used for almost everything: Data Science, AI, Web Servers, and Automation.</p>
+                </div>
+                <div class="card">
+                    <h3>Guido van Rossum</h3>
+                    <p>Python was created by <strong>Guido van Rossum</strong> in 1991 at the National Research
+                        Institute for Mathematics and Computer Science in the Netherlands.</p>
+                    <p>It was named after the British comedy troupe <i>Monty Python's Flying Circus</i>, not the snake!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Features 1 -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">2. Core Features of Python (Part 1)</h2>
+            <div class="two-col">
+                <div class="card" style="border-top: 3px solid #10b981;">
+                    <h3>Easy to Learn and Use</h3>
+                    <p>Python is developer-friendly. It has a simple structure and clearly defined syntax.</p>
+                    <p>It relies heavily on English keywords rather than punctuation, making it instantly readable for
+                        beginners.</p>
+                </div>
+                <div class="card" style="border-top: 3px solid #3b82f6;">
+                    <h3>Expressive Language</h3>
+                    <p>Python allows you to write programs with fewer lines of code compared to C++ or Java.</p>
+                    <p>What might take 10 lines in Java can often be accomplished in a single, elegant line of Python.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Features 2 -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">3. Core Features of Python (Part 2)</h2>
+            <div class="two-col">
+                <div class="card" style="border-top: 3px solid #f59e0b;">
+                    <h3>Interpreted Language</h3>
+                    <p>Python does not need to be manually compiled into machine code before running.</p>
+                    <p>The Python Interpreter processes the source code <strong>line by line</strong> at runtime, which
+                        makes debugging much faster and easier.</p>
+                </div>
+                <div class="card" style="border-top: 3px solid #8b5cf6;">
+                    <h3>Cross-Platform / Portable</h3>
+                    <p>Python code is highly portable. A program written on a Windows machine will execute flawlessly on
+                        macOS or Linux without requiring any code modifications.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Features 3 -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">4. Core Features of Python (Part 3)</h2>
+            <div class="content-grid">
+                <div class="card" style="border-top: 3px solid #ef4444;">
+                    <h3>Free and Open Source</h3>
+                    <p>The Python language is freely available on <i>python.org</i>. It is managed by a vast open-source
+                        community that constantly improves its infrastructure.</p>
+                </div>
+                <div class="card" style="border-top: 3px solid #06b6d4;">
+                    <h3>Object-Oriented</h3>
+                    <p>Python perfectly incorporates Object-Oriented Programming (OOP) concepts: data encapsulation,
+                        inheritance, and polymorphism, allowing for complex architectural designs.</p>
+                </div>
+                <div class="card" style="border-top: 3px solid #ec4899;">
+                    <h3>Large Standard Library</h3>
+                    <p>Python comes with "batteries included". The standard library is massive, providing out-of-the-box
+                        support for email, internet protocols, databases, and mathematics.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Hello World -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">5. The "Hello World" Program</h2>
+            <p class="slide-subtitle">The traditional first step in any programming language.</p>
+            <div class="card" style="text-align:center;">
+                <p>In Python, displaying text on the screen requires exactly one line of code:</p>
+                <div class="code-block"
+                    style="display:inline-block; margin-top:15px; font-size:1.5rem; padding: 25px 50px;">
+                    <span class="function">print</span>(<span class="string">"Hello, World!"</span>)
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px; text-align:center;">
+                <p><strong>Compare this to Java:</strong></p>
+                <div class="code-block" style="display:inline-block; margin-top:5px; font-size:0.9rem;">
+                    <span class="keyword">class</span> HelloWorld {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public static void</span> main(String[] args) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"Hello,
+                        World!"</span>);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Breaking down Hello World -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">6. Breaking down "Hello World"</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3><span class="function">print()</span></h3>
+                    <p>This is a built-in <span class="key-term">Function</span>. A function is a reusable block of code
+                        designed to perform a specific action.</p>
+                    <p>The job of the <code>print()</code> function is to take data and push it out to the
+                        console/screen.</p>
+                </div>
+                <div class="card">
+                    <h3><span class="string">"Hello, World!"</span></h3>
+                    <p>This is a <span class="key-term">String</span>. A string is simply a sequence of characters
+                        acting as text data.</p>
+                    <p>Python knows it is a string because it is strictly enclosed in double quotes (<code>""</code>) or
+                        single quotes (<code>''</code>).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: Execution Modes -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">7. Execution Modes</h2>
+            <p class="slide-subtitle">How do we actually run Python code?</p>
+            <div class="card">
+                <p>Because Python is an interpreted language, it allows for flexibility in execution. There are two
+                    primary ways to interact with the Python interpreter:</p>
+            </div>
+            <div class="content-grid" style="margin-top:20px;">
+                <div class="card" style="text-align:center;">
+                    <h3>1. Interactive Mode</h3>
+                    <p>A live command-line environment (REPL) where you type a single command and Python instantly
+                        executes it.</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <h3>2. Script Mode</h3>
+                    <p>Writing an entire program into a file (ending in <code>.py</code>) and then telling Python to
+                        execute the whole file at once.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: Interactive Mode -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">8. Interactive Mode</h2>
+            <p class="slide-subtitle">The REPL (Read, Evaluate, Print, Loop)</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>The Python Prompt</h3>
+                    <p>When you start Python in a terminal, you are greeted by three chevrons:
+                        <code>&gt;&gt;&gt;</code>. This is the prompt.</p>
+                    <p>When you type an expression and hit Enter, Python immediately gives the output.</p>
+                </div>
+                <div class="code-block" style="border-left: 5px solid #10b981;">
+                    <span class="comment"># Output in Terminal:</span>
+                    >>> 5 + 5
+                    10
+                    >>> print("Testing")
+                    Testing
+                    >>> x = 20
+                    >>> x * 2
+                    40
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: Interactive Mode Pros/Cons -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">9. Pros and Cons of Interactive Mode</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3 style="color:var(--success);">✅ Advantages</h3>
+                    <ul>
+                        <li><strong>Instant Feedback:</strong> Excellent for beginners testing out how a specific
+                            function works.</li>
+                        <li><strong>Great Calculator:</strong> Perfect for rapidly testing math equations or one-line
+                            logic blocks.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--danger);">❌ Disadvantages</h3>
+                    <ul>
+                        <li><strong>No Saving:</strong> Once you close the terminal, your code is gone forever.</li>
+                        <li><strong>Tedious for large apps:</strong> You cannot easily write a 100-line looping program
+                            in an interactive prompt without getting confused.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: Script Mode -->
+        <div class="slide" id="slide-10">
+            <h2 class="slide-title">10. Script Mode</h2>
+            <p class="slide-subtitle">How professional software is written.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Writing the Script</h3>
+                    <p>You use a text editor (like Notepad, VSCode, or IDLE) and type all your code at once.</p>
+                    <p>You save the file with a <span class="key-term">.py extension</span> (e.g.,
+                        <code>game.py</code>).</p>
+                </div>
+                <div class="card">
+                    <h3>Running the Script</h3>
+                    <p>You pass the file to the interpreter via the command line.</p>
+                    <div class="code-block" style="padding:10px;">
+                        C:\Users\John> python game.py
+                    </div>
+                    <p style="margin-top:10px;">Python will then read the file from top to bottom, executing every line
+                        silently unless instructed to print.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: Pros and Cons of Script Mode -->
+        <div class="slide" id="slide-11">
+            <h2 class="slide-title">11. Pros and Cons of Script Mode</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3 style="color:var(--success);">✅ Advantages</h3>
+                    <ul>
+                        <li><strong>Permanent:</strong> Code is saved permanently on your hard drive.</li>
+                        <li><strong>Editable:</strong> You can quickly fix a mistake on line 50 without retyping lines
+                            1-49.</li>
+                        <li><strong>Scalable:</strong> Necessary for apps, games, and web servers.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--danger);">❌ Disadvantages</h3>
+                    <ul>
+                        <li><strong>No Auto-Print:</strong> You don't see intermediate outputs unless you explicitly
+                            write <code>print()</code> statements, unlike the interactive prompt which auto-prints
+                            results.</li>
+                        <li>Slightly more setup required to run a simple math test.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+<!-- SLIDE 13: Python Character Set Intro -->
+<div class="slide" id="slide-12">
+    <h2 class="slide-title">12. Python Character Set</h2>
+    <p class="slide-subtitle">The alphabet of the Python language.</p>
+    <div class="card">
+        <h3>What is a Character Set?</h3>
+        <p>A Character Set is a valid set of characters that a language can recognize. If you type a character outside
+            of this set, the Python interpreter will throw a Syntax Error.</p>
+        <p style="margin-top:10px;">Python fully supports the <strong>Unicode</strong> standard, meaning it can
+            technically process text in global languages. However, the syntax of the language itself relies on a core
+            set of standard characters.</p>
+    </div>
+</div>
+
+<!-- SLIDE 14: Character Set Breakdown -->
+<div class="slide" id="slide-13">
+    <h2 class="slide-title">13. Core Character Set Breakdown</h2>
+    <div class="content-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="card">
+            <h3>🔤 Letters</h3>
+            <p>Uppercase A-Z and Lowercase a-z.</p>
+            <p><i>Note: Python is case-sensitive! (A is not a)</i></p>
+        </div>
+        <div class="card">
+            <h3>🔢 Digits</h3>
+            <p>All numbers 0 through 9.</p>
+        </div>
+        <div class="card">
+            <h3>✨ Special Symbols</h3>
+            <p>Space, + - * / ( ) [ ] { } = @ _ , . ; : ' " \ % #</p>
+            <p>These have specific syntactic meanings.</p>
+        </div>
+        <div class="card">
+            <h3>💨 Whitespace</h3>
+            <p>Blank Spaces, Tabs, Carriage Returns, and Newlines. Whitespace is critical in Python for defining code
+                blocks.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 15: Intro to Tokens -->
+<div class="slide" id="slide-14">
+    <h2 class="slide-title">14. Python Tokens (Lexical Units)</h2>
+    <p class="slide-subtitle">The atoms of a program.</p>
+    <div class="card">
+        <h3>What is a Token?</h3>
+        <p>In English, the smallest individual unit in a sentence is a word or a punctuation mark. In Python, the
+            smallest individual unit in a program is known as a <span class="key-term">Token</span>.</p>
+    </div>
+    <div class="card" style="margin-top:20px;">
+        <h4>The 5 types of Tokens in Python:</h4>
+        <ol style="margin-top:10px; font-weight:bold;">
+            <li style="color:#c678dd;">Keywords</li>
+            <li style="color:#d19a66;">Identifiers</li>
+            <li style="color:#98c379;">Literals</li>
+            <li style="color:#56b6c2;">Operators</li>
+            <li style="color:var(--text-primary);">Punctuators</li>
+        </ol>
+    </div>
+</div>
+
+<!-- SLIDE 16: Keywords -->
+<div class="slide" id="slide-15">
+    <h2 class="slide-title">15. Token 1: Keywords</h2>
+    <p class="slide-subtitle">Reserved words with special meaning.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>What are they?</h3>
+            <p><span class="key-term">Keywords</span> are predefined, reserved words used by the Python compiler. </p>
+            <p>They dictate the structure and logic of the code. You <strong>cannot</strong> use a keyword as a variable
+                name or a function name.</p>
+        </div>
+        <div class="card">
+            <h3>Examples</h3>
+            <div class="code-block" style="column-count: 2;">
+                <span class="keyword">False</span><br>
+                <span class="keyword">True</span><br>
+                <span class="keyword">None</span><br>
+                <span class="keyword">and</span><br>
+                <span class="keyword">as</span><br>
+                <span class="keyword">break</span><br>
+                <span class="keyword">class</span><br>
+                <span class="keyword">def</span><br>
+                <span class="keyword">elif</span><br>
+                <span class="keyword">else</span><br>
+                <span class="keyword">for</span><br>
+                <span class="keyword">if</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 17: Identifiers -->
+<div class="slide" id="slide-16">
+    <h2 class="slide-title">16. Token 2: Identifiers</h2>
+    <p class="slide-subtitle">Names given by the programmer to entities.</p>
+    <div class="card">
+        <h3>What are they?</h3>
+        <p>An <span class="key-term">Identifier</span> is a fundamental building block. It is a name given to parts of a
+            program, like variables, functions, objects, or classes.</p>
+        <p>While keywords are defined by Python, identifiers are created and defined by <strong>you</strong>.</p>
+    </div>
+    <div class="code-block" style="margin-top:20px;">
+        <span class="comment"># 'age' and 'salary' are Identifiers</span><br>
+        age = 25<br>
+        salary = 50000.0
+    </div>
+</div>
+
+<!-- SLIDE 18: Identifier Rules -->
+<div class="slide" id="slide-17">
+    <h2 class="slide-title">17. Rules for Naming Identifiers</h2>
+    <div class="content-grid">
+        <div class="card">
+            <h4 style="color:var(--success);">✅ Valid Rules</h4>
+            <ul>
+                <li>Must start with an alphabet letter (A-Z, a-z) or an underscore ( _ ).</li>
+                <li>Can be followed by letters, digits, or underscores.</li>
+                <li>They are case-sensitive. (<code>Age</code> and <code>age</code> are two entirely different
+                    identifiers).</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h4 style="color:var(--danger);">❌ Invalid Rules</h4>
+            <ul>
+                <li>Cannot contain any special characters (like !, @, #, $, %).</li>
+                <li>Cannot contain blank spaces.</li>
+                <li><strong>Cannot start with a digit!</strong> (e.g., <code>1st_Name</code> is illegal).</li>
+                <li>Cannot be a reserved keyword.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 19: Literals -->
+<div class="slide" id="slide-18">
+    <h2 class="slide-title">18. Token 3: Literals (Values)</h2>
+    <p class="slide-subtitle">Constant, fixed data items.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>What is a Literal?</h3>
+            <p>A <span class="key-term">Literal</span> is the raw data that you assign to an identifier. It is a value
+                that literally represents itself and does not change during execution.</p>
+        </div>
+        <div class="card">
+            <h3>Example</h3>
+            <div class="code-block">
+                x = <span style="color:#d19a66;">100</span><br>
+                name = <span class="string">"Alice"</span>
+            </div>
+            <p style="margin-top:10px; font-size:0.9rem;">Here, <code>100</code> and <code>"Alice"</code> are literals.
+                <code>x</code> and <code>name</code> are identifiers.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 20: Types of Literals -->
+<div class="slide" id="slide-19">
+    <h2 class="slide-title">19. Common Types of Literals</h2>
+    <div class="content-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="card">
+            <h4>String Literals</h4>
+            <p>Text enclosed in quotes. <br><code>"Hello"</code> or <code>'Hello'</code>.</p>
+        </div>
+        <div class="card">
+            <h4>Numeric Literals</h4>
+            <p>Integers (<code>14</code>, <code>-5</code>)<br>Floats (<code>3.14</code>, <code>0.0</code>)<br>Complex
+                (<code>3+4j</code>)</p>
+        </div>
+        <div class="card">
+            <h4>Boolean Literals</h4>
+            <p>Exactly two values representing truth: <br><code>True</code> and <code>False</code> (Must be
+                capitalized).</p>
+        </div>
+        <div class="card">
+            <h4>Special Literal: None</h4>
+            <p><code>None</code> is used to signify the absence of value or 'nothingness' in a variable.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 21: Operators -->
+<div class="slide" id="slide-20">
+    <h2 class="slide-title">20. Token 4: Operators</h2>
+    <p class="slide-subtitle">Symbols that trigger computation.</p>
+    <div class="card">
+        <p><span class="key-term">Operators</span> are special symbols that carry out arithmetic or logical computation
+            on values or variables (known as Operands).</p>
+    </div>
+    <table class="styled-table" style="width:100%; margin-top:20px;">
+        <tr>
+            <th>Type</th>
+            <th>Symbols</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td><strong>Arithmetic</strong></td>
+            <td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> (modulo), <code>**</code>
+                (exponent)</td>
+            <td><code>5 * 2 = 10</code></td>
+        </tr>
+        <tr>
+            <td><strong>Relational</strong></td>
+            <td><code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>,
+                <code>&lt;=</code></td>
+            <td><code>4 > 3 -> True</code></td>
+        </tr>
+        <tr>
+            <td><strong>Logical</strong></td>
+            <td><code>and</code>, <code>or</code>, <code>not</code></td>
+            <td><code>True and False</code></td>
+        </tr>
+        <tr>
+            <td><strong>Assignment</strong></td>
+            <td><code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code></td>
+            <td><code>x = 5</code></td>
+        </tr>
+    </table>
+</div>
+
+<!-- SLIDE 22: Punctuators -->
+<div class="slide" id="slide-21">
+    <h2 class="slide-title">21. Token 5: Punctuators (Delimiters)</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>What are they?</h3>
+            <p><span class="key-term">Punctuators</span> are symbols that are used to organize programming-sentence
+                structures, and indicate the rhythm and emphasis of expressions, statements, and program flow.</p>
+        </div>
+        <div class="card">
+            <h3>Examples in Python</h3>
+            <ul style="font-size:1.1rem; line-height: 1.8;">
+                <li>Parentheses: <code>(  )</code></li>
+                <li>Brackets: <code>[  ]</code></li>
+                <li>Braces: <code>{  }</code></li>
+                <li>Comma: <code>,</code></li>
+                <li>Colon: <code>:</code> (used to start blocks)</li>
+                <li>Quote: <code>"  "</code></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- SLIDE 23: Intro to Variables -->
+<div class="slide" id="slide-22">
+    <h2 class="slide-title">22. Understanding Variables</h2>
+    <p class="slide-subtitle">Containers for storing data values.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>What is a Variable?</h3>
+            <p>A <span class="key-term">Variable</span> is a named location in the computer's memory (RAM) used to store
+                data.</p>
+            <p>Wait, isn't that an Identifier? Yes! A variable is specifically an <i>identifier</i> that points to a
+                memory address holding a <i>literal</i> value.</p>
+        </div>
+        <div class="card">
+            <h3>Creating a Variable</h3>
+            <p>Unlike languages like C or Java, Python has no command for declaring a variable upfront. A variable is
+                automatically created the moment you first assign a value to it.</p>
+            <div class="code-block" style="padding:10px;">
+                x = 5<br>
+                y = <span class="string">"John"</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 24: Dynamic Typing -->
+<div class="slide" id="slide-23">
+    <h2 class="slide-title">23. Python is Dynamically Typed</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>No Type Boundaries</h3>
+            <p>In languages like C++, if you declare an integer variable, it can ONLY ever hold integers. If you try to
+                store a string in it later, the program crashes.</p>
+            <p style="margin-top:10px;">Python variables do not need to be declared with any particular type, and can
+                even change type dynamically after they have been set.</p>
+        </div>
+        <div class="code-block">
+            x = <span style="color:#d19a66;">4</span> <span class="comment"># x is an integer</span><br>
+            x = <span class="string">"Sally"</span> <span class="comment"># x is now a string</span><br>
+            print(x)<br>
+            <br>
+            <span class="comment">Output: Sally</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 25: L-value and R-value -->
+<div class="slide" id="slide-24">
+    <h2 class="slide-title">24. Concept of L-value and R-value</h2>
+    <p class="slide-subtitle">Understanding the mechanics of the assignment operator (=).</p>
+    <div class="card" style="text-align:center; padding:20px;">
+        <h3 style="font-size:2rem; font-family:monospace; color:#f8fafc;">A = B</h3>
+        <p style="margin-top:10px;">The assignment operator <code>=</code> divides an expression into a Left side and a
+            Right side.</p>
+    </div>
+    <div class="two-col" style="margin-top:20px;">
+        <div class="card">
+            <h3 style="color:var(--accent-4);">L-value (Left Value)</h3>
+            <p>An expression that refers to a <strong>memory location</strong>. It must represent a container that can
+                actually hold data. Variables are L-values.</p>
+        </div>
+        <div class="card">
+            <h3 style="color:var(--success);">R-value (Right Value)</h3>
+            <p>An expression that refers to the <strong>data value</strong> that is stored at some memory address.
+                Literals and constants are strictly R-values.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 26: Examples of L-value and R-value -->
+<div class="slide" id="slide-25">
+    <h2 class="slide-title">25. L-value vs R-value Examples</h2>
+    <div class="content-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="card" style="border-left: 4px solid var(--success);">
+            <h3>✅ Valid Statement</h3>
+            <div class="code-block" style="padding:10px;">X = 20</div>
+            <p style="margin-top:10px;">• <code>X</code> is a valid L-value (it's a container in memory).<br>•
+                <code>20</code> is a valid R-value (it's the data).</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--danger);">
+            <h3>❌ Invalid Statement</h3>
+            <div class="code-block" style="padding:10px;">20 = X</div>
+            <p style="margin-top:10px;">• <code>20</code> is a literal number, not a memory container. It
+                <strong>cannot</strong> be an L-value. This will throw a SyntaxError.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--success); grid-column: span 2;">
+            <h3>✅ Variables as R-values</h3>
+            <div class="code-block" style="padding:10px;">A = 10<br>B = A</div>
+            <p style="margin-top:10px;">In <code>B = A</code>, <code>B</code> acts as the L-value (container), and
+                <code>A</code> acts as the R-value (we extract the data value <i>10</i> out of container A and put it
+                into container B).</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 27: Introduction to Comments -->
+<div class="slide" id="slide-26">
+    <h2 class="slide-title">26. Use of Comments</h2>
+    <p class="slide-subtitle">Communicating with humans, not the computer.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>What are Comments?</h3>
+            <p><span class="key-term">Comments</span> are text notes added to the code to provide explanatory
+                information. They act as internal documentation.</p>
+            <p style="margin-top:10px;">When the Python interpreter runs the program, it <strong>completely
+                    ignores</strong> any text that is marked as a comment.</p>
+        </div>
+        <div class="card">
+            <h3>Why do we need them?</h3>
+            <ul style="font-size:0.95rem;">
+                <li>To clarify the <i>intent</i> behind complex logic for other developers.</li>
+                <li>To remind <i>yourself</i> what your code does when you look at it 6 months later.</li>
+                <li>To temporarily disable lines of code while debugging (known as "commenting out").</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 28: Writing Comments -->
+<div class="slide" id="slide-27">
+    <h2 class="slide-title">27. How to write Comments in Python</h2>
+    <div class="card" style="margin-bottom:20px;">
+        <h3>1. Single-Line Comments ( <code>#</code> )</h3>
+        <p>Created by using the hash/pound symbol. Everything to the right of the <code>#</code> on that line is
+            ignored.</p>
+        <div class="code-block" style="margin-top:10px;">
+            <span class="comment"># Calculate the area of a circle</span><br>
+            area = 3.14 * (radius ** 2)<br>
+            <br>
+            print(area) <span class="comment"># This prints the result to the screen</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 29: Writing Multi-line Comments -->
+<div class="slide" id="slide-28">
+    <h2 class="slide-title">28. Multi-Line Comments (Docstrings)</h2>
+    <div class="card">
+        <h3>2. Multi-Line Comments ( <code>"""</code> )</h3>
+        <p>If you have a massive paragraph to write, prepending <code>#</code> to every single line is tedious. Python
+            allows you to use triple quotes to write across multiple lines.</p>
+        <div class="code-block" style="margin-top:10px;">
+            <span class="comment">"""<br>
+                This is a multi-line comment.<br>
+                It spans across three different lines.<br>
+                The interpreter will ignore all of this.<br>
+                """</span><br>
+            def my_function():<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;pass
+        </div>
+        <p style="margin-top:10px; font-size:0.85rem; color:var(--text-muted);">(Note: Technically these are regular
+            strings that are just not assigned to a variable, so they are garbage-collected immediately, acting as
+            comments).</p>
+    </div>
+</div>
+
+<!-- SLIDE 30: Summary -->
+<div class="slide" id="slide-29">
+    <h2 class="slide-title">29. Summary of Python Basics</h2>
+    <div class="card">
+        <ul>
+            <li><strong>Python:</strong> A high-level, interpreted, easy-to-read language.</li>
+            <li><strong>Modes:</strong> Interactive (immediate feedback) vs Script (permanent file).</li>
+            <li><strong>Tokens (The 5 Atoms):</strong> Keywords, Identifiers, Literals, Operators, Punctuators.</li>
+            <li><strong>Variables:</strong> Dynamically typed memory locations.</li>
+            <li><strong>L-value vs R-value:</strong> L-value gets the assignment (container), R-value is the data
+                provided.</li>
+            <li><strong>Comments:</strong> Notes for humans, ignored by the Python interpreter.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- SLIDE 31: End Title -->
+<div class="slide" id="slide-30">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Ready for the
+            Test?</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Proceed to the next slide to take
+            the Knowledge Check Quiz!</p>
+    </div>
+</div>
+
+
+<!-- SLIDE 32 (Quiz Container) -->
+<div class="slide" id="slide-31" style="padding-bottom:80px;">
+    <div class="quiz-header">
+        <h2 class="slide-title">🧪 Python Basics Quiz</h2>
+        <p class="slide-subtitle">15 questions testing your knowledge of Features, Tokens, and Logic.</p>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+        </div>
+        <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+    </div>
+    <div id="quizContainer"></div>
+    <div id="quizResults" class="quiz-results" style="display:none;"></div>
+</div>
+
+</div>
+
+<!-- ═══ Navigation ═══ -->
+<nav id="navBar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <span id="slideCounter">1 / 32</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</nav>
+
+<script src="quiz.js"></script>
+<script src="slides.js"></script>
+</body>
+
+</html>
