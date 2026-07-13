@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Systems & Conversions — Graduation Level</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .grid-example {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .example-item {
+            background: rgba(99, 102, 241, 0.08);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .base-sub {
+            font-size: 0.65em;
+            vertical-align: sub;
+            color: var(--accent-4);
+        }
+
+        .conv-step {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .conv-step:last-child {
+            border-bottom: none;
+        }
+
+        .frac-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            text-align: center;
+            font-family: monospace;
+        }
+
+        .frac-table th,
+        .frac-table td {
+            border: 1px solid var(--border);
+            padding: 5px;
+        }
+
+        .frac-table th {
+            background: rgba(16, 185, 129, 0.15);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1 -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science — Graduation Level</div>
+            <h1 class="slide-title">Number Systems</h1>
+            <p class="slide-subtitle">Binary, Octal, Decimal, Hexadecimal & Complex Conversions (Integer + Fractional)
+            </p>
+            <p style="margin-top:20px;color:var(--text-muted);font-size:0.85rem;">(30+ Slides with 10 Examples Per
+                System)</p>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. Introduction to Number Systems</h2>
+            <p class="slide-subtitle">The foundation of how data is represented symbolically.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Definition</h3>
+                    <p>A number system is a mathematical way of representing numbers using a set of symbols (digits). It
+                        provides a way to perform arithmetic operations like addition and subtraction.</p>
+                </div>
+                <div class="card">
+                    <h3>Why Multiple Systems?</h3>
+                    <p>Humans have 10 fingers, so we naturally use Base-10 (Decimal). Computers use transistors
+                        (on/off), so they naturally use Base-2 (Binary). Octal and Hexadecimal are used as "shorthand"
+                        to make binary easier for humans to read and write.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">2. Base (Radix) of a Number System</h2>
+            <div class="card" style="margin-bottom: 20px;">
+                <h3>What is a Base?</h3>
+                <p>The <span class="key-term">Base</span> or <span class="key-term">Radix</span> is the total number of
+                    unique digits (including zero) used in a positional numeral system.</p>
+                <p style="margin-top:10px;">The largest single digit in any base is always <strong>(Base - 1)</strong>.
+                </p>
+            </div>
+            <div class="card">
+                <table class="styled-table">
+                    <tr>
+                        <th>System</th>
+                        <th>Base</th>
+                        <th>Valid Digits/Symbols</th>
+                    </tr>
+                    <tr>
+                        <td>Binary</td>
+                        <td>2</td>
+                        <td>0, 1</td>
+                    </tr>
+                    <tr>
+                        <td>Octal</td>
+                        <td>8</td>
+                        <td>0, 1, 2, 3, 4, 5, 6, 7</td>
+                    </tr>
+                    <tr>
+                        <td>Decimal</td>
+                        <td>10</td>
+                        <td>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</td>
+                    </tr>
+                    <tr>
+                        <td>Hexadecimal</td>
+                        <td>16</td>
+                        <td>0-9, A, B, C, D, E, F</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">3. The Decimal System (Base 10)</h2>
+            <p class="slide-subtitle">The everyday system used by humans.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Characteristics</h3>
+                    <ul>
+                        <li><strong>Base:</strong> 10</li>
+                        <li><strong>Symbols:</strong> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</li>
+                        <li><strong>Positional Weight:</strong> Powers of 10.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Positional Example</h3>
+                    <p>Number: <span class="key-term">456<span class="base-sub">10</span></span></p>
+                    <p> = (4 × 10²) + (5 × 10¹) + (6 × 10⁰)</p>
+                    <p> = 400 + 50 + 6</p>
+                    <p> = 456</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">4. 10 Examples of Decimal Numbers</h2>
+            <p class="slide-subtitle">Familiar, but notice the explicit base notation.</p>
+            <div class="grid-example" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="example-item">1. Integer: 0<span class="base-sub">10</span></div>
+                <div class="example-item">2. Integer: 9<span class="base-sub">10</span></div>
+                <div class="example-item">3. Two digits: 42<span class="base-sub">10</span></div>
+                <div class="example-item">4. Three digits: 357<span class="base-sub">10</span></div>
+                <div class="example-item">5. Large int: 1024<span class="base-sub">10</span></div>
+                <div class="example-item">6. Fractional: 0.5<span class="base-sub">10</span></div>
+                <div class="example-item">7. Fractional: 3.14<span class="base-sub">10</span></div>
+                <div class="example-item">8. Fractional: 357.98<span class="base-sub">10</span></div>
+                <div class="example-item">9. Fractional: 99.99<span class="base-sub">10</span></div>
+                <div class="example-item">10. Fractional: 0.001<span class="base-sub">10</span></div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">5. The Binary System (Base 2)</h2>
+            <p class="slide-subtitle">The native language of computer hardware.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Characteristics</h3>
+                    <ul>
+                        <li><strong>Base:</strong> 2</li>
+                        <li><strong>Symbols:</strong> 0, 1 (called Bits)</li>
+                        <li><strong>Positional Weight:</strong> Powers of 2.</li>
+                        <li><strong>Use:</strong> Digital electronics, CPU processing, memory storage.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Positional Example</h3>
+                    <p>Number: <span class="key-term">1011<span class="base-sub">2</span></span></p>
+                    <p> = (1 × 2³) + (0 × 2²) + (1 × 2¹) + (1 × 2⁰)</p>
+                    <p> = 8 + 0 + 2 + 1</p>
+                    <p> = 11<span class="base-sub">10</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">6. 10 Examples of Binary Numbers</h2>
+            <p class="slide-subtitle">Note how rapidly the number of digits grows compared to decimal.</p>
+            <div class="grid-example" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="example-item">1. Zero: 0<span class="base-sub">2</span> (0)</div>
+                <div class="example-item">2. One: 1<span class="base-sub">2</span> (1)</div>
+                <div class="example-item">3. Two digits: 10<span class="base-sub">2</span> (2)</div>
+                <div class="example-item">4. Three digits: 111<span class="base-sub">2</span> (7)</div>
+                <div class="example-item">5. Byte: 10101010<span class="base-sub">2</span> (170)</div>
+                <div class="example-item">6. Fractional: 0.1<span class="base-sub">2</span> (0.5)</div>
+                <div class="example-item">7. Fractional: 0.01<span class="base-sub">2</span> (0.25)</div>
+                <div class="example-item">8. Mixed: 10.11<span class="base-sub">2</span> (2.75)</div>
+                <div class="example-item">9. Mixed: 101.001<span class="base-sub">2</span> (5.125)</div>
+                <div class="example-item">10. Large: 11111111<span class="base-sub">2</span> (255)</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">7. The Octal System (Base 8)</h2>
+            <p class="slide-subtitle">Used heavily in older computing and file permissions (e.g., Linux chmod 777).</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Characteristics</h3>
+                    <ul>
+                        <li><strong>Base:</strong> 8</li>
+                        <li><strong>Symbols:</strong> 0, 1, 2, 3, 4, 5, 6, 7 (notice there is no 8 or 9)</li>
+                        <li><strong>Positional Weight:</strong> Powers of 8.</li>
+                        <li><strong>Advantage:</strong> Every 3 bits of binary maps perfectly to 1 octal digit.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Positional Example</h3>
+                    <p>Number: <span class="key-term">345<span class="base-sub">8</span></span></p>
+                    <p> = (3 × 8²) + (4 × 8¹) + (5 × 8⁰)</p>
+                    <p> = (3 × 64) + (4 × 8) + (5 × 1)</p>
+                    <p> = 192 + 32 + 5 = 229<span class="base-sub">10</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9 -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">8. 10 Examples of Octal Numbers</h2>
+            <p class="slide-subtitle">Only digits 0-7 are allowed!</p>
+            <div class="grid-example" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="example-item">1. Zero: 0<span class="base-sub">8</span></div>
+                <div class="example-item">2. Single: 7<span class="base-sub">8</span></div>
+                <div class="example-item">3. Double (eight): 10<span class="base-sub">8</span> (8 in dec)</div>
+                <div class="example-item">4. Triple: 777<span class="base-sub">8</span></div>
+                <div class="example-item">5. Example: 345<span class="base-sub">8</span></div>
+                <div class="example-item">6. Fractional: 0.4<span class="base-sub">8</span>(=4/8=0.5 dec)</div>
+                <div class="example-item">7. Fractional: 2.5<span class="base-sub">8</span></div>
+                <div class="example-item">8. Mixed: 17.6<span class="base-sub">8</span></div>
+                <div class="example-item">9. Mixed: 100.1<span class="base-sub">8</span></div>
+                <div class="example-item">10. ERROR: <strike style="color:red;">89<span
+                            class="base-sub">8</span></strike> (Invalid)</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10 -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">9. The Hexadecimal System (Base 16)</h2>
+            <p class="slide-subtitle">The most modern shorthand for binary (used in MAC addresses, IPv6, Colors).</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Characteristics</h3>
+                    <ul>
+                        <li><strong>Base:</strong> 16</li>
+                        <li><strong>Symbols:</strong> 0-9, A(10), B(11), C(12), D(13), E(14), F(15)</li>
+                        <li><strong>Advantage:</strong> Every 4 bits (a nibble) maps perfectly to exactly 1 hex digit.
+                            Makes long binary strings very compact.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Positional Example</h3>
+                    <p>Number: <span class="key-term">1A3<span class="base-sub">16</span></span></p>
+                    <p> = (1 × 16²) + (A × 16¹) + (3 × 16⁰)</p>
+                    <p> = (1 × 256) + (10 × 16) + (3 × 1)</p>
+                    <p> = 256 + 160 + 3 = 419<span class="base-sub">10</span></p>
+                </div>
+            </div>
+        </div>
+<!-- SLIDE 11 -->
+<div class="slide" id="slide-10">
+    <h2 class="slide-title">10. 10 Examples of Hexadecimal Numbers</h2>
+    <p class="slide-subtitle">Remember: Letters A-F are just single digits representing 10-15.</p>
+    <div class="grid-example" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="example-item">1. Zero: 0<span class="base-sub">16</span></div>
+        <div class="example-item">2. Ten: A<span class="base-sub">16</span> (10 in dec)</div>
+        <div class="example-item">3. Fifteen: F<span class="base-sub">16</span> (15 in dec)</div>
+        <div class="example-item">4. Two digits: 10<span class="base-sub">16</span> (16 in dec)</div>
+        <div class="example-item">5. Color Code: FF<span class="base-sub">16</span> (255 in dec)</div>
+        <div class="example-item">6. Example: 1A3<span class="base-sub">16</span></div>
+        <div class="example-item">7. Word-like: BADA<span class="base-sub">16</span></div>
+        <div class="example-item">8. Fractional: 0.8<span class="base-sub">16</span> (0.5 dec)</div>
+        <div class="example-item">9. Fractional: A.C<span class="base-sub">16</span></div>
+        <div class="example-item">10. Complex: F0.0F<span class="base-sub">16</span></div>
+    </div>
+</div>
+
+<!-- SLIDE 12 -->
+<div class="slide" id="slide-11">
+    <h2 class="slide-title">11. Decimal to Binary (Integer)</h2>
+    <p class="slide-subtitle">Method: Successive Division by 2</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>The Algorithm</h3>
+            <ol style="margin-left:20px; line-height:1.8;">
+                <li>Divide the decimal number by 2.</li>
+                <li>Write down the remainder (0 or 1).</li>
+                <li>Divide the quotient again by 2.</li>
+                <li>Repeat until quotient is 0.</li>
+                <li><strong>Read remainders from BOTTOM to TOP.</strong></li>
+            </ol>
+        </div>
+        <div class="card" style="font-family: monospace; font-size: 1.1rem;">
+            <h3>Example: 25<span class="base-sub">10</span> to Binary</h3>
+            <div class="conv-step">25 / 2 = 12, R <strong>1</strong> (LSB)</div>
+            <div class="conv-step">12 / 2 = 6, R <strong>0</strong></div>
+            <div class="conv-step">6 / 2 = 3, R <strong>0</strong></div>
+            <div class="conv-step">3 / 2 = 1, R <strong>1</strong></div>
+            <div class="conv-step">1 / 2 = 0, R <strong>1</strong> (MSB)</div>
+            <p style="color:var(--accent-4); margin-top:10px;">Result: 11001<span class="base-sub">2</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 13 -->
+<div class="slide" id="slide-12">
+    <h2 class="slide-title">12. Decimal to Binary (Fractional)</h2>
+    <p class="slide-subtitle">Method: Successive Multiplication by 2</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>The Algorithm</h3>
+            <ol style="margin-left:20px; line-height:1.8;">
+                <li>Take the fractional part and multiply by 2.</li>
+                <li>Write down the integer part of the result (0 or 1).</li>
+                <li>Take the new fractional part and multiply by 2 again.</li>
+                <li>Repeat until fraction is 0 (or up to desired precision).</li>
+                <li><strong>Read integers from TOP to BOTTOM.</strong></li>
+            </ol>
+        </div>
+        <div class="card" style="font-family: monospace; font-size: 1rem;">
+            <h3>Example: 0.625<span class="base-sub">10</span> to Binary</h3>
+            <table class="frac-table">
+                <tr>
+                    <th>Multiplication</th>
+                    <th>Result</th>
+                    <th>Integer Part</th>
+                </tr>
+                <tr>
+                    <td>0.625 × 2</td>
+                    <td>1.25</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">1 (MSB)</td>
+                </tr>
+                <tr>
+                    <td>0.25 × 2</td>
+                    <td>0.50</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">0</td>
+                </tr>
+                <tr>
+                    <td>0.50 × 2</td>
+                    <td>1.00</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">1 (LSB)</td>
+                </tr>
+            </table>
+            <p style="color:var(--accent-4); margin-top:10px;text-align:center;">Result: 0.101<span
+                    class="base-sub">2</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 14 -->
+<div class="slide" id="slide-13">
+    <h2 class="slide-title">13. Complex Example: 357.98 to Binary</h2>
+    <p class="slide-subtitle">Combining Integer (Div) and Fractional (Mult) Methods.</p>
+
+    <div class="two-col">
+        <div class="card" style="font-size:0.9rem;">
+            <h3>Step 1: Integer Part 357</h3>
+            <div style="font-family:monospace; line-height:1.4;">
+                357 / 2 = 178, R=1 ↑<br>
+                178 / 2 = 89, R=0<br>
+                89 / 2 = 44, R=1<br>
+                44 / 2 = 22, R=0<br>
+                22 / 2 = 11, R=0<br>
+                11 / 2 = 5, R=1<br>
+                5 / 2 = 2, R=1<br>
+                2 / 2 = 1, R=0<br>
+                1 / 2 = 0, R=1
+            </div>
+            <p style="color:var(--accent-4); margin-top:5px;">Int = 101100101<span class="base-sub">2</span></p>
+        </div>
+        <div class="card" style="font-size:0.9rem;">
+            <h3>Step 2: Fractional Part 0.98</h3>
+            <div style="font-family:monospace; line-height:1.4;">
+                0.98 × 2 = <strong>1</strong>.96 ↓<br>
+                0.96 × 2 = <strong>1</strong>.92<br>
+                0.92 × 2 = <strong>1</strong>.84<br>
+                0.84 × 2 = <strong>1</strong>.68<br>
+                0.68 × 2 = <strong>1</strong>.36<br>
+                0.36 × 2 = <strong>0</strong>.72<br>
+                0.72 × 2 = <strong>1</strong>.44<br>
+                (repeats... precision ~ 7 bits)
+            </div>
+            <p style="color:var(--accent-4); margin-top:5px;">Frac = 0.1111101...<span class="base-sub">2</span></p>
+        </div>
+    </div>
+    <div class="card" style="margin-top:10px;text-align:center;font-weight:bold;font-size:1.2rem;color:var(--success);">
+        Final Result: 101100101.1111101...<span class="base-sub">2</span>
+    </div>
+</div>
+
+<!-- SLIDE 15 -->
+<div class="slide" id="slide-14">
+    <h2 class="slide-title">14. Binary to Decimal (Integer)</h2>
+    <p class="slide-subtitle">Method: Multiply each bit by 2^n</p>
+    <div class="content-grid">
+        <div class="card">
+            <h3>The Algorithm</h3>
+            <p>Assign a weight (power of 2) to each bit, starting from 0 at the rightmost bit (LSB) and increasing by 1
+                as you move left. Multiply the bit by its weight and sum them up.</p>
+        </div>
+        <div class="card" style="font-family:monospace;">
+            <h3>Example: 10110<span class="base-sub">2</span></h3>
+            <p>(<strong>1</strong> × 2⁴) + (<strong>0</strong> × 2³) + (<strong>1</strong> × 2²) + (<strong>1</strong> ×
+                2¹) + (<strong>0</strong> × 2⁰)</p>
+            <p>= (1 × 16) + 0 + (1 × 4) + (1 × 2) + 0</p>
+            <p>= 16 + 4 + 2</p>
+            <p style="color:var(--accent-4); font-size:1.2em;">= 22<span class="base-sub">10</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 16 -->
+<div class="slide" id="slide-15">
+    <h2 class="slide-title">15. Binary to Decimal (Fractional)</h2>
+    <p class="slide-subtitle">Method: Multiply bits by negative powers of 2.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>The Algorithm</h3>
+            <p>For bits to the <strong>right</strong> of the binary point, assign negative powers of 2 starting from -1
+                (-1, -2, -3...).</p>
+            <ul style="margin-top:10px;">
+                <li>2⁻¹ = 1/2 = 0.5</li>
+                <li>2⁻² = 1/4 = 0.25</li>
+                <li>2⁻³ = 1/8 = 0.125</li>
+            </ul>
+        </div>
+        <div class="card" style="font-family:monospace;">
+            <h3>Example: 10.101<span class="base-sub">2</span></h3>
+            <p><strong>Integer part (10):</strong></p>
+            <p>(1 × 2¹) + (0 × 2⁰) = 2 + 0 = 2</p>
+            <p><strong>Fractional part (.101):</strong></p>
+            <p>(1 × 2⁻¹) + (0 × 2⁻²) + (1 × 2⁻³)</p>
+            <p>= 0.5 + 0 + 0.125 = 0.625</p>
+            <p style="color:var(--accent-4); font-size:1.2em; margin-top:10px;">Result = 2.625<span
+                    class="base-sub">10</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 17 -->
+<div class="slide" id="slide-16">
+    <h2 class="slide-title">16. Decimal to Octal (Integer)</h2>
+    <p class="slide-subtitle">Method: Successive Division by 8</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>The Algorithm</h3>
+            <p>Identical to Binary conversion, but we divide by 8 instead of 2. Remainders will always be between 0 and
+                7. Read remainders from bottom to top.</p>
+        </div>
+        <div class="card" style="font-family: monospace; font-size: 1.1rem;">
+            <h3>Example: 156<span class="base-sub">10</span> to Octal</h3>
+            <div class="conv-step">156 / 8 = 19, R <strong>4</strong> (LSB)</div>
+            <div class="conv-step">19 / 8 = 2, R <strong>3</strong></div>
+            <div class="conv-step">2 / 8 = 0, R <strong>2</strong> (MSB)</div>
+            <p style="color:var(--accent-4); margin-top:10px;">Result: 234<span class="base-sub">8</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 18 -->
+<div class="slide" id="slide-17">
+    <h2 class="slide-title">17. Decimal to Octal (Fractional)</h2>
+    <p class="slide-subtitle">Method: Successive Multiplication by 8</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>The Algorithm</h3>
+            <p>Multiply fractional part by 8. Extract the integer part (0-7). Repeat with the new fraction. Read from
+                top to bottom.</p>
+        </div>
+        <div class="card" style="font-family: monospace;">
+            <h3>Example: 0.15<span class="base-sub">10</span> to Octal</h3>
+            <table class="frac-table">
+                <tr>
+                    <th>Multiplication</th>
+                    <th>Result</th>
+                    <th>Integer Part</th>
+                </tr>
+                <tr>
+                    <td>0.15 × 8</td>
+                    <td>1.20</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">1</td>
+                </tr>
+                <tr>
+                    <td>0.20 × 8</td>
+                    <td>1.60</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">1</td>
+                </tr>
+                <tr>
+                    <td>0.60 × 8</td>
+                    <td>4.80</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">4</td>
+                </tr>
+                <tr>
+                    <td>0.80 × 8</td>
+                    <td>6.40</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">6</td>
+                </tr>
+            </table>
+            <p style="color:var(--accent-4); margin-top:10px;text-align:center;">Result: 0.1146...<span
+                    class="base-sub">8</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 19 -->
+<div class="slide" id="slide-18">
+    <h2 class="slide-title">18. Octal to Decimal (Integer + Fractional)</h2>
+    <p class="slide-subtitle">Method: Multiply digits by powers of 8.</p>
+    <div class="card">
+        <h3>Example: 24.3<span class="base-sub">8</span> to Decimal</h3>
+        <p style="margin-top:15px; font-family:monospace; line-height:2;">
+            = (2 × 8¹) + (4 × 8⁰) + (3 × 8⁻¹)<br>
+            = (2 × 8) + (4 × 1) + (3 × 0.125)<br>
+            = 16 + 4 + 0.375<br>
+            <span style="color:var(--success); font-size:1.5em;">= 20.375<span class="base-sub">10</span></span>
+        </p>
+    </div>
+</div>
+
+<!-- SLIDE 20 -->
+<div class="slide" id="slide-19">
+    <h2 class="slide-title">19. Decimal to Hexadecimal (Integer)</h2>
+    <p class="slide-subtitle">Method: Successive Division by 16.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>Special Step!</h3>
+            <p>If the remainder is between 10 and 15, you MUST convert it to its hex letter equivalent before writing it
+                down.</p>
+            <p>10=A, 11=B, 12=C, 13=D, 14=E, 15=F.</p>
+        </div>
+        <div class="card" style="font-family: monospace; font-size: 1.1rem;">
+            <h3>Example: 423<span class="base-sub">10</span> to Hex</h3>
+            <div class="conv-step">423 / 16 = 26, R <strong>7</strong></div>
+            <div class="conv-step">26 / 16 = 1, R <strong>10 → A</strong></div>
+            <div class="conv-step">1 / 16 = 0, R <strong>1</strong></div>
+            <p style="color:var(--accent-4); margin-top:10px;">Result: 1A7<span class="base-sub">16</span></p>
+        </div>
+    </div>
+</div>
+<!-- SLIDE 21 -->
+<div class="slide" id="slide-20">
+    <h2 class="slide-title">21. Decimal to Hex (Fractional)</h2>
+    <p class="slide-subtitle">Method: Successive Multiplication by 16.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>The Algorithm</h3>
+            <p>Multiply fraction by 16. Extract integer part (convert 10-15 to A-F). Repeat.</p>
+        </div>
+        <div class="card" style="font-family: monospace;">
+            <h3>Example: 0.85<span class="base-sub">10</span> to Hex</h3>
+            <table class="frac-table">
+                <tr>
+                    <th>Multiplication</th>
+                    <th>Result</th>
+                    <th>Integer Part</th>
+                </tr>
+                <tr>
+                    <td>0.85 × 16</td>
+                    <td>13.60</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">13 → D</td>
+                </tr>
+                <tr>
+                    <td>0.60 × 16</td>
+                    <td>9.60</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">9</td>
+                </tr>
+                <tr>
+                    <td>0.60 × 16</td>
+                    <td>9.60</td>
+                    <td style="color:var(--accent-4); font-weight:bold;">9</td>
+                </tr>
+            </table>
+            <p style="color:var(--accent-4); margin-top:10px;text-align:center;">Result: 0.D99...<span
+                    class="base-sub">16</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 22 -->
+<div class="slide" id="slide-21">
+    <h2 class="slide-title">22. Hexadecimal to Decimal (Int + Frac)</h2>
+    <p class="slide-subtitle">Multiply digits by powers of 16.</p>
+    <div class="card">
+        <h3>Example: 1C.8<span class="base-sub">16</span> to Decimal</h3>
+        <p style="margin-top:15px; font-family:monospace; line-height:2;">
+            = (1 × 16¹) + (C × 16⁰) + (8 × 16⁻¹)<br>
+            = (1 × 16) + (12 × 1) + (8 × 0.0625)<br>
+            = 16 + 12 + 0.5<br>
+            <span style="color:var(--success); font-size:1.5em;">= 28.5<span class="base-sub">10</span></span>
+        </p>
+    </div>
+</div>
+
+<!-- SLIDE 23 -->
+<div class="slide" id="slide-22">
+    <h2 class="slide-title">23. Binary ↔ Octal Shortcut</h2>
+    <p class="slide-subtitle">The Magic of 3 Bits.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>Why it works</h3>
+            <p>Because 2³ = 8, exactly 3 bits map to exactly 1 octal digit. You can skip converting to decimal entirely!
+            </p>
+            <p style="font-family:monospace; margin-top:10px;">000=0, 001=1, 010=2, 011=3,<br>100=4, 101=5, 110=6, 111=7
+            </p>
+        </div>
+        <div class="card">
+            <h3>Binary to Octal</h3>
+            <p>Group bits by 3, starting from the radix point and moving outwards. Pad with 0s if necessary.</p>
+            <p style="font-family:monospace; margin-top:10px; color:var(--accent-4);">10110.11<sub>2</sub> → (010)(110)
+                . (110) → 26.6<sub>8</sub></p>
+            <h3 style="margin-top:20px;">Octal to Binary</h3>
+            <p style="font-family:monospace; margin-top:10px; color:var(--success);">73.2<sub>8</sub> → (111)(011) .
+                (010) → 111011.01<sub>2</sub></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 24 -->
+<div class="slide" id="slide-23">
+    <h2 class="slide-title">24. Binary ↔ Hexadecimal Shortcut</h2>
+    <p class="slide-subtitle">The Magic of 4 Bits.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>Why it works</h3>
+            <p>Because 2⁴ = 16, exactly 4 bits map to exactly 1 hexadecimal digit.</p>
+        </div>
+        <div class="card">
+            <h3>Binary to Hex</h3>
+            <p>Group bits by 4. Pad with zeros on edges.</p>
+            <p style="font-family:monospace; margin-top:10px; color:var(--accent-4);">10110.11<sub>2</sub> →
+                (0001)(0110) . (1100)<br>→ 16.C<sub>16</sub></p>
+            <h3 style="margin-top:20px;">Hex to Binary</h3>
+            <p style="font-family:monospace; margin-top:10px; color:var(--success);">F3.A<sub>16</sub> → (1111)(0011) .
+                (1010)<br>→ 11110011.101<sub>2</sub></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 25 -->
+<div class="slide" id="slide-24">
+    <h2 class="slide-title">25. Octal ↔ Hexadecimal</h2>
+    <p class="slide-subtitle">No direct shortcut: Use Binary as a bridge.</p>
+    <div class="content-grid">
+        <div class="card">
+            <h3>Octal → Hex</h3>
+            <ol>
+                <li>Convert Octal to Binary (3 bits per digit)</li>
+                <li>Regroup Binary into 4 bits</li>
+                <li>Convert to Hex</li>
+            </ol>
+            <p style="font-family:monospace; margin-top:10px; color:var(--accent-4);">
+                37<sub>8</sub><br>
+                → 011 111 (Binary)<br>
+                → (0001) (1111)<br>
+                → 1F<sub>16</sub>
+            </p>
+        </div>
+        <div class="card">
+            <h3>Hex → Octal</h3>
+            <ol>
+                <li>Convert Hex to Binary (4 bits per digit)</li>
+                <li>Regroup Binary into 3 bits</li>
+                <li>Convert to Octal</li>
+            </ol>
+            <p style="font-family:monospace; margin-top:10px; color:var(--success);">
+                A2<sub>16</sub><br>
+                → 1010 0010 (Binary)<br>
+                → (010) (100) (010)<br>
+                → 242<sub>8</sub>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 26 -->
+<div class="slide" id="slide-25">
+    <h2 class="slide-title">26. Summary Table of Bases</h2>
+    <div class="card">
+        <table class="styled-table" style="text-align:center;">
+            <tr>
+                <th>Decimal (Base 10)</th>
+                <th>Binary (Base 2)</th>
+                <th>Octal (Base 8)</th>
+                <th>Hex (Base 16)</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0000</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0001</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr style="background:rgba(255,255,255,0.02);">
+                <td>7</td>
+                <td>0111</td>
+                <td>7</td>
+                <td>7</td>
+            </tr>
+            <tr style="background:rgba(255,255,255,0.02);">
+                <td>8</td>
+                <td>1000</td>
+                <td>10</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>1010</td>
+                <td>12</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>1111</td>
+                <td>17</td>
+                <td>F</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>10000</td>
+                <td>20</td>
+                <td>10</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- SLIDE 27 -->
+<div class="slide" id="slide-26">
+    <h2 class="slide-title">27. Typical Use Cases</h2>
+    <div class="content-grid">
+        <div class="card">
+            <h3 style="color:var(--accent-4);">Binary</h3>
+            <p>CPU architecture, file formats on disk, logic gates, network transmission states.</p>
+        </div>
+        <div class="card">
+            <h3 style="color:#f59e0b;">Octal</h3>
+            <p>Unix/Linux file permissions (e.g., 755: rwxr-xr-x). Legacy computing systems.</p>
+        </div>
+        <div class="card">
+            <h3 style="color:#ef4444;">Hexadecimal</h3>
+            <p>Web colors (#FF5733), Memory addresses (0x0F2C), IPv6 addresses, MAC addresses.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 28 -->
+<div class="slide" id="slide-27">
+    <h2 class="slide-title">28. Advanced Example 1: Big Conversion</h2>
+    <div class="card" style="text-align:center;">
+        <h3>Convert <span style="font-size:1.5rem;color:var(--accent-3);">F4A.2<span class="base-sub">16</span></span>
+            to Octal</h3>
+        <p style="margin-top:20px;"><strong>Step 1 (To Binary - 4 bits):</strong></p>
+        <p style="font-family:monospace; font-size:1.4rem;">F(1111) 4(0100) A(1010) . 2(0010)</p>
+        <p style="margin-top:20px;"><strong>Step 2 (Regrouping - 3 bits):</strong></p>
+        <p style="font-family:monospace; font-size:1.4rem;">(111) (101) (001) (010) . (001) (000)</p>
+        <p style="margin-top:20px;"><strong>Step 3 (To Octal):</strong></p>
+        <p style="font-family:monospace; font-size:2rem; color:var(--success);">7512.10<span class="base-sub">8</span>
+        </p>
+    </div>
+</div>
+
+<!-- SLIDE 29 -->
+<div class="slide" id="slide-28">
+    <h2 class="slide-title">29. Recap on Fractions</h2>
+    <p class="slide-subtitle">The most tricky part of number systems.</p>
+    <div class="content-grid">
+        <div class="card">
+            <div class="card-icon">÷</div>
+            <h3>Decimal to Base X</h3>
+            <ul>
+                <li>Integer part: <strong>Divide</strong> by X, keep remainders bottom-to-top.</li>
+                <li>Fractional part: <strong>Multiply</strong> by X, keep integers top-to-bottom.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-icon">×</div>
+            <h3>Base X to Decimal</h3>
+            <ul>
+                <li>Integer part: Multiply by X<sup>0</sup>, X<sup>1</sup>, X<sup>2</sup> (right to left).</li>
+                <li>Fractional part: Multiply by X<sup>-1</sup>, X<sup>-2</sup>, X<sup>-3</sup> (left to right).</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 30 -->
+<div class="slide" id="slide-29">
+    <h2 class="slide-title">30. Conclusion</h2>
+    <div class="card" style="text-align:center; padding: 40px;">
+        <h1 style="font-size:3rem; margin-bottom: 20px;">🎉 Great Job!</h1>
+        <p style="font-size:1.2rem; line-height: 1.8;">
+            You have now mastered Binary, Octal, Decimal, and Hexadecimal.<br>
+            You understand the difference between integer and fractional conversions.<br>
+            You've seen over 30 unique examples covering every possible conversion.
+        </p>
+        <p style="margin-top:30px; font-weight:bold; color:var(--accent-4);">Proceed to the final slide for the master
+            quiz!</p>
+    </div>
+</div>
+
+<!-- SLIDE 31 (Quiz) -->
+<div class="slide" id="slide-30" style="padding-bottom:80px;">
+    <div class="quiz-header">
+        <h2 class="slide-title">🧪 Interactive Quiz</h2>
+        <p class="slide-subtitle">15 rigorous questions on number conversions and theory.</p>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+        </div>
+        <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+    </div>
+    <div id="quizContainer"></div>
+    <div id="quizResults" class="quiz-results" style="display:none;"></div>
+</div>
+
+</div> <!-- End Slideshow -->
+
+<!-- ═══ Navigation ═══ -->
+<nav id="navBar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <span id="slideCounter">1 / 31</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</nav>
+
+<script src="quiz.js"></script>
+<script src="slides.js"></script>
+</body>
+
+</html>

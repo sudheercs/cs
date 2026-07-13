@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Errors & Exceptions — CBSE CS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .code-block {
+            background: #0a0e1a;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+            text-align: left;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .function {
+            color: #61afef;
+        }
+
+        .number {
+            color: #d19a66;
+        }
+
+        .error-msg {
+            color: #e06c75;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1 -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science</div>
+            <h1 class="slide-title">Python Errors & Exceptions</h1>
+            <p class="slide-subtitle">Understanding Syntax, Logical, and Run-time Errors.</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. The Nature of Bugs</h2>
+            <div class="card">
+                <p>In programming, a "bug" is an error or flaw in the code that causes an unexpected result or outright
+                    crash.</p>
+                <p style="margin-top:10px;">Errors in Python fall into three distinct categories based on
+                    <strong>WHEN</strong> and <strong>WHY</strong> they occur.</p>
+            </div>
+            <div class="content-grid" style="grid-template-columns: repeat(3, 1fr); margin-top:20px;">
+                <div class="card" style="border-top:4px solid var(--danger);">
+                    <h3 style="color:var(--danger);">Syntax Errors</h3>
+                    <p>Grammar mistakes. Fails before the program even starts.</p>
+                </div>
+                <div class="card" style="border-top:4px solid var(--warning);">
+                    <h3 style="color:var(--warning);">Run-time Errors</h3>
+                    <p>Execution crashes. Fails while the program is actively running.</p>
+                </div>
+                <div class="card" style="border-top:4px solid var(--accent-1);">
+                    <h3 style="color:var(--accent-1);">Logical Errors</h3>
+                    <p>Human mistakes. Valid code, but mathematically/logically creates the wrong answer.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== SYNTAX ERRORS ============================================== -->
+        <div class="slide" id="slide-2">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--danger); text-shadow: 0 0 20px rgba(224,108,117, 0.5);">1.
+                    Syntax Errors</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Breaking the Rules of
+                    Grammar.</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">2. What is a Syntax Error?</h2>
+            <div class="card">
+                <p>Syntax errors occur when you violate the fundamental grammatical rules of the Python language. </p>
+                <p style="margin-top:10px;">The Python Interpreter parses (reads) the entire file before it executes a
+                    single line. If it finds a syntax error, it immediately aborts. <strong>Zero lines of code are
+                        executed.</strong></p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">3. Syntax Example 1: Missing Colons</h2>
+            <div class="card">
+                <p>Control structures like <code>if</code>, <code>for</code>, and <code>while</code> loops MUST end with
+                    a colon (<code>:</code>) before the indented block begins.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                score = <span class="number">95</span><br>
+                <br>
+                <span class="comment"># Missing the colon at the end of the if statement!</span><br>
+                <span class="keyword">if</span> score > <span class="number">90</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Grade A"</span>)
+                <span class="error-msg">SyntaxError: expected ':'</span>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">4. Syntax Example 2: Unmatched Parentheses/Quotes</h2>
+            <div class="card">
+                <p>Forgetting to close a bracket, parenthesis, or quotation mark prevents the interpreter from
+                    understanding where an expression terminates.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                <span class="comment"># Missing the closing parenthesis!</span><br>
+                <span class="function">print</span>(<span class="string">"Hello, World!"</span><br>
+                <br>
+                <span class="comment"># Starting with double quotes but closing with nothing/single!</span><br>
+                name = <span class="string">"James</span>
+                <span class="error-msg">SyntaxError: unexpected EOF while parsing</span>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">5. Syntax Example 3: Improper Indentation</h2>
+            <div class="card">
+                <p>Unlike languages that use curly braces <code>{}</code>, Python strict uses whitespace indentation to
+                    define code blocks. Incorrectly grouping code triggers a specialized Syntax error called an
+                    IndentationError.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                <span class="keyword">for</span> i <span class="keyword">in</span> <span
+                    class="function">range</span>(<span class="number">5</span>):<br>
+                <span class="function">print</span>(i) <span class="comment"># This line MUST be indented inward!</span>
+                <span class="error-msg">IndentationError: expected an indented block</span>
+            </div>
+        </div>
+
+        <!-- ============================================== RUNTIME ERRORS ============================================== -->
+        <div class="slide" id="slide-7">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--warning); text-shadow: 0 0 20px rgba(229,192,123, 0.5);">2.
+                    Run-Time Errors</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Crashing during execution.
+                </p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">6. What is a Run-time Error?</h2>
+            <div class="card">
+                <p>Run-time errors (often called <strong>Exceptions</strong>) occur when the Python grammar is perfectly
+                    correct, so the interpreter successfully starts the program. </p>
+                <p style="margin-top:10px;">However, during execution, the machine is asked to perform an
+                    <strong>illegal or impossible operation</strong> (like dividing by zero, or opening a non-existent
+                    file), causing a crash.</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">7. Run-time Example 1: TypeMismatch / ValueError</h2>
+            <div class="card">
+                <p>As we learned in the I/O unit, trying to surgically force data into an incompatible type will crash
+                    the running program. This often happens natively with bad user input.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                <span class="comment"># Program successfully starts!</span><br>
+                <span class="function">print</span>(<span class="string">"Welcome to the integer machine!"</span>)<br>
+                <br>
+                <span class="comment"># What if the user types the word "Apple"?</span><br>
+                age = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter
+                    your age: "</span>))
+                <span class="error-msg">ValueError: invalid literal for int() with base 10: 'Apple'</span>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-10">
+            <h2 class="slide-title">8. Run-time Example 2: ZeroDivisionError</h2>
+            <div class="card">
+                <p>Mathematical impossibility. Computer architecture literally cannot divide by zero without returning
+                    undefined infinity.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                total_money = <span class="number">5000</span><br>
+                friends = <span class="number">0</span><br>
+                <br>
+                <span class="comment"># You cannot split cash amongst zero people.</span><br>
+                share = total_money / friends
+                <span class="error-msg">ZeroDivisionError: division by zero</span>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-11">
+            <h2 class="slide-title">9. Run-time Example 3: NameError</h2>
+            <div class="card">
+                <p>A NameError triggers when you attempt to use a variable or function that has not been defined in
+                    memory yet.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                username = <span class="string">"admin"</span><br>
+                <br>
+                <span class="comment"># Typo! The variable is 'username', not 'user_name'!</span><br>
+                <span class="function">print</span>(<span class="string">"Welcome, "</span> + user_name)
+                <span class="error-msg">NameError: name 'user_name' is not defined</span>
+            </div>
+        </div>
+
+        <!-- ============================================== LOGICAL ERRORS ============================================== -->
+        <div class="slide" id="slide-12">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(97,175,239, 0.5);">3.
+                    Logical Errors</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">The hardest bugs to fix.
+                </p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-13">
+            <h2 class="slide-title">10. What is a Logical Error?</h2>
+            <div class="card">
+                <p>A Logical Error (or Semantic Error) occurs when the program runs completely fine without crashing,
+                    but it produces the <strong>wrong output or behavior</strong>.</p>
+                <p style="margin-top:10px;">The computer did exactly what you told it to do. You just told it the wrong
+                    thing. There are NO error messages generated by Python for logical errors.</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-14">
+            <h2 class="slide-title">11. Logical Example 1: Wrong Operator</h2>
+            <div class="card">
+                <p>Using addition instead of multiplication, or division instead of floor division.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                <span class="comment"># GOAL: Calculate the Area of a Rectangle (Area = Length * Width)</span><br>
+                length = <span class="number">10</span><br>
+                width = <span class="number">5</span><br>
+                <br>
+                <span class="comment"># BUG: The programmer accidentally typed a + instead of a *</span><br>
+                area = length + width<br>
+                <span class="function">print</span>(f<span class="string">"The area is {area}"</span>)<br>
+                <br>
+                <span class="comment"># OUTPUT: The area is 15. --> The computer didn't crash, but 10*5 is 50, not
+                    15!</span>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-15">
+            <h2 class="slide-title">12. Logical Example 2: Operator Precedence Failure</h2>
+            <div class="card">
+                <p>Forgetting BODMAS rules and evaluating in the wrong order.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                <span class="comment"># GOAL: Calculate the average of 3 grades</span><br>
+                math = <span class="number">90</span><br>
+                science = <span class="number">80</span><br>
+                english = <span class="number">100</span><br>
+                <br>
+                <span class="comment"># BUG: Division happens BEFORE addition! This only divides english/3.</span><br>
+                average = math + science + english / <span class="number">3</span><br>
+                <span class="function">print</span>(average)<br>
+                <span class="comment"># Output: 203.33 --> An average of 3 numbers out of 100 shouldn't be over
+                    200...</span><br>
+                <br>
+                <span class="comment"># FIX: average = (math + science + english) / 3</span>
+            </div>
+        </div>
+
+
+        <div class="slide" id="slide-16">
+            <h2 class="slide-title">13. Logical Example 3: Loop Infinite Offset (Off-by-One)</h2>
+            <div class="card">
+                <p>Using a Relational Operator incorrectly (e.g. <code>></code> instead of <code>>=</code>), severely
+                    altering the bounds of a loop or conditional logic gate.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                <span class="comment"># GOAL: Wait until you are an adult before granting a license. </span><br>
+                <span class="comment"># In India, you become an adult natively at 18.</span><br>
+                age = <span class="number">18</span><br>
+                <br>
+                <span class="comment"># BUG: They used strictly Greater Than, rather than >=</span><br>
+                <span class="keyword">if</span> age > <span class="number">18</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"License
+                    Granted"</span>)<br>
+                <span class="keyword">else</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Denied!"</span>)<br>
+                <span class="comment"># Output: Denied! --> (Which is legally incorrect since they are 18).</span>
+            </div>
+        </div>
+
+        <!-- ============================================== SUMMARY / QUIZ ============================================== -->
+        <div class="slide" id="slide-17">
+            <h2 class="slide-title">14. Summary Table</h2>
+            <div class="card">
+                <table class="styled-table" style="width:100%; text-align:left;">
+                    <tr>
+                        <th>Error Type</th>
+                        <th>Cause</th>
+                        <th>Detection Point</th>
+                        <th>Crash?</th>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td style="color:var(--danger); font-weight:bold;">Syntax</td>
+                        <td>Invalid Grammar / Spelling</td>
+                        <td>Before execution automatically</td>
+                        <td>Yes, immediately.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td style="color:var(--warning); font-weight:bold;">Run-time</td>
+                        <td>Illegal operation requested (10/0)</td>
+                        <td>During active execution</td>
+                        <td>Yes, upon hitting the line.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td style="color:var(--accent-1); font-weight:bold;">Logical</td>
+                        <td>Flawed human math or design</td>
+                        <td>Requires manual code review testing</td>
+                        <td>No. Runs fine but outputs trash.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 18 -->
+        <div class="slide" id="slide-18" style="padding-bottom:80px;">
+            <div class="quiz-header">
+                <h2 class="slide-title">🧪 Error Identification Quiz</h2>
+                <p class="slide-subtitle">Analyze the code and pinpoint the defect.</p>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                </div>
+                <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+            </div>
+            <div id="quizContainer"></div>
+            <div id="quizResults" class="quiz-results" style="display:none;"></div>
+        </div>
+
+    </div>
+
+    <!-- ═══ Navigation ═══ -->
+    <nav id="navBar">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <span id="slideCounter">1 / 19</span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </nav>
+
+    <script src="quiz.js"></script>
+    <script src="slides.js"></script>
+</body>
+
+</html>

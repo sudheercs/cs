@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Operators — Graduation Level Slides</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .code-block {
+            background: #0a0e1a;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+            text-align: left;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .function {
+            color: #61afef;
+        }
+
+        .number {
+            color: #d19a66;
+        }
+
+        .operator {
+            color: #56b6c2;
+            font-weight: bold;
+        }
+
+        .table-row-highlight:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1 -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science</div>
+            <h1 class="slide-title">Python Operators Mastery</h1>
+            <p class="slide-subtitle">A deep dive into computational logic, precedence, and associativity.</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate (52 Slides)</p>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. What is an Operator?</h2>
+            <div class="card">
+                <h3>Definition</h3>
+                <p>An <span class="key-term">Operator</span> is a special symbol (or keyword) that performs
+                    mathematical, relational, or logical computation on one or more variables or values.</p>
+                <p style="margin-top:10px;">The values that the operator acts upon are called <strong>Operands</strong>.
+                </p>
+            </div>
+            <div class="card" style="margin-top:20px; text-align:center;">
+                <h3 style="font-family:monospace; font-size:2rem; color:var(--text-primary);"><span
+                        style="color:var(--success);">10</span> <span class="operator"
+                        style="color:var(--accent-4);">+</span> <span style="color:var(--success);">20</span></h3>
+                <p style="margin-top:10px;">Here, <code>10</code> and <code>20</code> are the <strong>Operands</strong>,
+                    and <code>+</code> is the <strong>Operator</strong>.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" id="slide-2">
+            <h2 class="slide-title">2. Classification of Operators</h2>
+            <p class="slide-subtitle">Python supports 7 main categories of operators.</p>
+            <div class="content-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="card" style="border-top:2px solid var(--accent-1);">1. Arithmetic</div>
+                <div class="card" style="border-top:2px solid var(--accent-2);">2. Relational (Comparison)</div>
+                <div class="card" style="border-top:2px solid var(--accent-3);">3. Logical</div>
+                <div class="card" style="border-top:2px solid var(--success);">4. Assignment</div>
+                <div class="card" style="border-top:2px solid var(--danger);">5. Identity</div>
+                <div class="card" style="border-top:2px solid var(--warning);">6. Membership</div>
+                <div class="card" style="grid-column: span 3; text-align:center; border-top:2px solid gray;">7. Bitwise
+                    (Advanced)</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" id="slide-3">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">1.
+                    Arithmetic Operators</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">The backbone of
+                    mathematical programs.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">3. Arithmetic Operators Overview</h2>
+            <div class="card">
+                <table class="styled-table" style="width:100%; text-align:left;">
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Operation</th>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>+</code></td>
+                        <td>Addition</td>
+                        <td>Adds two numeric operands.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>-</code></td>
+                        <td>Subtraction</td>
+                        <td>Subtracts right operand from left.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>*</code></td>
+                        <td>Multiplication</td>
+                        <td>Multiplies two operands.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>/</code></td>
+                        <td>True Division</td>
+                        <td>Divides left by right (always returns a float).</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>//</code></td>
+                        <td>Floor Division</td>
+                        <td>Divides and rounds DOWN to the nearest integer.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>%</code></td>
+                        <td>Modulus</td>
+                        <td>Returns the <strong>Remainder</strong> of division.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>**</code></td>
+                        <td>Exponentiation</td>
+                        <td>Calculates left raised to the power of right.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">4. Basic Math (+, -, *)</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Addition & Subtraction</h3>
+                    <p>Works exactly as expected with integers and floats.</p>
+                    <div class="code-block" style="margin-top:10px; padding:10px;">
+                        x = <span class="number">10.5</span> + <span class="number">4</span><br>
+                        <span class="function">print</span>(x) <span class="comment"># Output: 14.5</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Multiplication</h3>
+                    <p>Also acts as a repetition operator for Strings!</p>
+                    <div class="code-block" style="margin-top:10px; padding:10px;">
+                        <span class="comment"># Numeric Math</span><br>
+                        x = <span class="number">5</span> * <span class="number">3</span> <span class="comment"># Ouput:
+                            15</span><br>
+                        <br>
+                        <span class="comment"># String Repetition</span><br>
+                        word = <span class="string">"Ha"</span> * <span class="number">3</span><br>
+                        <span class="function">print</span>(word) <span class="comment"># Output: HaHaHa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">5. The Dual Divisions ( / vs // )</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>True Division ( <code>/</code> )</h3>
+                    <p>A single slash always mathematically divides the numbers and GUARANTEES a <code>float</code>
+                        output, even if it divides perfectly evenly.</p>
+                    <div class="code-block" style="padding:10px;">
+                        x = <span class="number">10</span> / <span class="number">2</span><br>
+                        <span class="function">print</span>(x) <span class="comment"># Output: 5.0</span><br>
+                        <br>
+                        y = <span class="number">10</span> / <span class="number">3</span><br>
+                        <span class="function">print</span>(y) <span class="comment"># Output: 3.3333333333333335</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Floor Division ( <code>//</code> )</h3>
+                    <p>Double slashes divide and entirely discard the decimal remainder, cutting it down to the "floor"
+                        integer.</p>
+                    <div class="code-block" style="padding:10px;">
+                        x = <span class="number">10</span> // <span class="number">2</span><br>
+                        <span class="function">print</span>(x) <span class="comment"># Output: 5</span><br>
+                        <br>
+                        y = <span class="number">10</span> // <span class="number">3</span><br>
+                        <span class="function">print</span>(y) <span class="comment"># Output: 3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide" id="slide-7">
+            <h2 class="slide-title">6. Floor Division Danger (Negative Numbers)</h2>
+            <div class="card" style="border-top: 4px solid var(--danger);">
+                <h3>Rounding DOWN, not truncating!</h3>
+                <p>The Floor Division operator <code>//</code> does not just chop off the decimal part. It
+                    mathematically rounds down to the next lowest infinite integer.</p>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card">
+                    <h4 style="color:var(--success);">Positive Floor</h4>
+                    <div class="code-block" style="padding:10px;">
+                        x = <span class="number">10</span> // <span class="number">3</span><br>
+                        <span class="function">print</span>(x) <span class="comment"># Output: 3</span>
+                    </div>
+                    <p style="margin-top:10px; font-size:0.9rem;">10/3 = 3.33. The integer "below" 3.33 is 3.</p>
+                </div>
+                <div class="card">
+                    <h4 style="color:var(--danger);">Negative Floor</h4>
+                    <div class="code-block" style="padding:10px;">
+                        x = <span class="number">-10</span> // <span class="number">3</span><br>
+                        <span class="function">print</span>(x) <span class="comment"># Output: -4</span>
+                    </div>
+                    <p style="margin-top:10px; font-size:0.9rem;">-10/3 = -3.33. The integer "below" -3.33 is -4.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9 -->
+        <div class="slide" id="slide-8">
+            <h2 class="slide-title">7. The Modulus Operator ( % )</h2>
+            <p class="slide-subtitle">Finding the remainder.</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>How it works</h3>
+                    <p>The modulo operator performs division, but instead of giving you the quotient, it hands you back
+                        the strict <strong>remainder</strong>.</p>
+                    <p style="margin-top:10px;">If X divides perfectly evenly into Y, the modulus is 0.</p>
+                </div>
+                <div class="code-block">
+                    <span class="comment"># 10 divided by 3 is 3... with 1 remaining</span><br>
+                    ans1 = <span class="number">10</span> % <span class="number">3</span><br>
+                    <span class="function">print</span>(ans1) <span class="comment"># Output: 1</span><br>
+                    <br>
+                    <span class="comment"># 10 divided by 2 is 5... with 0 remaining</span><br>
+                    ans2 = <span class="number">10</span> % <span class="number">2</span><br>
+                    <span class="function">print</span>(ans2) <span class="comment"># Output: 0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10 -->
+        <div class="slide" id="slide-9">
+            <h2 class="slide-title">8. Practical Use of Modulus</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>1. Determining Even or Odd</h3>
+                    <p>Any even number modulo 2 equals 0. Any odd number modulo 2 equals 1. This is the most common use
+                        case in programming loops.</p>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        if num % 2 == 0:<br>
+                        &nbsp;&nbsp;print("Even")
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>2. Extracting Right-most digits</h3>
+                    <p>Modulo 10 always strips the final digit off a number.</p>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        x = <span class="number">4587</span> % <span class="number">10</span><br>
+                        print(x) <span class="comment"># Output: 7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11 -->
+        <div class="slide" id="slide-10">
+            <h2 class="slide-title">9. Exponentiation ( ** )</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Powers</h3>
+                    <p>The double asterisk mathematically raises the left operand to the power of the right operand.</p>
+                    <p>Unlike languages that require <code>Math.pow()</code>, Python builds it directly into the syntax.
+                    </p>
+                </div>
+                <div class="code-block">
+                    base = <span class="number">4</span><br>
+                    power = <span class="number">3</span><br>
+                    <br>
+                    ans = base ** power <span class="comment"># 4^3 = 4 * 4 * 4</span><br>
+                    <span class="function">print</span>(ans)<br>
+                    <span class="comment"># Output: 64</span>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 12 -->
+        <div class="slide" id="slide-11">
+            <h2 class="slide-title">10. Arithmetic Operators: Quick Quiz Example</h2>
+            <div class="card" style="border-top: 4px solid var(--accent-1);">
+                <h3>Predict the Output:</h3>
+                <div class="code-block" style="font-size:1.2rem; line-height: 1.8;">
+                    a = <span class="number">15</span><br>
+                    b = <span class="number">4</span><br>
+                    <br>
+                    <span class="function">print</span>(a / b)<br>
+                    <span class="function">print</span>(a // b)<br>
+                    <span class="function">print</span>(a % b)<br>
+                    <span class="function">print</span>(a ** <span class="number">2</span>)
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13 -->
+        <div class="slide" id="slide-12">
+            <h2 class="slide-title">11. Arithmetic Answers Check</h2>
+            <div class="card">
+                <div class="code-block" style="font-size:1.2rem; line-height: 1.8;">
+                    <span class="function">print</span>(a / b) <span class="comment"># Output: 3.75 (True Division
+                        guarantees
+                        float)</span><br>
+                    <span class="function">print</span>(a // b) <span class="comment"># Output: 3 (Floor Division chops
+                        the
+                        decimal)</span><br>
+                    <span class="function">print</span>(a % b) <span class="comment"># Output: 3 (15 = 4*3 + 3
+                        remainder)</span><br>
+                    <span class="function">print</span>(a ** <span class="number">2</span>) <span class="comment">#
+                        Output: 225
+                        (15 squared)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14 -->
+        <div class="slide" id="slide-13">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-2); text-shadow: 0 0 20px rgba(99,102,241,0.5);">2.
+                    Relational
+                    (Comparison) Operators</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Comparing values to yield
+                    Booleans.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 15 -->
+        <div class="slide" id="slide-14">
+            <h2 class="slide-title">12. Relational Operators Overview</h2>
+            <div class="card">
+                <p>Relational operators compare two operands. <strong>The final result of ANY relational operation is
+                        always a
+                        Boolean (True or False).</strong></p>
+            </div>
+            <div class="card" style="margin-top:20px;">
+                <table class="styled-table" style="width:100%; text-align:left;">
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>True if...</th>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>==</code></td>
+                        <td>Equal to</td>
+                        <td>The values of both operands are precisely equal.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>!=</code></td>
+                        <td>Not equal to</td>
+                        <td>The values are different.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>></code></td>
+                        <td>Greater than</td>
+                        <td>Left is strictly greater than right.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code><</code></td>
+                        <td>Less than</td>
+                        <td>Left is strictly less than right.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>>=</code></td>
+                        <td>Greater than or equal</td>
+                        <td>Left is greater than OR equal to right.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code><=</code></td>
+                        <td>Less than or equal</td>
+                        <td>Left is less than OR equal to right.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 16 -->
+        <div class="slide" id="slide-15">
+            <h2 class="slide-title">13. The Assignment ( = ) vs Equality ( == ) Trap</h2>
+            <p class="slide-subtitle">The #1 syntax error made by beginners.</p>
+            <div class="two-col">
+                <div class="card" style="border-top: 4px solid var(--danger);">
+                    <h3 style="color:var(--danger);">Single Equal ( = )</h3>
+                    <p><strong>ASSIGNMENT.</strong> This tells the computer: "Take the data on the right, and store it
+                        into the
+                        variable on the left."</p>
+                    <p style="font-family:monospace; margin-top:10px;">x = 5</p>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--success);">
+                    <h3 style="color:var(--success);">Double Equal ( == )</h3>
+                    <p><strong>COMPARISON.</strong> This asks the computer a question: "Is the data on the left
+                        identical to the
+                        data on the right?"</p>
+                    <p style="font-family:monospace; margin-top:10px;">x == 5 ➞ (Returns True/False)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 17 -->
+        <div class="slide" id="slide-16">
+            <h2 class="slide-title">14. Relational Examples in Action</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Math Comparisons</h3>
+                    <div class="code-block" style="padding:10px;">
+                        x = <span class="number">10</span><br>
+                        y = <span class="number">20</span><br>
+                        <br>
+                        <span class="function">print</span>(x > y) <span class="comment"># Output: False</span><br>
+                        <span class="function">print</span>(x != y) <span class="comment"># Output: True</span><br>
+                        <span class="function">print</span>(x <= <span class="number">10</span>) <span class="comment">#
+                                Output:
+                                True</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>String Comparisons</h3>
+                    <p>Strings are compared alphabetically (lexicographically) based on their ASCII values.</p>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        <span class="comment"># 'Apple' comes before 'Banana'</span><br>
+                        a = <span class="string">"Apple"</span><br>
+                        b = <span class="string">"Banana"</span><br>
+                        <br>
+                        <span class="function">print</span>(a < b) <span class="comment"># Output: True</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 18 -->
+        <div class="slide" id="slide-17">
+            <h2 class="slide-title">15. ASCII Trap in String Comparison</h2>
+            <p class="slide-subtitle">Why capital letters matter.</p>
+            <div class="card">
+                <p>In ASCII, all uppercase letters (A-Z) have <strong>lower numerical values</strong> than lowercase
+                    letters
+                    (a-z).</p>
+                <p>A = 65. a = 97.</p>
+            </div>
+            <div class="code-block" style="margin-top:20px;">
+                res1 = <span class="string">"apple"</span> == <span class="string">"Apple"</span><br>
+                <span class="function">print</span>(res1) <span class="comment"># Output: False (Case
+                    sensitive)</span><br>
+                <br>
+                res2 = <span class="string">"Zebra"</span>
+                < <span class="string">"apple"</span><br>
+                    <span class="function">print</span>(res2) <span class="comment"># Output: True (Because 'Z' is 90,
+                        'a' is
+                        97)</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 19 -->
+        <div class="slide" id="slide-18">
+            <h2 class="slide-title">16. Advanced: Chaining Relational Operators</h2>
+            <div class="card">
+                <p>A powerful feature unique to Python is the ability to chain comparison operators together like in
+                    mathematics, without needing logical ANDs.</p>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card">
+                    <h3>Standard Language Way</h3>
+                    <p>(Java, C++, JS)</p>
+                    <div class="code-block" style="padding:10px;">
+                        x = <span class="number">15</span><br>
+                        <span class="comment"># (x > 10) AND (x < 20)</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--success);">Python Way</h3>
+                    <p>Clean, readable, mathematical.</p>
+                    <div class="code-block" style="padding:10px;">
+                        x = <span class="number">15</span><br>
+                        <br>
+                        ans = <span class="number">10</span>
+                        < x < <span class="number">20</span><br>
+                            <span class="function">print</span>(ans) <span class="comment"># Output: True</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 20 -->
+        <div class="slide" id="slide-19">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-3); text-shadow: 0 0 20px rgba(99,102,241,0.5);">3.
+                    Logical
+                    Operators</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Combining conditional
+                    statements.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 21 -->
+        <div class="slide" id="slide-20">
+            <h2 class="slide-title">17. Logical Operators Overview</h2>
+            <div class="card">
+                <p>Logical operators are used to connect multiple Boolean (True/False) expressions together.</p>
+            </div>
+            <div class="content-grid" style="grid-template-columns: repeat(3, 1fr); margin-top:20px;">
+                <div class="card">
+                    <h3 style="color:var(--accent-3);">and</h3>
+                    <p style="margin-top:10px;">Returns <strong>True</strong> ONLY if <strong>BOTH</strong> statements
+                        are true.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--accent-3);">or</h3>
+                    <p style="margin-top:10px;">Returns <strong>True</strong> if <strong>AT LEAST ONE</strong> of the
+                        statements
+                        is true.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--accent-3);">not</h3>
+                    <p style="margin-top:10px;">Reverses the result. Returns <strong>False</strong> if the result is
+                        true.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 22 -->
+        <div class="slide" id="slide-21">
+            <h2 class="slide-title">18. Truth Tables for AND / OR</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>AND Operator Table</h3>
+                    <table class="styled-table" style="font-size:0.9rem;">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>A and B</th>
+                        </tr>
+                        <tr>
+                            <td>True</td>
+                            <td>True</td>
+                            <td style="color:var(--success);">True</td>
+                        </tr>
+                        <tr>
+                            <td>True</td>
+                            <td>False</td>
+                            <td style="color:var(--danger);">False</td>
+                        </tr>
+                        <tr>
+                            <td>False</td>
+                            <td>True</td>
+                            <td style="color:var(--danger);">False</td>
+                        </tr>
+                        <tr>
+                            <td>False</td>
+                            <td>False</td>
+                            <td style="color:var(--danger);">False</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card">
+                    <h3>OR Operator Table</h3>
+                    <table class="styled-table" style="font-size:0.9rem;">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>A or B</th>
+                        </tr>
+                        <tr>
+                            <td>True</td>
+                            <td>True</td>
+                            <td style="color:var(--success);">True</td>
+                        </tr>
+                        <tr>
+                            <td>True</td>
+                            <td>False</td>
+                            <td style="color:var(--success);">True</td>
+                        </tr>
+                        <tr>
+                            <td>False</td>
+                            <td>True</td>
+                            <td style="color:var(--success);">True</td>
+                        </tr>
+                        <tr>
+                            <td>False</td>
+                            <td>False</td>
+                            <td style="color:var(--danger);">False</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 23 -->
+        <div class="slide" id="slide-22">
+            <h2 class="slide-title">19. Logical 'AND' & 'OR' in Action</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Login System (AND)</h3>
+                    <p>Both the email and the password must match perfectly.</p>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        email_match = <span class="keyword">True</span><br>
+                        pass_match = <span class="keyword">False</span><br>
+                        <br>
+                        login = email_match <span class="keyword">and</span> pass_match<br>
+                        <span class="function">print</span>(login) <span class="comment"># Output: False</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Coupon System (OR)</h3>
+                    <p>You get a discount if you have a coupon OR if it's your birthday.</p>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        has_coupon = <span class="keyword">False</span><br>
+                        is_birthday = <span class="keyword">True</span><br>
+                        <br>
+                        discount = has_coupon <span class="keyword">or</span> is_birthday<br>
+                        <span class="function">print</span>(discount) <span class="comment"># Output: True</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 24 -->
+        <div class="slide" id="slide-23">
+            <h2 class="slide-title">20. Logical 'NOT' Operator</h2>
+            <div class="card">
+                <h3>Flipping the Bit</h3>
+                <p>The <code>not</code> operator evaluates a single boolean expression right after it, and flips the
+                    result
+                    completely. If it was True, it becomes False.</p>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="code-block">
+                    is_raining = <span class="keyword">True</span><br>
+                    <br>
+                    <span class="comment"># We want to go outside if it is NOT raining</span><br>
+                    go_outside = <span class="keyword">not</span> is_raining<br>
+                    <br>
+                    <span class="function">print</span>(go_outside) <span class="comment"># Output: False</span>
+                </div>
+                <div class="card">
+                    <h4>Common Use Case:</h4>
+                    <p>Frequently used to check if a list or string is empty.</p>
+                    <p style="font-family:monospace; margin-top:10px; color:var(--text-muted);">
+                        if not users:<br>
+                        &nbsp;&nbsp;print("No users found")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 25 -->
+        <div class="slide" id="slide-24">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--success); text-shadow: 0 0 20px rgba(99,102,241,0.5);">4.
+                    Assignment
+                    Operators</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Storing data in memory.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 26 -->
+        <div class="slide" id="slide-25">
+            <h2 class="slide-title">21. The Core Assignment ( = )</h2>
+            <div class="card">
+                <p>We've already discussed this! It takes the R-value, evaluates it, and stores it inside the L-value
+                    container.
+                </p>
+                <div class="code-block" style="margin-top:10px;">
+                    x = <span class="number">10</span> + <span class="number">5</span><br>
+                    print(x) <span class="comment"># X contains 15</span>
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px;">
+                <h3>Multiple Assignment</h3>
+                <p>Python allows you to assign multiple variables on an identical single line:</p>
+                <div class="code-block" style="margin-top:10px; padding:10px;">
+                    a, b, c = <span class="number">5</span>, <span class="number">10</span>, <span
+                        class="number">15</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 27 -->
+        <div class="slide" id="slide-26">
+            <h2 class="slide-title">22. Augmented Assignment Operators</h2>
+            <p class="slide-subtitle">Shorthand for updating a variable.</p>
+            <div class="card">
+                <p>In programming, it is incredibly common to update a variable based on its CURRENT value. For example,
+                    a video
+                    game score.</p>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card">
+                    <h4 style="color:var(--danger);">The Long Way</h4>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        score = <span class="number">10</span><br>
+                        <span class="comment"># Add 5 points</span><br>
+                        score = score + <span class="number">5</span>
+                    </div>
+                    <p style="font-size:0.9rem; margin-top:10px;">Python evaluates <code>score + 5</code> (which is 15),
+                        then
+                        assigns 15 back overriding <code>score</code>.</p>
+                </div>
+                <div class="card">
+                    <h4 style="color:var(--success);">The Augmented Way</h4>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        score = <span class="number">10</span><br>
+                        <span class="comment"># Add 5 points</span><br>
+                        score += <span class="number">5</span>
+                    </div>
+                    <p style="font-size:0.9rem; margin-top:10px;">This does exactly the same thing, but is faster to
+                        read and
+                        execute.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 28 -->
+        <div class="slide" id="slide-27">
+            <h2 class="slide-title">23. List of Augmented Operators</h2>
+            <div class="card">
+                <table class="styled-table" style="width:100%; text-align:left;">
+                    <tr>
+                        <th>Operator</th>
+                        <th>Example</th>
+                        <th>Equivalent To...</th>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>+=</code></td>
+                        <td><code>x += 3</code></td>
+                        <td><code>x = x + 3</code></td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>-=</code></td>
+                        <td><code>x -= 3</code></td>
+                        <td><code>x = x - 3</code></td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>*=</code></td>
+                        <td><code>x *= 3</code></td>
+                        <td><code>x = x * 3</code></td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>/=</code></td>
+                        <td><code>x /= 3</code></td>
+                        <td><code>x = x / 3</code></td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>//=</code></td>
+                        <td><code>x //= 3</code></td>
+                        <td><code>x = x // 3</code></td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>%=</code></td>
+                        <td><code>x %= 3</code></td>
+                        <td><code>x = x % 3</code></td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>**=</code></td>
+                        <td><code>x **= 3</code></td>
+                        <td><code>x = x ** 3</code></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 29 -->
+        <div class="slide" id="slide-28">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--danger); text-shadow: 0 0 20px rgba(99,102,241,0.5);">5.
+                    Identity
+                    Operators</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">is /// is not</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 30 -->
+        <div class="slide" id="slide-29">
+            <h2 class="slide-title">24. Identity ( is / is not )</h2>
+            <p class="slide-subtitle">Comparing Memory Addresses, not Data Values.</p>
+            <div class="card">
+                <p>The <code>is</code> operator returns <strong>True</strong> if both variables point to the exact same
+                    object
+                    in the computer's memory RAM. It does NOT just check if their data values look the same.</p>
+            </div>
+            <div class="card" style="margin-top:20px; border-left: 5px solid var(--accent-1);">
+                <h3>Identity ( is ) <strong>vs</strong> Equality ( == )</h3>
+                <ul style="margin-top:10px;">
+                    <li><code>==</code> asks: "Do these two boxes hold the same amount of money?"</li>
+                    <li><code>is</code> asks: "Are these two variables literally pointing to the EXACT SAME physical
+                        box?"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 31 -->
+        <div class="slide" id="slide-30">
+            <h2 class="slide-title">25. Identity Trap Example</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Lists in Memory</h3>
+                    <p>Every time you create a new list with brackets `[ ]`, Python carves out a brand new memory block,
+                        even if
+                        the data inside is identical to another list.</p>
+                </div>
+                <div class="code-block">
+                    x = [<span class="string">"apple"</span>, <span class="string">"banana"</span>]<br>
+                    y = [<span class="string">"apple"</span>, <span class="string">"banana"</span>]<br>
+                    z = x<br>
+                    <br>
+                    <span class="comment"># Do they have the same data?</span><br>
+                    <span class="function">print</span>(x == y) <span class="comment"># True</span><br>
+                    <br>
+                    <span class="comment"># Are they the exact same object?</span><br>
+                    <span class="function">print</span>(x <span class="keyword">is</span> y) <span class="comment">#
+                        False! New
+                        memory block.</span><br>
+                    <span class="function">print</span>(x <span class="keyword">is</span> z) <span class="comment">#
+                        True! Z
+                        points to X's block.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 32 -->
+        <div class="slide" id="slide-31">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--warning); text-shadow: 0 0 20px rgba(99,102,241,0.5);">6.
+                    Membership
+                    Operators</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">in /// not in</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 33 -->
+        <div class="slide" id="slide-32">
+            <h2 class="slide-title">26. Membership ( in / not in )</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Definition</h3>
+                    <p>The <code>in</code> operator is used to test if a specific sequence is presented in an object
+                        (like a
+                        String, List, or Tuple). It returns True if it finds it.</p>
+                    <p style="margin-top:10px;">This completely removes the need to write massive loops just to check if
+                        "Apple"
+                        is inside a grocery list!</p>
+                </div>
+                <div class="code-block">
+                    fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span
+                        class="string">"mango"</span>]<br>
+                    <br>
+                    <span class="function">print</span>(<span class="string">"banana"</span> <span
+                        class="keyword">in</span>
+                    fruits)<br>
+                    <span class="comment"># Output: True</span><br>
+                    <br>
+                    <span class="function">print</span>(<span class="string">"cherry"</span> <span
+                        class="keyword">in</span>
+                    fruits)<br>
+                    <span class="comment"># Output: False</span><br>
+                    <br>
+                    <span class="function">print</span>(<span class="string">"cherry"</span> <span class="keyword">not
+                        in</span>
+                    fruits)<br>
+                    <span class="comment"># Output: True</span>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 34 -->
+        <div class="slide" id="slide-33">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">
+                    Precedence &
+                    Associativity</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">The order of operations.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 35 -->
+        <div class="slide" id="slide-34">
+            <h2 class="slide-title">27. What is Operator Precedence?</h2>
+            <div class="card" style="text-align:center; padding:20px;">
+                <h3 style="font-size:2rem; font-family:monospace;">10 + 5 * 2 = ?</h3>
+                <p style="margin-top:10px;">Is the answer 30? Or is the answer 20?</p>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card">
+                    <h3>BODMAS / PEMDAS</h3>
+                    <p>Just like in mathematics, Python has strict rules on which operators get evaluated first when
+                        multiple
+                        are chained in the exact same line.</p>
+                    <p>Because Multiplication <code>*</code> has <strong>higher precedence</strong> than Addition
+                        <code>+</code>, the <code>5 * 2</code> executes first.
+                    </p>
+                </div>
+                <div class="card" style="border-left: 4px solid var(--success);">
+                    <div class="code-block" style="padding:10px;">
+                        ans = <span class="number">10</span> + <span class="number">5</span> * <span
+                            class="number">2</span><br>
+                        <span class="comment"># Python sees: 10 + (10)</span><br>
+                        <span class="function">print</span>(ans) <span class="comment"># Output: 20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 36 -->
+        <div class="slide" id="slide-35">
+            <h2 class="slide-title">28. The Precedence Table (Highest to Lowest)</h2>
+            <div class="card" style="max-height: 700px; overflow-y: auto;">
+                <table class="styled-table" style="width:100%; text-align:left; font-size:0.9rem;">
+                    <tr>
+                        <th>Precedence Level</th>
+                        <th>Operator / Syntax</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr class="table-row-highlight" style="background:#1e293b;">
+                        <td>1 (Highest)</td>
+                        <td><code>(expressions)</code></td>
+                        <td>Parentheses (Always forced first)</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td>2</td>
+                        <td><code>**</code></td>
+                        <td>Exponentiation</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td>3</td>
+                        <td><code>+x, -x, ~x</code></td>
+                        <td>Unary Plus, Unary Minus (Signs)</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td>4</td>
+                        <td><code>*, /, //, %</code></td>
+                        <td>Multiplication & both Divisions</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td>5</td>
+                        <td><code>+, -</code></td>
+                        <td>Addition & Subtraction</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td>6</td>
+                        <td><code>==, !=, >, >=, <, <=, is, in</code></td>
+                        <td>Relational, Identity, Membership</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td>7</td>
+                        <td><code>not</code></td>
+                        <td>Logical NOT</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td>8</td>
+                        <td><code>and</code></td>
+                        <td>Logical AND</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td>9</td>
+                        <td><code>or</code></td>
+                        <td>Logical OR</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td>10 (Lowest)</td>
+                        <td><code>=, +=, -=, *=</code></td>
+                        <td>All Assignment Operators</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 37 -->
+        <div class="slide" id="slide-36">
+            <h2 class="slide-title">29. What is Associativity?</h2>
+            <p class="slide-subtitle">What happens when precedence ties?</p>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Breaking the Tie</h3>
+                    <p>If two operators share the exact same precedence level (like <code>*</code> and <code>/</code>,
+                        which are
+                        both Level 4), Python uses <span class="key-term">Associativity</span> to decide whether to
+                        evaluate
+                        Left-to-Right or Right-to-Left.</p>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--accent-1);">
+                    <h4 style="color:var(--accent-1);">Left-to-Right (Almost Everything)</h4>
+                    <div class="code-block" style="padding:10px;">
+                        <span class="number">10</span> * <span class="number">6</span> // <span
+                            class="number">2</span><br>
+                        <span class="comment"># 1. 10 * 6 = 60</span><br>
+                        <span class="comment"># 2. 60 // 2 = 30</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 38 -->
+        <div class="slide" id="slide-37">
+            <h2 class="slide-title">30. The Exception: Right-to-Left Associativity</h2>
+            <div class="two-col">
+                <div class="card" style="border-top: 4px solid var(--warning);">
+                    <h3 style="color:var(--warning);">Exponentiation ( ** )</h3>
+                    <p>Exponentiation evaluates from Right-to-Left.</p>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        <span class="number">2</span> ** <span class="number">3</span> ** <span
+                            class="number">2</span><br>
+                        <span class="comment"># Evaluates (3 ** 2) first, which is 9.</span><br>
+                        <span class="comment"># Then evaluates 2 ** 9.</span><br>
+                        <span class="comment"># Output: 512</span>
+                    </div>
+                    <p style="margin-top:5px; font-size:0.8rem;">(If it was L-to-R, 2**3 = 8, 8**2 = 64).</p>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--success);">
+                    <h3 style="color:var(--success);">Assignment ( = )</h3>
+                    <p>Assignment evaluates Right-to-Left, which makes perfect logical sense.</p>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        x = y = z = <span class="number">10</span><br>
+                        <span class="comment"># 1. z gets 10.</span><br>
+                        <span class="comment"># 2. y gets z (10)</span><br>
+                        <span class="comment"># 3. x gets y (10)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 39 -->
+        <div class="slide" id="slide-38">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Mixed
+                    Calculations Breakdown</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Analyzing complex
+                    expressions
+                    piece-by-piece.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 40 -->
+        <div class="slide" id="slide-39">
+            <h2 class="slide-title">31. Mixed Calc 1 (Easy Level)</h2>
+            <div class="card">
+                <div class="code-block" style="text-align:center; font-size:1.8rem;">
+                    ans = <span class="number">5</span> + <span class="number">3</span> * <span class="number">2</span>
+                    == <span class="number">11</span>
+                </div>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card">
+                    <h3>Execution Order:</h3>
+                    <ol style="font-family:monospace; line-height:2; font-size:1.1rem; padding-left:20px;">
+                        <li>Identify operators: <code>+</code>, <code>*</code>, <code>==</code></li>
+                        <li>Highest precedence: <code>*</code> ➔ (3 * 2 = 6)</li>
+                        <li>Next highest: <code>+</code> ➔ (5 + 6 = 11)</li>
+                        <li>Lowest precedence: <code>==</code> ➔ (11 == 11)</li>
+                        <li>Final Evaluation: <span style="color:var(--success);">True</span></li>
+                    </ol>
+                </div>
+                <div class="card" style="border-left: 4px solid var(--accent-2);">
+                    <h3 style="color:var(--accent-2);">Parenthesis Equivalent:</h3>
+                    <p>If Python automatically added brackets based on precedence, it would look like...</p>
+                    <div class="code-block" style="padding:10px; margin-top:10px;">
+                        ans = ( (<span class="number">5</span> + (<span class="number">3</span> * <span
+                            class="number">2</span>)) == <span class="number">11</span> )
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 41 -->
+        <div class="slide" id="slide-40">
+            <h2 class="slide-title">32. Mixed Calc 2 (Medium Level)</h2>
+            <div class="card">
+                <div class="code-block" style="text-align:center; font-size:1.5rem;">
+                    ans = ( <span class="number">10</span> // <span class="number">3</span> ) ** <span
+                        class="number">2</span> +
+                    <span class="number">1</span> >= <span class="number">10</span>
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px;">
+                <h3>Execution Order:</h3>
+                <ul style="font-family:monospace; line-height:2; font-size:1.1rem; padding-left:20px; list-style:none;">
+                    <li><span style="color:var(--accent-4);">Step 1: Parentheses forced first</span>:
+                        <code>( 10 // 3 )</code>
+                        evaluates to integer <code>3</code>.
+                    </li>
+                    <li><i>Expression is now:</i> <code>3 ** 2 + 1 >= 10</code></li>
+                    <li><span style="color:var(--accent-4);">Step 2: Exponentiation (highest left)</span>:
+                        <code>3 ** 2</code>
+                        evaluates to <code>9</code>.
+                    </li>
+                    <li><i>Expression is now:</i> <code>9 + 1 >= 10</code></li>
+                    <li><span style="color:var(--accent-4);">Step 3: Addition</span>: <code>9 + 1</code> evaluates to
+                        <code>10</code>.
+                    </li>
+                    <li><i>Expression is now:</i> <code>10 >= 10</code></li>
+                    <li><span style="color:var(--accent-4);">Step 4: Relational</span>: 10 is equal to 10. Final answer
+                        is
+                        <strong style="color:var(--success);">True</strong>.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 42 -->
+        <div class="slide" id="slide-41">
+            <h2 class="slide-title">33. Mixed Calc 3 (Difficult Level)</h2>
+            <div class="card">
+                <div class="code-block" style="text-align:center; font-size:1.2rem;">
+                    ans = <span class="number">15</span> % <span class="number">4</span> <span class="keyword">is
+                        not</span>
+                    <span class="number">0</span> <span class="keyword">and</span> <span class="string">"H"</span> <span
+                        class="keyword">in</span> <span class="string">"Hello"</span>
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px;">
+                <div style="display:flex;">
+                    <div style="flex:1; border-right: 1px solid gray; padding-right:15px;">
+                        <h4 style="color:var(--accent-3);">Part A: <code>15 % 4 is not 0</code></h4>
+                        <p>1. Modulus: 15 / 4 is 3 with remainder 3.</p>
+                        <p>2. Statement simplifies to: <code>3 is not 0</code></p>
+                        <p>3. Identity check: True.</p>
+                    </div>
+                    <div style="flex:1; padding-left:15px;">
+                        <h4 style="color:var(--accent-2);">Part B: <code>"H" in "Hello"</code></h4>
+                        <p>1. Membership check.</p>
+                        <p>2. "H" does exist exactly in "Hello".</p>
+                        <p>3. Evaluation: True.</p>
+                    </div>
+                </div>
+                <div style="margin-top:20px; border-top: 1px solid gray; padding-top:10px;">
+                    <h4 style="color:var(--success);">Final Combination: <code>True and True</code> ➔ <span
+                            style="font-size:1.5rem;">True</span></h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 43 -->
+        <div class="slide" id="slide-42">
+            <h2 class="slide-title">34. Shortcut Evaluation (Short-Circuit)</h2>
+            <div class="two-col">
+                <div class="card" style="border-top: 4px solid var(--accent-4);">
+                    <h3 style="color:var(--accent-4);">Logical AND Short-Circuit</h3>
+                    <p>If Python analyzes the left side of an <code>and</code>, and it evaluates to False, Python
+                        <strong>immediately skips evaluating the right side</strong>. It stops completely, saving
+                        processing
+                        time, because an AND can never be True if one part is already False.
+                    </p>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--warning);">
+                    <h3 style="color:var(--warning);">Logical OR Short-Circuit</h3>
+                    <p>If Python analyzes the left side of an <code>or</code>, and it evaluates to True, Python
+                        <strong>immediately skips the right side</strong>, because an OR only needs one True to win.
+                    </p>
+                </div>
+            </div>
+            <div class="code-block" style="margin-top:10px;">
+                x = <span class="number">10</span> > <span class="number">5</span> <span class="keyword">or</span>
+                (<span class="number">10</span> / <span class="number">0</span> == <span class="number">1</span>)<br>
+                <span class="comment"># (10/0) would normally crash the program with a ZeroDivisionError!</span><br>
+                <span class="comment"># But because 10>5 is True, the 'or' operator short-circuits.</span><br>
+                <span class="comment"># The division (10/0) is literally never executed by the computer.</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 44 -->
+        <div class="slide" id="slide-43">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Ready
+                    for the
+                    Checkpoint?</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Proceed to the next slide
+                    to take
+                    the Quiz!</p>
+            </div>
+        </div>
+        <!-- SLIDE 45 -->
+        <div class="slide" id="slide-44">
+            <h2 class="slide-title">35. Complex Example 4 (Order of Execution)</h2>
+            <div class="card">
+                <div class="code-block" style="text-align:center; font-size:1.5rem;">
+                    val = <span class="number">2</span> * <span class="number">3</span> ** <span class="number">2</span>
+                    + <span class="number">5</span> // <span class="number">2</span>
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px;">
+                <h3>Trace the Steps:</h3>
+                <ul style="font-family:monospace; line-height:2; font-size:1.1rem; padding-left:20px; list-style:none;">
+                    <li>1. Exponentiation has the highest precedence: <code>3 ** 2 == 9</code></li>
+                    <li><i>Expression:</i> <code>2 * 9 + 5 // 2</code></li>
+                    <li>2. Multiplication and Floor Division are equal (Level 4), so evaluate Left to Right.</li>
+                    <li>3. Leftmost is <code>2 * 9</code> which equals <code>18</code>.</li>
+                    <li><i>Expression:</i> <code>18 + 5 // 2</code></li>
+                    <li>4. Next is <code>5 // 2</code> which equals <code>2</code> (2.5 rounded down).</li>
+                    <li><i>Expression:</i> <code>18 + 2</code></li>
+                    <li>5. Final Addition: <strong>20</strong>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 46 -->
+        <div class="slide" id="slide-45">
+            <h2 class="slide-title">36. Complex Example 5 (Strings & Logic)</h2>
+            <div class="card">
+                <div class="code-block" style="font-size:1.2rem;">
+                    word = <span class="string">"cat"</span><br>
+                    ans = (word * <span class="number">2</span>) == <span class="string">"catcat"</span> <span
+                        class="keyword">and</span> <span class="string">"dog"</span> <span class="keyword">not in</span>
+                    [<span class="string">"mouse"</span>, <span class="string">"fish"</span>]
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px; border-left: 4px solid var(--accent-1);">
+                <h3>Analysis:</h3>
+                <p>1. <code>(word * 2)</code> evaluates to <code>"catcat"</code>.</p>
+                <p>2. <code>"catcat" == "catcat"</code> evaluates to <span style="color:var(--success);">True</span>.
+                </p>
+                <p>3. <code>"dog" not in ["mouse", "fish"]</code> evaluates to <span
+                        style="color:var(--success);">True</span>.
+                </p>
+                <p>4. <code>True and True</code> results in <span
+                        style="font-size:1.5rem; font-weight:bold; color:var(--success);">True</span>.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 47 -->
+        <div class="slide" id="slide-46">
+            <h2 class="slide-title">37. Complex Example 6 (Identity Edge Cases)</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Small Integer Caching in Python</h3>
+                    <p>Python optimizes memory by pre-allocating small integers (-5 to 256). If you assign two variables
+                        to 100,
+                        they will share the same memory address.</p>
+                </div>
+                <div class="code-block">
+                    a = <span class="number">100</span><br>
+                    b = <span class="number">100</span><br>
+                    <span class="function">print</span>(a <span class="keyword">is</span> b) <span class="comment">#
+                        Output:
+                        True</span><br>
+                    <br>
+                    x = <span class="number">1000</span><br>
+                    y = <span class="number">1000</span><br>
+                    <span class="function">print</span>(x <span class="keyword">is</span> y) <span class="comment">#
+                        Output:
+                        False</span>
+                </div>
+            </div>
+            <div class="card" style="margin-top:20px; border-top: 2px solid var(--warning);">
+                <p style="color:var(--warning); font-size:0.9rem;">(Note: This behavior is specific to the standard
+                    CPython
+                    interpreter and can differ in REPL vs Script mode. This is why you should always use <code>==</code>
+                    for
+                    numbers, not <code>is</code>).</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 48 -->
+        <div class="slide" id="slide-47">
+            <h2 class="slide-title">38. Summary: Arithmetic & Relational</h2>
+            <div class="card">
+                <table class="styled-table" style="width:100%; text-align:left;">
+                    <tr>
+                        <th>Arithmetic</th>
+                        <th>Behavior</th>
+                        <th>Relational</th>
+                        <th>Behavior</th>
+                    </tr>
+                    <tr>
+                        <td><code>+ - *</code></td>
+                        <td>Standard Math</td>
+                        <td><code>> <</code></td>
+                        <td>Strictly Greater/Less</td>
+                    </tr>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>True Division (Float)</td>
+                        <td><code>>= <=</code></td>
+                        <td>Or Equal To</td>
+                    </tr>
+                    <tr>
+                        <td><code>//</code></td>
+                        <td>Floor (Round Down)</td>
+                        <td><code>==</code></td>
+                        <td>Equals</td>
+                    </tr>
+                    <tr>
+                        <td><code>%</code></td>
+                        <td>Remainder</td>
+                        <td><code>!=</code></td>
+                        <td>Not Equals</td>
+                    </tr>
+                    <tr>
+                        <td><code>**</code></td>
+                        <td>Exponent</td>
+                        <td>Result</td>
+                        <td>Always a Boolean</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 49 -->
+        <div class="slide" id="slide-48">
+            <h2 class="slide-title">39. Summary: Logical, Assignment, Identity</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Logical</h3>
+                    <p><code>and</code> (Both must be True)</p>
+                    <p><code>or</code> (One must be True)</p>
+                    <p><code>not</code> (Flips the boolean)</p>
+                </div>
+                <div class="card">
+                    <h3>Assignment</h3>
+                    <p><code>=</code> (Assign R-val to L-val)</p>
+                    <p><code>+=</code> (Add and overwrite)</p>
+                    <p><code>*=</code> (Mutliply and overwrite)</p>
+                </div>
+                <div class="card">
+                    <h3>Keywords</h3>
+                    <p><code>is</code> (Identical Memory)</p>
+                    <p><code>in</code> (Found within Sequence)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 50 -->
+        <div class="slide" id="slide-49">
+            <h2 class="slide-title">40. Final Advice for Developers</h2>
+            <div class="card" style="border-left: 5px solid var(--accent-3);">
+                <h3>When in doubt, use Parentheses.</h3>
+                <p>Even though Python has strict precedence rules, relying entirely on them can make your code very
+                    difficult
+                    for other human engineers to read.</p>
+                <p style="margin-top:10px;">Writing <code>(5 + (2 * 4)) == 13</code> is physically identical to writing
+                    <code>5 + 2 * 4 == 13</code>, but it communicates your exact intent instantly.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 51 -->
+        <div class="slide" id="slide-50" style="padding-bottom:80px;">
+            <div class="quiz-header">
+                <h2 class="slide-title">🧪 Python Operators Master Quiz</h2>
+                <p class="slide-subtitle">15 questions spanning arithmetic, precedence, logic and identity.</p>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                </div>
+                <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+            </div>
+            <div id="quizContainer"></div>
+            <div id="quizResults" class="quiz-results" style="display:none;"></div>
+        </div>
+
+    </div>
+
+    <!-- ═══ Navigation ═══ -->
+    <nav id="navBar">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <span id="slideCounter">1 / 51</span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </nav>
+
+    <script src="quiz.js"></script>
+    <script src="slides.js"></script>
+</body>
+
+</html>

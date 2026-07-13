@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expressions, Statements & I/O — CBSE CS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .code-block {
+            background: #0a0e1a;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+            text-align: left;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .function {
+            color: #61afef;
+        }
+
+        .number {
+            color: #d19a66;
+        }
+
+        .operator {
+            color: #56b6c2;
+            font-weight: bold;
+        }
+
+        .table-row-highlight:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1 -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science</div>
+            <h1 class="slide-title">Expressions, Statements, & I/O</h1>
+            <p class="slide-subtitle">Understanding how Python evaluates data, mutates types, and talks to the user.</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. Introduction to the Core Mechanics</h2>
+            <div class="card">
+                <h3>What actually happens when Python reads our code?</h3>
+                <p>Before a program can interact with the user, it needs to evaluate data. This presentation bridges the
+                    gap between raw operators and actual programs.</p>
+            </div>
+            <div class="content-grid" style="grid-template-columns: 1fr 1fr; margin-top:20px;">
+                <div class="card" style="border-top:2px solid var(--accent-1);">
+                    <h4>Section 1: Engine Logic</h4>
+                    <ul style="font-size:0.9rem; margin-left:20px; margin-top:10px;">
+                        <li>Expressions vs. Statements</li>
+                        <li>Expression Evaluation & Precedence</li>
+                        <li>Implicit vs Explicit Type Conversion</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top:2px solid var(--accent-2);">
+                    <h4>Section 2: Communication</h4>
+                    <ul style="font-size:0.9rem; margin-left:20px; margin-top:10px;">
+                        <li>Inputting data from Console</li>
+                        <li>Formating and Displaying Output</li>
+                        <li>Real-world Application Examples</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" id="slide-2">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">
+                    Expressions vs. Statements</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">The two fundamental
+                    building blocks of code.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">2. What is an Expression?</h2>
+            <p class="slide-subtitle">If it can be "boiled down" to a single value, it's an expression.</p>
+            <div class="card" style="border-left: 5px solid var(--success);">
+                <p>An <strong>Expression</strong> is any combination of values, variables, and operators that the
+                    interpreter evaluates to produce a single value.</p>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card">
+                    <h3>Examples of Expressions</h3>
+                    <ul style="font-family:monospace; line-height:2; font-size:1.1rem; padding-left:20px;">
+                        <li><code>10</code> <span style="font-size:0.8rem; color:gray;">(A literal is an expression
+                                evaluating to itself)</span></li>
+                        <li><code>"Hello" + "World"</code></li>
+                        <li><code>5 + (3 * 2)</code></li>
+                        <li><code>math.sqrt(16)</code></li>
+                        <li><code>x > 10</code> <span style="font-size:0.8rem; color:gray;">(Evaluates to
+                                True/False)</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--success);">The Test</h3>
+                    <p>If you can print it via <code>print( ... )</code>, it is an Expression.</p>
+                    <p style="margin-top:10px;">You can write <code>print( 5 + 3 )</code> because <code>5 + 3</code>
+                        reduces to <code>8</code>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" id="slide-4">
+            <h2 class="slide-title">3. What is a Statement?</h2>
+            <p class="slide-subtitle">A statement is an instruction that DOES something.</p>
+            <div class="card" style="border-left: 5px solid var(--danger);">
+                <p>A <strong>Statement</strong> is an executable command/instruction that the Python interpreter
+                    executes. Statements do NOT evaluate to a value.</p>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="card">
+                    <h3>Examples of Statements</h3>
+                    <ul style="font-family:monospace; line-height:2; font-size:1.1rem; padding-left:20px;">
+                        <li><code>x = 10</code> <span style="font-size:0.8rem; color:gray;">(Assignment
+                                statement)</span></li>
+                        <li><code>if x > 5:</code> <span style="font-size:0.8rem; color:gray;">(If statement)</span>
+                        </li>
+                        <li><code>for i in range(5):</code> <span style="font-size:0.8rem; color:gray;">(For
+                                statement)</span></li>
+                        <li><code>import random</code> <span style="font-size:0.8rem; color:gray;">(Import
+                                statement)</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--danger);">The Test</h3>
+                    <p>If it causes an error when placed inside a <code>print()</code>, it's a Statement.</p>
+                    <p style="margin-top:10px;">You <strong>CANNOT</strong> write <code>print( x = 10 )</code>.
+                        Assignment doesn't return a value.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">4. Anatomy of a Line of Code</h2>
+            <div class="card">
+                <p>Often, a Statement <span style="color:var(--warning);">CONTAINS</span> an Expression inside of it!
+                </p>
+            </div>
+            <div class="card" style="margin-top:20px;">
+                <div class="code-block" style="text-align:center; font-size:1.8rem; padding: 40px;">
+                    <span style="border-bottom: 2px solid var(--danger);">total =</span> <span
+                        style="border-bottom: 2px solid var(--success);">price * quantity</span>
+                </div>
+                <div style="display:flex; justify-content: space-around; margin-top:10px;">
+                    <div style="text-align:center; width:45%;">
+                        <h4 style="color:var(--danger);">Assignment Statement</h4>
+                        <p style="font-size:0.9rem;">The entire line is an instruction telling the computer to allocate
+                            memory and save data.</p>
+                    </div>
+                    <div style="text-align:center; width:45%;">
+                        <h4 style="color:var(--success);">Expression</h4>
+                        <p style="font-size:0.9rem;">The Right-Hand Side boils down into a single numeric value before
+                            the assignment can happen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">5. Quick Check: Expression or Statement?</h2>
+            <div class="card">
+                <table class="styled-table" style="width:100%; text-align:left;">
+                    <tr>
+                        <th>Code</th>
+                        <th>Type</th>
+                        <th>Why?</th>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>len("Apple")</code></td>
+                        <td style="color:var(--success);">Expression</td>
+                        <td>Evaluates to the integer 5.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>def my_func():</code></td>
+                        <td style="color:var(--danger);">Statement</td>
+                        <td>Instruction to define a function. Does not return a value instantly.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>15 > 10 and True</code></td>
+                        <td style="color:var(--success);">Expression</td>
+                        <td>Evaluates to the boolean True.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>pass</code></td>
+                        <td style="color:var(--danger);">Statement</td>
+                        <td>A null operation instruction. Does nothing, but is a statement.</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><code>name[0:3]</code></td>
+                        <td style="color:var(--success);">Expression</td>
+                        <td>Evaluates to a sliced String.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+<!-- SLIDE 8 -->
+<div class="slide" id="slide-7">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--accent-2); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Evaluation of
+            an Expression</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">The Precedence Rules of Python.</p>
+    </div>
+</div>
+
+<!-- SLIDE 9 -->
+<div class="slide" id="slide-8">
+    <h2 class="slide-title">6. How Python Evaluates</h2>
+    <div class="card">
+        <p>When Python encounters a complex expression, it doesn't just read left-to-right like a human reading a book.
+            It follows strict mathematical precedence rules (BODMAS/PEMDAS on steroids).</p>
+    </div>
+    <div class="two-col" style="margin-top:20px;">
+        <div class="card" style="border-top: 4px solid var(--warning);">
+            <h3 style="color:var(--warning);">The Order (Simplified)</h3>
+            <ol style="margin-left: 20px; font-family:monospace; line-height:1.8;">
+                <li><code>( )</code> Parentheses</li>
+                <li><code>**</code> Exponentiation</li>
+                <li><code>+, -</code> Unary Pos/Neg Signs</li>
+                <li><code>*, /, //, %</code> Mult & Div</li>
+                <li><code>+, -</code> Add & Subtract</li>
+                <li><code><, >, ==, !=</code> Relational</li>
+                <li><code>not, and, or</code> Logical</li>
+            </ol>
+        </div>
+        <div class="card">
+            <h3>Associativity</h3>
+            <p>If two operators share the same precedence (e.g., <code>*</code> and <code>/</code>), Python evaluates
+                Left-to-Right.</p>
+            <p style="margin-top:10px;"><strong>The only exception is <code>**</code> (Exponentiation), which evaluates
+                    Right-to-Left.</strong></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 10 -->
+<div class="slide" id="slide-9">
+    <h2 class="slide-title">7. Evaluation Trace: Example 1</h2>
+    <div class="card">
+        <div class="code-block" style="text-align:center; font-size:1.5rem;">
+            result = <span class="number">10</span> + <span class="number">20</span> * <span class="number">3</span> /
+            <span class="number">2</span> - <span class="number">5</span>
+        </div>
+    </div>
+    <div class="card" style="margin-top:20px; border-left: 5px solid var(--accent-3);">
+        <h3>Step-by-Step Breakdown:</h3>
+        <ul style="font-family:monospace; line-height:2; list-style:none;">
+            <li>1. Identify highest precedence: <code>*</code> and <code>/</code>. L-to-R associative.</li>
+            <li>2. Evaluate multiplication: <code>20 * 3</code> = <code>60</code>.
+                <ul style="padding-left:20px;">
+                    <li style="color:gray;">Expression reduces to: <code>10 + 60 / 2 - 5</code></li>
+                </ul>
+            </li>
+            <li>3. Evaluate division: <code>60 / 2</code> = <code>30.0</code> (True division always yields float).
+                <ul style="padding-left:20px;">
+                    <li style="color:gray;">Expression reduces to: <code>10 + 30.0 - 5</code></li>
+                </ul>
+            </li>
+            <li>4. Identify next precedence: <code>+</code> and <code>-</code>. L-to-R associative.</li>
+            <li>5. Evaluate addition: <code>10 + 30.0</code> = <code>40.0</code>.
+                <ul style="padding-left:20px;">
+                    <li style="color:gray;">Expression reduces to: <code>40.0 - 5</code></li>
+                </ul>
+            </li>
+            <li>6. Evaluate subtraction: <code>35.0</code>.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- SLIDE 11 -->
+<div class="slide" id="slide-10">
+    <h2 class="slide-title">8. Evaluation Trace: Example 2 (Mixed Types)</h2>
+    <div class="card">
+        <div class="code-block" style="text-align:center; font-size:1.5rem;">
+            ans = <span class="number">2</span> ** <span class="number">3</span> ** <span class="number">2</span> >
+            <span class="number">100</span> <span class="keyword">and</span> <span class="string">"A"</span> == <span
+                class="string">"a"</span>
+        </div>
+    </div>
+    <div class="card" style="margin-top:20px; border-left: 5px solid var(--accent-3);">
+        <h3>Step-by-Step Breakdown:</h3>
+        <ul style="font-family:monospace; line-height:2; list-style:none;">
+            <li>1. Exponentiation is highest. <strong>Remember: Right-to-Left!</strong></li>
+            <li>2. Evaluate <code>3 ** 2</code> = <code>9</code>.
+                <ul style="padding-left:20px;">
+                    <li style="color:gray;">Expression reduces to: <code>2 ** 9 > 100 and "A" == "a"</code></li>
+                </ul>
+            </li>
+            <li>3. Evaluate <code>2 ** 9</code> = <code>512</code>.
+                <ul style="padding-left:20px;">
+                    <li style="color:gray;">Expression reduces to: <code>512 > 100 and "A" == "a"</code></li>
+                </ul>
+            </li>
+            <li>4. Relational Operators (<code>></code>, <code>==</code>) evaluate next.</li>
+            <li>5. <code>512 > 100</code> is <code>True</code>. <code>"A" == "a"</code> is <code>False</code> (ASCII).
+                <ul style="padding-left:20px;">
+                    <li style="color:gray;">Expression reduces to: <code>True and False</code></li>
+                </ul>
+            </li>
+            <li>6. Logical <code>and</code> evaluates to <code>False</code>.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- SLIDE 12 -->
+<div class="slide" id="slide-11">
+    <h2 class="slide-title">9. Short-Circuit Evaluation</h2>
+    <div class="two-col">
+        <div class="card" style="border-top: 4px solid var(--accent-1);">
+            <h3 style="color:var(--accent-1);">Logical OR</h3>
+            <p>If Python sees <code>X or Y</code>, and evaluates <code>X</code> to be True, it <strong>immediately
+                    stops</strong> processing and returns True.</p>
+            <p>Why? Because only one side needs to be True for an OR statement to succeed. Evaluating the right side is
+                a waste of CPU power.</p>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--accent-2);">
+            <h3 style="color:var(--accent-2);">Logical AND</h3>
+            <p>If Python sees <code>X and Y</code>, and evaluates <code>X</code> to be False, it <strong>immediately
+                    stops</strong> and returns False.</p>
+            <p>Why? Because an AND statement demands BOTH sides be true. If the first fails, the entire statement is
+                doomed regardless of Y.</p>
+        </div>
+    </div>
+    <div class="code-block" style="margin-top:20px; font-size:1.1rem;">
+        <span class="comment"># The division by zero NEVER executes, preventing a crash!</span><br>
+        safe = (<span class="number">10</span> > <span class="number">5</span>) <span class="keyword">or</span> (<span
+            class="number">50</span> / <span class="number">0</span> == <span class="number">5</span>)
+    </div>
+</div>
+<!-- SLIDE 13 -->
+<div class="slide" id="slide-12">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--warning); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Type
+            Conversion</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Transforming data from one format
+            to another.</p>
+    </div>
+</div>
+
+<!-- SLIDE 14 -->
+<div class="slide" id="slide-13">
+    <h2 class="slide-title">10. Why do we need Type Conversion?</h2>
+    <div class="card">
+        <p>In Python, you cannot freely mix certain incompatible data types in an expression. Attempting to do so
+            results in a <code>TypeError</code>.</p>
+    </div>
+    <div class="two-col" style="margin-top:20px;">
+        <div class="card">
+            <h3 style="color:var(--danger);">The Error</h3>
+            <div class="code-block" style="padding:10px; margin-top:10px;">
+                age = <span class="number">18</span><br>
+                message = <span class="string">"I am "</span> + age<br>
+                print(message)
+            </div>
+            <p style="margin-top:10px; color:var(--danger); font-family:monospace;">TypeError: can only concatenate str
+                (not "int") to str</p>
+        </div>
+        <div class="card">
+            <h3 style="color:var(--success);">The Solution</h3>
+            <p>We must convert the Integer <code>18</code> into a String <code>"18"</code> before the <code>+</code>
+                operator can stitch them together.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 15 -->
+<div class="slide" id="slide-14">
+    <h2 class="slide-title">11. Implicit vs. Explicit Conversion</h2>
+    <p class="slide-subtitle">The two ways types are changed.</p>
+    <div class="card" style="border-left: 5px solid var(--accent-4);">
+        <h3 style="color:var(--accent-4);">1. Implicit Conversion (Coercion)</h3>
+        <p>Python automatically converts smaller/narrower data types into larger/wider data types during evaluation to
+            prevent data loss. <strong>The programmer does nothing.</strong></p>
+    </div>
+    <div class="card" style="border-left: 5px solid var(--success); margin-top: 20px;">
+        <h3 style="color:var(--success);">2. Explicit Conversion (Type Casting)</h3>
+        <p>The programmer forces the conversion by wrapping the expression in a built-in function like
+            <code>int()</code>, <code>float()</code>, or <code>str()</code>.</p>
+    </div>
+</div>
+
+<!-- SLIDE 16 -->
+<div class="slide" id="slide-15">
+    <h2 class="slide-title">12. Implicit Type Conversion Rule</h2>
+    <div class="card">
+        <h3>Integers and Floats</h3>
+        <p>If you mix an integer and a float in a mathematical expression, Python automatically upgrades the Integer
+            into a Float to guarantee that no decimal data is lost in the calculation.</p>
+    </div>
+    <div class="two-col" style="margin-top: 20px;">
+        <div class="code-block">
+            x = <span class="number">10</span> <span class="comment"># int</span><br>
+            y = <span class="number">5.5</span> <span class="comment"># float</span><br>
+            <br>
+            ans = x + y<br>
+            <span class="function">print</span>(ans)<br>
+            <span class="function">print</span>(<span class="function">type</span>(ans))
+        </div>
+        <div class="card" style="border-top: 4px solid var(--accent-1);">
+            <h4 style="color:var(--accent-1);">Behind the Scenes:</h4>
+            <p>Python internally changes <code>10</code> to <code>10.0</code>.</p>
+            <p><code>10.0 + 5.5 = 15.5</code></p>
+            <p>Resulting Type: <code>&lt;class 'float'&gt;</code></p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 17 -->
+<div class="slide" id="slide-16">
+    <h2 class="slide-title">13. Explicit Type Casting Functions</h2>
+    <div class="card">
+        <p>Most basic Python data types have a corresponding built-in function to cast other values into their mould.
+        </p>
+        <table class="styled-table" style="width:100%; text-align:left; margin-top:15px;">
+            <tr>
+                <th>Function</th>
+                <th>What it does</th>
+                <th>Example</th>
+            </tr>
+            <tr class="table-row-highlight">
+                <td><code>int()</code></td>
+                <td>Converts to integer (chops decimals)</td>
+                <td><code>int(5.9)</code> ➔ <code>5</code></td>
+            </tr>
+            <tr class="table-row-highlight">
+                <td><code>float()</code></td>
+                <td>Converts to float (adds .0)</td>
+                <td><code>float(7)</code> ➔ <code>7.0</code></td>
+            </tr>
+            <tr class="table-row-highlight">
+                <td><code>str()</code></td>
+                <td>Converts to a String text sequence</td>
+                <td><code>str(18)</code> ➔ <code>"18"</code></td>
+            </tr>
+            <tr class="table-row-highlight">
+                <td><code>bool()</code></td>
+                <td>Converts to True or False</td>
+                <td><code>bool(0)</code> ➔ <code>False</code></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- SLIDE 18 -->
+<div class="slide" id="slide-17">
+    <h2 class="slide-title">14. Dangers of Explicit Type Casting</h2>
+    <div class="two-col">
+        <div class="card" style="border-top: 4px solid var(--danger);">
+            <h3 style="color:var(--danger);">Data Loss with int()</h3>
+            <p>Casting a float to an int <strong>truncates</strong> the decimal completely. It does NOT round.</p>
+            <div class="code-block" style="padding:10px; margin-top:10px;">
+                pi = <span class="number">3.14159</span><br>
+                fake_pi = <span class="function">int</span>(pi)<br>
+                <span class="function">print</span>(fake_pi) <span class="comment"># Output: 3</span>
+            </div>
+            <p style="margin-top:10px;">(All that precision is gone forever).</p>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--warning);">
+            <h3 style="color:var(--warning);">ValueError with int()</h3>
+            <p>You cannot cast a string to an integer if the string doesn't contain valid base-10 numbers.</p>
+            <div class="code-block" style="padding:10px; margin-top:10px;">
+                word = <span class="string">"Hello"</span><br>
+                bad = <span class="function">int</span>(word)<br>
+                <span class="comment"># ValueError: invalid literal for int()</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 19 -->
+<div class="slide" id="slide-18">
+    <h2 class="slide-title">15. Solving the TypeError!</h2>
+    <p class="slide-subtitle">Going back to Slide 14...</p>
+    <div class="card">
+        <p>To safely concatenate an integer into a sentence, pass the integer directly into the <code>str()</code>
+            casting function within the expression!</p>
+    </div>
+    <div class="code-block" style="margin-top:20px; font-size:1.5rem; text-align:center;">
+        age = <span class="number">18</span><br>
+        message = <span class="string">"I am "</span> + <span class="function">str</span>(age) + <span class="string">"
+            years old."</span><br>
+        <span class="function">print</span>(message)
+    </div>
+    <div class="card" style="margin-top:20px; text-align:center;">
+        <h3 style="color:var(--success);">Output: I am 18 years old.</h3>
+    </div>
+</div>
+<!-- SLIDE 20 -->
+<div class="slide" id="slide-19">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--success); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Input & Output
+        </h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Talking to the User.</p>
+    </div>
+</div>
+
+<!-- SLIDE 21 -->
+<div class="slide" id="slide-20">
+    <h2 class="slide-title">16. Standard Output: print()</h2>
+    <div class="card">
+        <p>The <code>print()</code> function is used to send data to the standard output device (usually the
+            screen/console).</p>
+    </div>
+    <div class="two-col" style="margin-top:20px;">
+        <div class="card">
+            <h3>Separating Items</h3>
+            <p>You can print multiple items by separating them with commas. Python automatically inserts a space between
+                them!</p>
+            <div class="code-block" style="padding:10px; margin-top:10px;">
+                x = <span class="string">"Apple"</span><br>
+                y = <span class="number">10</span><br>
+                <span class="function">print</span>(x, y) <span class="comment"># Output: Apple 10</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3>End vs Sep Arguments</h3>
+            <p>Advanced parameters exist to change print behavior:</p>
+            <div class="code-block" style="padding:10px; margin-top:10px;">
+                <span class="comment"># sep changes the space to a hyphen</span><br>
+                <span class="function">print</span>(x, y, sep=<span class="string">"-"</span>) <span class="comment">#
+                    Output: Apple-10</span><br>
+                <br>
+                <span class="comment"># end prevents the newline</span><br>
+                <span class="function">print</span>(<span class="string">"Hi"</span>, end=<span
+                    class="string">""</span>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 22 -->
+<div class="slide" id="slide-21">
+    <h2 class="slide-title">17. Formatted Strings (F-Strings)</h2>
+    <p class="slide-subtitle">The modern way to format output.</p>
+    <div class="card">
+        <p>Instead of aggressively using <code>str()</code> casting and <code>+</code> signs to stitch variables
+            together, Python 3.6+ introduced f-strings.</p>
+        <p>Simply place an <code>f</code> before the quote, and inject variables inside curly braces <code>{}</code>.
+        </p>
+    </div>
+    <div class="two-col" style="margin-top:20px;">
+        <div class="card" style="border-top: 4px solid var(--danger);">
+            <h4 style="color:var(--danger);">The Old/Ugly Way</h4>
+            <div class="code-block" style="padding:10px; margin-top:10px;">
+                age = <span class="number">15</span><br>
+                sub = <span class="string">"CS"</span><br>
+                <span class="function">print</span>(<span class="string">"I am "</span> + <span
+                    class="function">str</span>(age) + <span class="string">" taking "</span> + sub)
+            </div>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--success);">
+            <h4 style="color:var(--success);">The F-String Way</h4>
+            <div class="code-block" style="padding:10px; margin-top:10px;">
+                age = <span class="number">15</span><br>
+                sub = <span class="string">"CS"</span><br>
+                <span class="function">print</span>(f<span class="string">"I am {age} taking {sub}"</span>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 23 -->
+<div class="slide" id="slide-22">
+    <h2 class="slide-title">18. Standard Input: input()</h2>
+    <div class="card">
+        <p>The <code>input()</code> function does three things simultaneously:</p>
+        <ol style="margin-left: 20px; line-height: 1.8;">
+            <li>Prints an optional prompt string to the screen.</li>
+            <li>Pauses the entire program and waits until the user presses the Enter key.</li>
+            <li>Reads everything the user typed and <strong>returns it as an Expression!</strong></li>
+        </ol>
+    </div>
+    <div class="code-block" style="margin-top:20px;">
+        <span class="comment"># 'name' is the variable where the data gets stored.</span><br>
+        name = <span class="function">input</span>(<span class="string">"Please enter your name: "</span>)<br>
+        <span class="function">print</span>(f<span class="string">"Welcome back, {name}!"</span>)
+    </div>
+</div>
+
+<!-- SLIDE 24 -->
+<div class="slide" id="slide-23">
+    <h2 class="slide-title">19. THE GOLDEN INPUT RULE</h2>
+    <div class="card" style="border-top: 6px solid var(--danger); text-align:center; padding: 40px;">
+        <h1 style="color:var(--danger); font-size:2.5rem; text-transform: uppercase;">input() always returns a String.
+        </h1>
+        <p style="margin-top:20px; font-size:1.2rem;">It does not matter if the user types '10', 'True', or '5.5'.
+            Python will capture it as '"10"', '"True"', and '"5.5"'.</p>
+    </div>
+</div>
+
+<!-- SLIDE 25 -->
+<div class="slide" id="slide-24">
+    <h2 class="slide-title">20. The Input / Math Bug</h2>
+    <div class="card">
+        <p>If you ask the user for two numbers, and blindly add them together, it will trigger String Concatenation, not
+            Mathematical Addition!</p>
+    </div>
+    <div class="two-col" style="margin-top:20px;">
+        <div class="code-block">
+            x = <span class="function">input</span>(<span class="string">"Enter first num: "</span>)<br>
+            <span class="comment"># User types 5</span><br>
+            <br>
+            y = <span class="function">input</span>(<span class="string">"Enter second num: "</span>)<br>
+            <span class="comment"># User types 10</span><br>
+            <br>
+            ans = x + y<br>
+            <span class="function">print</span>(ans)
+        </div>
+        <div class="card" style="text-align:center;">
+            <h3 style="color:var(--danger);">Output:</h3>
+            <h1 style="font-size:3rem; margin-top:20px; letter-spacing: 5px;">510</h1>
+            <p style="margin-top:20px;">"5" + "10" = "510". Python stitched the text together.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 26 -->
+<div class="slide" id="slide-25">
+    <h2 class="slide-title">21. The Solution: Immediate Type Casting</h2>
+    <div class="card">
+        <p>We combine the <code>input()</code> statement and the <code>int()</code> explicit type casting function into
+            a single, beautiful line of code to instantly convert the typed string into a workable number.</p>
+    </div>
+    <div class="code-block" style="margin-top:20px; font-size:1.3rem;">
+        <span class="comment"># Take the result of input(), and feed it directly into int()</span><br>
+        x = <span class="function">int</span>( <span class="function">input</span>(<span class="string">"Enter first
+            num: "</span>) )<br>
+        y = <span class="function">int</span>( <span class="function">input</span>(<span class="string">"Enter second
+            num: "</span>) )<br>
+        <br>
+        ans = x + y<br>
+        <span class="function">print</span>(f<span class="string">"The final answer is: {ans}"</span>)
+    </div>
+</div>
+<!-- SLIDE 27 -->
+<div class="slide" id="slide-26">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Application
+            Examples</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">Bringing it all together.</p>
+    </div>
+</div>
+
+<!-- SLIDE 28 -->
+<div class="slide" id="slide-27">
+    <h2 class="slide-title">22. Example 1: Calculating Circle Area</h2>
+    <div class="card">
+        <p>Write a script that asks the user for a radius, and outputs the area of the circle formatted cleanly.</p>
+    </div>
+    <div class="code-block" style="margin-top:20px;">
+        <span class="comment"># 1. Input (Must use float() since radius could be a decimal like 2.5)</span><br>
+        radius = <span class="function">float</span>(<span class="function">input</span>(<span class="string">"Enter
+            circle radius: "</span>))<br>
+        <br>
+        <span class="comment"># 2. Expression Evaluation</span><br>
+        pi = <span class="number">3.14159</span><br>
+        area = pi * (radius ** <span class="number">2</span>) <span class="comment"># Exponentiation executes before
+            Mult!</span><br>
+        <br>
+        <span class="comment"># 3. Formatted Output</span><br>
+        <span class="function">print</span>(f<span class="string">"For radius {radius}, the total area is
+            {area}"</span>)
+    </div>
+</div>
+
+<!-- SLIDE 29 -->
+<div class="slide" id="slide-28">
+    <h2 class="slide-title">23. Example 2: The Bill Splitter</h2>
+    <div class="card">
+        <p>Ask for the total bill quantity, how many friends to split among, and display the exact breakdown rounding to
+            integer values.</p>
+    </div>
+    <div class="code-block" style="margin-top:20px;">
+        total_bill = <span class="function">float</span>(<span class="function">input</span>(<span class="string">"Total
+            Bill Amount: ₹"</span>))<br>
+        friends = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"How many
+            people? "</span>))<br>
+        <br>
+        <span class="comment"># Implicit Conversion happens here! Float / Int yields Float.</span><br>
+        <span class="comment"># Then we explicitly cast the final float answer to int to drop decimals!</span><br>
+        split_share = <span class="function">int</span>(total_bill / friends)<br>
+        <br>
+        <span class="function">print</span>(f<span class="string">"Each friend must pay exactly ₹{split_share}"</span>)
+    </div>
+</div>
+
+<!-- SLIDE 30 -->
+<div class="slide" id="slide-29">
+    <h2 class="slide-title">24. Special Challenge Issue: "010" is not Base-10</h2>
+    <div class="card">
+        <h3>Wait, what if they submit blank space?</h3>
+        <p>If a user strikes 'Enter' without typing, <code>input()</code> returns an empty string <code>""</code>.
+            Feeding an empty string into <code>int()</code> crashes the program with a ValueError.</p>
+        <p style="margin-top:10px;">Developers must use Logical Conditionals (If/Else) or Try/Except blocks to validate
+            user input before mathematically mutating it! (Covered in future units).</p>
+    </div>
+</div>
+
+<!-- SLIDE 31 -->
+<div class="slide" id="slide-30">
+    <h2 class="slide-title">25. Overall Summary</h2>
+    <div class="content-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="card" style="border-top: 3px solid var(--accent-1);">
+            <h4>Expressions vs Statements</h4>
+            <p>Expressions evaluate to values. Statements are instructions that act upon values or control flow.</p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--accent-2);">
+            <h4>Precedence</h4>
+            <p>Python obeys strict order of operations (BODMAS), handling exponents first, then mult/div, then add/sub,
+                then logic.</p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--accent-3);">
+            <h4>Type Casting</h4>
+            <p>Implicit coercion (Int>Float) happens automatically. Explicit casting (int(), str()) is forced by you.
+            </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--success);">
+            <h4>The Input Rule</h4>
+            <p><code>input()</code> is deeply flawed for math unless wrapped instantly in <code>int()</code> or
+                <code>float()</code> because it ALWAYS returns strings.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 32 -->
+<div class="slide" id="slide-31" style="padding-bottom:80px;">
+    <div class="quiz-header">
+        <h2 class="slide-title">🧪 Expression & I/O Quiz</h2>
+        <p class="slide-subtitle">10 checkpoint questions to verify your understanding.</p>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+        </div>
+        <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+    </div>
+    <div id="quizContainer"></div>
+    <div id="quizResults" class="quiz-results" style="display:none;"></div>
+</div>
+
+</div>
+
+<!-- ═══ Navigation ═══ -->
+<nav id="navBar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <span id="slideCounter">1 / 32</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</nav>
+
+<script src="quiz.js"></script>
+<script src="slides.js"></script>
+</body>
+
+</html>

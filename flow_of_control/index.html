@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow of Control — CBSE CS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .code-block {
+            background: #0a0e1a;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+            text-align: left;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .function {
+            color: #61afef;
+        }
+
+        .number {
+            color: #d19a66;
+        }
+
+        .operator {
+            color: #56b6c2;
+            font-weight: bold;
+        }
+
+        .logic-branch {
+            border-left: 4px solid var(--accent-1);
+            padding-left: 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar"></div>
+    <div id="slideshow">
+
+        <!-- SLIDE 1 -->
+        <div class="slide hero-slide active" id="slide-0">
+            <div class="hero-badge">📘 CBSE Computer Science</div>
+            <h1 class="slide-title">Flow of Control</h1>
+            <p class="slide-subtitle">Mastering Sequential, Conditional, and Iterative logic execution.</p>
+            <p style="margin-top:30px;color:var(--text-muted);font-size:0.85rem;">Use ← → arrow keys or buttons below to
+                navigate</p>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-1">
+            <h2 class="slide-title">1. Introduction to Flow of Control</h2>
+            <div class="card">
+                <p>In programming, the <strong>Flow of Control</strong> (or Control Flow) refers to the exact order in
+                    which individual statements, instructions, or function calls are executed or evaluated by the Python
+                    interpreter.</p>
+            </div>
+            <div class="content-grid" style="grid-template-columns: repeat(3, 1fr); margin-top:20px;">
+                <div class="card" style="text-align:center; border-top:4px solid var(--success);">
+                    <h3>1. Sequential</h3>
+                    <p style="font-size:0.9rem; margin-top:10px;">Top to Bottom. Line by Line. No skipping.</p>
+                </div>
+                <div class="card" style="text-align:center; border-top:4px solid var(--warning);">
+                    <h3>2. Conditional</h3>
+                    <p style="font-size:0.9rem; margin-top:10px;">Making choices. Skipping blocks of code based on
+                        Booleans.</p>
+                </div>
+                <div class="card" style="text-align:center; border-top:4px solid var(--accent-1);">
+                    <h3>3. Iterative</h3>
+                    <p style="font-size:0.9rem; margin-top:10px;">Looping. Executing the exact same block of code
+                        multiple times.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" id="slide-2">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--accent-3); text-shadow: 0 0 20px rgba(99,102,241,0.5);">The
+                    Law of Indentation</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">How Python understands
+                    groupings.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" id="slide-3">
+            <h2 class="slide-title">2. Use of Indentation</h2>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Structure through Whitespace</h3>
+                    <p>Unlike languages such as Java or C++ that use curly brackets <code>{ }</code> to define blocks of
+                        code, Python uses <strong>strict indentation</strong> (whitespace at the start of a line).</p>
+                    <p style="margin-top:10px;">All statements that share the exact same indentation level are
+                        considered part of the same logic block.</p>
+                </div>
+                <div class="card" style="border-left: 5px solid var(--danger);">
+                    <div class="code-block" style="padding:10px; font-size:1.1rem;">
+                        <span class="keyword">if</span> x > <span class="number">10</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Inside Block
+                            A"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;x = x - <span class="number">1</span><br>
+                        <span class="function">print</span>(<span class="string">"Outside completely!"</span>)
+                    </div>
+                    <p style="margin-top:10px; font-size: 0.9rem;">The standard is 4 spaces per indentation level. Never
+                        mix tabs and spaces!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" id="slide-4">
+            <div style="text-align:center; padding-top: 100px;">
+                <h1 style="font-size: 3.5rem; color: var(--success); text-shadow: 0 0 20px rgba(99,102,241,0.5);">
+                    Sequential Flow</h1>
+                <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">The default behavior.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide" id="slide-5">
+            <h2 class="slide-title">3. Sequential Execution</h2>
+            <div class="card">
+                <p>By default, a Python script executes strictly from top to bottom. Once a line is executed, the
+                    interpreter moves to the very next line and never looks back.</p>
+            </div>
+            <div class="two-col" style="margin-top:20px;">
+                <div class="code-block" style="padding:15px;">
+                    <span class="comment"># Line 1</span><br>
+                    name = <span class="string">"Alice"</span><br>
+                    <span class="comment"># Line 2</span><br>
+                    age = <span class="number">20</span><br>
+                    <span class="comment"># Line 3</span><br>
+                    <span class="function">print</span>(name)<br>
+                    <span class="comment"># Line 4</span><br>
+                    <span class="function">print</span>(age)
+                </div>
+                <div class="card" style="display:flex; flex-direction:column; justify-content:center;">
+                    <h3>The Path</h3>
+                    <p style="margin-top:10px;">The interpreter will ALWAYS execute Line 1. Then Line 2. Then Line 3.
+                        Then Line 4. None of it will ever be skipped, and none of it will execute twice.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide" id="slide-6">
+            <h2 class="slide-title">4. Sequential Example: Recipe Execution</h2>
+            <div class="card">
+                <p>Think of sequential flow like a recipe. You cannot bake the cake before you crack the eggs.</p>
+                <div class="code-block" style="margin-top:15px;">
+                    <span class="comment"># 1. Gather Ingredients</span><br>
+                    flour = <span class="number">2</span><br>
+                    eggs = <span class="number">3</span><br>
+                    <br>
+                    <span class="comment"># 2. Mix them mathematically</span><br>
+                    batter = flour + eggs<br>
+                    <br>
+                    <span class="comment"># 3. Bake (Output)</span><br>
+                    <span class="function">print</span>(f<span class="string">"Cake ready with {batter} units of
+                        batter."</span>)
+                </div>
+            </div>
+        </div>
+<!-- SLIDE 8 -->
+<div class="slide" id="slide-7">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--warning); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Conditional
+            Flow</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">if, elif, and else.</p>
+    </div>
+</div>
+
+<!-- SLIDE 9 -->
+<div class="slide" id="slide-8">
+    <h2 class="slide-title">5. Conditional Execution</h2>
+    <div class="card">
+        <p>Conditional flow allows your program to make decisions. It evaluates a Boolean Expression (True or False),
+            and executes a specific block of code ONLY if the condition evaluates to True. Otherwise, it skips it
+            entirely.</p>
+    </div>
+</div>
+
+<!-- SLIDE 10 -->
+<div class="slide" id="slide-9">
+    <h2 class="slide-title">6. The Simple 'if' Statement</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>Structure</h3>
+            <p>The <code>if</code> statement checks a condition. If it is True, the indented block underneath runs.</p>
+            <div class="logic-branch">
+                <strong>Syntax:</strong><br>
+                <code>if &lt;expression&gt;:</code><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<code>statement(s)</code>
+            </div>
+        </div>
+        <div class="code-block">
+            score = <span class="number">85</span><br>
+            <br>
+            <span class="keyword">if</span> score >= <span class="number">80</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"You passed the
+                test!"</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Great job."</span>)<br>
+            <br>
+            <span class="comment"># This line is unindented. It runs sequentially always.</span><br>
+            <span class="function">print</span>(<span class="string">"Program Ended."</span>)
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 11 -->
+<div class="slide" id="slide-10">
+    <h2 class="slide-title">7. The 'if - else' Statement</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>The Fork in the Road</h3>
+            <p>The <code>else</code> keyword defines the block of code that should run if the initial <code>if</code>
+                condition was FALSE. It acts as a safety catch-all.</p>
+            <p style="margin-top:10px; color:var(--warning);">Note: <code>else</code> never takes a condition beside it.
+            </p>
+        </div>
+        <div class="code-block">
+            weather = <span class="string">"Rain"</span><br>
+            <br>
+            <span class="keyword">if</span> weather == <span class="string">"Sunny"</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Go for a run!"</span>)<br>
+            <span class="keyword">else</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Stay inside and
+                code."</span>)<br>
+            <br>
+            <span class="comment"># Output: Stay inside and code.</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 12 -->
+<div class="slide" id="slide-11">
+    <h2 class="slide-title">8. The 'elif' Ladder</h2>
+    <div class="card">
+        <p>Short for "else if". When you have multiple specific conditions to check one after the other, you create an
+            <code>elif</code> ladder. Python will check them top-to-bottom, and execute ONLY the first one that returns
+            True.</p>
+    </div>
+    <div class="code-block" style="margin-top:20px;">
+        traffic_light = <span class="string">"Yellow"</span><br>
+        <br>
+        <span class="keyword">if</span> traffic_light == <span class="string">"Red"</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Stop!"</span>)<br>
+        <span class="keyword">elif</span> traffic_light == <span class="string">"Yellow"</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Slow Down!"</span>)<br>
+        <span class="keyword">elif</span> traffic_light == <span class="string">"Green"</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Go!"</span>)<br>
+        <span class="keyword">else</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Malfunction. Proceed with
+            caution."</span>)
+    </div>
+</div>
+
+<!-- SLIDE 13 -->
+<div class="slide" id="slide-12">
+    <h2 class="slide-title">9. Conditional Example: Grading System</h2>
+    <div class="card">
+        <p>Converting a numeric score into a Letter Grade using chained limits.</p>
+        <div class="code-block" style="margin-top:15px;">
+            grade = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter
+                Marks: "</span>))<br>
+            <br>
+            <span class="keyword">if</span> grade >= <span class="number">90</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;letter = <span class="string">"A"</span><br>
+            <span class="keyword">elif</span> grade >= <span class="number">80</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;letter = <span class="string">"B"</span><br>
+            <span class="keyword">elif</span> grade >= <span class="number">70</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;letter = <span class="string">"C"</span><br>
+            <span class="keyword">else</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;letter = <span class="string">"F"</span><br>
+            <br>
+            <span class="function">print</span>(f<span class="string">"Your grade is {letter}"</span>)
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 14 -->
+<div class="slide" id="slide-13">
+    <h2 class="slide-title">10. Conditional Example: Logic Gates</h2>
+    <div class="card">
+        <p>Using logical <code>and</code> / <code>or</code> inside the conditional evaluation.</p>
+        <div class="code-block" style="margin-top:15px; font-size: 1.1rem;">
+            user_age = <span class="number">22</span><br>
+            has_ticket = <span class="keyword">True</span><br>
+            is_vip = <span class="keyword">False</span><br>
+            <br>
+            <span class="keyword">if</span> is_vip <span class="keyword">or</span> (user_age >= <span
+                class="number">18</span> <span class="keyword">and</span> has_ticket):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Welcome to the
+                concert!"</span>)<br>
+            <span class="keyword">else</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Security! Escort them
+                out."</span>)
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 15 -->
+<div class="slide" id="slide-14">
+    <h2 class="slide-title">11. Nested Conditionals</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>If inside an If</h3>
+            <p>You can push indentation multiple levels deep. An inner <code>if</code> statement will only be evaluated
+                if the outer <code>if</code> statement was already proven True.</p>
+        </div>
+        <div class="code-block">
+            num = <span class="number">15</span><br>
+            <br>
+            <span class="keyword">if</span> num > <span class="number">0</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Positive
+                Number"</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Nested Block Begins (8 spaces)</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> num % <span class="number">2</span> == <span
+                class="number">0</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span
+                class="string">"And it is Even!"</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span
+                class="string">"And it is Odd!"</span>)<br>
+            <span class="keyword">else</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"Negative Number"</span>)
+        </div>
+    </div>
+</div>
+<!-- SLIDE 16 -->
+<div class="slide" id="slide-15">
+    <div style="text-align:center; padding-top: 100px;">
+        <h1 style="font-size: 3.5rem; color: var(--accent-1); text-shadow: 0 0 20px rgba(99,102,241,0.5);">Iterative
+            Flow</h1>
+        <p style="font-size: 1.5rem; color: var(--text-secondary); margin-top:20px;">The power of Loops.</p>
+    </div>
+</div>
+
+<!-- SLIDE 17 -->
+<div class="slide" id="slide-16">
+    <h2 class="slide-title">12. Intro to Iteration</h2>
+    <div class="card">
+        <p>Iterative Flow allows a block of code to be executed over and over again, incredibly fast, until a certain
+            condition is met or all items in a sequence are processed.</p>
+        <p style="margin-top:10px;">Python has two primary loops: <code>for</code> and <code>while</code>.</p>
+    </div>
+</div>
+
+<!-- SLIDE 18 -->
+<div class="slide" id="slide-17">
+    <h2 class="slide-title">13. The 'for' Loop</h2>
+    <p class="slide-subtitle">Definite Iteration.</p>
+    <div class="two-col">
+        <div class="card">
+            <h3>Iterating over Sequences</h3>
+            <p>A <code>for</code> loop is used to iterate over a know sequence (like a String, a List, or a generated
+                Range). It repeats exactly once for every item in that sequence.</p>
+        </div>
+        <div class="code-block">
+            word = <span class="string">"PYTHON"</span><br>
+            <br>
+            <span class="comment"># 'char' becomes a new letter each repetition</span><br>
+            <span class="keyword">for</span> char <span class="keyword">in</span> word:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(char)<br>
+            <br>
+            <span class="comment"># Prints P, Y, T, H, O, N vertically.</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 19 -->
+<div class="slide" id="slide-18">
+    <h2 class="slide-title">14. Generating numeric loops with range()</h2>
+    <div class="card">
+        <p>The <code>range(start, stop, step)</code> function is the backbone of most math-based for-loops in Python. It
+            generates a sequence of numbers up to, <strong>but never including</strong>, the stop value.</p>
+    </div>
+    <div class="code-block" style="margin-top:20px;">
+        <span class="comment"># range(5) generates: 0, 1, 2, 3, 4</span><br>
+        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+            class="number">5</span>):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(i)<br>
+        <br>
+        <span class="function">print</span>(<span class="string">"---"</span>)<br>
+        <br>
+        <span class="comment"># range(10, 15) generates: 10, 11, 12, 13, 14</span><br>
+        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+            class="number">10</span>, <span class="number">15</span>):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(i)
+    </div>
+</div>
+
+<!-- SLIDE 20 -->
+<div class="slide" id="slide-19">
+    <h2 class="slide-title">15. 'for' Loop Example: Multiplication Table</h2>
+    <div class="card">
+        <p>Printing the 5-times table using a range.</p>
+        <div class="code-block" style="margin-top:15px; font-size:1.1rem;">
+            num = <span class="number">5</span><br>
+            <br>
+            <span class="comment"># Goes from 1 up to 10 (stops BEFORE 11)</span><br>
+            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span
+                class="number">1</span>, <span class="number">11</span>):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ans = num * i<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"{num} x {i} =
+                {ans}"</span>)
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 21 -->
+<div class="slide" id="slide-20">
+    <h2 class="slide-title">16. The 'while' Loop</h2>
+    <p class="slide-subtitle">Indefinite Iteration.</p>
+    <div class="two-col">
+        <div class="card" style="border-top:4px solid var(--danger);">
+            <h3>Condition-Driven</h3>
+            <p>A <code>while</code> loop doesn't have a fixed sequence length. It simply evaluates a condition. As long
+                as the condition evaluates to True, the block executes.</p>
+            <p style="margin-top:10px; color:var(--warning);">DANGER: If you never alter the variable inside the block,
+                the condition will remain True forever, causing an <strong>Infinite Loop</strong> that crashes the
+                machine.</p>
+        </div>
+        <div class="code-block">
+            count = <span class="number">0</span><br>
+            <br>
+            <span class="comment"># Will loop as long as count is less than 3</span><br>
+            <span class="keyword">while</span> count < <span class="number">3</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(f<span class="string">"Count is
+                    {count}"</span>)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># CRITICAL: We must update the state!</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;count += <span class="number">1</span><br>
+                <br>
+                <span class="function">print</span>(<span class="string">"Loop Finished!"</span>)
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 22 -->
+<div class="slide" id="slide-21">
+    <h2 class="slide-title">17. 'while' Loop Example: Input Validation</h2>
+    <div class="card">
+        <p>A classic use case for a while loop is holding a user hostage until they provide a valid password or input.
+        </p>
+        <div class="code-block" style="margin-top:15px;">
+            password = <span class="string">""</span><br>
+            <br>
+            <span class="comment"># The loop keeps asking as long as the password is incorrect</span><br>
+            <span class="keyword">while</span> password != <span class="string">"secret123"</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;password = <span class="function">input</span>(<span class="string">"Enter password
+                to unlock: "</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> password != <span
+                class="string">"secret123"</span>:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span
+                class="string">"Access Denied. Try again.\n"</span>)<br>
+            <br>
+            <span class="function">print</span>(<span class="string">"SYSTEM UNLOCKED!"</span>)
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 23 -->
+<div class="slide" id="slide-22">
+    <h2 class="slide-title">18. Transfer Statements: break & continue</h2>
+    <div class="two-col">
+        <div class="card" style="border-top:4px solid var(--danger);">
+            <h3 style="color:var(--danger);">break</h3>
+            <p>Immediately kills the loop entirely, regardless of the condition, and drops execution out to the next
+                outer line of code.</p>
+            <div class="code-block" style="padding:10px; margin-top:10px;">
+                <span class="keyword">for</span> i <span class="keyword">in</span> <span
+                    class="function">range</span>(<span class="number">10</span>):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> i == <span class="number">3</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">break</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(i)<br>
+                <span class="comment"># Output: 0, 1, 2 (Then halts forever)</span>
+            </div>
+        </div>
+        <div class="card" style="border-top:4px solid var(--accent-2);">
+            <h3 style="color:var(--accent-2);">continue</h3>
+            <p>Stops the current iteration early, skips the rest of the block, and jumps straight to the <strong>next
+                    cycle</strong> of the loop.</p>
+            <div class="code-block" style="padding:10px; margin-top:10px;">
+                <span class="keyword">for</span> i <span class="keyword">in</span> <span
+                    class="function">range</span>(<span class="number">4</span>):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> i == <span class="number">2</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">continue</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(i)<br>
+                <span class="comment"># Output: 0, 1, 3 (Simply skipped 2)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 24 -->
+<div class="slide" id="slide-23" style="padding-bottom:80px;">
+    <div class="quiz-header">
+        <h2 class="slide-title">🧪 Flow of Control Mastery Quiz</h2>
+        <p class="slide-subtitle">10 crucial questions to test your logic structure knowledge.</p>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+        </div>
+        <p id="quizScoreTracker" style="margin-top:8px;color:var(--text-muted);font-size:0.85rem;"></p>
+    </div>
+    <div id="quizContainer"></div>
+    <div id="quizResults" class="quiz-results" style="display:none;"></div>
+</div>
+
+</div>
+
+<!-- ═══ Navigation ═══ -->
+<nav id="navBar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <span id="slideCounter">1 / 24</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+</nav>
+
+<script src="quiz.js"></script>
+<script src="slides.js"></script>
+</body>
+
+</html>
