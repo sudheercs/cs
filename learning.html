@@ -11,9 +11,19 @@
       .embed-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
       body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 1rem; }
     </style>
+    <link rel="stylesheet" href="subpages.css">
 </head>
 
 <body>
+
+<header class="app-header">
+    <a href="index.html" class="back-home-btn">← Back to Portal</a>
+    <span style="font-weight:700;">CBSE CS Study Material</span>
+    <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+    </button>
+</header>
+
   <header>
     <div class="nav-container">
       <a href="index.html" class="logo">Sudheer CS</a>
@@ -38,6 +48,7 @@
   <footer>
     <p>&copy; 2024 Sudheer CS. Hosted on GitHub Pages.</p>
   </footer>
+    <script src="app.js"></script>
 </body>
 
 </html>

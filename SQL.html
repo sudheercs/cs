@@ -128,8 +128,18 @@
             color: #8b949e;
         }
     </style>
+    <link rel="stylesheet" href="subpages.css">
 </head>
 <body>
+
+<header class="app-header">
+    <a href="index.html" class="back-home-btn">← Back to Portal</a>
+    <span style="font-weight:700;">CBSE CS Study Material</span>
+    <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+    </button>
+</header>
+
 
     <div class="slide active" data-slide-num="1">
         <h1>🚀 Structured Query Language (SQL)</h1>
@@ -189,7 +199,7 @@
             <strong>SHOW TABLES</strong>;
             <strong>DESCRIBE</strong> Employees;
         </div>
-        
+
         <h3>CREATE TABLE Example</h3>
         <div class="code-block">
             <strong>CREATE TABLE</strong> Employees (
@@ -245,7 +255,7 @@
             <li>**DISTINCT**: Retrieves only unique values.</li>
             <li>**Operators**: Mathematical, Relational (`<`, `>`, `=`), Logical (`AND`, `OR`).</li>
         </ul>
-        
+
         <h3>Advanced WHERE Clause Keywords</h3>
         <div class="code-block">
             <strong>WHERE</strong> DeptID <strong>IN</strong> (1, 3, 5);
@@ -302,7 +312,7 @@
         <div class="code-block">
             -- Equi-Join Example
             <strong>SELECT</strong> *
-            <strong>FROM</strong> Employees <strong>JOIN</strong> Departments 
+            <strong>FROM</strong> Employees <strong>JOIN</strong> Departments
             <strong>ON</strong> Employees.DeptID = Departments.DeptID;
         </div>
     </div>
@@ -349,5 +359,6 @@
         // Initialize the presentation
         showSlide(currentSlide);
     </script>
+    <script src="app.js"></script>
 </body>
 </html>

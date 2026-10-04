@@ -348,8 +348,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="subpages.css">
 </head>
 <body>
+
+<header class="app-header">
+    <a href="index.html" class="back-home-btn">← Back to Portal</a>
+    <span style="font-weight:700;">CBSE CS Study Material</span>
+    <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+    </button>
+</header>
+
   <div class="deck">
     <div class="progress-bar" id="progress-bar"></div>
     <div class="slide-indicator" id="slide-indicator">Slide 1 of 12</div>
@@ -693,5 +703,6 @@ locations = <span class="br">{</span>
     // Initialize
     show(idx);
   </script>
+    <script src="app.js"></script>
 </body>
 </html>

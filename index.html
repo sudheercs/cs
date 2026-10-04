@@ -1,194 +1,485 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
-    <!-- Essential for Mobile Responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS Resources | Home</title>
+    <title>CBSE Computer Science (XI & XII) — Interactive Learning Platform</title>
+    <meta name="description" content="Interactive learning web application for CBSE Class 11 and Class 12 Computer Science (Code 083). Lecture slides, notes, and quizzes.">
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="article-mode">
+<body>
 
     <header>
         <div class="nav-container">
-            <a href="index.html" class="logo">Sudheer CS</a>
-            <nav class="nav-links">
-                <a href="#about">About</a>
-                <a href="https://github.com/sudheercs/cs">GitHub Repo</a>
-            </nav>
+            <a href="index.html" class="logo-group">
+                <span class="logo-icon">💻</span>
+                <span class="logo-text">CBSE CS <span>Hub</span></span>
+            </a>
+            <div class="nav-controls">
+                <a href="#syllabus" class="nav-link">Syllabus</a>
+                <a href="https://github.com/sudheercs/cs" target="_blank" class="nav-link">GitHub</a>
+                <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle theme">
+                    <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
-        <h1>Computer Science Resources</h1>
-        <p class="subtitle">Select a semester or category to view lecture notes and lab manuals.</p>
+        <section class="hero">
+            <h1>CBSE Computer Science (083)</h1>
+            <p class="subtitle">Interactive Study Materials, Presentation Slides & Practice Quizzes for Class 11 & Class 12</p>
+        </section>
 
-        <!-- Category Grid -->
-        <div class="grid-container">
-            <!-- SQL.html -->
-            <a href="SQL.html" class="card">
-                <span class="card-title">SQL Presentation</span>
-                <span class="card-desc">Introduction to Structured Query Language and DDL/DML.</span>
+        <!-- Search and Syllabus Filter Section -->
+        <section class="controls-wrapper">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search topics (e.g. Python, SQL, Networks, Boolean, Gates)...">
+                <button id="clearSearchBtn" class="clear-search" aria-label="Clear search">✖</button>
+            </div>
+
+            <div class="filter-pills" id="filterPills">
+                <button class="filter-btn active" data-filter="all">All Topics</button>
+                <button class="filter-btn" data-filter="class11">Class 11</button>
+                <button class="filter-btn" data-filter="class12">Class 12</button>
+                <button class="filter-btn" data-filter="interactive">Interactive Slideshows</button>
+            </div>
+        </section>
+
+        <!-- Topic Cards Grid -->
+        <div class="grid-container" id="cardsGrid">
+
+            <!-- Python Basics -->
+            <a href="python_basics/" class="card" data-category="class11 interactive" data-tags="python basics programming syntax fundamentals unit 2">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Python Basics</h2>
+                <p class="card-desc">Introduction to Python programming language, syntax, tokens, and basic structure.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Data Types -->
+            <a href="data_types/" class="card" data-category="class11 interactive" data-tags="data types primitive derived variables class 11">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Data Types in Python</h2>
+                <p class="card-desc">Numbers, Strings, Lists, Tuples, Dictionaries, and explicit type conversion.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Operators -->
+            <a href="operators/" class="card" data-category="class11 interactive" data-tags="operators arithmetic logical relational bitwise precedence">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Operators & Expressions</h2>
+                <p class="card-desc">Arithmetic, Relational, Logical, Assignment, and Bitwise operators in Python.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Expressions and I/O -->
+            <a href="expressions_and_io/" class="card" data-category="class11 interactive" data-tags="expressions input output print evaluation typecasting">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Expressions & Input/Output</h2>
+                <p class="card-desc">Evaluating arithmetic expressions, user input using input(), and print formatting.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Conditional Programs -->
+            <a href="conditional_programs/" class="card" data-category="class11 interactive" data-tags="conditional if else elif branching decision making">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Conditional Statements</h2>
+                <p class="card-desc">If, if-else, and if-elif-else branching constructs with practical code examples.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Iterative Statements -->
+            <a href="iterative_statements/" class="card" data-category="class11 interactive" data-tags="loops for while range iteration break continue">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Iterative Statements (Loops)</h2>
+                <p class="card-desc">Mastering for loops, while loops, range() function, and loop control statements.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Flow of Control -->
+            <a href="flow_of_control/" class="card" data-category="class11 interactive" data-tags="flow control execution sequence selection iteration">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Flow of Control</h2>
+                <p class="card-desc">Sequence, selection, and repetition concepts with visual flowchart explanations.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Python Strings -->
+            <a href="string.html" class="card" data-category="class11 class12" data-tags="python string slicing methods traversal manipulation class 11 class 12">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-c12">Class 12</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Python Strings</h2>
+                <p class="card-desc">String creation, index slicing, immutability, and comprehensive built-in methods guide.</p>
+                <div class="card-footer">
+                    <span>View Study Guide</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Python Lists -->
+            <a href="list.html" class="card" data-category="class11 class12" data-tags="python list sequence mutability slicing methods list comprehension">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-c12">Class 12</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Python Lists</h2>
+                <p class="card-desc">Working with mutable sequences, append/extend/pop methods, nested lists, and operations.</p>
+                <div class="card-footer">
+                    <span>View Study Guide</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Python Tuples -->
+            <a href="tuples.html" class="card" data-category="class11 class12" data-tags="python tuples immutable sequence tuple packing unpacking">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-c12">Class 12</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Python Tuples</h2>
+                <p class="card-desc">Understanding immutable ordered sequences, packing, unpacking, and tuple functions.</p>
+                <div class="card-footer">
+                    <span>View Study Guide</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Python Dictionaries -->
+            <a href="dictionary.html" class="card" data-category="class11 class12" data-tags="python dictionary key value mapping dict methods keys values items">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-c12">Class 12</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Python Dictionaries</h2>
+                <p class="card-desc">Key-value data mappings, dictionary traversal, mutability, and standard dictionary functions.</p>
+                <div class="card-footer">
+                    <span>View Study Guide</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Python Modules -->
+            <a href="python_modules.html" class="card" data-category="class11 class12" data-tags="python modules import math random statistics standard library">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-c12">Class 12</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Python Modules</h2>
+                <p class="card-desc">Creating and importing modules, using built-in math, random, and statistics libraries.</p>
+                <div class="card-footer">
+                    <span>View Study Guide</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Computer Organisation -->
+            <a href="computer_organisation/" class="card" data-category="class11 interactive" data-tags="computer organisation cpu memory ALU RAM ROM bus architecture unit 1">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Computer Systems & Organisation</h2>
+                <p class="card-desc">Unit 1: Central Processing Unit (CPU), memory hierarchy, registers, and system buses.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Boolean Logic -->
+            <a href="boolean_logic/" class="card" data-category="class11 interactive" data-tags="boolean logic logic gates AND OR NOT NAND NOR XOR De Morgan truth tables">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Boolean Logic & Gates</h2>
+                <p class="card-desc">Truth tables, logic gates (AND, OR, NOT, NAND, NOR, XOR), De Morgan's laws, and circuits.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Number Systems -->
+            <a href="number_systems/" class="card" data-category="class11 interactive" data-tags="number systems binary octal decimal hexadecimal conversions radix">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Number Systems & Conversions</h2>
+                <p class="card-desc">Binary, Octal, Decimal, Hexadecimal representations and conversion step-by-step.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Encoding Schemes -->
+            <a href="encoding_schemes/" class="card" data-category="class11 interactive" data-tags="encoding ASCII Unicode UTF-8 UTF-16 ISCII character set">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Encoding Schemes</h2>
+                <p class="card-desc">ASCII, ISCII, Unicode, UTF-8, UTF-16 character encoding standards in modern computing.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Operating System -->
+            <a href="operating_system/" class="card" data-category="class11 interactive" data-tags="operating system OS kernel process memory scheduling virtual memory GUI CLI">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Operating System Fundamentals</h2>
+                <p class="card-desc">Role of OS, process management, memory management, file systems, and user interfaces.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Software Types -->
+            <a href="software_types/" class="card" data-category="class11 interactive" data-tags="software types system application utility open source proprietary compiler interpreter">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Software Types & Translators</h2>
+                <p class="card-desc">System software, application software, utilities, compilers, interpreters, and open-source models.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Errors & Exceptions -->
+            <a href="errors/" class="card" data-category="class11 class12 interactive" data-tags="errors syntax logical runtime exception handling try except debugging">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-c12">Class 12</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Errors & Exception Handling</h2>
+                <p class="card-desc">Syntax errors, logical errors, runtime exceptions, and debugging strategies.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Problem Solving -->
+            <a href="problem_solving/" class="card" data-category="class11 interactive" data-tags="problem solving algorithm flowchart pseudocode decomposition logic">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-interactive">Slides & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Problem Solving Methodology</h2>
+                <p class="card-desc">Problem identification, algorithm design, flowcharts, pseudocode, and testing strategies.</p>
+                <div class="card-footer">
+                    <span>Explore Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Database Management Systems (DBMS) -->
+            <a href="dbms.html" class="card" data-category="class12" data-tags="dbms database SQL relational schema key primary foreign candidate relational algebra unit 3">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c12">Class 12</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Database Concepts (DBMS)</h2>
+                <p class="card-desc">Unit 3: Database concepts, Relational Data Model, keys, domains, tuples, and relational algebra.</p>
+                <div class="card-footer">
+                    <span>View Presentation</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Structured Query Language (SQL) -->
+            <a href="SQL.html" class="card" data-category="class12" data-tags="sql database select insert update delete create table ddl dml queries unit 3">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c12">Class 12</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Structured Query Language (SQL)</h2>
+                <p class="card-desc">DDL and DML commands, SELECT queries, WHERE, ORDER BY, GROUP BY, and Aggregate functions.</p>
+                <div class="card-footer">
+                    <span>View Presentation</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Advanced SQL Slides -->
+            <a href="sql_slides_fullscreen_30.html" class="card" data-category="class12 interactive" data-tags="sql advanced queries joins table aggregate grouping full deck 30 slides">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c12">Class 12</span>
+                        <span class="badge badge-interactive">30 Slides Deck</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Complete SQL Presentation (30 Slides)</h2>
+                <p class="card-desc">In-depth full-screen presentation covering complete CBSE Class 12 SQL query syllabus.</p>
+                <div class="card-footer">
+                    <span>Launch Full Deck</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Python + SQL Connectivity -->
+            <a href="python_sql_conn.html" class="card" data-category="class12" data-tags="python sql mysql connector database interface crud cursor execute fetchall">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c12">Class 12</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Python + SQL Interface</h2>
+                <p class="card-desc">Connecting Python to MySQL database, executing queries, fetching records, and database CRUD operations.</p>
+                <div class="card-footer">
+                    <span>View Study Guide</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Computer Networks -->
+            <a href="computer_networks.html" class="card" data-category="class12 interactive" data-tags="computer networks topology protocol OSI TCP IP router switch transmission media unit 2">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c12">Class 12</span>
+                        <span class="badge badge-interactive">Tabs & Quiz</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Computer Networks</h2>
+                <p class="card-desc">Unit 2: Network types, topologies, transmission media, network devices, IP addressing & protocols.</p>
+                <div class="card-footer">
+                    <span>Explore Unit</span>
+                    <span class="card-arrow">→</span>
+                </div>
             </a>
 
             <!-- Learning Slides -->
-            <a href="learning.html" class="card">
-                <span class="card-title">Learning Slides</span>
-                <span class="card-desc">Embedded Google Slides presentation</span>
+            <a href="learning.html" class="card" data-category="class11 class12" data-tags="learning google slides presentation overview general computer science">
+                <div class="card-header-meta">
+                    <div class="badges">
+                        <span class="badge badge-c11">Class 11</span>
+                        <span class="badge badge-c12">Class 12</span>
+                    </div>
+                </div>
+                <h2 class="card-title">Learning Slides Hub</h2>
+                <p class="card-desc">Embedded Google Slides and lecture resources for comprehensive Computer Science concepts.</p>
+                <div class="card-footer">
+                    <span>Open Slides</span>
+                    <span class="card-arrow">→</span>
+                </div>
             </a>
 
-            <!-- boolean_logic folder -->
-            <a href="boolean_logic/" class="card">
-                <span class="card-title">Boolean Logic</span>
-                <span class="card-desc">Unit 1: Gates, Karnaugh Map, and Digital Circuits.</span>
-            </a>
+        </div>
 
-            <!-- computer_networks.html -->
-            <a href="computer_networks.html" class="card">
-                <span class="card-title">Computer Networks</span>
-                <span class="card-desc">Unit 2: Evolution, Terminology, and Transmission Media.</span>
-            </a>
-
-            <!-- computer_organisation folder -->
-            <a href="computer_organisation/" class="card">
-                <span class="card-title">Computer Organisation</span>
-                <span class="card-desc">Hardware, CPU, Memory Hierarchy, and I/O Devices.</span>
-            </a>
-
-            <!-- conditional_programs folder -->
-            <a href="conditional_programs/" class="card">
-                <span class="card-title">Conditional Programs</span>
-                <span class="card-desc">If-Else, Switch statements, and decision-making logic.</span>
-            </a>
-
-            <!-- data_types folder -->
-            <a href="data_types/" class="card">
-                <span class="card-title">Data Types</span>
-                <span class="card-desc">Primitive and derived data types, type conversions.</span>
-            </a>
-
-            <!-- dbms.html -->
-            <a href="dbms.html" class="card">
-                <span class="card-title">DBMS Slides</span>
-                <span class="card-desc">Overview of Database Management Systems concepts.</span>
-            </a>
-
-            <!-- dictionary.html -->
-            <a href="dictionary.html" class="card">
-                <span class="card-title">Python Dictionaries</span>
-                <span class="card-desc">Complete guide to keys, values, and methods.</span>
-            </a>
-
-            <!-- encoding_schemes folder -->
-            <a href="encoding_schemes/" class="card">
-                <span class="card-title">Encoding Schemes</span>
-                <span class="card-desc">ASCII, Unicode, UTF-8, and binary encoding.</span>
-            </a>
-
-            <!-- errors folder -->
-            <a href="errors/" class="card">
-                <span class="card-title">Errors & Exceptions</span>
-                <span class="card-desc">Types of errors, debugging, and error handling.</span>
-            </a>
-
-            <!-- expressions_and_io folder -->
-            <a href="expressions_and_io/" class="card">
-                <span class="card-title">Expressions & I/O</span>
-                <span class="card-desc">Input/Output operations and expression evaluation.</span>
-            </a>
-
-            <!-- flow_of_control folder -->
-            <a href="flow_of_control/" class="card">
-                <span class="card-title">Flow of Control</span>
-                <span class="card-desc">Loops, branching, and program control structures.</span>
-            </a>
-
-            <!-- iterative_statements folder -->
-            <a href="iterative_statements/" class="card">
-                <span class="card-title">Iterative Statements</span>
-                <span class="card-desc">For, While, Do-While loops and iterations.</span>
-            </a>
-
-            <!-- list.html -->
-            <a href="list.html" class="card">
-                <span class="card-title">Python Lists</span>
-                <span class="card-desc">Working with mutable sequences and list operations.</span>
-            </a>
-
-            <!-- number_systems folder -->
-            <a href="number_systems/" class="card">
-                <span class="card-title">Number Systems</span>
-                <span class="card-desc">Binary, Octal, Decimal, Hexadecimal conversions.</span>
-            </a>
-
-            <!-- operating_system folder -->
-            <a href="operating_system/" class="card">
-                <span class="card-title">Operating System</span>
-                <span class="card-desc">OS concepts, processes, memory management, and scheduling.</span>
-            </a>
-
-            <!-- operators folder -->
-            <a href="operators/" class="card">
-                <span class="card-title">Operators</span>
-                <span class="card-desc">Arithmetic, Logical, Relational, and Bitwise operators.</span>
-            </a>
-
-            <!-- problem_solving folder -->
-            <a href="problem_solving/" class="card">
-                <span class="card-title">Problem Solving</span>
-                <span class="card-desc">Algorithms, pseudocode, and problem analysis.</span>
-            </a>
-
-            <!-- python_basics folder -->
-            <a href="python_basics/" class="card">
-                <span class="card-title">Python Basics</span>
-                <span class="card-desc">Introduction to Python, syntax, and fundamentals.</span>
-            </a>
-
-            <!-- python_modules.html -->
-            <a href="python_modules.html" class="card">
-                <span class="card-title">Python Modules</span>
-                <span class="card-desc">Math, Random, and Statistics modules explained.</span>
-            </a>
-
-            <!-- python_sql_conn.html -->
-            <a href="python_sql_conn.html" class="card">
-                <span class="card-title">Python + SQL Interface</span>
-                <span class="card-desc">Connecting Python to SQL databases for CRUD operations.</span>
-            </a>
-
-            <!-- software_types folder -->
-            <a href="software_types/" class="card">
-                <span class="card-title">Software Types</span>
-                <span class="card-desc">System, Application, and Utility software overview.</span>
-            </a>
-
-            <!-- sql_slides_fullscreen_30.html -->
-            <a href="sql_slides_fullscreen_30.html" class="card">
-                <span class="card-title">Advanced SQL</span>
-                <span class="card-desc">Comprehensive 30-slide presentation on SQL queries.</span>
-            </a>
-
-            <!-- string.html -->
-            <a href="string.html" class="card">
-                <span class="card-title">Python Strings</span>
-                <span class="card-desc">String manipulation, formatting, and methods.</span>
-            </a>
-
-            <!-- tuples.html -->
-            <a href="tuples.html" class="card">
-                <span class="card-title">Python Tuples</span>
-                <span class="card-desc">Understanding immutable ordered collections.</span>
-            </a>
+        <div class="no-results" id="noResults">
+            <div class="no-results-icon">🔎</div>
+            <h3>No topics match your search or filter</h3>
+            <p>Try searching for terms like "Python", "SQL", "Network", or "Logic Gates".</p>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 Sudheer CS. Hosted on GitHub Pages.</p>
+        <p>&copy; 2025 CBSE Computer Science Learning Hub • Designed for Class 11 & 12 (Code 083)</p>
     </footer>
 
+    <script src="app.js"></script>
 </body>
 
 </html>
