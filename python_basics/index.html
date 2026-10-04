@@ -44,6 +44,14 @@
 </head>
 
 <body>
+
+<header class="app-header" style="background: var(--bg-secondary, #1e293b); padding: 0.75rem 1.25rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); sticky: top;">
+    <a href="../index.html" class="back-home-btn" style="color: #3b82f6; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">← Back to CS Portal</a>
+    <button class="theme-toggle" id="themeToggleBtn" style="background: transparent; border: 1px solid #475569; color: #f8fafc; padding: 0.35rem 0.75rem; border-radius: 6px; cursor: pointer;">
+        <span id="themeIcon">🌙</span> <span id="themeText">Theme</span>
+    </button>
+</header>
+
     <div id="progressBar"></div>
     <div id="slideshow">
 
@@ -748,6 +756,7 @@
 
 <script src="quiz.js"></script>
 <script src="slides.js"></script>
+    <script src="../app.js"></script>
 </body>
 
 </html>

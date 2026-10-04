@@ -12,20 +12,20 @@
             padding: 0;
             background-color: #1e1e1e;
             color: #ffffff;
-            overflow: hidden; 
+            overflow: hidden;
         }
 
         /* Slide Definition */
         .slide {
             height: 100vh;
             width: 100vw;
-            display: none; 
+            display: none;
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
-            padding: 2% 5%; 
+            padding: 2% 5%;
             box-sizing: border-box;
-            position: absolute; 
+            position: absolute;
             top: 0;
             left: 0;
             opacity: 0;
@@ -41,7 +41,7 @@
 
         /* Slide Headings and Text */
         .slide h1 {
-            color: #61dafb; 
+            color: #61dafb;
             font-size: clamp(1.8em, 4vw, 3em);
             margin-bottom: 0.5em;
             border-bottom: 3px solid #61dafb;
@@ -51,13 +51,13 @@
         .slide h2 {
             color: #ffffff;
             font-size: clamp(1.5em, 3vw, 2em);
-            margin-top: 1em; 
+            margin-top: 1em;
             width: 100%;
         }
         .slide h3 {
-            color: #a9d97a; 
+            color: #a9d97a;
             font-size: clamp(1.2em, 2.5vw, 1.6em);
-            margin-top: 1em; 
+            margin-top: 1em;
             width: 100%;
         }
         .slide p, .slide li {
@@ -66,16 +66,16 @@
             width: 100%;
         }
         .slide strong {
-            color: #f7b95d; 
+            color: #f7b95d;
         }
 
         /* Code Block Styling (Responsive) */
         .code-block {
-            background-color: #2d2d2d; 
-            padding: 15px; 
+            background-color: #2d2d2d;
+            padding: 15px;
             border-radius: 8px;
             font-family: 'Consolas', 'Courier New', monospace;
-            margin: 15px 0; 
+            margin: 15px 0;
             width: 95%;
             max-width: 100%;
             display: block;
@@ -92,8 +92,8 @@
             display: block;
             white-space: pre;
         }
-        .code-block span { 
-            color: #56b6c2; 
+        .code-block span {
+            color: #56b6c2;
         }
 
         /* Lists */
@@ -116,7 +116,7 @@
             background-color: #61dafb;
             color: #1e1e1e;
             border: none;
-            padding: 10px 20px; 
+            padding: 10px 20px;
             border-radius: 6px;
             cursor: pointer;
             font-size: clamp(0.9em, 2vw, 1.1em);
@@ -132,7 +132,7 @@
             font-size: clamp(0.9em, 2vw, 1.2em);
             color: #a9d97a;
         }
-        
+
         /* Progress Bar */
         .progress-container {
             position: fixed;
@@ -143,14 +143,14 @@
             background-color: #333;
             z-index: 101;
         }
-        
+
         .progress-bar {
             height: 100%;
             background-color: #61dafb;
             width: 0%;
             transition: width 0.3s ease;
         }
-        
+
         /* Slide Counter */
         .slide-counter {
             position: fixed;
@@ -160,7 +160,7 @@
             color: #a9d97a;
             z-index: 102;
         }
-        
+
         /* Table Styling */
         table {
             width: 95%;
@@ -170,22 +170,22 @@
             overflow-x: auto;
             display: block;
         }
-        
+
         th, td {
             border: 1px solid #5a6270;
             padding: 10px;
             text-align: left;
         }
-        
+
         th {
             background-color: #2d2d2d;
             color: #61dafb;
         }
-        
+
         tr:nth-child(even) {
             background-color: #252525;
         }
-        
+
         /* Quiz Styling */
         .quiz-question {
             background-color: #2d2d2d;
@@ -194,12 +194,12 @@
             margin: 15px 0;
             width: 95%;
         }
-        
+
         .quiz-options {
             list-style-type: none;
             padding-left: 0;
         }
-        
+
         .quiz-options li {
             margin: 8px 0;
             padding: 8px;
@@ -209,70 +209,80 @@
             transition: background-color 0.3s;
             font-size: clamp(0.9em, 2vw, 1.4em);
         }
-        
+
         .quiz-options li:hover {
             background-color: #4a4a4a;
         }
-        
+
         .quiz-options li.correct {
             background-color: #2d7a2d;
         }
-        
+
         .quiz-options li.incorrect {
             background-color: #7a2d2d;
         }
-        
+
         .quiz-feedback {
             margin-top: 10px;
             font-weight: bold;
             font-size: clamp(0.9em, 2vw, 1.4em);
         }
-        
+
         /* Mobile-specific adjustments */
         @media (max-width: 768px) {
             .slide {
                 padding: 10% 5%;
                 justify-content: flex-start;
             }
-            
+
             .code-block {
                 padding: 10px;
                 width: 100%;
                 font-size: 0.9em;
             }
-            
+
             .nav-controls {
                 bottom: 10px;
                 right: 10px;
             }
-            
+
             #slide-indicator {
                 bottom: 20px;
                 left: 10px;
             }
         }
-        
+
         @media (max-width: 480px) {
             .slide {
                 padding: 15% 5%;
             }
-            
+
             .code-block {
                 font-size: 0.8em;
                 padding: 8px;
             }
-            
+
             .nav-controls button {
                 padding: 8px 15px;
             }
         }
     </style>
+    <link rel="stylesheet" href="subpages.css">
 </head>
 <body>
+
+<header class="app-header">
+    <a href="index.html" class="back-home-btn">← Back to Portal</a>
+    <span style="font-weight:700;">CBSE CS Study Material</span>
+    <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+    </button>
+</header>
+
     <div class="progress-container">
         <div class="progress-bar" id="progress-bar"></div>
     </div>
-    
+
     <div class="slide-counter" id="slide-counter"></div>
 
     <div class="slide active" data-slide-num="1">
@@ -298,7 +308,7 @@ empty_list = []</code></div>
 print(L[1])       <span># Output: B</span>
 print(L[-1])      <span># Output: D</span>
 print(L[1:3])     <span># Output: ['B', 'C']</span></code></div>
-        
+
         <h3>Index Reference Table</h3>
         <table>
             <tr>
@@ -328,7 +338,7 @@ print(L[1:3])     <span># Output: ['B', 'C']</span></code></div>
             </tr>
         </table>
     </div>
-    
+
     <div class="slide" data-slide-num="3">
         <h1>➕ Basic List Operations</h1>
         <h2>Concatenation, Repetition, and Membership</h2>
@@ -349,9 +359,9 @@ print(2 <span>in</span> L1)       <span># Output: True</span></code></div>
         <p>The <code>for...in</code> loop is the most common way to process every element in a list.</p>
         <div class="code-block"><code>my_numbers = [1, 5, 8]
 <span>for</span> item <span>in</span> my_numbers:
-    print(item * 2) 
+    print(item * 2)
 <span># Output: 2, 10, 16 (on separate lines)</span></code></div>
-        
+
         <h3>Alternative: Using enumerate()</h3>
         <div class="code-block"><code>my_numbers = [1, 5, 8]
 <span>for</span> index, value <span>in</span> enumerate(my_numbers):
@@ -388,7 +398,7 @@ print(f"Sum: {sum(scores)}")</code></div>
     <div class="slide" data-slide-num="7">
         <h1>➕ Mutator Methods: Adding Elements</h1>
         <p>These methods modify the list <strong>in place</strong>.</p>
-        
+
         <h2><code>append()</code>, <code>extend()</code>, <code>insert()</code></h2>
         <ul>
             <li><strong>append(element)</strong>: Adds <strong>one</strong> item to the end.</li>
@@ -404,7 +414,7 @@ L.extend([30, 40])
 
     <div class="slide" data-slide-num="8">
         <h1>➖ Mutator Methods: Removal & Searching</h1>
-        
+
         <h2>Removal & Indexing</h2>
         <ul>
             <li><strong>pop([index])</strong>: Removes and <strong>returns</strong> element at the index.</li>
@@ -416,10 +426,10 @@ L.extend([30, 40])
 print(L.count(1)) <span># Output: 2</span>
 print(L.index(3)) <span># Output: 3</span></code></div>
     </div>
-    
+
     <div class="slide" data-slide-num="9">
         <h1>🔁 Mutator Methods: Sorting & Reordering</h1>
-        
+
         <h2>Sorting and Reversal</h2>
         <ul>
             <li><strong>reverse()</strong>: Reverses the order of elements <strong>in place</strong>.</li>
@@ -433,14 +443,14 @@ L.reverse() <span># L is now [1, 4, 5]</span></code></div>
 
     <div class="slide" data-slide-num="10">
         <h1>🌳 Nested Lists (Matrices)</h1>
-        
+
         <p>A list where elements are themselves lists. Used to model 2D data like matrices.</p>
-        
+
         <h2>Accessing Elements</h2>
         <div class="code-block"><code>matrix = [[1, 2], [3, 4], [5, 6]]
 print(matrix[1])
 print(matrix[1][0])   <span># Output: 3</span></code></div>
-        
+
         <h3>Iterating Through Nested Lists</h3>
         <div class="code-block"><code>matrix = [[1, 2], [3, 4], [5, 6]]
 <span>for</span> row <span>in</span> matrix:
@@ -484,10 +494,10 @@ target = 7
 count_A = items.count('A')
 print(f"Frequency of 'A': {count_A}")</code></div>
     </div>
-    
+
     <div class="slide" data-slide-num="14">
         <h1>📋 List Methods Summary</h1>
-        
+
         <table>
             <tr>
                 <th>Method</th>
@@ -551,11 +561,11 @@ print(f"Frequency of 'A': {count_A}")</code></div>
             </tr>
         </table>
     </div>
-    
+
     <div class="slide" data-slide-num="15">
         <h1>🧪 Quick Quiz</h1>
         <h2>Test Your Knowledge</h2>
-        
+
         <div class="quiz-question">
             <p>What is the output of the following code?</p>
             <div class="code-block"><code>my_list = [1, 2, 3, 4, 5]
@@ -568,7 +578,7 @@ print(my_list[1:4])</code></div>
             </ul>
             <div class="quiz-feedback" id="feedback-1"></div>
         </div>
-        
+
         <div class="quiz-question">
             <p>Which method would you use to add multiple elements to a list?</p>
             <ul class="quiz-options">
@@ -594,10 +604,10 @@ print(my_list[1:4])</code></div>
         function updateSlideIndicator() {
             const indicator = document.getElementById('slide-indicator');
             indicator.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
-            
+
             const counter = document.getElementById('slide-counter');
             counter.textContent = `${currentSlide + 1}/${slides.length}`;
-            
+
             const progressBar = document.getElementById('progress-bar');
             progressBar.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
         }
@@ -623,14 +633,14 @@ print(my_list[1:4])</code></div>
             options.forEach(opt => {
                 opt.classList.remove('correct', 'incorrect');
             });
-            
+
             // Mark the selected option
             element.classList.add(result);
-            
+
             // Show feedback
             const feedbackId = element.parentElement.nextElementSibling.id;
             const feedback = document.getElementById(feedbackId);
-            
+
             if (result === 'correct') {
                 feedback.textContent = "Correct! Well done.";
                 feedback.style.color = "#a9d97a";
@@ -658,5 +668,6 @@ print(my_list[1:4])</code></div>
         // Initialize the presentation
         showSlide(currentSlide);
     </script>
+    <script src="app.js"></script>
 </body>
 </html>

@@ -583,8 +583,18 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="subpages.css">
 </head>
 <body>
+
+<header class="app-header">
+    <a href="index.html" class="back-home-btn">← Back to Portal</a>
+    <span style="font-weight:700;">CBSE CS Study Material</span>
+    <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+    </button>
+</header>
+
 
     <div class="presentation-container" id="presentation">
 
@@ -1424,5 +1434,6 @@
             console.log('   📱 Touch swipe supported on mobile devices');
         })();
     </script>
+    <script src="app.js"></script>
 </body>
 </html>

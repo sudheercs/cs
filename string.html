@@ -36,11 +36,11 @@
         .slide {
             /* Hide all slides by default */
             display: none;
-            
+
             /* Full size of the container */
             width: 100%;
             height: 100%;
-            
+
             /* Content layout */
             padding: 40px 60px;
             box-sizing: border-box;
@@ -94,11 +94,11 @@
             width: 90%;
             margin-top: 0;
         }
-        
+
         .slide li {
             margin-bottom: 15px;
         }
-        
+
         .slide strong {
             color: #005A9C;
         }
@@ -118,7 +118,7 @@
         .slide code {
             font-family: "Consolas", "Courier New", monospace;
         }
-        
+
         /* For inline code in tables/text */
         .slide :not(pre) > code {
             background-color: #eee;
@@ -145,7 +145,7 @@
             background-color: #f4f4f4;
             font-weight: bold;
         }
-        
+
         .slide td:first-child {
             font-weight: 500;
         }
@@ -199,8 +199,18 @@
             width: 120px;
         }
     </style>
+    <link rel="stylesheet" href="subpages.css">
 </head>
 <body>
+
+<header class="app-header">
+    <a href="index.html" class="back-home-btn">← Back to Portal</a>
+    <span style="font-weight:700;">CBSE CS Study Material</span>
+    <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+    </button>
+</header>
+
 
     <div id="presentation-container">
 
@@ -238,7 +248,7 @@ print(name)</code></pre>
             <h3>Concatenation ( + )</h3>
             <pre><code>"Hello" + " " + "World"
 # Output: 'Hello World'</code></pre>
-            
+
             <h3>Repetition ( * )</h3>
             <pre><code>"Hi" * 3
 # Output: 'HiHiHi'</code></pre>
@@ -252,7 +262,7 @@ print(name)</code></pre>
 
 "z" not in "apple"
 # Output: True</code></pre>
-            
+
             <h3>Slicing ([ : ])</h3>
             <pre><code>text = "Python"
 text[1:4]  # From index 1 up to (but not including) 4
@@ -287,7 +297,7 @@ text = "Hello"
 while i < len(text):
     print(text[i])
     i += 1
-    
+
 # (Same Output)</code></pre>
                 </div>
             </div>
@@ -492,7 +502,7 @@ while i < len(text):
         const prevBtn = document.getElementById('prev');
         const nextBtn = document.getElementById('next');
         const counter = document.getElementById('counter');
-        
+
         let currentSlide = 0;
         const totalSlides = slides.length;
 
@@ -500,7 +510,7 @@ while i < len(text):
         function showSlide(n) {
             // Hide the currently active slide
             slides[currentSlide].classList.remove('active');
-            
+
             // Update the current slide index, making sure it's within bounds
             if (n >= totalSlides) {
                 currentSlide = totalSlides - 1;
@@ -509,13 +519,13 @@ while i < len(text):
             } else {
                 currentSlide = n;
             }
-            
+
             // Show the new active slide
             slides[currentSlide].classList.add('active');
-            
+
             // Update the counter text
             counter.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
-            
+
             // Enable/disable Prev/Next buttons at the start or end
             prevBtn.disabled = (currentSlide === 0);
             nextBtn.disabled = (currentSlide === totalSlides - 1);
@@ -527,7 +537,7 @@ while i < len(text):
         nextBtn.addEventListener('click', () => {
             showSlide(currentSlide + 1);
         });
-        
+
         // Previous button click
         prevBtn.addEventListener('click', () => {
             showSlide(currentSlide - 1);
@@ -546,5 +556,6 @@ while i < len(text):
         showSlide(0);
 
     </script>
+    <script src="app.js"></script>
 </body>
 </html>
